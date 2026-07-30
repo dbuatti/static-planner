@@ -1737,6 +1737,109 @@ Travel: 🚗 Travel home 23:00–00:00" data-tip-color="#C8B070" onclick="go('fr
     Data from ING + Vantage · Updated Jul 2026
   </div>
 
+  <!-- SAVINGS TRAJECTORY CHART -->
+  <div style="margin-top:20px;background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:16px;">
+    <div style="font-size:12px;font-weight:700;color:#1a1a18;margin-bottom:2px;">📈 Savings Target Trajectory</div>
+    <div style="font-size:9px;color:#8A8880;margin-bottom:12px;">Monthly savings target balance · Bali dip Sep '26 · Bhutan target Oct '27</div>
+    <div style="position:relative;overflow-x:auto;">
+    <svg viewBox="0 0 720 300" style="width:100%;min-width:600px;height:auto;display:block;font-family:-apple-system,system-ui,sans-serif;">
+      <!-- Grid lines -->
+      <line x1="60" y1="40" x2="60" y2="260" stroke="#E8E6DF" stroke-width="1"/>
+      <line x1="700" y1="260" x2="60" y2="260" stroke="#E8E6DF" stroke-width="1"/>
+      <line x1="60" y1="72" x2="700" y2="72" stroke="#f0f0f0" stroke-width="0.5"/>
+      <line x1="60" y1="104" x2="700" y2="104" stroke="#f0f0f0" stroke-width="0.5"/>
+      <line x1="60" y1="136" x2="700" y2="136" stroke="#f0f0f0" stroke-width="0.5"/>
+      <line x1="60" y1="168" x2="700" y2="168" stroke="#f0f0f0" stroke-width="0.5"/>
+      <line x1="60" y1="200" x2="700" y2="200" stroke="#f0f0f0" stroke-width="0.5"/>
+      <line x1="60" y1="232" x2="700" y2="232" stroke="#f0f0f0" stroke-width="0.5"/>
+      <!-- Y-axis labels -->
+      <text x="55" y="44" text-anchor="end" font-size="9" fill="#9a9080">$35K</text>
+      <text x="55" y="76" text-anchor="end" font-size="9" fill="#9a9080">$30K</text>
+      <text x="55" y="108" text-anchor="end" font-size="9" fill="#9a9080">$25K</text>
+      <text x="55" y="140" text-anchor="end" font-size="9" fill="#9a9080">$20K</text>
+      <text x="55" y="172" text-anchor="end" font-size="9" fill="#9a9080">$15K</text>
+      <text x="55" y="204" text-anchor="end" font-size="9" fill="#9a9080">$10K</text>
+      <text x="55" y="236" text-anchor="end" font-size="9" fill="#9a9080">$5K</text>
+      <text x="55" y="264" text-anchor="end" font-size="9" fill="#9a9080">$0</text>
+
+      <!-- Plot area: x from 60 to 700, y from 40 to 260 -->
+      <!-- Each month step = (700-60)/16 = 40px, from Jul '26 (0) to Oct '27 (15) -->
+      <!-- y = 260 - (savings/35000) * 220 -->
+      <!-- Data: Jul26=25238→y=101, Aug=26500→y=93, Sep=23500→y=112, Oct=24500→y=106, Nov=25500→y=100, Dec=26500→y=93,
+           Jan27=27500→y=87, Feb=28500→y=81, Mar=29500→y=75, Apr=30500→y=68, May=31500→y=62, Jun=32500→y=56,
+           Jul=33500→y=49, Aug=34500→y=43, Sep=35500→y=37, Oct=36500→y=31 -->
+      <!-- After Bhutan Oct: 36500-10000=26500→y=93 -->
+
+      <!-- True savings (net of tax, start ~19028) -->
+      <!-- True: Jul26=19028→y=140, Aug=20290→y=132, Sep=17290→y=151, Oct=18290→y=145, Nov=19290→y=139, Dec=20290→y=132,
+           Jan27=21290→y=126, Feb=22290→y=120, Mar=23290→y=114, Apr=24290→y=107, May=25290→y=101, Jun=26290→y=95,
+           Jul=27290→y=88, Aug=28290→y=82, Sep=29290→y=76, Oct=30290→y=70 -->
+
+      <!-- Gross savings line -->
+      <polyline points="60,101 100,93 140,112 180,106 220,100 260,93 300,87 340,81 380,75 420,68 460,62 500,56 540,49 580,43 620,37 660,31 700,93"
+                fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      <!-- True savings line -->
+      <polyline points="60,140 100,132 140,151 180,145 220,139 260,132 300,126 340,120 380,114 420,107 460,101 500,95 540,88 580,82 620,76 660,70 700,93"
+                fill="none" stroke="#9a9080" stroke-width="2" stroke-dasharray="5,4" stroke-linejoin="round" stroke-linecap="round"/>
+
+      <!-- Area fill under gross line -->
+      <polygon points="60,101 100,93 140,112 180,106 220,100 260,93 300,87 340,81 380,75 420,68 460,62 500,56 540,49 580,43 620,37 660,31 700,93 700,260 60,260"
+               fill="url(#grad)" opacity="0.12"/>
+
+      <defs>
+        <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1D9E75"/>
+          <stop offset="100%" stop-color="#1D9E75" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- X-axis labels (every other month) -->
+      <text x="60" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Jul</text>
+      <text x="140" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Sep</text>
+      <text x="220" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Nov</text>
+      <text x="300" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Jan</text>
+      <text x="380" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Mar</text>
+      <text x="460" y="275" text-anchor="middle" font-size="8" fill="#9a9080">May</text>
+      <text x="540" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Jul</text>
+      <text x="620" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Sep</text>
+      <text x="700" y="275" text-anchor="middle" font-size="8" fill="#9a9080">Oct</text>
+      <text x="690" y="263" text-anchor="middle" font-size="7" fill="#8A8880">'27</text>
+
+      <!-- Year markers -->
+      <text x="380" y="290" text-anchor="middle" font-size="7" fill="#ccc">└─ 2027 ─┘</text>
+
+      <!-- Current marker -->
+      <circle cx="60" cy="101" r="5" fill="#fff" stroke="#1D9E75" stroke-width="2.5"/>
+      <text x="60" y="90" text-anchor="middle" font-size="8" font-weight="600" fill="#1D9E75">You are here</text>
+      <text x="60" y="120" text-anchor="middle" font-size="9" fill="#1D9E75" font-weight="700">$25,238</text>
+
+      <!-- Bali dip annotation -->
+      <circle cx="140" cy="112" r="4" fill="#fff" stroke="#C98A4A" stroke-width="2"/>
+      <line x1="140" y1="112" x2="195" y2="98" stroke="#C98A4A" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="197" y="96" font-size="8" fill="#C98A4A" font-weight="600">Bali -$4K</text>
+
+      <!-- Bhutan target annotation -->
+      <circle cx="700" cy="31" r="5" fill="#fff" stroke="#A67CB8" stroke-width="2.5"/>
+      <line x1="700" y1="31" x2="640" y2="25" stroke="#A67CB8" stroke-width="0.5" stroke-dasharray="3,3"/>
+      <text x="640" y="22" text-anchor="end" font-size="8" fill="#A67CB8" font-weight="600">Bhutan $10K →</text>
+
+      <!-- Oct '27: after Bhutan -->
+      <circle cx="700" cy="93" r="3" fill="none" stroke="#9a9080" stroke-width="1.5" stroke-dasharray="3,2"/>
+      <text x="700" y="107" text-anchor="middle" font-size="7" fill="#9a9080">after: $26,500</text>
+    </svg>
+    </div>
+    <div style="display:flex;gap:16px;margin-top:10px;flex-wrap:wrap;font-size:9px;color:#8A8880;">
+      <span><span style="display:inline-block;width:14px;height:3px;background:#1D9E75;vertical-align:middle;margin-right:4px;border-radius:2px;"></span>Gross savings (target)</span>
+      <span><span style="display:inline-block;width:14px;height:2px;background:#9a9080;vertical-align:middle;margin-right:4px;border-radius:1px;border-top:2px dashed #9a9080;height:0;"></span>True savings (after tax)</span>
+      <span style="color:#9a9080;">|</span>
+      <span style="color:#C98A4A;">● Bali $4K (Sep)</span>
+      <span style="color:#A67CB8;">● Bhutan $10K (Oct '27)</span>
+    </div>
+    <div style="font-size:8px;color:#bbb;margin-top:8px;border-top:1px solid #f0f0f0;padding-top:8px;">
+      Assumes ~$1,000–1,200/mo net savings. At $70K run rate ($5,833/mo) with $4,364 expenses + ~$600/mo tax provision → ~$870/mo surplus. Each extra gig or FNH client accelerates the curve.
+    </div>
+  </div>
+
 </div>
 </div>
 
