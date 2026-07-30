@@ -644,8 +644,69 @@ html, body { min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, '
   .chain-step { font-size: 10px !important; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 }
+/* === TAB CONTENT UTILITIES === */
+.card { background:#fff; border:0.5px solid #E8E6DF; border-radius:8px; padding:12px; margin-bottom:16px; }
+.card-sm { background:#fff; border:0.5px solid #E8E6DF; border-radius:6px; padding:8px; margin-bottom:8px; }
+.section-lbl { font-size:11px; font-weight:700; margin-bottom:8px; padding:4px 8px; border-radius:4px; }
+.section-lbl.green { color:#1D9E75; background:#f0fff4; }
+.section-lbl.blue { color:#185FA5; background:#f0f7ff; }
+.section-lbl.amber { color:#C98A4A; background:#f8f2e8; }
+.section-lbl.red { color:#C0392B; background:#fef5f0; }
+.section-lbl.purple { color:#A67CB8; background:#f4eef8; }
+.section-lbl.grey { color:#9a9080; background:#f5f5f3; }
+.section-lbl.pink { color:#C878A8; background:#f8f0f5; }
+.row-split { display:flex; justify-content:space-between; font-size:10px; padding:4px 0; border-bottom:1px solid #f0f0f0; }
+.row-split:last-child { border-bottom:none; }
+.row-label { color:#5F5E5A; }
+.row-value { font-weight:600; }
+.row-value.green { color:#1D9E75; }
+.row-value.blue { color:#185FA5; }
+.row-value.amber { color:#C98A4A; }
+.row-value.red { color:#C0392B; }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:16px; }
+.stat-item { background:#f5f5f3; border-radius:8px; padding:12px; text-align:center; }
+.stat-num { font-size:22px; font-weight:400; font-family:Georgia,'Times New Roman',serif; color:#1a1a18; }
+.stat-label-sm { font-size:9px; color:#8A8880; text-transform:uppercase; letter-spacing:0.08em; margin-top:2px; }
+.insight-box { font-size:9px; color:#5F5E5A; padding:6px; border-radius:4px; margin-top:6px; }
+.insight-box.green-bg { background:#f0fff4; }
+.insight-box.amber-bg { background:#fef5f0; }
+.insight-box.blue-bg { background:#f0f7ff; }
+.insight-box.purple-bg { background:#f4eef8; }
+.action-chip { font-size:9px; color:#5F5E5A; padding:4px 6px; border-radius:3px; margin-bottom:4px; }
+.action-chip.blue-bg { background:#f0f7ff; }
+.action-chip.green-bg { background:#f0fff4; }
+.action-chip.amber-bg { background:#fef5f0; }
+.action-chip.purple-bg { background:#f4eef8; }
+.priority-num { font-weight:700; }
+.priority-num.red { color:#C0392B; }
+.priority-num.amber { color:#C98A4A; }
+.goal-banner { padding:10px 14px; background:linear-gradient(135deg,#f8f4ff,#fef4f0); border:1px solid #D8CCE8; border-radius:10px; margin-bottom:16px; }
+.goal-banner-inner { display:flex; gap:12px; flex-wrap:wrap; font-size:10px; line-height:1.4; }
+.goal-banner-item { flex:1; min-width:140px; }
+.goal-banner-item .label { font-weight:700; }
+.goal-banner-item .label.wish { color:#7B5EA7; }
+.goal-banner-item .label.fiveyear { color:#C98A4A; }
+.goal-banner-item .text { color:#4A4A48; }
+/* Smooth tab transitions */
+.tab-pane { display:none; opacity:0; transition:opacity 0.25s ease; }
+.tab-pane.active { display:block !important; opacity:1; }
+.tab-pane.active:not(#tab-plan) { padding-top:40px; animation:fadeSlideIn 0.3s ease; }
+@keyframes fadeSlideIn { 0% { opacity:0; transform:translateY(6px); } 100% { opacity:1; transform:translateY(0); } }
+/* Scroll to today button */
+.scroll-today { position:fixed; bottom:20px; right:20px; width:40px; height:40px; border-radius:50%; background:#1D9E75; color:#fff; border:none; font-size:18px; cursor:pointer; box-shadow:0 2px 12px rgba(29,158,117,0.3); z-index:999; transition:transform 0.2s, opacity 0.2s; display:none; align-items:center; justify-content:center; }
+.scroll-today:hover { transform:scale(1.1); }
+.scroll-today.show { display:flex; }
+/* Day panel print indicator */
+.print-ready { }
+/* Event card accent colors */
+.ev-accent { border-left:3px solid; }
+.ev-accent.fnh { border-color:#1D9E75; }
+.ev-accent.teaching { border-color:#A67CB8; }
+.ev-accent.perf { border-color:#DAA520; }
+.ev-accent.free { border-color:#D8D6CF; }
+.ev-accent.meal { border-color:#BDC3C7; }
 </style>
-<script src="chrome-extension://liecbddmkiiihnedobmlmillhodjkdmb/js/recordConsoleEvents.js"></script></head>
+</head>
 <body inject_newvt_svd="true">
 
 <!-- TAB BAR -->
@@ -687,8 +748,10 @@ html, body { min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, '
   <div style="padding:0 14px 8px;font-size:10px;font-weight:600;color:#B4B2A9;text-transform:uppercase;letter-spacing:0.05em;">Results</div>
   <div id="search-results"></div>
 </div>
-<div id="cat-tooltip" style="border-left: 3px solid rgb(254, 202, 87); display: none; left: 547.2px; top: 325px;"><div style="color:#feca57;font-weight:600;">Free: 🍀 DAY OFF 08:00–20:00</div></div>
+<div id="cat-tooltip" style="display:none;position:fixed;background:#fff;color:#1a1a18;font-size:10px;padding:8px 10px;border-radius:6px;z-index:9999;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,0.12);border:1px solid #E8E6DF;max-width:260px;line-height:1.5;"></div>
 
+<!-- SCROLL TO TODAY BUTTON -->
+<button id="scroll-today-btn" class="scroll-today" onclick="goToToday()" title="Go to today" aria-label="Go to today">📅</button>
 
 <!-- PRINT UI -->
 <div id="print-bar" style="display:none;position:fixed;top:40px;left:0;right:0;background:#FFFDF7;border-bottom:1px solid #D3D1C7;padding:8px 16px;z-index:99;align-items:center;gap:10px;flex-wrap:wrap;">
@@ -775,156 +838,134 @@ Travel: 🚗 Travel home 23:00–00:00" data-tip-color="#C8B070" onclick="go('fr
     <div style="font-size:11px;color:#9a9080;margin-top:4px;">Jul 2026 → Jan 2027 · The master view · Updated 30 Jul 2026</div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#1D9E75;margin-bottom:8px;padding:4px 8px;background:#f0fff4;border-radius:4px;">✅ Confirmed Since Last Update</div>
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f0fff4;border-radius:3px;margin-bottom:4px;"><strong>Carey VCE vocal exams</strong> — booked 25 Oct, 9–11am. Carey relationship now spans Cabaret (Aug) through VCE exams (Oct).</div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f0fff4;border-radius:3px;margin-bottom:4px;"><strong>Starbound audition days</strong> — booked as accompanist, 14–15 Nov. This is a full weekend (10am–12pm Sat + 9:30am–4:45pm Sun), bigger than the original $880 placeholder in the $70K plan — re-check the fee.</div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f0fff4;border-radius:3px;">
-      <strong>Susan Lord</strong> — confirmed weekly FNH, Mon 10am, every week since 3 Aug. This is the proof-of-concept for the whole recurring-base strategy.</div>
+  <div class="section-lbl green">✅ Confirmed Since Last Update</div>
+  <div class="card">
+    <div class="action-chip green-bg"><strong>Carey VCE vocal exams</strong> — booked 25 Oct, 9–11am. Carey relationship now spans Cabaret (Aug) through VCE exams (Oct).</div>
+    <div class="action-chip green-bg"><strong>Starbound audition days</strong> — booked as accompanist, 14–15 Nov. Full weekend (10am–12pm Sat + 9:30am–4:45pm Sun) — re-check the fee vs original $880 placeholder.</div>
+    <div class="action-chip green-bg"><strong>Susan Lord</strong> — confirmed weekly FNH, Mon 10am, every week since 3 Aug. Proof-of-concept for the whole recurring-base strategy.</div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#185FA5;margin-bottom:8px;padding:4px 8px;background:#f0f7ff;border-radius:4px;">📍 Where You Are</div>
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;"><span>YTD (Notion, incl. invoiced)</span><span style="font-weight:600;">~$42,000</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;"><span>Run rate</span><span style="font-weight:600;color:#1D9E75;">~$5,700/mo</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;"><span>Target (70K)</span><span style="font-weight:600;color:#185FA5;">$5,833/mo</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;"><span>Gap</span><span style="font-weight:600;color:#C98A4A;">$133/mo — essentially closed</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:4px 0;"><span>Tax gap</span><span style="font-weight:600;color:#C0392B;">$6,210 (#1 risk)</span></div>
-    <div style="font-size:9px;color:#9a9080;margin-top:6px;padding:6px;background:#f0fff4;border-radius:4px;">
-      <strong>Core insight:</strong> This isn’t a revenue problem. You’re earning at $68K+ run rate. The real questions are: can you keep the gig pipeline full, can you stabilise FNH/Voice recurring, and can you pay your tax bill without stress.
-    </div>
+  <div class="section-lbl blue">📍 Where You Are</div>
+  <div class="card">
+    <div class="row-split"><span>YTD (Notion, incl. invoiced)</span><span class="row-value">~$42,000</span></div>
+    <div class="row-split"><span>Run rate</span><span class="row-value green">~$5,700/mo</span></div>
+    <div class="row-split"><span>Target (70K)</span><span class="row-value blue">$5,833/mo</span></div>
+    <div class="row-split"><span>Gap</span><span class="row-value amber">$133/mo — essentially closed</span></div>
+    <div class="row-split"><span>Tax gap</span><span class="row-value red">$6,210 (#1 risk)</span></div>
+    <div class="insight-box green-bg"><strong>Core insight:</strong> This isn’t a revenue problem. You’re earning at $68K+ run rate. The real questions are: can you keep the gig pipeline full, can you stabilise FNH/Voice recurring, and can you pay your tax bill without stress.</div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#1D9E75;margin-bottom:8px;padding:4px 8px;background:#f0fff4;border-radius:4px;">🌱 The Three-Pillar Strategy</div>
+  <div class="section-lbl green">🌱 The Three-Pillar Strategy</div>
 
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+  <div class="card">
     <div style="margin-bottom:14px;">
       <div style="font-size:10px;font-weight:700;color:#185FA5;margin-bottom:3px;">Pillar 1: Protect the Gig Pipeline (~55% of income)</div>
-      <div style="font-size:9px;color:#5F5E5A;margin-bottom:4px;">Your highest per-hour earners but most lumpy. Current avg $2,500/mo. Without them the math doesn’t work.</div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f0f7ff;border-radius:3px;margin-bottom:4px;">
-        <strong>Converting:</strong> Carey VCE exams (25 Oct) and Starbound (14–15 Nov) are now booked — the Term 4 outreach is paying off. Carey Cabaret (rehearsal 3 Aug, performance 10 Aug) also locked in.<br>
-        <strong>Still open:</strong> Email SHINE about Oct–Dec function bookings (proven at $1,600/gig) — no booking visible yet. Confirm status on JPC, Crossroads, Jones Theatrical, PSA, Loclan/Bradley if you haven’t heard back.
+      <div class="action-chip" style="color:#5F5E5A;margin-bottom:4px;padding-left:0;">Your highest per-hour earners but most lumpy. Current avg $2,500/mo. Without them the math doesn’t work.</div>
+      <div class="action-chip blue-bg">
+        <strong>Converting:</strong> Carey VCE exams (25 Oct) and Starbound (14–15 Nov) are now booked. SHINE Oct–Dec function bookings still open — chase it.
       </div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;">
-        <strong>Risk:</strong> Starbound is a full 2-day booking, bigger than the $880 placeholder in the $70K plan — confirm the fee reflects both days before it’s locked in.
+      <div class="action-chip amber-bg">
+        <strong>Risk:</strong> Starbound is a full 2-day booking — confirm the fee reflects both days before it’s locked in.
       </div>
     </div>
 
     <div style="margin-bottom:14px;">
       <div style="font-size:10px;font-weight:700;color:#1D9E75;margin-bottom:3px;">Pillar 2: Build Recurring Base (~35% of income)</div>
-      <div style="font-size:9px;color:#5F5E5A;margin-bottom:4px;">FNH + Voice from $800/mo → $2,000/mo. Each recurring client at 1 session/wk adds $280–380/mo. Need 4 more paying clients.</div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f0fff4;border-radius:3px;margin-bottom:4px;">
-        <strong>Proven:</strong> Susan Lord — weekly FNH, Mon 10am, confirmed every week since 3 Aug. This is the template.<br>
-        <strong>In progress:</strong> Jacqui Dwyer (assessments 5 &amp; 19 Aug — still biweekly, not yet converted to weekly) and Lily Walker (assessment 12 Aug). Push the 3-touch follow-up with both.<br>
-        <strong>Still not asked:</strong> Lisa, Nicole, Anita, Anah, Lizzy are still Voice-only on the calendar — zero FNH sessions booked for any of them. This is the single biggest unconverted lever in the whole plan. Nicole and Anita are already weekly in the room — the ask costs nothing extra.<br>
-        <strong>Nov:</strong> Raise FNH to $95 for new clients. Existing clients (Susan) stay at $70.
+      <div class="action-chip" style="color:#5F5E5A;margin-bottom:4px;padding-left:0;">FNH + Voice from $800/mo → $2,000/mo. Each recurring client at 1 session/wk adds $280–380/mo. Need 4 more paying clients.</div>
+      <div class="action-chip green-bg">
+        <strong>Proven:</strong> Susan Lord — weekly FNH, Mon 10am.<br>
+        <strong>In progress:</strong> Jacqui (assessments 5 &amp; 19 Aug) and Lily (12 Aug) — push 3-touch follow-up.<br>
+        <strong>Still not asked:</strong> Lisa, Nicole, Anita, Anah, Lizzy — zero FNH sessions booked. Nicole and Anita are weekly in the room. The ask costs nothing.<br>
+        <strong>Nov:</strong> Raise FNH to $95 for new clients. Existing stay at $70.
       </div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;">
-        <strong>Note:</strong> Brendan Jelley’s sessions are COMMUNITY-FREE ($0) — valuable relationship, but exclude from revenue math unless/until he moves to paid.<br>
-        <strong>Fastest path:</strong> 4 more paying recurring clients (from the 5 voice-student asks + Jacqui/Lily converting) = $2,000/mo by Nov. No marketing spend, no funnel, no ads.
+      <div class="action-chip amber-bg">
+        <strong>Note:</strong> Brendan Jelley is COMMUNITY-FREE ($0) — exclude from revenue math.<br>
+        <strong>Fastest path:</strong> 4 more paying recurring clients = $2,000/mo by Nov. No marketing spend.
       </div>
     </div>
 
     <div>
       <div style="font-size:10px;font-weight:700;color:#A67CB8;margin-bottom:3px;">Pillar 3: Monetise What You’ve Built (~10% of income)</div>
-      <div style="font-size:9px;color:#5F5E5A;margin-bottom:4px;">170-person mailing list, 150 active. ~50 in Victoria (can buy FNH), ~100 interstate/overseas (backings only).</div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#f4eef8;border-radius:3px;margin-bottom:4px;">
-        <strong>This week:</strong> Remove unsubscribes (belinda.knott83, paulettevmarshall). Send Victorians first: “1:1 FNH sessions from Sep.” Then interstate: “Custom backing tracks — here’s how to order.”<br>
-        <strong>Backings is not a distraction:</strong> 60% of your list can never buy in-person. Digital is the only offer they can accept. Two existing customers (Izzy Buckler, Akansha Hungenahally) are already on this list. One email per batch.
+      <div class="action-chip" style="color:#5F5E5A;margin-bottom:4px;padding-left:0;">170-person mailing list, 150 active. ~50 in Victoria, ~100 interstate/overseas.</div>
+      <div class="action-chip purple-bg">
+        <strong>This week:</strong> Remove unsubscribes. Send Victorians “1:1 FNH sessions from Sep.” Then interstate “Custom backing tracks.”<br>
+        <strong>Backings is not a distraction:</strong> 60% of your list can never buy in-person. Digital is the only offer they can accept.
       </div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;">
-        <strong>Events budgeted at $0:</strong> Resonance, Choir, Piano Sound Bath are acquisition channels, not revenue. Real value is audience growth + list building.
+      <div class="action-chip amber-bg">
+        <strong>Events budgeted at $0:</strong> Resonance, Choir, Piano Sound Bath are acquisition channels — build audience, not revenue.
       </div>
     </div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#C878A8;margin-bottom:8px;padding:4px 8px;background:#f8f0f5;border-radius:4px;">📱 Instagram / Positioning (@resonance.with.daniele)</div>
+  <div class="section-lbl pink">📱 Instagram / Positioning (@resonance.with.daniele)</div>
 
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="font-size:9px;color:#5F5E5A;margin-bottom:6px;">Decision made: <strong>keep one account.</strong> Kinesiologist + working MD/vocal coach is a rare combined position — splitting into a wellness account and a music account makes both look generic and hides the performer-package offer from the people who'd buy it. If anything splits off, it's Resonance Choir (its own community/logistics) — practitioner and musician stay together.</div>
+  <div class="card">
+    <div style="font-size:9px;color:#5F5E5A;margin-bottom:6px;">Decision made: <strong>keep one account.</strong> If anything splits off, it's Resonance Choir — practitioner and musician stay together.</div>
     <div style="margin-bottom:8px;">
       <div style="font-size:10px;font-weight:700;color:#1D9E75;margin-bottom:2px;">In progress — do today (5 min each)</div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 8px;background:#f5f5f3;border-radius:4px;">
-        1. Link field on @resonance.with.daniele → cal.com/danielebuatti/fnh-neuro (60-min FNH session) — the profile currently points to @daniele.buatti instead of anywhere bookable.<br>
-        2. Delete "@daniele.buatti ⬅️ the tunes" from the bio — stop sending traffic away and stop framing the music career as a side hobby.
+      <div class="insight-box" style="background:#f5f5f3;">
+        1. Link field → cal.com/danielebuatti/fnh-neuro<br>
+        2. Delete "@daniele.buatti ⬅️ the tunes" from the bio
       </div>
     </div>
     <div style="margin-bottom:8px;">
       <div style="font-size:10px;font-weight:700;color:#185FA5;margin-bottom:2px;">This week</div>
-      <div style="font-size:9px;color:#5F5E5A;padding:4px 8px;background:#f5f5f3;border-radius:4px;">
-        3. Rewrite the bio so a stranger can tell who it's for: name "nervous system" / "neuro" (the searchable term) and name performers as the audience — the $400–480 performer package only makes sense to someone who can see both halves at once.
+      <div class="insight-box" style="background:#f5f5f3;">
+        3. Rewrite bio: name "nervous system" / "neuro" and name performers as the audience.
       </div>
     </div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 8px;background:#f5f5f3;border-radius:4px;">
-      <strong>This month:</strong> bring the music work onto @resonance.with.daniele instead of pointing away from it · set up 3 highlights (what a session is like / who it's for / results) and finally surface the BOLT-score outcome data sitting unused in the CRM · reconsider whether $70 needs to move — see the Rate Strategy note in the $70K Plan tab.
+    <div class="insight-box" style="background:#f5f5f3;">
+      <strong>This month:</strong> bring music work onto @resonance.with.daniele · 3 highlights · surface BOLT scores · reconsider $70 rate.
     </div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#C98A4A;margin-bottom:8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🔍 Portfolio Health Check</div>
+  <div class="section-lbl amber">🔍 Portfolio Health Check</div>
 
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+  <div class="card">
     <table style="width:100%;border-collapse:collapse;font-size:10px;">
       <tbody><tr style="background:#f5f5f3;"><th style="text-align:left;padding:5px 6px;font-weight:600;">Stream</th><th style="text-align:center;padding:5px 6px;font-weight:600;">Current</th><th style="text-align:center;padding:5px 6px;font-weight:600;">Target</th><th style="text-align:center;padding:5px 6px;font-weight:600;">Health</th><th style="text-align:left;padding:5px 6px;font-weight:600;">Actions</th></tr>
-      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">Gigs / MD / Corp</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#1D9E75;">🟢 Converting</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">Carey VCE (Oct) + Starbound (Nov) confirmed. SHINE still open — only visible gap.</td></tr>
-      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">FNH + Voice</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$800/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,000/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#C98A4A;">🟡 One proven, four to go</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">Susan confirmed weekly. Voice students (Lisa, Nicole, Anita, Anah, Lizzy) still not offered FNH.</td></tr>
+      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">Gigs / MD / Corp</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#1D9E75;">🟢 Converting</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">Carey + Starbound confirmed. SHINE still open.</td></tr>
+      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">FNH + Voice</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$800/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$2,000/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#C98A4A;">🟡 One proven, four to go</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">Susan confirmed weekly. 5 voice students not asked.</td></tr>
       <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">Teaching</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$500/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#1D9E75;">✅ Stable</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">Maintain. Bella trial Mon 17 Aug.</td></tr>
-      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">Piano Backings</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$85/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$200/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#C98A4A;">⚠️ Under-monetised</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">One email to ~100 interstate contacts unlocks existing demand</td></tr>
-      <tr><td style="padding:5px 6px;">Events</td><td style="text-align:center;padding:5px 6px;">$0</td><td style="text-align:center;padding:5px 6px;">$0</td><td style="text-align:center;padding:5px 6px;color:#5A8BC0;">ℹ️ Acq. channel</td><td style="padding:5px 6px;color:#8A8880;">Budget $0. Run them for audience, not income.</td></tr>
+      <tr><td style="padding:5px 6px;border-bottom:1px solid #eee;">Piano Backings</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$85/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;">$200/mo</td><td style="text-align:center;padding:5px 6px;border-bottom:1px solid #eee;color:#C98A4A;">⚠️ Under-monetised</td><td style="padding:5px 6px;border-bottom:1px solid #eee;color:#8A8880;">One email to ~100 interstate contacts.</td></tr>
+      <tr><td style="padding:5px 6px;">Events</td><td style="text-align:center;padding:5px 6px;">$0</td><td style="text-align:center;padding:5px 6px;">$0</td><td style="text-align:center;padding:5px 6px;color:#5A8BC0;">ℹ️ Acq. channel</td><td style="padding:5px 6px;color:#8A8880;">Budget $0. Audience growth.</td></tr>
     </tbody></table>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#C0392B;margin-bottom:8px;padding:4px 8px;background:#fef5f0;border-radius:4px;">🔥 Reality Check</div>
+  <div class="section-lbl red">🔥 Reality Check</div>
 
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;margin-bottom:6px;">
-      <strong>1. The $70K target is already within reach.</strong> Your run rate is ~$5,700/mo. The gap is $133/mo. One extra lesson, one small gig, one backings order. That’s it. Stop building plans and start sending emails.
-    </div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;margin-bottom:6px;">
-      <strong>2. The tax gap is the real threat, not the income target.</strong> $6,210 owed, $992 paid, $0 provisioned. At $6K/mo income, moving 25% ($1,500/mo) closes this in 4 months. Every money date must include this transfer.
-    </div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;margin-bottom:6px;">
-      <strong>3. The mailing list is the most under-used asset.</strong> 150 active contacts. Only 1 tracked referrer (Kieran). ~15 choir contacts not in Kit. 2 known duplicates. A single segmented email to 50 Victorians about FNH is higher-leverage than any launch plan.
-    </div>
-    <div style="font-size:9px;color:#5F5E5A;padding:4px 6px;background:#fef5f0;border-radius:3px;">
-      <strong>4. The audition push is converting — keep going.</strong> Carey VCE (25 Oct) and Starbound (14–15 Nov) are now booked, proof the outreach works. SHINE is the one that's still quiet — chase it before Term 4 fills up elsewhere.
+  <div class="card">
+    <div class="insight-box amber-bg" style="margin-bottom:6px;"><strong>1. The $70K target is already within reach.</strong> Run rate ~$5,700/mo. Gap $133/mo. One extra lesson, one small gig, one backings order. Stop building plans and start sending emails.</div>
+    <div class="insight-box amber-bg" style="margin-bottom:6px;"><strong>2. The tax gap is the real threat.</strong> $6,210 owed, $992 paid, $0 provisioned. Moving 25% ($1,500/mo) closes this in 4 months.</div>
+    <div class="insight-box amber-bg" style="margin-bottom:6px;"><strong>3. The mailing list is the most under-used asset.</strong> 150 active contacts. A single segmented email to 50 Victorians is higher-leverage than any launch plan.</div>
+    <div class="insight-box amber-bg"><strong>4. The audition push is converting — keep going.</strong> Carey VCE (25 Oct) and Starbound (14–15 Nov) are booked. SHINE is still quiet — chase it.</div>
+  </div>
+
+  <div class="section-lbl green">✅ This Week (Priority Order)</div>
+
+  <div class="card">
+    <div class="row-split"><span><strong class="priority-num red">1.</strong> Offer FNH to Lisa, Nicole, Anita, Anah, Lizzy — <strong style="color:#C0392B;">still zero asked</strong></span></div>
+    <div class="row-split"><span><strong class="priority-num amber">2.</strong> Email SHINE about Oct–Dec function bookings</span></div>
+    <div class="row-split"><span><strong>3.</strong> Follow up Jacqui and Lily — convert to weekly recurring</span></div>
+    <div class="row-split"><span><strong>4.</strong> List hygiene + 2 segmented emails</span></div>
+    <div class="row-split" style="border-bottom:none;"><span><strong>5.</strong> Sunday money date — 25% to tax</span></div>
+    <div class="insight-box blue-bg" style="margin-top:6px;">
+      The FNH offer to your 5 voice students is the one action from the original plan still sitting untouched — it's also the highest-leverage one left.
     </div>
   </div>
 
-  <div style="font-size:11px;font-weight:700;color:#1D9E75;margin-bottom:8px;padding:4px 8px;background:#f0fff4;border-radius:4px;">✅ This Week (Priority Order)</div>
+  <div class="section-lbl grey">📅 Operating Rhythm</div>
 
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;">
-      <span><strong style="color:#C0392B;">1.</strong> Offer FNH to Lisa, Nicole, Anita, Anah, Lizzy — <strong style="color:#C0392B;">still zero asked</strong>, and they're your highest-conversion leads. Nicole and Anita are already weekly in the room.</span>
-    </div>
-    <div style="font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;">
-      <span><strong style="color:#C98A4A;">2.</strong> Email SHINE about Oct–Dec function bookings — the one gig lead with no confirmed outcome yet</span>
-    </div>
-    <div style="font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;">
-      <span><strong>3.</strong> Follow up Jacqui and Lily — move them from biweekly assessments to weekly recurring</span>
-    </div>
-    <div style="font-size:10px;padding:4px 0;border-bottom:1px solid #f0f0f0;">
-      <span><strong>4.</strong> List hygiene + 2 segmented emails (Victorians → FNH, interstate → backings)</span>
-    </div>
-    <div style="font-size:10px;padding:4px 0;">
-      <span><strong>5.</strong> Sunday money date — move 25% to tax, update numbers, check pipeline</span>
-    </div>
-    <div style="font-size:9px;color:#9a9080;margin-top:6px;padding:6px;background:#f0f7ff;border-radius:4px;">
-      Carey and Starbound are proof the gig pipeline responds to outreach. The FNH offer to your 5 voice students is the one action from the original plan still sitting untouched — it's also the highest-leverage one left.
-    </div>
-  </div>
-
-  <div style="font-size:11px;font-weight:700;color:#9a9080;margin-bottom:8px;padding:4px 8px;background:#f5f5f3;border-radius:4px;">📅 Operating Rhythm</div>
-
-  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>📅 Weekdays</span><span style="color:#5F5E5A;">Execute on the 3 pillars. Auditions → FNH offers → emails</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>💰 Sunday (20 min)</span><span style="color:#5F5E5A;">Money date: income, tax transfer, pipeline check</span></div>
-    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;"><span>📅 Month end</span><span style="color:#5F5E5A;">Update $70K Plan + Budget tabs with actuals vs projections</span></div>
+  <div class="card">
+    <div class="row-split"><span>📅 Weekdays</span><span style="color:#5F5E5A;">Execute on the 3 pillars</span></div>
+    <div class="row-split"><span>💰 Sunday (20 min)</span><span style="color:#5F5E5A;">Money date: income, tax, pipeline check</span></div>
+    <div class="row-split" style="border-bottom:none;"><span>📅 Month end</span><span style="color:#5F5E5A;">Update $70K Plan + Budget with actuals</span></div>
   </div>
 
   <div style="background:linear-gradient(135deg,#fef5f0,#f0fff4);border:1px solid #C98A4A;border-radius:8px;padding:12px;margin-bottom:16px;">
     <div style="font-size:10px;font-weight:700;color:#1a1a18;margin-bottom:4px;">🧠 The Mindset (condensed)</div>
     <div style="font-size:9px;color:#5F5E5A;margin-bottom:3px;">• You’re closer than the plan said. Run rate is $5,700/mo. At $5,833 you’re at $70K.</div>
-    <div style="font-size:9px;color:#5F5E5A;margin-bottom:3px;">• Two real streams: FNH + Music. Everything else (backings, choir) is bonus. Don’t plan around it.</div>
+    <div style="font-size:9px;color:#5F5E5A;margin-bottom:3px;">• Two real streams: FNH + Music. Everything else is bonus. Don’t plan around it.</div>
     <div style="font-size:9px;color:#5F5E5A;margin-bottom:3px;">• Clients compound. Each FNH client is $200–400/mo recurring. Your 5 voice students are the fastest path.</div>
     <div style="font-size:9px;color:#5F5E5A;">• Stop building. Start asking. The plan is planned. What’s missing is 6 emails and 5 conversations.</div>
   </div>
@@ -2758,10 +2799,10 @@ function renderDays() {
     h += '<div id="chain-status-'+d.id+'" style="font-size:8px;color:#9a9080;margin-top:4px;">0 of 10 done</div>';
     h += '</div>';
     h += '</div>';
-    h += '<div style="padding:10px 14px;background:linear-gradient(135deg,#f8f4ff,#fef4f0);border:1px solid #D8CCE8;border-radius:10px;margin-bottom:16px;">';
-    h += '<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:10px;line-height:1.4;">';
-    h += '<div style="flex:1;min-width:140px;"><span style="color:#7B5EA7;font-weight:700;">🌍 Wish:</span> <span style="color:#4A4A48;">A world where everyone has the nervous system safety to express their unique self.</span></div>';
-    h += '<div style="flex:1;min-width:140px;"><span style="color:#C98A4A;font-weight:700;">🎯 5-Year:</span> <span style="color:#4A4A48;">A full-time FNH + voice practice at $100K+, helping performers and overthinkers — using all of me.</span></div>';
+    h += '<div class="goal-banner">';
+    h += '<div class="goal-banner-inner">';
+    h += '<div class="goal-banner-item"><span class="label wish">🌍 Wish:</span> <span class="text">A world where everyone has the nervous system safety to express their unique self.</span></div>';
+    h += '<div class="goal-banner-item"><span class="label fiveyear">🎯 5-Year:</span> <span class="text">A full-time FNH + voice practice at $100K+, helping performers and overthinkers — using all of me.</span></div>';
     h += '</div></div>';
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
@@ -3721,6 +3762,43 @@ if (lastQDate !== todayQ) {
     }
   });
 })();
+
+// ── TODAY BUTTON ──
+function goToToday() {
+  var days = document.querySelectorAll('.sidebar .day-btn');
+  var found = false;
+  days.forEach(function(b) {
+    if (b.classList.contains('today')) {
+      b.click();
+      found = true;
+    }
+  });
+  if (!found) {
+    var ov = document.querySelector('.week-label');
+    if (ov) { ov.click(); }
+  }
+  document.getElementById('scroll-today-btn').classList.remove('show');
+}
+(function checkNotToday() {
+  var btn = document.getElementById('scroll-today-btn');
+  if (!btn) return;
+  var cur = document.querySelector('.day-panel.active,.view.active');
+  var isToday = cur && cur.id === 'view-thu30jul';
+  btn.classList.toggle('show', !isToday);
+})();
+
+// ── KEYBOARD SHORTCUTS ──
+document.addEventListener('keydown', function(e) {
+  if (e.key === 't' && !e.ctrlKey && !e.metaKey && !e.target.closest('input,textarea')) {
+    e.preventDefault();
+    goToToday();
+  }
+  if (e.key === '?' && !e.target.closest('input,textarea')) {
+    e.preventDefault();
+    var msg = 'Keyboard shortcuts:\n← →  Navigate days\nT     Go to today\nS     Search\n?     This help';
+    alert(msg);
+  }
+});
 
 // ── TAX PROVISION TRACKER (interactive, localStorage) ──
 var TAX_PAID = parseInt(localStorage.getItem('taxPaid') || '992');
