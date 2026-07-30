@@ -2652,6 +2652,11 @@ function renderDays() {
     h += '<div id="chain-status-'+d.id+'" style="font-size:8px;color:#9a9080;margin-top:4px;">0 of 10 done</div>';
     h += '</div>';
     h += '</div>';
+    h += '<div style="padding:10px 14px;background:linear-gradient(135deg,#f8f4ff,#fef4f0);border:1px solid #D8CCE8;border-radius:10px;margin-bottom:16px;">';
+    h += '<div style="display:flex;gap:12px;flex-wrap:wrap;font-size:10px;line-height:1.4;">';
+    h += '<div style="flex:1;min-width:140px;"><span style="color:#7B5EA7;font-weight:700;">🌍 Wish:</span> <span style="color:#4A4A48;">A world where everyone has the nervous system safety to express their unique self.</span></div>';
+    h += '<div style="flex:1;min-width:140px;"><span style="color:#C98A4A;font-weight:700;">🎯 5-Year:</span> <span style="color:#4A4A48;">A full-time FNH + voice practice at $100K+, helping performers and overthinkers — using all of me.</span></div>';
+    h += '</div></div>';
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
     var merged = activeEvs.concat(freeSlots);
