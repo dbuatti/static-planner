@@ -2477,9 +2477,9 @@ var DAYS = [
      sub:'Pick up Bose 10am · Elly\'s 50th 8pm',
      focus:'Pick up speaker 10am · Elly\'s 50th gig 8pm',
       events:[
-         {time:'10:00–11:00', text:'🛍 Pick up Bose S1 Pro speaker — DJ Warehouse'},
+         {time:'10:00–11:00', text:'🛍 Pick up Bose S1 Pro speaker — DJ Warehouse', done:true},
         {time:'11:00–11:30', text:'👕 Prep clothes for Elly\'s 50th gig'},
-        {time:'11:30–12:00', text:'🧹 Clean kitchen'},
+        {time:'11:30–12:00', text:'🧹 Clean kitchen', done:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'14:00–14:30', text:'🧹 Tidy room · 🧷 Empty suitcase'},
       {time:'18:00–19:30', text:'🍽️ Early dinner'},
@@ -2853,6 +2853,7 @@ function buildEvents(d) {
       dur:calcDur(e),
       buffer:e.buffer!==undefined?e.buffer:e.text.startsWith('🔒'),
       tickable:e.tickable!==false,
+      done:e.done===true,
       teaching:e.teaching===true,
       perf:e.perf===true,
       fnh:e.fnh===true
@@ -2898,7 +2899,7 @@ function renderDays() {
     var tickN = 0;
     allEvs.forEach(function(ev) {
       if (ev.tickable) ev._tickId = d.id+'-t'+(tickN++);
-      if (ev.tickable && localStorage.getItem('tick-'+ev._tickId) === '1') {
+      if (ev.tickable && (ev.done || localStorage.getItem('tick-'+ev._tickId) === '1')) {
         ev._completed = true;
         completedEvs.push(ev);
       } else {
