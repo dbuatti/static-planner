@@ -50,6 +50,7 @@ body { -webkit-font-smoothing: antialiased; }
 .app-wrap { display: flex; min-height: 100vh; }
 .sidebar { width: 210px; flex-shrink: 0; background: #fff; border-right: 1px solid #D3D1C7; min-height: 100%; position: sticky; top: 40px; align-self: flex-start; max-height: calc(100vh - 40px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
 .main { flex: 1; padding: 20px; min-height: 100vh; background: #f5f5f3; overflow-x: hidden; }
+.main > .day-panel, .main > #week-summary-container { max-width: 900px; }
 
 /* DAY PANELS */
 .day-panel { display: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
