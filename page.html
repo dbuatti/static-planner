@@ -819,7 +819,7 @@ body { -webkit-font-smoothing: antialiased; }
   <span class="tab-bar-title">Jul 2026 → Jan 2027</span>
   <button class="tab-btn active" onclick="switchTab('plan')">📅 Daily Plan</button>
   <div class="tab-dropdown">
-    <button class="tab-btn active">🧭 Strategy ▾</button>
+    <button class="tab-btn">🧭 Strategy ▾</button>
     <div id="dd-strat" class="tab-dd-content">
       <button class="tab-dd-item" onclick="switchTab('strat')">🧭 Strategic Foundation</button>
       <button class="tab-dd-item" onclick="switchTab('plan75')">🎯 $70K Plan</button>
@@ -2658,7 +2658,8 @@ document.addEventListener('click', function(e) {
   }
   if (dd) {
     e.stopPropagation();
-    dd.classList.toggle('open');
+    var isItem = e.target.closest('.tab-dd-item');
+    dd.classList.toggle('open', !isItem);
   }
 });
 
