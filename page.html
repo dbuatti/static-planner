@@ -3445,7 +3445,7 @@ function dayHeat(d) {
 function renderSidebar() {
   var s = document.getElementById('sidebar-container');
   if (!s) return;
-  var h = '<div class="sidebar-header"><div class="sidebar-title">Jul → Aug 2026</div><div class="sidebar-sub">Updated 5 Jul 2026</div></div>';
+  var h = '<div class="sidebar-header"><div class="sidebar-title">Jul → Jan 2027</div><div class="sidebar-sub">'+new Date().toLocaleDateString('en-AU', {day:'numeric', month:'short'})+'</div></div>';
   h += '<div class="week-label">Overview</div>';
   h += '<button class="day-btn active" onclick="go(\'ov\')"><div class="dbdot dc-mixed"></div><div><div class="dbn">Full plan</div><div class="dbs">Jul → Aug 2026</div></div></button>';
   var lastWeek = '';
@@ -3677,6 +3677,36 @@ document.addEventListener('keydown', function(e) {
   if (e.key === 'ArrowLeft' && curIdx > 0) { e.preventDefault(); go(VS[curIdx-1]); }
   if (e.key === 'ArrowRight' && curIdx < VS.length-1) { e.preventDefault(); go(VS[curIdx+1]); }
 });
+
+// ── SWIPE NAV (mobile) ──
+(function() {
+  var startX = 0, startY = 0, tracking = false;
+  document.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) return;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    tracking = true;
+  }, {passive: true});
+  document.addEventListener('touchmove', function(e) {
+    if (!tracking) return;
+    var dx = e.touches[0].clientX - startX;
+    var dy = Math.abs(e.touches[0].clientY - startY);
+    if (Math.abs(dx) > 60 && Math.abs(dx) > dy * 1.5) {
+      tracking = false;
+      var plan = document.getElementById('tab-plan');
+      if (!plan || !plan.classList.contains('active')) return;
+      var curIdx = -1;
+      VS.forEach(function(v, i) {
+        var el = document.getElementById('view-' + v);
+        if (el && el.classList.contains('active')) curIdx = i;
+      });
+      if (curIdx < 0) return;
+      if (dx < 0 && curIdx < VS.length - 1) go(VS[curIdx + 1]);
+      else if (dx > 0 && curIdx > 0) go(VS[curIdx - 1]);
+    }
+  }, {passive: true});
+  document.addEventListener('touchend', function() { tracking = false; });
+})();
 
 // ── TICK PERSISTENCE (localStorage) ──
 function restoreTicks() {
