@@ -641,6 +641,7 @@ body { -webkit-font-smoothing: antialiased; }
   .tab-bar { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
   .tab-bar::-webkit-scrollbar { display: none; }
   .tab-bar-title { display: none; }
+  .tab-dropdown:hover .tab-dd-content { display: none; }
   .tab-dropdown.open .tab-dd-content { display: block; }
   .tab-dd-content { position: fixed; top: 40px; left: 0; right: 0; min-width: 0; border-radius: 0 0 10px 10px; max-height: calc(100vh - 40px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
   .tab-dd-item { font-size: 13px; padding: 12px 16px; }
@@ -2659,7 +2660,11 @@ document.addEventListener('click', function(e) {
   if (dd) {
     e.stopPropagation();
     var isItem = e.target.closest('.tab-dd-item');
-    dd.classList.toggle('open', !isItem);
+    if (isItem) {
+      dd.classList.remove('open');
+    } else {
+      dd.classList.toggle('open');
+    }
   }
 });
 
