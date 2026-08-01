@@ -622,11 +622,10 @@ body { -webkit-font-smoothing: antialiased; }
 /* DROPDOWN MENUS */
 .tab-dropdown { position: relative; display: inline-flex; }
 .tab-dd-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #D3D1C7; border-radius: 0 0 8px 8px; border-top: 2px solid #185FA5; z-index: 1001; min-width: 180px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); padding: 4px 0; }
-.tab-dropdown:hover .tab-dd-content { display: block; }
-.tab-dropdown.open .tab-dd-content { display: block; }
-@media (hover: none) {
-  .tab-dropdown:hover .tab-dd-content { display: none; }
+@media (hover: hover) {
+  .tab-dropdown:hover .tab-dd-content { display: block; }
 }
+.tab-dropdown.open .tab-dd-content { display: block; }
 .tab-dd-item { display: block; width: 100%; padding: 7px 16px; border: none; background: none; cursor: pointer; text-align: left; font-size: 11px; color: #1a1a18; font-family: inherit; white-space: nowrap; letter-spacing: 0.01em; }
 .tab-dd-item:hover { background: #F7F6F2; }
 .tab-dd-item.active { color: #185FA5; font-weight: 600; background: #EEF4FD; }
@@ -2649,23 +2648,28 @@ function showTab(tab) {
 var switchTab = showTab;
 
 function closeDropdowns() {
-  document.querySelectorAll('.tab-dropdown.open').forEach(function(dd) { dd.classList.remove('open'); });
+  document.querySelectorAll('.tab-dropdown.open').forEach(function(dd) { setDDOpen(dd, false); });
 }
 
 // Tap-to-open dropdowns on touch devices (hover doesn't exist on mobile)
+function setDDOpen(dd, open) {
+  dd.classList.toggle('open', open);
+  var c = dd.querySelector('.tab-dd-content');
+  if (c) c.style.display = open ? 'block' : '';
+}
 document.addEventListener('click', function(e) {
   var dd = e.target.closest('.tab-dropdown');
   var others = document.querySelectorAll('.tab-dropdown.open');
   for (var i = 0; i < others.length; i++) {
-    if (others[i] !== dd) others[i].classList.remove('open');
+    if (others[i] !== dd) setDDOpen(others[i], false);
   }
   if (dd) {
     e.stopPropagation();
     var isItem = e.target.closest('.tab-dd-item');
     if (isItem) {
-      dd.classList.remove('open');
+      setDDOpen(dd, false);
     } else {
-      dd.classList.toggle('open');
+      setDDOpen(dd, !dd.classList.contains('open'));
     }
   }
 });
