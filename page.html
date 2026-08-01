@@ -4005,7 +4005,7 @@ function showToast(msg) {
   if (!el) {
     el = document.createElement('div');
     el.id = 'toast';
-    el.style.cssText = 'position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a18;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;';
+    el.style.cssText = 'position:fixed;bottom:max(20px, env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);background:#1a1a18;color:#fff;padding:8px 16px;border-radius:8px;font-size:12px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none;max-width:90vw;text-align:center;';
     document.body.appendChild(el);
   }
   el.textContent = msg;
@@ -4078,6 +4078,20 @@ function go(id) {
   var activeBtn = document.querySelector('.day-btn.active');
   if (activeBtn) activeBtn.scrollIntoView({block:'nearest', behavior:'smooth'});
   highlightNow();
+  updateTodayBtn();
+}
+
+function updateTodayBtn() {
+  var btn = document.getElementById('scroll-today-btn');
+  if (!btn) return;
+  var todayStr = localDateStr(new Date());
+  var todayId = null;
+  for (var id in DAY_DATES) {
+    if (DAY_DATES[id] === todayStr) { todayId = id; break; }
+  }
+  var cur = document.querySelector('.day-panel.active,.view.active');
+  var isToday = todayId ? (cur && cur.id === 'view-' + todayId) : false;
+  btn.classList.toggle('show', !isToday);
 }
 
 // ── WEATHER WIDGET (Open-Meteo — free, no API key) ──
@@ -4478,9 +4492,7 @@ function goToToday() {
 (function checkNotToday() {
   var btn = document.getElementById('scroll-today-btn');
   if (!btn) return;
-  var cur = document.querySelector('.day-panel.active,.view.active');
-  var isToday = cur && cur.id === 'view-thu30jul';
-  btn.classList.toggle('show', !isToday);
+  updateTodayBtn();
 })();
 
 // ── KEYBOARD SHORTCUTS ──
