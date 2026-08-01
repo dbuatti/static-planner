@@ -635,6 +635,8 @@ body { -webkit-font-smoothing: antialiased; }
   .tab-bar::-webkit-scrollbar { display: none; }
   .tab-bar-title { display: none; }
   .tab-dropdown.open .tab-dd-content { display: block; }
+  .tab-dd-content { position: fixed; top: 40px; left: 0; right: 0; min-width: 0; border-radius: 0 0 10px 10px; max-height: calc(100vh - 40px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  .tab-dd-item { font-size: 13px; padding: 12px 16px; }
   #global-search { width: 110px; }
   .ov-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
