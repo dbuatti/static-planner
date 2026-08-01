@@ -644,7 +644,8 @@ body { -webkit-font-smoothing: antialiased; }
   .chain-flow-h .chain-step { flex: none; min-width: 84px; }
   .weather-widget { flex-wrap: wrap; gap: 8px; }
   .tl-ruler { left: 8px; }
-  #search-overlay { width: 100%; max-width: 320px; }
+  #search-overlay { width: 100%; max-width: 320px; border-left: none; box-shadow: 0 4px 20px rgba(0,0,0,0.12); }
+  #search-overlay .sres-item { padding: 13px 14px; font-size: 13px; }
   .day-btn { padding: 9px 14px; }
   .nav-bar { flex-wrap: wrap; }
   .nb { padding: 7px 12px; }
@@ -824,8 +825,11 @@ body { -webkit-font-smoothing: antialiased; }
 </div>
 
 <!-- SEARCH RESULTS OVERLAY -->
-<div id="search-overlay" style="display:none;position:fixed;top:40px;right:0;width:320px;max-height:calc(100vh - 40px);overflow-y:auto;background:#fff;border-left:0.5px solid #D3D1C7;z-index:200;padding:12px 0;">
-  <div style="padding:0 14px 8px;font-size:10px;font-weight:600;color:#B4B2A9;text-transform:uppercase;letter-spacing:0.05em;">Results</div>
+<div id="search-overlay" style="display:none;position:fixed;top:40px;right:0;width:320px;max-height:calc(100vh - 40px);overflow-y:auto;background:#fff;border-left:0.5px solid #D3D1C7;z-index:200;padding:0 0 12px;">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px 6px;">
+    <div style="font-size:10px;font-weight:600;color:#B4B2A9;text-transform:uppercase;letter-spacing:0.05em;">Results</div>
+    <button onclick="closeSearch()" aria-label="Close search" style="background:none;border:none;font-size:16px;color:#B4B2A9;cursor:pointer;padding:2px 6px;line-height:1;">✕</button>
+  </div>
   <div id="search-results"></div>
 </div>
 <div id="cat-tooltip" style="display:none;position:fixed;background:#fff;color:#1a1a18;font-size:10px;padding:8px 10px;border-radius:6px;z-index:9999;pointer-events:none;box-shadow:0 2px 8px rgba(0,0,0,0.12);border:1px solid #E8E6DF;max-width:260px;line-height:1.5;"></div>
@@ -4289,7 +4293,8 @@ function runSearch(q) {
   if (!hits.length) { res.innerHTML = '<div style="color:#9a9080;padding:12px;">No results found.</div>'; return; }
   hits.forEach(function(h) {
     var d = document.createElement('div');
-    d.style.cssText = 'padding:10px 14px;cursor:pointer;border-bottom:1px solid #eee;font-size:13px;';
+    d.className = 'sres-item';
+    d.style.cssText = 'padding:11px 14px;cursor:pointer;border-bottom:1px solid #eee;font-size:13px;';
     d.innerHTML = '<span style="color:#c4a96a;font-size:11px;text-transform:uppercase;letter-spacing:0.06em;">' + h.day + '</span><br>' + h.text;
     d.onclick = function() { closeSearch(); go(h.day); };
     res.appendChild(d);
