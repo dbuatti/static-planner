@@ -1,6 +1,9 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f5f5f3">
 <title>Plan — Jul 2026 → Jan 2027</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -4063,6 +4066,7 @@ function loadWeather() {
     + '&current=temperature_2m,apparent_temperature,weather_code,is_day'
     + '&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max'
     + '&timezone=Australia%2FMelbourne&forecast_days=1';
+  el.style.opacity = '0.6';
   fetch(url)
     .then(function(r) { if (!r.ok) throw new Error('weather'); return r.json(); })
     .then(function(d) {
@@ -4070,14 +4074,24 @@ function loadWeather() {
       var info = weatherCodeInfo(c.weather_code, c.is_day === 1);
       var daily = d.daily;
       var rain = daily && daily.precipitation_probability_max ? daily.precipitation_probability_max[0] : null;
+      var updated = new Date().toLocaleTimeString('en-AU', {hour:'2-digit', minute:'2-digit'});
       el.style.display = 'flex';
+      el.style.opacity = '1';
       el.innerHTML = '<div class="weather-emoji">'+info[0]+'</div>'
         + '<div><div class="weather-temp">'+Math.round(c.temperature_2m)+'°C</div>'
         + '<div class="weather-desc">'+info[1]+' · feels '+Math.round(c.apparent_temperature)+'°</div></div>'
-        + '<div class="weather-meta">'+WEATHER_PLACE+'<br>H '+Math.round(daily.temperature_2m_max[0])+'° · L '+Math.round(daily.temperature_2m_min[0])+'°'+(rain!=null ? ' · ☔ '+rain+'%' : '')+'</div>';
+        + '<div class="weather-meta">'+WEATHER_PLACE+'<br>H '+Math.round(daily.temperature_2m_max[0])+'° · L '+Math.round(daily.temperature_2m_min[0])+'°'+(rain!=null ? ' · ☔ '+rain+'%' : '')+'<br><span style="font-size:9px;color:#B4B2A9;">↻ '+updated+'</span></div>';
     })
-    .catch(function() { el.style.display = 'none'; });
+    .catch(function() {
+      el.style.display = 'none';
+      el.style.opacity = '1';
+    });
 }
+// Refresh weather every 30 min and on tap
+setInterval(loadWeather, 30 * 60 * 1000);
+document.addEventListener('click', function(e) {
+  if (e.target.closest && e.target.closest('#weather-widget')) loadWeather();
+});
 
 // ── NOW INDICATOR ──
 function highlightNow() {
