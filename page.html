@@ -2927,11 +2927,13 @@ var DAYS = [
       {time:'23:00–00:00', text:'🚗 Travel home', dur:60}
    ]},
    {id:'sat1aug', dow:'Saturday', date:'1 August', dateISO:'2026-08-01', dot:'dc-rest', week:'August',
-     sub:'Drop off Bose 10am',
-    focus:'Drop off Bose S1 Pro 10am',
-    events:[
-       {time:'10:00–11:00', text:'🛍 Drop off Bose S1 Pro speaker — DJ Warehouse'},
-    ]},
+      sub:'Drop off Bose 10am',
+     focus:'🛌 Sleep 10pm · 🧹 Bedroom 30min — Drop off Bose S1 Pro 10am',
+     events:[
+        {time:'10:00–11:00', text:'🛍 Drop off Bose S1 Pro speaker — DJ Warehouse'},
+        {time:'21:00–21:30', text:'🧹 Bedroom reset — 30 min, clean & calm'},
+        {time:'22:00–22:30', text:'😴 Sleep by 10pm — lights out'}
+     ]},
    {id:'sun2aug', dow:'Sunday', date:'2 August', dateISO:'2026-08-02', dot:'dc-social', week:'August',
     sub:'🎂 Potluck 11am · 🧘 Kriya 4pm',
     focus:'🎂 Birthday + IMBOLC potluck 11–5 (Tammy) · ⚠️ Kriya Yoga 4–5 Footscray — travel 3–6 clashes with the potluck',
@@ -3158,6 +3160,16 @@ function populateRecurring() {
     // Thu: Weekly money stuff 11-11:30
     if (dow === 4 && !hasEvent(day, /money stuff/)) {
       day.events.push({time:'11:00–11:30', text:'💰 Weekly money stuff'});
+    }
+    // Weekly focus: SLEEP + BEDROOM (daily, ADHD-friendly small steps)
+    if (!hasEvent(day, /Bedroom reset/)) {
+      day.events.push({time:'21:00–21:30', text:'🧹 Bedroom reset — 30 min, clean & calm'});
+    }
+    if (!hasEvent(day, /Sleep by 10pm/)) {
+      day.events.push({time:'22:00–22:30', text:'😴 Sleep by 10pm — lights out'});
+    }
+    if (day.focus.indexOf('🛌 Sleep 10pm') === -1) {
+      day.focus = '🛌 Sleep 10pm · 🧹 Bedroom 30min' + (day.focus ? ' — ' + day.focus : '');
     }
   }
 
