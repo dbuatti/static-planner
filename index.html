@@ -2853,11 +2853,14 @@ var DAYS = [
     events:[
        {time:'10:00–11:00', text:'🛍 Drop off Bose S1 Pro speaker — DJ Warehouse'},
     ]},
-   {id:'sun2aug', dow:'Sunday', date:'2 August', dateISO:'2026-08-02', dot:'dc-rest', week:'August',
-    sub:'🏀 Free Day',
-    focus:'🏀 Free Day',
+   {id:'sun2aug', dow:'Sunday', date:'2 August', dateISO:'2026-08-02', dot:'dc-social', week:'August',
+    sub:'🎂 Potluck 11am · 🧘 Kriya 4pm',
+    focus:'🎂 Birthday + IMBOLC potluck 11–5 (Tammy) · ⚠️ Kriya Yoga 4–5 Footscray — travel 3–6 clashes with the potluck',
     events:[
-      {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+      {time:'11:00–17:00', text:'🎂 Birthday + IMBOLC potluck — 13 Dorothy Ave, Sunshine (Tammy)', tickable:false},
+      {time:'15:00–16:00', text:'🚗 Travel to Footscray — Kriya Yoga'},
+      {time:'16:00–17:00', text:'🧘 Kriya Yoga — Body Voice Centre, Footscray'},
+      {time:'17:00–18:00', text:'🚗 Travel home from Kriya'}
     ]},
     {id:'mon3aug', dow:'Monday', date:'3 August', dateISO:'2026-08-03', dot:'dc-music', week:'August',
      sub:'FNH Susan 10am · Carey 3pm · FNH Mastery 6pm',
@@ -3098,6 +3101,18 @@ function populateRecurring() {
     }
   }
 
+  // Kriya Yoga: Sun 4-5pm, Body Voice Centre Footscray (weekly, starting Aug 2)
+  for (var d = new Date('2026-08-02'); d <= endDate; d.setDate(d.getDate() + 7)) {
+    var y = d.getFullYear(), mo = d.getMonth(), da = d.getDate();
+    var iso = isoDate(y,mo,da);
+    var day = addDay(d);
+    if (!hasEvent(day, /Kriya/)) {
+      day.events.push({time:'15:00–16:00', text:'🚗 Travel to Footscray — Kriya Yoga'});
+      day.events.push({time:'16:00–17:00', text:'🧘 Kriya Yoga — Body Voice Centre, Footscray'});
+      day.events.push({time:'17:00–18:00', text:'🚗 Travel home from Kriya'});
+    }
+  }
+
   // Sort DAYS by date
   DAYS.sort(function(a,b) { return a.dateISO < b.dateISO ? -1 : a.dateISO > b.dateISO ? 1 : 0; });
 }
@@ -3149,6 +3164,7 @@ var CATEGORIES = [
   {id:'reflect',  label:'Reflect',  color:'#C878A8', test:function(ev){return /Reflect/i.test(ev.text);}},
   {id:'travel',   label:'Travel',   color:'#C8A04A', test:function(ev){return /Travel|Flight/i.test(ev.text);}},
   {id:'meal',     label:'Meals',    color:'#A8A8A8', test:function(ev){return /Lunch|Dinner|Breakfast|Meal/i.test(ev.text);}},
+  {id:'social',   label:'Social',   color:'#C878A8', test:function(ev){return /Potluck|Birthday|Catch|Hang|Friend|Visit/i.test(ev.text);}},
   {id:'buffer',   label:'Buffer',   color:'#C8C8C4', test:function(ev){return ev.buffer || /Buffer/i.test(ev.text);}},
   {id:'free',     label:'Free',     color:'#D8D6CF', test:function(ev){return /FREE DAY|DAY OFF|SYDNEY|FREE|day off/i.test(ev.text);}}
 ];
