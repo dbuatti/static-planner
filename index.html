@@ -36,7 +36,9 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* TIMELINE SWIPE HINT */
 .tl-swipe-hint { display: none; font-size: 11px; color: #8A8880; text-align: center; padding: 8px; background: #f0f4fa; border-radius: 8px; margin-bottom: 10px; }
-@media (max-width: 768px) { .tl-swipe-hint { display: block; } }
+@media (max-width: 768px) {   .tl-swipe-hint { display: block; }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+}
 
 /* TAB PANES */
 .tab-pane { display: none; }
