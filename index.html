@@ -657,6 +657,11 @@ body { -webkit-font-smoothing: antialiased; }
   .nav-bar { flex-wrap: wrap; }
   .nb { padding: 7px 12px; }
   .sidebar { padding-bottom: 40px; }
+  .chain-flow-h .chain-step.done,
+  .chain-flow-h .chain-arrow-h:has(+ .chain-step.done),
+  .chain-flow-h .chain-step.done + .chain-arrow-h { display: none; }
+  .day-panel .tc.ticked { display: none; }
+  .day-panel .sl-completed { display: none; }
   #print-bar { top: 40px; padding: 8px 10px; }
   .print-day-cb-label { font-size: 11px; padding: 4px 2px; display: inline-flex; align-items: center; gap: 3px; }
 }
@@ -3439,7 +3444,7 @@ function renderDays() {
       h += '</div></div></div>';
     });
     if (completedEvs.length) {
-      h += '<div class="sl" style="margin-top:18px;">✓ COMPLETED</div>';
+      h += '<div class="sl sl-completed" style="margin-top:18px;">✓ COMPLETED</div>';
       completedEvs.forEach(function(ev) {
         var cls = 'tc tickable ticked';
         var did = ' data-tickid="'+ev._tickId+'"';
