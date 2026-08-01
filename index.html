@@ -4080,11 +4080,7 @@ function copyAllPlans() {
   });
   if (!parts.length) { showToast('Nothing to copy'); return; }
   var output = parts.join('\n\n────────────────────\n\n');
-  navigator.clipboard.writeText(output).then(function() {
-    showToast('✓ Copied all four plans');
-  }).catch(function() {
-    showToast('Failed to copy');
-  });
+  copyText(output, '✓ Copied all four plans');
 }
 
 function copyCompleted(dayId) {
@@ -4098,11 +4094,7 @@ function copyCompleted(dayId) {
   });
   if (!tasks.length) { showToast('No completed tasks for this day'); return; }
   var text = dayLabel(dayId) + ' — Completed:\n' + tasks.join('\n');
-  navigator.clipboard.writeText(text).then(function() {
-    showToast('Copied ' + tasks.length + ' completed task(s)');
-  }).catch(function() {
-    showToast('Failed to copy');
-  });
+  copyText(text, 'Copied ' + tasks.length + ' completed task(s)');
 }
 
 function copyMatrixCompleted() {
@@ -4142,11 +4134,27 @@ function copyMatrixCompleted() {
   });
   if (!tasks.length) { showToast('No completed tasks'); return; }
   var text = 'Tasks — Completed:\n' + tasks.join('\n');
-  navigator.clipboard.writeText(text).then(function() {
-    showToast('Copied ' + tasks.length + ' completed task(s)');
-  }).catch(function() {
-    showToast('Failed to copy');
-  });
+  copyText(text, 'Copied ' + tasks.length + ' completed task(s)');
+}
+
+function copyText(text, okMsg) {
+  function done(ok) {
+    if (okMsg) showToast(ok ? okMsg : 'Failed to copy');
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(false); });
+    return;
+  }
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  var ok = false;
+  try { ok = document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+  done(ok);
 }
 
 function showToast(msg) {
@@ -4168,11 +4176,7 @@ function copyPrompt(el) {
   var card = el.closest ? el.closest('.tc') : el;
   var prompt = card ? card.getAttribute('data-prompt') : el.getAttribute('data-prompt');
   if (!prompt) return;
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(prompt).then(function(){ showToast('✓ Prompt copied'); }, function(){ showToast('✎ ' + prompt); });
-  } else {
-    showToast('✎ ' + prompt);
-  }
+  copyText(prompt, '✓ Prompt copied');
 }
 
 function surprisePrompt() {
@@ -4189,9 +4193,7 @@ function surprisePrompt() {
     out.style.display = 'block';
     out.innerHTML = '<div style="font-size:9px;font-weight:700;color:#8B5CF6;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;">🎲 Today\'s prompt</div>' + pick;
   }
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(pick).then(function(){ showToast('✓ Copied'); }, function(){});
-  }
+  copyText(pick, '✓ Copied');
 }
 
 function go(id) {
