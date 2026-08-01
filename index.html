@@ -3265,6 +3265,30 @@ function renderDays() {
     h += '</div>';
     h += '<div id="chain-status-'+d.id+'" style="font-size:8px;color:#9a9080;margin-top:4px;">0 of 10 done</div>';
     h += '</div>';
+    // Evening Wind-Down — horizontal flow
+    h += '<div style="border-top:1px solid #f0f0f0;margin:12px 0 0;padding-top:12px;">';
+    h += '<div style="font-size:8px;color:#9a9080;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">🌙 Evening Wind-Down · ~9:30pm · lights out 10pm</div>';
+    h += '<div class="chain-flow-h" id="chain-flow-'+d.id+'-pm">';
+    h += '<div class="chain-progress" id="chain-progress-'+d.id+'-pm"></div>';
+    var pmItems = [
+      {i:0, icon:'🍽', label:'Dinner + clean up', desc:'No screens', color:'#6B5B95'},
+      {i:1, icon:'🔆', label:'Dim lights', desc:'~30 min before', color:'#5B8BD4'},
+      {i:2, icon:'📵', label:'Phone out of room', desc:'On charger', color:'#C878A8'},
+      {i:3, icon:'🚿', label:'Warm shower', desc:'Rinse the day', color:'#5A8BC0'},
+      {i:4, icon:'📓', label:'Journal 3 lines', desc:'Win · hard · tomorrow', color:'#8E7CC3'},
+      {i:5, icon:'🛌', label:'Bed by 10pm', desc:'Lights out', color:'#D4A07A'}
+    ];
+    pmItems.forEach(function(step, idx) {
+      if (idx > 0) h += '<div class="chain-arrow-h"></div>';
+      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="color:'+step.color+';">';
+      h += '<div class="chain-dot" style="border-color:'+step.color+';"></div>';
+      h += '<span class="chain-label">'+step.icon+' '+step.label+'</span>';
+      h += '<span class="chain-desc">'+step.desc+'</span>';
+      h += '</div>';
+    });
+    h += '</div>';
+    h += '<div id="chain-status-'+d.id+'-pm" style="font-size:8px;color:#9a9080;margin-top:4px;">0 of 6 done</div>';
+    h += '</div>';
     h += '</div>';
     h += '<div class="goal-banner">';
     h += '<div class="goal-banner-inner">';
