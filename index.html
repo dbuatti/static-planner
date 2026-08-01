@@ -621,11 +621,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* DROPDOWN MENUS */
 .tab-dropdown { position: relative; display: inline-flex; }
-.tab-dd-content { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #D3D1C7; border-radius: 0 0 8px 8px; border-top: 2px solid #185FA5; z-index: 1001; min-width: 180px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); padding: 4px 0; }
-@media (hover: hover) {
-  .tab-dropdown:hover .tab-dd-content { display: block; }
-}
-.tab-dropdown.open .tab-dd-content { display: block; }
+.tab-dd-content { display: none; position: fixed; top: 40px; left: 0; background: #fff; border: 1px solid #D3D1C7; border-radius: 0 0 8px 8px; border-top: 2px solid #185FA5; z-index: 1001; min-width: 180px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); padding: 4px 0; }
 .tab-dd-item { display: block; width: 100%; padding: 7px 16px; border: none; background: none; cursor: pointer; text-align: left; font-size: 11px; color: #1a1a18; font-family: inherit; white-space: nowrap; letter-spacing: 0.01em; }
 .tab-dd-item:hover { background: #F7F6F2; }
 .tab-dd-item.active { color: #185FA5; font-weight: 600; background: #EEF4FD; }
@@ -820,24 +816,13 @@ body { -webkit-font-smoothing: antialiased; }
   <button id="menu-toggle" onclick="toggleMenu()" class="menu-btn" aria-label="Toggle sidebar">☰</button>
   <span class="tab-bar-title">Jul 2026 → Jan 2027</span>
   <button class="tab-btn active" onclick="switchTab('plan')">📅 Daily Plan</button>
-  <div class="tab-dropdown">
+  <div class="tab-dropdown" data-dd="dd-strat">
     <button class="tab-btn">🧭 Strategy ▾</button>
-    <div id="dd-strat" class="tab-dd-content">
-      <button class="tab-dd-item" onclick="switchTab('strat')">🧭 Strategic Foundation</button>
-      <button class="tab-dd-item" onclick="switchTab('plan75')">🎯 $70K Plan</button>
-      <button class="tab-dd-item" onclick="switchTab('budget')">💰 Financial Plan</button>
-    </div>
   </div>
   <button class="tab-btn" onclick="switchTab('lookin')">🗃 Tasks</button>
   <button class="tab-btn" onclick="switchTab('timeline')">📈 Timeline</button>
-  <div class="tab-dropdown">
+  <div class="tab-dropdown" data-dd="dd-life">
     <button class="tab-btn">🧘 Life ▾</button>
-    <div id="dd-life" class="tab-dd-content">
-      <button class="tab-dd-item" onclick="switchTab('mindful')">🧘 Mindfulness</button>
-      <button class="tab-dd-item" onclick="switchTab('dreams')">✨ Dreams</button>
-      <button class="tab-dd-item" onclick="switchTab('gifts')">🎁 Gifts</button>
-      <button class="tab-dd-item" onclick="switchTab('snap')">📸 Daily Snap</button>
-    </div>
   </div>
   <button class="tab-btn" onclick="switchTab('research')">🔬 Research</button>
   <button class="tab-btn" onclick="goToday()" title="Jump to today">📅 Today</button>
@@ -847,6 +832,19 @@ body { -webkit-font-smoothing: antialiased; }
     <input id="global-search" type="text" placeholder="🔍 Search plan…" oninput="runSearch(this.value)" onkeydown="if(event.key==='Escape'){clearSearch()}" style="font-size:11px;padding:4px 28px 4px 10px;border:0.5px solid #D3D1C7;border-radius:6px;background:#F7F6F2;outline:none;width:180px;font-family:inherit;color:#1a1a18;">
     <span id="search-clear" onclick="clearSearch()" style="position:absolute;right:8px;cursor:pointer;color:#B4B2A9;font-size:13px;display:none;">✕</span>
   </div>
+</div>
+
+<!-- DROPDOWN PANELS (portaled to body level: position:fixed children of the scrollable .tab-bar do not paint on iOS Safari) -->
+<div id="dd-strat" class="tab-dd-content">
+  <button class="tab-dd-item" onclick="switchTab('strat')">🧭 Strategic Foundation</button>
+  <button class="tab-dd-item" onclick="switchTab('plan75')">🎯 $70K Plan</button>
+  <button class="tab-dd-item" onclick="switchTab('budget')">💰 Financial Plan</button>
+</div>
+<div id="dd-life" class="tab-dd-content">
+  <button class="tab-dd-item" onclick="switchTab('mindful')">🧘 Mindfulness</button>
+  <button class="tab-dd-item" onclick="switchTab('dreams')">✨ Dreams</button>
+  <button class="tab-dd-item" onclick="switchTab('gifts')">🎁 Gifts</button>
+  <button class="tab-dd-item" onclick="switchTab('snap')">📸 Daily Snap</button>
 </div>
 
 <!-- SEARCH RESULTS OVERLAY -->
@@ -2626,7 +2624,9 @@ function showTab(tab) {
     var isActive = (b.getAttribute('onclick') || '').includes("'" + tab + "'");
     var ddParent = b.closest('.tab-dropdown');
     if (ddParent) {
-      var ddItem = ddParent.querySelector('.tab-dd-item[onclick*="' + tab + '"]');
+      var ddId = ddParent.getAttribute('data-dd');
+      var ddPanel = ddId ? document.getElementById(ddId) : null;
+      var ddItem = ddPanel ? ddPanel.querySelector('.tab-dd-item[onclick*="' + tab + '"]') : null;
       if (ddItem) isActive = true;
     }
     b.classList.toggle('active', isActive);
@@ -2654,24 +2654,62 @@ function closeDropdowns() {
 // Tap-to-open dropdowns on touch devices (hover doesn't exist on mobile)
 function setDDOpen(dd, open) {
   dd.classList.toggle('open', open);
-  var c = dd.querySelector('.tab-dd-content');
-  if (c) c.style.display = open ? 'block' : '';
+  var id = dd.getAttribute('data-dd');
+  var c = id ? document.getElementById(id) : null;
+  if (!c) return;
+  if (open) {
+    var btn = dd.querySelector('.tab-btn');
+    var r = btn ? btn.getBoundingClientRect() : null;
+    if (window.innerWidth <= 768) {
+      c.style.left = '0';
+      c.style.right = '0';
+      c.style.top = '40px';
+      c.style.maxHeight = 'calc(100vh - 40px)';
+    } else {
+      c.style.left = (r ? r.left : 0) + 'px';
+      c.style.top = (r ? r.bottom : 40) + 'px';
+      c.style.right = 'auto';
+      c.style.maxHeight = '';
+    }
+    c.style.display = 'block';
+  } else {
+    c.style.display = 'none';
+  }
 }
 document.addEventListener('click', function(e) {
+  var item = e.target.closest('.tab-dd-item');
   var dd = e.target.closest('.tab-dropdown');
+  if (!dd && item) {
+    var panel = item.closest('.tab-dd-content');
+    if (panel) dd = document.querySelector('.tab-dropdown[data-dd="' + panel.id + '"]');
+  }
   var others = document.querySelectorAll('.tab-dropdown.open');
   for (var i = 0; i < others.length; i++) {
     if (others[i] !== dd) setDDOpen(others[i], false);
   }
   if (dd) {
     e.stopPropagation();
-    var isItem = e.target.closest('.tab-dd-item');
-    if (isItem) {
+    if (item) {
       setDDOpen(dd, false);
     } else {
       setDDOpen(dd, !dd.classList.contains('open'));
     }
   }
+});
+var ddHoverTimer = null;
+function ddCloseLater() {
+  ddHoverTimer = setTimeout(function() {
+    document.querySelectorAll('.tab-dropdown.open').forEach(function(d) { setDDOpen(d, false); });
+  }, 120);
+}
+document.querySelectorAll('.tab-dropdown, .tab-dd-content').forEach(function(el) {
+  el.addEventListener('mouseenter', function() {
+    if (!window.matchMedia('(hover: hover)').matches) return;
+    clearTimeout(ddHoverTimer);
+    var dd = el.classList.contains('tab-dropdown') ? el : document.querySelector('.tab-dropdown[data-dd="' + el.id + '"]');
+    if (dd) setDDOpen(dd, true);
+  });
+  el.addEventListener('mouseleave', ddCloseLater);
 });
 
 // ── DAY DATA ──
