@@ -626,6 +626,25 @@ html, body { min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, '
   #sidebar-overlay.open { display: block; }
   .app-wrap { flex-direction: column; }
   .main { padding: 12px; }
+  .tab-bar { overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab-bar-title { display: none; }
+  .tab-dropdown.open .tab-dd-content { display: block; }
+  #global-search { width: 110px; }
+  .ov-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .chain-flow-h { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .chain-flow-h .chain-step { flex: none; min-width: 84px; }
+  .weather-widget { flex-wrap: wrap; gap: 8px; }
+  .tl-ruler { left: 8px; }
+  #search-overlay { width: 100%; max-width: 320px; }
+}
+
+@media (max-width: 480px) {
+  .tab-btn { padding: 0 6px; font-size: 10px; }
+  .dh-dow { font-size: 17px; }
+  .tc { padding: 8px 10px; }
+  .main { padding: 10px; }
 }
 
 /* PRINT */
@@ -2581,8 +2600,21 @@ function showTab(tab) {
 var switchTab = showTab;
 
 function closeDropdowns() {
-  // handled by CSS hover
+  document.querySelectorAll('.tab-dropdown.open').forEach(function(dd) { dd.classList.remove('open'); });
 }
+
+// Tap-to-open dropdowns on touch devices (hover doesn't exist on mobile)
+document.addEventListener('click', function(e) {
+  var dd = e.target.closest('.tab-dropdown');
+  var others = document.querySelectorAll('.tab-dropdown.open');
+  for (var i = 0; i < others.length; i++) {
+    if (others[i] !== dd) others[i].classList.remove('open');
+  }
+  if (dd) {
+    e.stopPropagation();
+    dd.classList.toggle('open');
+  }
+});
 
 // ── DAY DATA ──
 var DAYS = [
