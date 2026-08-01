@@ -4203,7 +4203,7 @@ function loadWeather() {
 // Refresh weather every 30 min and on tap
 setInterval(loadWeather, 30 * 60 * 1000);
 document.addEventListener('click', function(e) {
-  if (e.target.closest && e.target.closest('#weather-widget')) loadWeather();
+  if (e.target.closest && e.target.closest('#weather-widget') && !e.target.closest('.tab-dropdown')) loadWeather();
 });
 
 // ── NOW INDICATOR ──
