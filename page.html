@@ -827,6 +827,7 @@ body { -webkit-font-smoothing: antialiased; }
   <button class="tab-btn" onclick="switchTab('research')">🔬 Research</button>
   <button class="tab-btn" onclick="goToday()" title="Jump to today">📅 Today</button>
   <div style="flex:1"></div>
+  <button class="tab-btn" onclick="copyAllPlans()" title="Copy Strategic Foundation, $70K Plan, Financial Plan and Dreams to clipboard">📋 Copy</button>
   <button class="tab-btn" onclick="openPrint()" style="border-left:0.5px solid #E8E6DF;">🖨 Print</button>
   <div style="position:relative;display:flex;align-items:center;">
     <input id="global-search" type="text" placeholder="🔍 Search plan…" oninput="runSearch(this.value)" onkeydown="if(event.key==='Escape'){clearSearch()}" style="font-size:11px;padding:4px 28px 4px 10px;border:0.5px solid #D3D1C7;border-radius:6px;background:#F7F6F2;outline:none;width:180px;font-family:inherit;color:#1a1a18;">
@@ -4054,6 +4055,38 @@ function createTimelineDay(d) {
 }
 
 // ── COPY COMPLETED TASKS ──
+function paneText(id) {
+  var pane = document.getElementById(id);
+  if (!pane) return '';
+  var clone = pane.cloneNode(true);
+  clone.style.cssText = 'position:fixed;left:-9999px;top:0;width:640px;visibility:visible;display:block;';
+  document.body.appendChild(clone);
+  var text = clone.innerText || clone.textContent || '';
+  document.body.removeChild(clone);
+  return text;
+}
+
+function copyAllPlans() {
+  var sections = [
+    {id:'tab-strat', title:'🧭 STRATEGIC FOUNDATION'},
+    {id:'tab-plan75', title:'🎯 THE $70K PLAN'},
+    {id:'tab-budget', title:'💰 FINANCIAL PLAN'},
+    {id:'tab-dreams', title:'✨ DREAMS'}
+  ];
+  var parts = [];
+  sections.forEach(function(sec) {
+    var text = paneText(sec.id).replace(/\n{3,}/g, '\n\n').trim();
+    if (text) parts.push(sec.title + '\n' + text);
+  });
+  if (!parts.length) { showToast('Nothing to copy'); return; }
+  var output = parts.join('\n\n────────────────────\n\n');
+  navigator.clipboard.writeText(output).then(function() {
+    showToast('✓ Copied all four plans');
+  }).catch(function() {
+    showToast('Failed to copy');
+  });
+}
+
 function copyCompleted(dayId) {
   var panel = document.getElementById('view-'+dayId);
   if (!panel) return;
