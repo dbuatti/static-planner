@@ -3526,6 +3526,22 @@ function renderWeekSummary(idx) {
   var DOT_COLORS = {music:'#5A8BC0',kine:'#1D9E75',rest:'#C8B070'};
   var h = '<div style="padding:24px 20px;max-width:640px;margin:0 auto;">';
 
+  // Prev / next week navigation (sidebar is hidden on mobile)
+  var totalWeeks = 0;
+  (function() {
+    var lastW2 = '', w2 = -1;
+    DAYS.forEach(function(d) {
+      if (d.dateISO < cutoff) return;
+      var ws2 = weekStart(d);
+      if (ws2 !== lastW2) { w2++; lastW2 = ws2; }
+    });
+    totalWeeks = w2 + 1;
+  })();
+  h += '<div style="display:flex;gap:8px;margin-bottom:12px;justify-content:center;">';
+  h += '<button class="nb" onclick="go(\'week-'+(idx-1)+'\')" style="'+(idx<=0?'visibility:hidden;':'')+'">← Prev</button>';
+  h += '<button class="nb" onclick="go(\'week-'+(idx+1)+'\')" style="'+(idx>=totalWeeks-1?'visibility:hidden;':'')+'">Next →</button>';
+  h += '</div>';
+
   // Compute week totals (excluding day-off events)
   var weekTotal = 0, weekCats = {}, weekCount = 0;
   weekDays.forEach(function(d) {
