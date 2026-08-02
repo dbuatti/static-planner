@@ -32,6 +32,13 @@
 ## Print
 - Print bar (`🖨 Print`) supports single-day portrait printing (one day per page) and multi-day landscape (one day per page) via `body.print-single` / `body.print-2up`. The user prints a single day the night before — that workflow is already supported.
 
+## End-of-day review
+- Trigger: either the tick data shows an unfinished day AND/OR the user says something like "end of day, here's what I completed" — run a review of that day's tasks.
+- Identify which tasks were **not** completed.
+- For each unfinished task, assess whether it should be **pushed forward** to a later day.
+- Recurring tasks naturally return later in the week on their own — **do not** move recurring tasks to a future day, since they'll occur again anyway. This includes the daily 15m anchors (transaction work / room clean / journal), FNH recurring blocks, and any task that will re-appear without me moving it.
+- For non-recurring unfinished tasks, **move them myself**: find the next sensible open slot in the coming days (respecting the 10am–4pm and ~6h-cap conventions) and relocate them there, then tell the user where they landed.
+
 ## Validation
 - After any JS/DAYS edit, verify the inline script parses:
   `node -e "const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const m=h.match(/<script>([\s\S]*?)<\/script>/);new Function(m[1]);console.log('PARSE OK')"`
