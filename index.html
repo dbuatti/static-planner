@@ -1091,13 +1091,13 @@ body { -webkit-font-smoothing: antialiased; }
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🧾 Note tollways taken after the gig</div>
-    <div class="tn">Took tollways driving back. Log for expense tracking.</div>
+    <div class="tl">💳 Sort out ING card — switch to debit</div>
+    <div class="tn">Set up debit card usage instead of credit card.</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">💸 Log extra cash from the gig in Claude</div>
-    <div class="tn">Update income records with the extra cash received.</div>
+    <div class="tl">🚫 Stop MOISES subscription</div>
+    <div class="tn">Recurring cost still coming out — cancel it.</div>
   </div></div>
 
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
@@ -1133,11 +1133,6 @@ body { -webkit-font-smoothing: antialiased; }
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🛒 Go to the shops — buy wraps</div>
-    <div class="tn">Completely out of wraps.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📅 Plan tomorrow — timings, bringing him home, food</div>
     <div class="tn">Work out the schedule, whether to bring him home, and what to cook.</div>
   </div></div>
@@ -1165,11 +1160,6 @@ body { -webkit-font-smoothing: antialiased; }
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">💰 Big money session — log transactions (2h)</div>
     <div class="tn">Catch up on logging transactions for the last couple of months.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">💳 Sort out ING card — switch to debit</div>
-    <div class="tn">Set up debit card usage instead of credit card.</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -1211,10 +1201,6 @@ body { -webkit-font-smoothing: antialiased; }
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🛏️ Change sheets</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🚫 Stop MOISES subscription</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -1314,11 +1300,6 @@ body { -webkit-font-smoothing: antialiased; }
   </div></div>
 
   <div style="font-size:9px;font-weight:700;color:#A67CB8;margin:1.5rem 0 8px;padding:4px 8px;background:#f4eef8;border-radius:4px;">⏳ WAITING — Awaiting reply</div>
-
-  <div class="tc tickable ticked" style="margin-bottom:6px;border-left:3px solid #A67CB8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎹 Bella Holland (Cameron) — 30 min trial Mon 17 Aug 4:30pm</div>
-    <div class="tn">Waiting on: email address, weekly/fortnightly preference. <span style="color:#A67CB8;font-weight:600;">Sent 17 Aug</span></div>
-  </div></div>
 
   <div style="border-top:2px solid #E8E6DF;margin:28px 0 16px;padding-top:20px;">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:2px;">
@@ -2952,6 +2933,7 @@ var DAYS = [
     sub:'🎂 Potluck 11am · 🧘 Kriya 4pm',
     focus:'🎂 Birthday + IMBOLC potluck 11–5 (Tammy) · ⚠️ Kriya Yoga 4–5 Footscray — travel 3–6 clashes with the potluck',
     events:[
+      {time:'10:00–10:30', text:'🛒 Go to the shops — buy wraps', tickable:true},
       {time:'11:00–17:00', text:'🎂 Birthday + IMBOLC potluck — 13 Dorothy Ave, Sunshine (Tammy)', tickable:false},
       {time:'15:00–16:00', text:'🚗 Travel to Footscray — Kriya Yoga'},
       {time:'16:00–17:00', text:'🧘 Kriya Yoga — Body Voice Centre, Footscray'},
@@ -2959,8 +2941,11 @@ var DAYS = [
     ]},
     {id:'mon3aug', dow:'Monday', date:'3 August', dateISO:'2026-08-03', dot:'dc-music', week:'August',
      sub:'FNH Susan 10am · Carey 3pm · FNH Mastery 6pm',
-     focus:'Susan FNH 10am · Download music 11am · Carey 3pm · Mastery 6pm',
-      events:[
+      focus:'Susan FNH 10am · Download music 11am · Carey 3pm · Mastery 6pm · Anchors 11:30',
+       events:[
+        {time:'11:30–11:45', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+        {time:'11:45–12:00', text:'🧹 Room clean — 15 min', tickable:true},
+        {time:'14:00–14:15', text:'📓 Journal — 15 min', tickable:true},
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
         {time:'11:00–11:30', text:'📥 Download Carey music & upload to iPad'},
         {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -2972,8 +2957,11 @@ var DAYS = [
     ]},
      {id:'tue4aug', dow:'Tuesday', date:'4 August', dateISO:'2026-08-04', dot:'dc-music', week:'August',
       sub:'Q&A 9am · Lisa 3:30pm · Nikki 5:30pm',
-      focus:'FNH Q&A 9am · Lisa 3:30pm · Nikki 5:30pm',
+      focus:'FNH Q&A 9am · Lisa 3:30pm · Nikki 5:30pm · Anchors 10:30',
       events:[
+        {time:'10:30–10:45', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+        {time:'10:45–11:00', text:'🧹 Room clean — 15 min', tickable:true},
+        {time:'11:00–11:15', text:'📓 Journal — 15 min', tickable:true},
         {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'15:30–16:15', text:'🎵 Voice and Piano Coaching — Lisa Capon', teaching:true},
@@ -2982,8 +2970,12 @@ var DAYS = [
      ]},
     {id:'wed5aug', dow:'Wednesday', date:'5 August', dateISO:'2026-08-05', dot:'dc-kine', week:'August',
      sub:'Jacqui 2pm · Albert 4pm',
-     focus:'Jacqui Dwyer FNH 2pm · Albert re Cherish 4pm',
+      focus:'Jacqui Dwyer FNH 2pm · Albert re Cherish 4pm · Anchors 10am · Bank cash 11am',
       events:[
+        {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+        {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+        {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+        {time:'11:00–11:15', text:'💰 Deposit gig cash into account', tickable:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Jacqui Dwyer', fnh:true},
        {time:'16:00–17:00', text:'💬 Meeting Albert — Cherish', fnh:true},
@@ -2991,28 +2983,42 @@ var DAYS = [
     ]},
    {id:'thu6aug', dow:'Thursday', date:'6 August', dateISO:'2026-08-06', dot:'dc-rest', week:'August',
     sub:'Alison 1pm · Q&A 6pm',
-    focus:'Session with Alison 1–3pm · Q&A 6–8pm',
+    focus:'Session with Alison 1–3pm · Q&A 6–8pm · Anchors 10am',
         events:[
+          {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+          {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+          {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'13:00–15:00', text:'Session with Alison', fnh:true},
       {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
     ]},
    {id:'fri7aug', dow:'Friday', date:'7 August', dateISO:'2026-08-07', dot:'dc-rest', week:'August',
     sub:'🏀 Free Day',
-    focus:'🏀 Free Day',
+    focus:'🏀 Free Day · Anchors 10am · Film FNH talk 11am',
     events:[
+      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+      {time:'11:00–11:30', text:'🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
    {id:'sat8aug', dow:'Saturday', date:'8 August', dateISO:'2026-08-08', dot:'dc-rest', week:'August',
     sub:'🏀 Free Day',
-    focus:'🏀 Free Day',
+    focus:'🏀 Free Day · Anchors 10am',
     events:[
+      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
    {id:'sun9aug', dow:'Sunday', date:'9 August', dateISO:'2026-08-09', dot:'dc-rest', week:'August',
     sub:'🏀 Free Day',
-    focus:'🏀 Free Day',
+    focus:'🏀 Free Day · Anchors 10am · Money date 3pm',
     events:[
+      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
+      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+      {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
     {id:'mon10aug', dow:'Monday', date:'10 August', dateISO:'2026-08-10', dot:'dc-music', week:'August',
@@ -3058,9 +3064,10 @@ var DAYS = [
         {time:'11:00–15:00', text:'🎬 MTT Filming on Stage (The Clubroom)'},
      ]},
     {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
-     sub:'Susan FNH 10am · Mastery 6pm',
-     focus:'Susan FNH 10am · FNH Mastery Catch Up 6–8pm',
+     sub:'Blood test 8am · Susan FNH 10am · Mastery 6pm',
+     focus:'🩸 Blood test walk-in 8am · Susan FNH 10am · FNH Mastery Catch Up 6–8pm',
      events:[
+       {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
        {time:'18:00–20:00', text:'🧠 FNH Mastery Catch Up', fnh:true}
     ]},
@@ -3656,6 +3663,13 @@ function renderWeekSummary(idx) {
   h += '<div style="text-align:center;margin-bottom:24px;padding:20px;background:linear-gradient(135deg,#f8f4ff,#fef4f0);border-radius:12px;">';
   h += '<div style="font-size:24px;font-weight:400;font-family:Georgia,\'Times New Roman\',serif;color:#1a1a18;letter-spacing:-0.01em;">Week of '+weekStart(weekDays[0])+'</div>';
   h += '<div style="font-size:11px;color:#8A8880;margin-top:4px;font-family:Georgia,\'Times New Roman\',serif;font-style:italic;">'+weekDays.length+' days &middot; '+weekCount+' sessions</div>';
+  h += '</div>';
+
+  // Weekly goal — one clear win by end of week
+  h += '<div style="background:#f2faf5;border:1px solid #dcebe2;border-left:3px solid #1D9E75;border-radius:10px;padding:14px 16px;margin-bottom:20px;">';
+  h += '<div style="font-size:9px;color:#1D9E75;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">🎯 Goal by end of week</div>';
+  h += '<div style="font-size:12px;color:#1a1a18;line-height:1.5;">A <strong>clean room</strong> and the <strong>money transaction sheet updated</strong>.</div>';
+  h += '<div style="font-size:10px;color:#5F5E5A;margin-top:6px;">15 min each, every day. Small increments beat one big push.</div>';
   h += '</div>';
 
   // Metrics cards
