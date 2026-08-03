@@ -2970,6 +2970,7 @@ var DAYS = [
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'14:00–15:30', text:'🎹 Track: "Tonight at eight" (She Loves Me) — due Wed 5 Aug · 4-bar intro', perf:true, tickable:true},
         {time:'15:30–16:15', text:'🎵 Voice and Piano Coaching — Lisa Capon', teaching:true},
+        {time:'16:15–16:45', text:'🎹 Piano practice — 30 min', tickable:true},
         {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true},
        {time:'19:00–20:00', text:'🍽️ Dinner'}
      ]},
@@ -2984,6 +2985,7 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
         {time:'15:15–15:30', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'15:30–15:45', text:'📓 Journal — 15 min', tickable:true},
         {time:'16:00–17:00', text:'💬 Meeting Albert — Cherish', fnh:true},
+        {time:'17:00–17:30', text:'🎹 Piano practice — 30 min', tickable:true},
       {time:'18:00–20:00', text:'🍽️ Dinner'}
     ]},
    {id:'thu6aug', dow:'Thursday', date:'6 August', dateISO:'2026-08-06', dot:'dc-rest', week:'August',
@@ -2992,6 +2994,7 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
         events:[
             {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
           {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+          {time:'10:45–11:15', text:'🎹 Piano practice — 30 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'13:00–15:00', text:'Session with Alison', fnh:true},
        {time:'15:00–15:30', text:'📚 FNH study block', fnh:true},
@@ -3004,24 +3007,28 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
       {time:'11:00–11:30', text:'🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate', tickable:true},
+      {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
    {id:'sat8aug', dow:'Saturday', date:'8 August', dateISO:'2026-08-08', dot:'dc-rest', week:'August',
-    sub:'🏀 Free Day · Study 11am · Clean kitchen 12pm',
-    focus:'🏀 Free Day · Anchors 10am · FNH study 11am · Clean kitchen 12pm',
-    events:[
-      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
-      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-      {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
-      {time:'12:00–13:00', text:'🍳 Kitchen clean — decent clean', tickable:true},
-      {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
-    ]},
+     sub:'🏀 Free Day · Study 11am · Clean kitchen 12pm · Vacuum 1pm',
+     focus:'🏀 Free Day · Anchors 10am · FNH study 11am · Clean kitchen 12pm · Vacuum house 1pm',
+     events:[
+       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+       {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
+       {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
+       {time:'12:00–13:00', text:'🍳 Kitchen clean — decent clean', tickable:true},
+       {time:'13:00–13:30', text:'🧹 Vacuum the house — one good pass', tickable:true},
+       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+     ]},
    {id:'sun9aug', dow:'Sunday', date:'9 August', dateISO:'2026-08-09', dot:'dc-rest', week:'August',
     sub:'🏀 Free Day',
     focus:'🏀 Free Day · Anchors 10am · Money date 3pm',
     events:[
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+      {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
       {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
@@ -3030,6 +3037,7 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
     focus:'Susan FNH 10am · Brendan FNH (COMMUNITY-FREE) 3pm · Carey Cabaret Performance 5–7pm',
     events:[
        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
+       {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
        {time:'12:00–14:00', text:'🍴 Lunch'},
        {time:'15:00–16:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true},
       {time:'17:00–19:00', text:'🎭 Carey Cabaret Night 2026 — Performance', teaching:true}
@@ -3672,8 +3680,8 @@ function renderWeekSummary(idx) {
   // Weekly goal — one clear win by end of week
   h += '<div style="background:#f2faf5;border:1px solid #dcebe2;border-left:3px solid #1D9E75;border-radius:10px;padding:14px 16px;margin-bottom:20px;">';
   h += '<div style="font-size:9px;color:#1D9E75;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">🎯 Goal by end of week</div>';
-  h += '<div style="font-size:12px;color:#1a1a18;line-height:1.5;">A <strong>clean room</strong> and the <strong>money transaction sheet updated</strong>.</div>';
-  h += '<div style="font-size:10px;color:#5F5E5A;margin-top:6px;">15 min each, every day. Small increments beat one big push.</div>';
+  h += '<div style="font-size:12px;color:#1a1a18;line-height:1.5;">A <strong>clean room</strong> and the <strong>house vacuumed</strong>.</div>';
+  h += '<div style="font-size:10px;color:#5F5E5A;margin-top:6px;">15 min room clean each day · one good vacuum pass on Saturday. Small increments beat one big push.</div>';
   h += '</div>';
 
   // Metrics cards
