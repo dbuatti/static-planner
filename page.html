@@ -11,6 +11,13 @@ html, body { min-height: 100%; font-family: -apple-system, BlinkMacSystemFont, '
 button, .tc.tickable, .chain-step, .day-btn, [onclick] { touch-action: manipulation; }
 body { -webkit-font-smoothing: antialiased; }
 
+/* ACCESSIBILITY — focus rings + reduced motion */
+:focus-visible { outline: 2px solid #185FA5; outline-offset: 2px; border-radius: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .chain-progress.complete::after, .free-day-card::before, .free-day-card::after { display: none; }
+}
+
 /* CSS VARIABLES — capacity colours */
 :root {
   --c-seussical: #5A8BC0;
@@ -28,11 +35,15 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 /* TAB BAR */
-.tab-bar { position: sticky; top: 0; left: 0; right: 0; height: 40px; background: #fff; border-bottom: 1px solid #D3D1C7; display: flex; align-items: center; padding: 0 8px; gap: 0; z-index: 1000; white-space: nowrap; }
+.tab-bar { position: sticky; top: 0; left: 0; right: 0; height: 40px; background: #fff; border-bottom: 1px solid #D3D1C7; display: flex; align-items: center; padding: 0 8px; gap: 0; z-index: 1000; white-space: nowrap; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.tab-bar::-webkit-scrollbar { display: none; }
 .tab-bar-title { font-size: 12px; font-weight: 600; margin-right: 16px; white-space: nowrap; display: none; }
 .tab-btn { height: 38px; padding: 0 8px; border: none; border-bottom: 2px solid transparent; background: none; cursor: pointer; font-size: 11px; color: #5F5E5A; font-family: inherit; flex-shrink: 0; transition: color 0.2s, border-color 0.2s, background 0.2s; }
 .tab-btn:hover { background: #fafaf8; }
 .tab-btn.active { color: #185FA5; border-bottom-color: #185FA5; font-weight: 500; }
+/* Scroll fade — shows more tabs exist when the bar overflows */
+.tab-bar.scrolly::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 28px; pointer-events: none; background: linear-gradient(90deg, rgba(255,255,255,0), #fff); }
+.tab-bar.scrolly.at-end::after { display: none; }
 
 /* TIMELINE SWIPE HINT */
 .tl-swipe-hint { display: none; font-size: 11px; color: #8A8880; text-align: center; padding: 8px; background: #f0f4fa; border-radius: 8px; margin-bottom: 10px; }
@@ -49,7 +60,7 @@ body { -webkit-font-smoothing: antialiased; }
 /* APP - simple layout that works everywhere */
 .app-wrap { display: flex; min-height: 100vh; }
 .sidebar { width: 210px; flex-shrink: 0; background: #fff; border-right: 1px solid #D3D1C7; min-height: 100%; position: sticky; top: 40px; align-self: flex-start; max-height: calc(100vh - 40px); overflow-y: auto; -webkit-overflow-scrolling: touch; }
-.main { flex: 1; padding: 20px; min-height: 100vh; background: #f5f5f3; overflow-x: hidden; }
+.main { flex: 1; padding: 20px; height: calc(100vh - 40px); background: #f5f5f3; overflow-y: auto; overflow-x: hidden; }
 .main > .day-panel, .main > #week-summary-container { max-width: 900px; }
 
 /* DAY PANELS */
@@ -93,7 +104,7 @@ body { -webkit-font-smoothing: antialiased; }
 .weather-meta { margin-left: auto; font-size: 10px; color: #8A8880; text-align: right; line-height: 1.5; }
 
 /* NAV BAR */
-.nav-bar { display: flex; gap: 8px; margin-bottom: 14px; }
+.nav-bar { display: flex; gap: 8px; margin-bottom: 14px; position: sticky; top: 0; z-index: 40; background: #f5f5f3; padding: 8px 0; margin: -8px 0 14px; }
 .nb { padding: 5px 12px; border: 1px solid #D3D1C7; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11px; font-family: inherit; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .nb:hover { background: #F7F6F2; border-color: #B0ADA3; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 .nb:active { transform: translateY(0); }
@@ -126,6 +137,9 @@ body { -webkit-font-smoothing: antialiased; }
 .day-panel.weekend .dh-top {
   background: linear-gradient(135deg, #faf9f7, #f0efe8);
 }
+/* DAY DONE-COUNTER CHIP */
+.dh-progress { margin-left: auto; font-size: 10px; font-weight: 600; color: #8A8880; background: #fff; border: 1px solid #E0DFD8; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
+.dh-progress.all { color: #1D9E75; background: #E8F7F0; border-color: #A8D8BC; }
 /* MORNING CHAIN — vertical flow */
 .chain-flow { position: relative; padding-left: 18px; overflow: hidden; border-radius: 10px; background: #fafaf8; }
 .chain-flow::before {
@@ -330,6 +344,16 @@ body { -webkit-font-smoothing: antialiased; }
 /* SECTION LABELS */
 .sl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #8A8880; background: #f5f5f3; border-radius: 4px; padding: 3px 8px; margin: 16px 0 6px; display: inline-block; }
 
+/* COLLAPSIBLE COMPLETED SECTION */
+.done-fold { margin-top: 18px; border: 1px solid #E0DFD8; border-radius: 8px; background: #fafaf8; }
+.done-fold > summary { cursor: pointer; list-style: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8A8880; padding: 8px 12px; user-select: none; display: flex; align-items: center; gap: 6px; }
+.done-fold > summary::-webkit-details-marker { display: none; }
+.done-fold > summary::before { content: '▸'; font-size: 9px; transition: transform 0.2s; }
+.done-fold[open] > summary::before { transform: rotate(90deg); }
+.done-fold > summary:hover { color: #1D9E75; }
+.done-fold .done-count { color: #B4B2A9; font-weight: 600; }
+.done-fold .done-list { padding: 0 8px 8px; }
+
 /* TASK CARDS */
 .tc { background: #fff; border: 1px solid #D3D1C7; border-radius: 8px; padding: 9px 12px; margin-bottom: 6px; display: flex; gap: 8px; align-items: flex-start; transition: box-shadow 0.2s, border-color 0.2s; }
 .tc:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); border-color: #B0ADA3; }
@@ -356,6 +380,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* NOW HIGHLIGHT */
 .tc.now-event { background: #eef4fa; border-color: #5A8BC0; box-shadow: inset 3px 0 0 #5A8BC0; }
+.tc.next-event { background: #f8fbf6; border-color: #A8D8BC; box-shadow: inset 3px 0 0 #1D9E75; }
 
 /* TEACHING CARDS */
 .tc.teaching { background: #f6f2fa; border-color: #D0C0E0; }
@@ -632,6 +657,7 @@ body { -webkit-font-smoothing: antialiased; }
 
 @media (max-width: 768px) {
   .menu-btn { display: flex; }
+  .tab-btn { height: 40px; padding: 0 12px; font-size: 11px; }
   .sidebar { position: fixed; top: 40px; left: -240px; width: 220px; z-index: 100; transition: left 0.2s ease; max-height: calc(100vh - 40px); }
   .sidebar.open { left: 0; }
   #sidebar-overlay.open { display: block; }
@@ -660,12 +686,13 @@ body { -webkit-font-smoothing: antialiased; }
   .chain-flow-h .chain-step.done + .chain-arrow-h { display: none; }
   .day-panel .tc.ticked { display: none; }
   .day-panel .sl-completed { display: none; }
+  .day-panel .done-fold { display: none; }
   #print-bar { top: 40px; padding: 8px 10px; }
   .print-day-cb-label { font-size: 11px; padding: 4px 2px; display: inline-flex; align-items: center; gap: 3px; }
 }
 
 @media (max-width: 480px) {
-  .tab-btn { padding: 0 6px; font-size: 10px; }
+  .tab-btn { padding: 0 8px; font-size: 10px; }
   .dh-dow { font-size: 17px; }
   .tc { padding: 8px 10px; }
   .main { padding: 10px; }
@@ -710,6 +737,10 @@ body { -webkit-font-smoothing: antialiased; }
   .tc.done { display: none !important; }
   .chk { display: none !important; }
   .bx, .td { display: none !important; }
+  .dh-progress { display: none !important; }
+  .done-fold { display: block !important; }
+  .done-fold > summary { display: none !important; }
+  .done-fold .done-list { display: block !important; padding: 0 !important; }
   .tn { font-size: 10px !important; line-height: 1.4 !important; }
   /* Compass + Morning Chain print styles */
   .day-panel > div:first-of-type { margin-bottom: 8px !important; }
@@ -3402,7 +3433,11 @@ function renderDays() {
     var freeSlots = findFreeSlots(activeEvs);
     var h = '<div id="view-'+d.id+'" class="day-panel'+(/^Sat|^Sun/.test(d.dow)?' weekend':'')+'">';
     h += '<div class="nav-bar"><button class="nb" onclick="go(\''+prevId+'\')">← '+prevLabel+'</button><button class="nb" onclick="go(\''+nextId+'\')">'+nextLabel+' →</button><button class="nb nb-copy" onclick="copyCompleted(\''+d.id+'\')" title="Copy completed tasks">✓ Copy</button></div>';
-    h += '<div class="dh-top"><div class="dh-dow">'+d.dow+'</div><div class="dh-date">'+d.date+'</div></div>';
+    h += '<div class="dh-top"><div class="dh-dow">'+d.dow+'</div><div class="dh-date">'+d.date+'</div>';
+    var doneN = completedEvs.length;
+    var totalN = doneN + activeEvs.filter(function(ev){return ev.tickable;}).length;
+    if (totalN > 0) h += '<div class="dh-progress" id="dp-'+d.id+'">'+doneN+'/'+totalN+' done</div>';
+    h += '</div>';
     h += '<div class="dh-focus">'+d.focus+'</div>';
     // Category bar — hide on days with no real events
     var catTotals = {};
@@ -3531,7 +3566,10 @@ function renderDays() {
       h += '</div></div></div>';
     });
     if (completedEvs.length) {
-      h += '<div class="sl sl-completed" style="margin-top:18px;">✓ COMPLETED</div>';
+      var allDone = doneN === totalN;
+      h += '<details class="done-fold"'+(allDone?' open':'')+'>';
+      h += '<summary>✓ Completed <span class="done-count">('+completedEvs.length+')</span></summary>';
+      h += '<div class="done-list">';
       completedEvs.forEach(function(ev) {
         var cls = 'tc tickable ticked';
         var did = ' data-tickid="'+ev._tickId+'"';
@@ -3539,6 +3577,7 @@ function renderDays() {
         h += '<div class="chk">✓</div>';
         h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:#888;">'+ev.text+'</div></div></div>';
       });
+      h += '</div></details>';
     }
     h += '</div>';
     c.innerHTML += h;
@@ -3880,6 +3919,22 @@ document.addEventListener('keydown', function(e) {
 })();
 
 // ── TICK PERSISTENCE (localStorage) ──
+function updateDayProgress(dayId) {
+  var chip = document.getElementById('dp-' + dayId);
+  if (!chip) return;
+  var panel = document.getElementById('view-' + dayId);
+  if (!panel) return;
+  var tickable = panel.querySelectorAll('.tc.tickable[data-tickid]');
+  var done = 0;
+  tickable.forEach(function(tc) { if (tc.classList.contains('ticked')) done++; });
+  chip.textContent = done + '/' + tickable.length + ' done';
+  chip.classList.toggle('all', tickable.length > 0 && done === tickable.length);
+}
+function updateAllDayProgress() {
+  document.querySelectorAll('.dh-progress').forEach(function(c) {
+    updateDayProgress(c.id.replace('dp-', ''));
+  });
+}
 function restoreTicks() {
   document.querySelectorAll('.tc.tickable[data-tickid]').forEach(function(tc) {
     var id = tc.getAttribute('data-tickid');
@@ -3888,6 +3943,7 @@ function restoreTicks() {
     }
   });
   if (typeof updateMDateStatus === 'function') updateMDateStatus();
+  updateAllDayProgress();
 }
 
 // ── MORNING CHAIN TOGGLE ──
@@ -4344,32 +4400,49 @@ document.addEventListener('click', function(e) {
 });
 
 // ── NOW INDICATOR ──
+function parseRange(tc) {
+  var tt = tc.querySelector('.tt');
+  if (!tt) return null;
+  var parts = tt.textContent.trim().split(/[–\-—]/);
+  if (parts.length !== 2) return null;
+  var p = parts[0].trim().split(':'), q = parts[1].trim().split(':');
+  if (p.length < 2 || q.length < 2) return null;
+  return [parseInt(p[0]) * 60 + parseInt(p[1]), parseInt(q[0]) * 60 + parseInt(q[1])];
+}
 function highlightNow() {
-  document.querySelectorAll('.tc.now-event').forEach(function(e){e.classList.remove('now-event');});
+  document.querySelectorAll('.tc.now-event,.tc.next-event').forEach(function(e) {
+    e.classList.remove('now-event', 'next-event');
+  });
   var active = document.querySelector('.day-panel.active');
   if (!active) return;
-  var dayId = active.id.replace('view-','');
-  var dayData = DAYS.find(function(d){return d.id===dayId;});
+  var dayId = active.id.replace('view-', '');
+  var dayData = DAYS.find(function(d) { return d.id === dayId; });
   if (!dayData || dayData.dateISO !== localDateStr(new Date())) return;
   var now = new Date();
-  var nowMin = now.getHours()*60+now.getMinutes();
+  var nowMin = now.getHours() * 60 + now.getMinutes();
+  var foundNext = false;
   active.querySelectorAll('.tc').forEach(function(tc) {
-    var tt = tc.querySelector('.tt');
-    if (!tt) return;
-    var t = tt.textContent.trim().split(/[–\-]/)[0].trim();
-    var p = t.split(':');
-    if (p.length<2) return;
-    var startMin = parseInt(p[0])*60+parseInt(p[1]);
-    t = tt.textContent.trim().split(/[–\-]/)[1];
-    if (t) {
-      p = t.trim().split(':');
-      if (p.length>=2) {
-        var endMin = parseInt(p[0])*60+parseInt(p[1]);
-        if (nowMin >= startMin && nowMin < endMin) tc.classList.add('now-event');
-      }
-    }
+    if (tc.classList.contains('free') || tc.classList.contains('ticked')) return;
+    var r = parseRange(tc);
+    if (!r) return;
+    if (nowMin >= r[0] && nowMin < r[1]) { tc.classList.add('now-event'); return; }
+    if (!foundNext && nowMin < r[0]) { tc.classList.add('next-event'); foundNext = true; }
   });
 }
+
+// ── TAB-BAR SCROLL FADE (shows there are more tabs) ──
+(function() {
+  function setTabBarFade(bar) {
+    var can = bar.scrollWidth > bar.clientWidth + 2;
+    bar.classList.toggle('scrolly', can);
+    bar.classList.toggle('at-end', !can || bar.scrollLeft + bar.clientWidth >= bar.scrollWidth - 2);
+  }
+  document.querySelectorAll('.tab-bar').forEach(function(bar) {
+    setTabBarFade(bar);
+    bar.addEventListener('scroll', function() { setTabBarFade(bar); }, { passive: true });
+    window.addEventListener('resize', function() { setTabBarFade(bar); });
+  });
+})();
 
 window.addEventListener('DOMContentLoaded', function() {
   loadWeather();
@@ -4437,6 +4510,8 @@ document.addEventListener('click', function(e) {
     else localStorage.removeItem('tick-'+id);
   }
   if (id && id.indexOf('mdate-') === 0) updateMDateStatus();
+  var panel = tc.closest ? tc.closest('.day-panel') : null;
+  if (panel) updateDayProgress(panel.id.replace('view-', ''));
 });
 
 // ── SEARCH ──
