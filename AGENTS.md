@@ -13,7 +13,7 @@
 ## Week planning conventions
 - The weekly discretionary cap is ~6h on top of booked appointments. Appointments are fixed and never changed.
 - Tasks/anchors should be scheduled between **10am–4pm** where the day has room; splitting/not-back-to-back is fine.
-- Daily anchors (when requested): 15m room clean, 15m journal — the incremental path toward the weekly goals (clean room, updated money transaction sheet).
+- Daily anchors (when requested): 15m room clean, 15m journal — the incremental path toward the weekly goals (clean room, house vacuumed).
 - **Transaction cadence**: transactions are caught up to 29 Jul. Update transactions **every Sunday** (that's the recurring transaction task; the Sunday money date handles it). **Thursday** is the **allowance transfer** day (dynamic Thu rule adds "💰 Allowance transfer" 11–11:30). No daily transaction-anchor tasks.
 - When the user asks for a "week plan", pull tasks from the **Tasks page** (`#tab-lookin`, Eisenhower matrix) and the Strategy cards — not invented tasks.
 - Blood test is a **walk-in on Mon 17 Aug 8–9am**, not a "book it" task. It is due 4 weeks from 20 Jul, so it must stay on/after 17 Aug.
