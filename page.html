@@ -2947,7 +2947,6 @@ var DAYS = [
      sub:'FNH Susan 10am · Carey 3pm · FNH Mastery 6pm',
       focus:'Susan FNH 10am · Download music 11am · Carey 3pm · Mastery 6pm · Anchors 11:30',
        events:[
-        {time:'11:30–11:45', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
         {time:'11:45–12:00', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'14:00–14:15', text:'📓 Journal — 15 min', tickable:true},
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
@@ -2964,7 +2963,6 @@ var DAYS = [
       focus:'FNH Q&A 9am · Track 2pm · Lisa 3:30pm · Nikki 5:30pm · Anchors 10:30 · Study 11:15',
       events:[
         {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
-        {time:'10:30–10:45', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
         {time:'10:45–11:00', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'11:00–11:15', text:'📓 Journal — 15 min', tickable:true},
         {time:'11:15–11:45', text:'📚 FNH study block', fnh:true},
@@ -2982,7 +2980,6 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
         {time:'11:30–11:45', text:'💰 Deposit gig cash into account', tickable:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Jacqui Dwyer', fnh:true},
-        {time:'15:00–15:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
         {time:'15:15–15:30', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'15:30–15:45', text:'📓 Journal — 15 min', tickable:true},
         {time:'16:00–17:00', text:'💬 Meeting Albert — Cherish', fnh:true},
@@ -2992,8 +2989,7 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
     sub:'Alison 1pm · Q&A 6pm · Study 3pm',
     focus:'Session with Alison 1–3pm · Q&A 6–8pm · Anchors 10am · FNH study 3pm',
         events:[
-          {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
-          {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+            {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
           {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'13:00–15:00', text:'Session with Alison', fnh:true},
@@ -3004,7 +3000,6 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
     sub:'🏀 Free Day',
     focus:'🏀 Free Day · Anchors 10am · Film FNH talk 11am',
     events:[
-      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
       {time:'11:00–11:30', text:'🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate', tickable:true},
@@ -3014,7 +3009,6 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
     sub:'🏀 Free Day · Study 11am · Clean kitchen 12pm',
     focus:'🏀 Free Day · Anchors 10am · FNH study 11am · Clean kitchen 12pm',
     events:[
-      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
       {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
@@ -3025,7 +3019,6 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
     sub:'🏀 Free Day',
     focus:'🏀 Free Day · Anchors 10am · Money date 3pm',
     events:[
-      {time:'10:00–10:15', text:'🧾 Transaction work — log + set aside 25%', tickable:true},
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
       {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
@@ -3188,9 +3181,9 @@ function populateRecurring() {
     if (dow === 4 && !hasEvent(day, /Weekly Q&A/)) {
       day.events.push({time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true});
     }
-    // Thu: Weekly money stuff 11-11:30
-    if (dow === 4 && !hasEvent(day, /money stuff/)) {
-      day.events.push({time:'11:00–11:30', text:'💰 Weekly money stuff'});
+    // Thu: Allowance transfer 11-11:30
+    if (dow === 4 && !hasEvent(day, /Allowance transfer/)) {
+      day.events.push({time:'11:00–11:30', text:'💰 Allowance transfer'});
     }
     // Weekly focus: SLEEP + BEDROOM (daily, ADHD-friendly small steps)
     if (!hasEvent(day, /Bedroom reset/)) {
