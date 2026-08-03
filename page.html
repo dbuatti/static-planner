@@ -2962,7 +2962,7 @@ var DAYS = [
       sub:'Q&A 9am · Track 2pm · Lisa 3:30pm · Nikki 5:30pm · Study 11:15',
       focus:'FNH Q&A 9am · Track 2pm · Lisa 3:30pm · Nikki 5:30pm · Anchors 10:45 · Study 11:15 · MOISES 10:30',
       events:[
-        {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+        {time:'09:00–09:30', text:'🧠 FNH Weekly Q&A', fnh:true},
         {time:'10:30–10:45', text:'🚫 Stop MOISES subscription', tickable:true},
         {time:'10:45–11:00', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'11:00–11:15', text:'📓 Journal — 15 min', tickable:true},
@@ -3174,9 +3174,9 @@ function populateRecurring() {
     var dow = d.getDay(); // 0=Sun,1=Mon,...,6=Sat
     var day = addDay(d);
 
-    // Tue: Weekly Q&A 9-10:30
+    // Tue: Weekly Q&A 9-9:30
     if (dow === 2 && !hasEvent(day, /Weekly Q&A/)) {
-      day.events.push({time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true});
+      day.events.push({time:'09:00–09:30', text:'🧠 FNH Weekly Q&A', fnh:true});
     }
     // Thu: Weekly Q&A 6-8pm
     if (dow === 4 && !hasEvent(day, /Weekly Q&A/)) {
