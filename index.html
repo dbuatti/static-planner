@@ -1120,16 +1120,6 @@ body { -webkit-font-smoothing: antialiased; }
     <div class="tn">Deposit paid ✓. Sep 7–19. BSB: 193879 · Acc: 419875631.</div>
   </div></div>
 
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">💰 Deposit gig cash into account</div>
-    <div class="tn">Deposit <strong>$1,465 cash</strong>. Find a time to bank the cash from the gig.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">💳 Sort out ING card — switch to debit</div>
-    <div class="tn">Set up debit card usage instead of credit card.</div>
-  </div></div>
-
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -2966,7 +2956,7 @@ sub:'Track 10am · Jacqui 2pm · Albert 4pm',
       focus:'Track 10am · Jacqui Dwyer FNH 2pm · Albert re Cherish 4pm · Anchors 3pm · Bank cash 11:30',
       events:[
         {time:'10:00–11:30', text:'🎹 Track: "Tonight at eight" (She Loves Me) · 4-bar intro', perf:true, tickable:true},
-        {time:'11:30–11:45', text:'💰 Deposit gig cash into account', tickable:true},
+        {time:'11:30–11:45', text:'💰 Deposit gig cash into account', tickable:true, done:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Jacqui Dwyer', fnh:true},
         {time:'15:15–15:30', text:'🧹 Room clean — 15 min', tickable:true},
@@ -3527,7 +3517,7 @@ function renderDays() {
       h += '<div class="'+cls+'"'+did+inlineStyle+'>';
       if (ev.tickable) h += '<div class="chk"></div>';
       h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+ev.text;
-      if (ev.dur>=30) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
+      if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
       h += '</div></div></div>';
     });
     if (completedEvs.length) {
