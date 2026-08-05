@@ -855,11 +855,13 @@ body { -webkit-font-smoothing: antialiased; }
     <button class="tab-btn">🧭 Strategy ▾</button>
   </div>
   <button class="tab-btn" onclick="switchTab('lookin')">🗃 Tasks</button>
+  <div class="tab-dropdown" data-dd="dd-research">
+    <button class="tab-btn">🔬 Research ▾</button>
+  </div>
   <button class="tab-btn" onclick="switchTab('timeline')">📈 Timeline</button>
   <div class="tab-dropdown" data-dd="dd-life">
     <button class="tab-btn">🧘 Life ▾</button>
   </div>
-  <button class="tab-btn" onclick="switchTab('research')">🔬 Research</button>
   <button class="tab-btn" onclick="goToday()" title="Jump to today">📅 Today</button>
   <div style="flex:1"></div>
   <button class="tab-btn" onclick="copyAllPlans()" title="Copy Strategic Foundation, $70K Plan, Financial Plan and Dreams to clipboard">📋 Copy</button>
@@ -881,6 +883,11 @@ body { -webkit-font-smoothing: antialiased; }
   <button class="tab-dd-item" onclick="switchTab('dreams')">✨ Dreams</button>
   <button class="tab-dd-item" onclick="switchTab('gifts')">🎁 Gifts</button>
   <button class="tab-dd-item" onclick="switchTab('snap')">📸 Daily Snap</button>
+</div>
+<div id="dd-research" class="tab-dd-content">
+  <button class="tab-dd-item" onclick="switchTab('videos')">🎬 Videos</button>
+  <button class="tab-dd-item" onclick="switchTab('research')">📚 Books &amp; Research</button>
+  <button class="tab-dd-item" onclick="switchTab('lookinto')">🧩 Look Into</button>
 </div>
 
 <!-- SEARCH RESULTS OVERLAY -->
@@ -1178,18 +1185,8 @@ body { -webkit-font-smoothing: antialiased; }
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎤 Research vocal care — protecting my voice</div>
-    <div class="tn">Lost my voice at the gig, no control. Happened a couple times now. Look into warm-ups, hydration, recovery, and when to rest.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🚫 Hold on new clients — not ready yet</div>
     <div class="tn">Accept I'm not at a point to take on new clients. Work through what's on my plate first.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🦷 Research Invisalign options</div>
-    <div class="tn">Know the cost and savings timeline for when I'm ready. Not affordable yet — just map the path.</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -1273,25 +1270,6 @@ body { -webkit-font-smoothing: antialiased; }
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;"><div class="tl">🧺 4 loads of laundry</div></div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🏃 Research Zach Bush MD 4 Minute Workout</div>
-    <div class="tn">10 reps squats, arm swings, arm circles, overhead presses. Releases nitric oxide.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎵 A Sound Life — check out volunteer page</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎭 Shepherd's Purse Theatre Company</div>
-    <div class="tn">Community theatre in Northern Rivers. Possible gig/collaboration.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🧠 Dr. Jill Bolte Taylor — 4 "characters" of the brain</div>
-    <div class="tn">Relevant to FNH work. <a href="https://www.youtube.com/watch?v=8xvbmi9F-tU" target="_blank">Watch →</a></div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">💭 Reflect on dinner &amp; sing-through idea</div>
     <div class="tn">~8-10 music-inclined people, low stakes, dinner + show run-through. Community building / fun night.</div>
   </div></div>
@@ -1302,27 +1280,12 @@ body { -webkit-font-smoothing: antialiased; }
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🧩 Self-Awareness Mapping Exercise — FNH community post</div>
-    <div class="tn">Personality, Human Design, Gene Keys, Ba Gua, Visionary/Integrator, Numerology.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📅 Schedule catch-up with Phil</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">📋 Look up Nick Moss's business sheets — FNH Community</div>
-    <div class="tn">Two business sheets Nick posted. Can't remember the names.</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📅 Coordinate FNH peer practice — Sonia, Orpheus, Blake + Maria</div>
     <div class="tn">Run past Nick first. Aim for fortnightly.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎵 Check / review Sibelius subscription</div>
-    <div class="tn">See when it renews, what tier you're on, and whether you still need it.</div>
   </div></div>
 
   <div style="font-size:9px;font-weight:700;color:#A67CB8;margin:1.5rem 0 8px;padding:4px 8px;background:#f4eef8;border-radius:4px;">⏳ WAITING — Awaiting reply</div>
@@ -2596,11 +2559,85 @@ body { -webkit-font-smoothing: antialiased; }
 </div>
 </div>
 
+<div id="tab-videos" class="tab-pane" style="display: none;">
+<div style="max-width:640px;margin:0 auto;padding:24px 20px;">
+  <div style="margin-bottom:24px;">
+    <div style="font-size:18px;font-weight:600;margin-bottom:2px;">🎬 Videos to Watch</div>
+    <div style="font-size:11px;color:#9a9080;text-transform:uppercase;letter-spacing:0.08em;">Queue them up when there's time</div>
+  </div>
+
+  <div class="tc tickable" data-tickid="res-v1" style="margin-bottom:8px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🧠 Dr. Jill Bolte Taylor — 4 "characters" of the brain</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Relevant to FNH work. <a href="https://www.youtube.com/watch?v=8xvbmi9F-tU" target="_blank" onclick="event.stopPropagation()">Watch →</a></div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-v2" style="margin-bottom:8px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎥 Chronic Pain Masterclass — FNH</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Resource from peer practice (5 Aug). Watch: <a href="https://functional-neuro-health.mykajabi.com/products/neuro-pro-mastery-program/categories/2155262261/posts/2190788997" target="_blank" onclick="event.stopPropagation()">Watch →</a></div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-v3" style="margin-bottom:8px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎥 Using a surrogate for muscle testing — FNH</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Resource from peer practice (5 Aug). Watch: <a href="https://functional-neuro-health.mykajabi.com/products/neuro-pro-mastery-program/categories/2154161936/posts/2193416299" target="_blank" onclick="event.stopPropagation()">Watch →</a></div>
+  </div></div>
+
+</div>
+</div>
+
+<div id="tab-lookinto" class="tab-pane" style="display: none;">
+<div style="max-width:640px;margin:0 auto;padding:24px 20px;">
+  <div style="margin-bottom:24px;">
+    <div style="font-size:18px;font-weight:600;margin-bottom:2px;">🧩 Look Into</div>
+    <div style="font-size:11px;color:#9a9080;text-transform:uppercase;letter-spacing:0.08em;">Research and follow-ups when curiosity strikes</div>
+  </div>
+
+  <div class="tc tickable" data-tickid="res-l1" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🏃 Research Zach Bush MD 4 Minute Workout</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">10 reps squats, arm swings, arm circles, overhead presses. Releases nitric oxide.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l2" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎵 A Sound Life — check out volunteer page</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l3" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎭 Shepherd's Purse Theatre Company</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Community theatre in Northern Rivers. Possible gig/collaboration.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l4" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🧩 Self-Awareness Mapping Exercise — FNH community post</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Personality, Human Design, Gene Keys, Ba Gua, Visionary/Integrator, Numerology.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l5" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">📋 Look up Nick Moss's business sheets — FNH Community</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Two business sheets Nick posted. Can't remember the names.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l6" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎵 Check / review Sibelius subscription</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">See when it renews, what tier you're on, and whether you still need it.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l7" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎤 Research vocal care — protecting my voice</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Lost my voice at the gig, no control. Happened a couple times now. Look into warm-ups, hydration, recovery, and when to rest.</div>
+  </div></div>
+
+  <div class="tc tickable" data-tickid="res-l8" style="margin-bottom:8px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🦷 Research Invisalign options</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Know the cost and savings timeline for when I'm ready. Not affordable yet — just map the path.</div>
+  </div></div>
+
+</div>
+</div>
+
 <div id="tab-research" class="tab-pane" style="display: none;">
 <div style="max-width:640px;margin:0 auto;padding:24px 20px;">
   <div style="margin-bottom:24px;">
-    <div style="font-size:18px;font-weight:600;margin-bottom:2px;">🔬 Future Research</div>
-    <div style="font-size:11px;color:#9a9080;text-transform:uppercase;letter-spacing:0.08em;">Topics to explore when curiosity strikes</div>
+    <div style="font-size:18px;font-weight:600;margin-bottom:2px;">📚 Books &amp; Research</div>
+    <div style="font-size:11px;color:#9a9080;text-transform:uppercase;letter-spacing:0.08em;">Notes and reads worth having around</div>
   </div>
 
   <div class="tc" style="margin-bottom:8px;border-left:3px solid #5A8BC0;">
@@ -3000,20 +3037,20 @@ var DAYS = [
  sub:'Track 10am · Zealous auditions 12–8pm',
       focus:'Track 10am · Zealous répétiteur 12–8pm ($660) · Reschedule Jacqui + Albert · Dinner after',
       events:[
-        {time:'10:00–11:30', text:'🎹 Track: "Tonight at eight" (She Loves Me) · 4-bar intro', perf:true, tickable:true},
+        {time:'10:00–11:30', text:'🎹 Track: "Tonight at eight" (She Loves Me) · 4-bar intro', perf:true, tickable:true, done:true},
         {time:'11:30–11:45', text:'💰 Deposit gig cash into account', tickable:true, done:true},
         {time:'12:00–20:00', text:'🎹 Zealous Productions — audition répétiteur · 3 × 2h sessions, dance call, 90-min release · quote $660, or $810 with rig', perf:true},
-        {time:'14:00–14:15', text:'📞 Contact Jacqui — reschedule', tickable:true},
-        {time:'14:15–14:30', text:'📞 Contact Albert — reschedule', tickable:true},
+        {time:'14:00–14:15', text:'📞 Contact Jacqui — reschedule', tickable:true, done:true},
+        {time:'14:15–14:30', text:'📞 Contact Albert — reschedule', tickable:true, done:true},
         {time:'20:15–21:00', text:'🍽️ Dinner'}
     ]},
    {id:'thu6aug', dow:'Thursday', date:'6 August', dateISO:'2026-08-06', dot:'dc-rest', week:'August',
-    sub:'Alison 1pm · Q&A 6pm · Study 3pm',
+    sub:'Alison 1pm · Q&A 6pm · Allowance 11am · Voice notes 3:30pm',
     focus:'Session with Alison 1–3pm · Q&A 6–8pm · Anchors 10am · FNH study 3pm',
         events:[
             {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
           {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-          {time:'10:45–11:15', text:'🎹 Piano practice — 30 min', tickable:true},
+          {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'13:00–15:00', text:'Session with Alison', fnh:true},
        {time:'15:00–15:30', text:'📚 FNH study block', fnh:true},
