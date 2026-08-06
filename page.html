@@ -1181,7 +1181,7 @@ body { -webkit-font-smoothing: antialiased; }
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate</div>
-    <div class="tn">30–45s, one idea: what FNH is and who it's for. Open with "a neurological approach to feeling safe in your body." Film in Toorak studio. Caption handles spots/rate. Target post week of 3 Aug. New clients at $70 until Nov, then $95.</div>
+    <div class="tn">30–45s, one idea: what FNH is and who it's for. Open with "a neurological approach to feeling safe in your body." Film in Toorak studio. Caption handles spots/rate. Delayed from 7 Aug — film next week. New clients at $70 until Nov, then $95.</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -2284,7 +2284,8 @@ body { -webkit-font-smoothing: antialiased; }
       <div class="tc tickable" data-tickid="mdate-4" style="border-left:3px solid #185FA5;margin-bottom:2px;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">4. Move 25% of income → tax provision</div></div></div>
       <div class="tc tickable" data-tickid="mdate-5" style="border-left:3px solid #185FA5;margin-bottom:2px;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">5. Transfer floor ($300) to savings</div></div></div>
       <div class="tc tickable" data-tickid="mdate-6" style="border-left:3px solid #185FA5;margin-bottom:2px;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">6. Review upcoming week's expenses</div></div></div>
-      <div class="tc tickable" data-tickid="mdate-7" style="border-left:3px solid #185FA5;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">7. Update this page with new figures</div></div></div>
+      <div class="tc tickable" data-tickid="mdate-7" style="border-left:3px solid #185FA5;margin-bottom:2px;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">7. Update this page with new figures</div></div></div>
+      <div class="tc tickable" data-tickid="mdate-8" style="border-left:3px solid #185FA5;"><div class="tb" style="flex:1;"><div class="tl" style="font-size:10px;">8. Transfer weekly allowance — $150 lean · $200 default · $250 good month</div></div></div>
     </div>
     <div id="mdate-status" style="font-size:9px;color:#9a9080;margin-top:8px;">Tap to tick — done lightly, then closed.</div>
   </div>
@@ -3059,14 +3060,16 @@ var DAYS = [
       {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
     ]},
    {id:'fri7aug', dow:'Friday', date:'7 August', dateISO:'2026-08-07', dot:'dc-rest', week:'August',
-    sub:'🏀 Free Day',
-    focus:'🏀 Free Day · Anchors 10am · Film FNH talk 11am',
+    sub:'Nick Moss 11am · 🏀 Free Day',
+    focus:'Nick Moss 11am–1pm (Richmond) · Anchors 10am · Journal 1:30pm',
     events:[
       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
-      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-      {time:'10:45–11:00', text:'🧹 Vacuum skirting boards — small nose attachment pass', tickable:true},
-      {time:'11:00–11:30', text:'🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate', tickable:true},
-      {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
+      {time:'10:30–11:00', text:'🚌 Travel to SoulPod — Richmond (public transport, ~30 min)', tickable:true},
+      {time:'11:00–13:00', text:'🧠 Nick Moss — SoulPod Health & Healing, 14 Stanley St, Richmond', fnh:true},
+      {time:'13:00–13:30', text:'🚌 Travel home — public transport (~30 min)', tickable:true},
+      {time:'13:30–13:45', text:'📓 Journal — 15 min', tickable:true},
+      {time:'13:45–14:15', text:'🎹 Piano practice — 30 min', tickable:true},
+      {time:'14:15–14:30', text:'🧹 Vacuum skirting boards — small nose attachment pass', tickable:true},
       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
     ]},
    {id:'sat8aug', dow:'Saturday', date:'8 August', dateISO:'2026-08-08', dot:'dc-rest', week:'August',
@@ -3251,7 +3254,7 @@ function populateRecurring() {
     }
     // Thu: Allowance transfer 11-11:30
     if (dow === 4 && !hasEvent(day, /Allowance transfer/)) {
-      day.events.push({time:'11:00–11:30', text:'💰 Allowance transfer'});
+      day.events.push({time:'11:00–11:30', text:'💰 Allowance transfer — $200 (150 lean · 250 good month)'});
     }
     // Weekly focus: SLEEP + BEDROOM (daily, ADHD-friendly small steps)
     if (!hasEvent(day, /Bedroom reset/)) {
