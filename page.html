@@ -1130,11 +1130,6 @@ body { -webkit-font-smoothing: antialiased; }
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">📅 Reschedule Jacqui Dwyer — FNH Neuro-Health Assessment</div>
-    <div class="tn">Moved off Wed 5 Aug (Zealous gig). Weeks either way — no rush.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📅 Reschedule Albert — Cherish meeting</div>
     <div class="tn">Moved off Wed 5 Aug (Zealous gig). Weeks either way — no rush.</div>
   </div></div>
@@ -3049,28 +3044,26 @@ var DAYS = [
     sub:'Alison 1pm · Q&A 6pm · Allowance 11am · Voice notes 3:30pm',
     focus:'Session with Alison 1–3pm · Q&A 6–8pm · Anchors 10am · FNH study 3pm',
         events:[
-            {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
-          {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+            {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true, done:true},
+          {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true, done:true},
           {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'13:00–15:00', text:'Session with Alison', fnh:true},
        {time:'15:00–15:30', text:'📚 FNH study block', fnh:true},
-       {time:'15:30–15:45', text:'📋 Summarise + send voice note — Lisa Capon', tickable:true},
-       {time:'15:45–16:00', text:'📋 Summarise + send voice note — Nicole Rotenstein', tickable:true},
+       {time:'15:30–15:45', text:'📋 Summarise + send voice note — Lisa Capon', tickable:true, done:true},
+       {time:'15:45–16:00', text:'📋 Summarise + send voice note — Nicole Rotenstein', tickable:true, done:true},
       {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
     ]},
    {id:'fri7aug', dow:'Friday', date:'7 August', dateISO:'2026-08-07', dot:'dc-rest', week:'August',
     sub:'Nick Moss 11am · 🏀 Free Day',
     focus:'Nick Moss 11am–1pm (Richmond) · Anchors 10am · Journal 1:30pm',
     events:[
-      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+      {time:'10:15–10:30', text:'🧹 Vacuum skirting boards — bedroom (small nose attachment pass)', tickable:true},
       {time:'10:30–11:00', text:'🚌 Travel to SoulPod — Richmond (public transport, ~30 min)', tickable:true},
       {time:'11:00–13:00', text:'🧠 Nick Moss — SoulPod Health & Healing, 14 Stanley St, Richmond', fnh:true},
       {time:'13:00–13:30', text:'🚌 Travel home — public transport (~30 min)', tickable:true},
       {time:'13:30–13:45', text:'📓 Journal — 15 min', tickable:true},
-      {time:'13:45–14:15', text:'🎹 Piano practice — 30 min', tickable:true},
-      {time:'14:15–14:30', text:'🧹 Vacuum skirting boards — small nose attachment pass', tickable:true},
-      {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+      {time:'13:45–14:15', text:'🎹 Piano practice — 30 min', tickable:true}
     ]},
    {id:'sat8aug', dow:'Saturday', date:'8 August', dateISO:'2026-08-08', dot:'dc-rest', week:'August',
      sub:'🏀 Free Day · Study 11am · Clean kitchen 12pm · Vacuum 1pm',
