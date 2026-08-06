@@ -2026,13 +2026,13 @@ body { -webkit-font-smoothing: antialiased; }
 
   <div style="text-align:center;margin-bottom:24px;">
     <div style="font-size:22px;font-weight:300;font-family:Georgia,'Times New Roman',serif;color:#1a1a18;">💰 Financial Plan — 2026</div>
-    <div style="font-size:11px;color:#9a9080;margin-top:4px;">Review first Sunday of the month · Updated 30 Jul 2026</div>
+    <div style="font-size:11px;color:#9a9080;margin-top:4px;">Review first Sunday of the month · Updated 6 Aug 2026</div>
   </div>
 
   <!-- SNAPSHOT -->
   <div style="display:flex;gap:10px;margin-bottom:20px;">
     <div style="flex:1;text-align:center;padding:14px 8px;background:#f0f7ff;border-radius:8px;">
-      <div id="tax-savings-snap" style="font-size:22px;font-weight:600;color:#185FA5;">$25,238</div>
+      <div id="tax-savings-snap" style="font-size:22px;font-weight:600;color:#185FA5;">$28,471</div>
       <div style="font-size:9px;color:#5F5E5A;margin-top:2px;">Savings</div>
     </div>
     <div style="flex:1;text-align:center;padding:14px 8px;background:#f0fff4;border-radius:8px;">
@@ -2047,14 +2047,14 @@ body { -webkit-font-smoothing: antialiased; }
 
   <div style="text-align:center;padding:10px;background:#f5f5f3;border-radius:8px;margin-bottom:12px;">
     <div style="font-size:10px;color:#9a9080;">Net Position</div>
-    <div id="tax-net-amount" style="font-size:20px;font-weight:600;color:#1a1a18;">$25,238</div>
-    <div style="font-size:9px;color:#9a9080;margin-top:2px;">Emergency fund: 5.8 mo gross · ~4.4 mo after tax · Credit card paid off ✓</div>
+    <div id="tax-net-amount" style="font-size:20px;font-weight:600;color:#1a1a18;">$28,471</div>
+    <div style="font-size:9px;color:#9a9080;margin-top:2px;">Emergency fund: 6.5 mo gross · ~5.1 mo after tax · Credit card paid off ✓</div>
   </div>
 
   <div style="text-align:center;padding:8px 10px;background:#fef5f0;border:1px solid #E8C882;border-radius:8px;margin-bottom:20px;">
     <div style="font-size:10px;color:#9a9080;">True Savings (net of tax provision)</div>
-    <div id="tax-true-amount" style="font-size:18px;font-weight:600;color:#C0392B;">$19,028</div>
-    <div id="tax-true-desc" style="font-size:9px;color:#9a9080;margin-top:2px;">$25,238 − $6,210 tax gap = what's actually yours</div>
+    <div id="tax-true-amount" style="font-size:18px;font-weight:600;color:#C0392B;">$22,261</div>
+    <div id="tax-true-desc" style="font-size:9px;color:#9a9080;margin-top:2px;">$28,471 − $6,210 tax gap = what's actually yours</div>
   </div>
 
   <!-- YEARLY TARGET -->
@@ -2306,8 +2306,8 @@ body { -webkit-font-smoothing: antialiased; }
   <!-- PLAIN-ENGLISH SUMMARY -->
   <div style="background:linear-gradient(135deg,#f0f7ff,#fef5f0);border:1px solid #E8C882;border-radius:8px;padding:12px;margin-bottom:16px;">
     <div style="font-size:11px;font-weight:700;color:#1a1a18;margin-bottom:6px;">🤷‍♂️ What this means for you right now</div>
-    <div id="tax-summary-line" style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• You have <strong>$25,238</strong> — but <strong>$6,210</strong> of that belongs to the ATO. True savings: <strong>~$19,028</strong>.</div>
-    <div style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• True savings is <strong>$19,028</strong> after tax. Tax gap of <strong>$6,210</strong> is still the #1 priority.</div>
+    <div id="tax-summary-line" style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• You have <strong>$28,471</strong> — but <strong>$6,210</strong> of that belongs to the ATO. True savings: <strong>~$22,261</strong>.</div>
+    <div style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• True savings is <strong>$22,261</strong> after tax. Tax gap of <strong>$6,210</strong> is still the #1 priority.</div>
     <div style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• <strong>Two streams:</strong> FNH ($70) + Music ($95 voice, $110 audition). Everything else is bonus.</div>
     <div style="font-size:10px;color:#5F5E5A;margin-bottom:4px;">• At $70K/yr: roughly break-even after living + tax — the real engine is keeping the $1,200/mo savings rate and closing the tax gap, not waiting for a big surplus to appear.</div>
     <div style="font-size:10px;color:#5F5E5A;">• <strong>Progress:</strong> Carey VCE (Oct) + Starbound (Nov) gigs confirmed — the gig pipeline is converting. <strong>Still open:</strong> SHINE email + offer FNH to 5 voice students. That's what's left of the plan.</div>
@@ -4837,7 +4837,7 @@ document.addEventListener('keydown', function(e) {
 var TAX_PAID = parseInt(localStorage.getItem('taxPaid') || '992');
 var TAX_SETASIDE = parseInt(localStorage.getItem('taxSetaside') || '0');
 var TAX_TARGET = 7202;
-var TAX_SAVINGS = 25238;
+var TAX_SAVINGS = 28471;
 
 function updateTaxUI() {
   var total = TAX_PAID + TAX_SETASIDE;
@@ -4850,8 +4850,8 @@ function updateTaxUI() {
   document.getElementById('tax-pct').textContent = pct + '%';
   document.getElementById('tax-bar').style.width = pct + '%';
   document.getElementById('tax-true-amount').textContent = '$' + trueSavings.toLocaleString();
-  document.getElementById('tax-true-desc').textContent = '$25,238 − $' + gap.toLocaleString() + ' tax gap = what\'s actually yours';
-  document.getElementById('tax-summary-line').innerHTML = '• You have <strong>$25,238</strong> — but <strong>$' + gap.toLocaleString() + '</strong> of that belongs to the ATO. True savings: <strong>~$' + trueSavings.toLocaleString() + '</strong>.';
+  document.getElementById('tax-true-desc').textContent = '$28,471 − $' + gap.toLocaleString() + ' tax gap = what\'s actually yours';
+  document.getElementById('tax-summary-line').innerHTML = '• You have <strong>$28,471</strong> — but <strong>$' + gap.toLocaleString() + '</strong> of that belongs to the ATO. True savings: <strong>~$' + trueSavings.toLocaleString() + '</strong>.';
 }
 
 function addTaxSetAside() {
