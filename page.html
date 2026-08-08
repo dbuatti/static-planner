@@ -402,6 +402,11 @@ body { -webkit-font-smoothing: antialiased; }
 .tc.day-off .tl { background: linear-gradient(90deg, #8A7AAA, #C878A8, #D4A07A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600; font-size:13px; }
 .tc.day-off .tt { color: #B4A8C0; }
 
+/* DAY OFF — compact banner (day view) */
+.day-off-banner { display:flex; align-items:center; gap:10px; margin:4px 0 10px; padding:9px 12px; border-radius:8px; background:linear-gradient(135deg,#fffdf5,#faf6ff); border:1px solid #E8D090; }
+.day-off-banner .day-off-tl { font-size:12px; font-weight:600; color:#1a1a18; flex:1; }
+.day-off-banner .day-off-sub { font-size:9px; color:#B4A8C0; white-space:nowrap; }
+
 /* CATEGORY BAR */
 .cat-bar-wrap { margin: 8px 0 12px; }
 .cat-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#eee; }
@@ -2660,6 +2665,11 @@ body { -webkit-font-smoothing: antialiased; }
     <div class="tn" style="margin-top:4px;line-height:1.5;">Resource from peer practice (5 Aug). Watch: <a href="https://functional-neuro-health.mykajabi.com/products/neuro-pro-mastery-program/categories/2154161936/posts/2193416299" target="_blank" onclick="event.stopPropagation()">Watch →</a></div>
   </div></div>
 
+  <div class="tc tickable" data-tickid="res-v4" style="margin-bottom:8px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl" style="font-weight:500;">🎥 Muscle Testing Neurology Master Class — Hypertonic Muscles (30 Apr 2026)</div>
+    <div class="tn" style="margin-top:4px;line-height:1.5;">Neuro Pro Mastery Program / Call Recordings: Clinical Applications. Watch: <a href="https://functional-neuro-health.mykajabi.com/products/neuro-pro-mastery-program/categories/2159276857/posts/2196913166" target="_blank" onclick="event.stopPropagation()">Watch →</a></div>
+  </div></div>
+
 </div>
 </div>
 
@@ -3734,11 +3744,15 @@ function renderDays() {
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
+      var isDayOff = !ev.free && eventCategory(ev).id === 'free';
+      if (isDayOff) {
+        h += '<div class="day-off-banner"><span class="day-off-tl">'+ev.text+'</span><span class="day-off-sub">'+ev.time+'</span></div>';
+        return;
+      }
       var evColor = eventCategory(ev).color;
       var period = getPeriod(ev.time);
       if (period !== lastPeriod) { h += '<div class="sl">'+period+'</div>'; lastPeriod = period; }
-      var isDayOff = !ev.free && eventCategory(ev).id === 'free';
-      var cls = 'tc'+(ev.tickable?' tickable':'')+(ev.buffer?' buffer':'')+(ev.free?' free '+ev.freeCls:'')+(ev.teaching?' teaching':'')+(ev.fnh?' fnh':'')+(isDayOff?' day-off':'');
+      var cls = 'tc'+(ev.tickable?' tickable':'')+(ev.buffer?' buffer':'')+(ev.free?' free '+ev.freeCls:'')+(ev.teaching?' teaching':'')+(ev.fnh?' fnh':'');
       cls += ' dot-'+dotType;
       var did = ev.tickable ? ' data-tickid="'+ev._tickId+'"' : '';
       var inlineStyle = ev.free ? '' : ' style="border-left:3px solid '+evColor+'"';
