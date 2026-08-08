@@ -121,32 +121,27 @@ body { -webkit-font-smoothing: antialiased; }
   display: flex;
   align-items: baseline;
   gap: 10px;
-  padding: 10px 14px;
-  background: linear-gradient(135deg, #fafaf8, #f5f4f0);
-  border: 1px solid #E8E6DF;
-  border-radius: 10px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-  margin-bottom: 4px;
+  padding: 14px 2px 10px;
+  border-bottom: 1px solid #E8E4DB;
+  margin-bottom: 10px;
 }
-.dh-dow { font-size: 20px; font-weight: 700; color: #3a3834; letter-spacing: -0.02em; }
-.dh-date { font-size: 12px; color: #8A8880; font-weight: 500; }
+.dh-dow { font-size: 26px; font-weight: 700; color: #2e2c28; letter-spacing: -0.02em; }
+.dh-date { font-size: 13px; color: #8A8880; font-weight: 500; }
 .dh-focus {
-  font-size: 11px; color: #5F5E5A; margin: 0 0 10px;
+  font-size: 12.5px; color: #5F5E5A; margin: 0 0 12px;
   padding: 8px 12px;
-  background: #fff;
   border-left: 3px solid #C0392B;
-  border-radius: 0 8px 8px 0;
   font-weight: 500;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  line-height: 1.5;
 }
 .day-panel.weekend .dh-top {
-  background: linear-gradient(135deg, #faf9f7, #f0efe8);
+  border-bottom-color: #E6E1D6;
 }
 /* DAY DONE-COUNTER CHIP */
-.dh-progress { margin-left: auto; font-size: 10px; font-weight: 600; color: #8A8880; background: #fff; border: 1px solid #E0DFD8; border-radius: 20px; padding: 2px 9px; white-space: nowrap; }
-.dh-progress.all { color: #1D9E75; background: #E8F7F0; border-color: #A8D8BC; }
+.dh-progress { margin-left: auto; font-size: 10px; font-weight: 600; color: #8A8880; white-space: nowrap; }
+.dh-progress.all { color: #1D9E75; }
 /* MORNING CHAIN — vertical flow */
-.chain-flow { position: relative; padding-left: 18px; overflow: hidden; border-radius: 10px; background: #fafaf8; }
+.chain-flow { position: relative; padding-left: 18px; overflow: hidden; }
 .chain-flow::before {
   content: '';
   position: absolute;
@@ -259,9 +254,7 @@ body { -webkit-font-smoothing: antialiased; }
   display: flex;
   align-items: center;
   gap: 0;
-  padding: 8px 4px;
-  border-radius: 10px;
-  background: #fafaf8;
+  padding: 6px 0;
   overflow: hidden;
 }
 .chain-flow-h .chain-progress {
@@ -347,17 +340,19 @@ body { -webkit-font-smoothing: antialiased; }
 }
 
 /* SECTION LABELS */
-.sl { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #8A8880; background: #f5f5f3; border-radius: 4px; padding: 3px 8px; margin: 16px 0 6px; display: inline-block; }
+.sl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #8A8880; margin: 22px 0 10px; display: flex; align-items: center; gap: 10px; }
+.sl::before { content: ''; flex: 1; height: 1px; background: #E4E0D6; }
+.sl::after { content: ''; flex: 1; height: 1px; background: #E4E0D6; }
 
 /* COLLAPSIBLE COMPLETED SECTION */
-.done-fold { margin-top: 18px; border: 1px solid #E0DFD8; border-radius: 8px; background: #fafaf8; }
-.done-fold > summary { cursor: pointer; list-style: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8A8880; padding: 8px 12px; user-select: none; display: flex; align-items: center; gap: 6px; }
+.done-fold { margin-top: 20px; border-top: 1px solid #E8E4DB; }
+.done-fold > summary { cursor: pointer; list-style: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8A8880; padding: 10px 2px 4px; user-select: none; display: flex; align-items: center; gap: 6px; }
 .done-fold > summary::-webkit-details-marker { display: none; }
 .done-fold > summary::before { content: '▸'; font-size: 9px; transition: transform 0.2s; }
 .done-fold[open] > summary::before { transform: rotate(90deg); }
 .done-fold > summary:hover { color: #1D9E75; }
 .done-fold .done-count { color: #B4B2A9; font-weight: 600; }
-.done-fold .done-list { padding: 0 8px 8px; }
+.done-fold .done-list { padding: 0 2px 8px; }
 
 /* TASK CARDS */
 .tc { background: #fff; border: 1px solid #D3D1C7; border-radius: 8px; padding: 9px 12px; margin-bottom: 6px; display: flex; gap: 8px; align-items: flex-start; transition: box-shadow 0.2s, border-color 0.2s; }
@@ -403,12 +398,12 @@ body { -webkit-font-smoothing: antialiased; }
 .tc.day-off .tt { color: #B4A8C0; }
 
 /* DAY OFF — compact banner (day view) */
-.day-off-banner { display:flex; align-items:center; gap:10px; margin:4px 0 10px; padding:9px 12px; border-radius:8px; background:linear-gradient(135deg,#fffdf5,#faf6ff); border:1px solid #E8D090; }
-.day-off-banner .day-off-tl { font-size:12px; font-weight:600; color:#1a1a18; flex:1; }
+.day-off-banner { display:flex; align-items:center; gap:10px; margin:0 0 10px; padding:10px 2px; border-top:1px solid #E8E4DB; border-bottom:1px solid #E8E4DB; border-left:3px solid #D4A07A; }
+.day-off-banner .day-off-tl { font-size:12.5px; font-weight:600; color:#1a1a18; flex:1; }
 .day-off-banner .day-off-sub { font-size:9px; color:#B4A8C0; white-space:nowrap; }
 
 /* CATEGORY BAR */
-.cat-bar-wrap { margin: 8px 0 12px; }
+.cat-bar-wrap { margin: 8px 0 14px; }
 .cat-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#eee; }
 .cat-bar-seg { height:100%; min-width:4px; transition:width 0.3s, transform 0.2s; cursor:pointer; }
 .cat-bar-seg:hover { transform: scaleY(1.4); transform-origin: bottom; }
@@ -505,6 +500,27 @@ body { -webkit-font-smoothing: antialiased; }
 .tc.free.free-1h .tl { color: #8A6A4A; font-weight: 500; }
 .tc.free.free-1h .tt { color: #BA9A7A; }
 .tc.free.free-1h .dur { color: #BA9A7A; }
+
+/* DAY VIEW — flowing, integrated task rows */
+.day-panel .tc {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #EBE7DE;
+  border-left: 3px solid #D3D1C7;
+  border-radius: 0;
+  padding: 12px 6px 12px 10px;
+  margin-bottom: 0;
+  gap: 10px;
+}
+.day-panel .tc:last-of-type { border-bottom: none; }
+.day-panel .tc:hover { box-shadow: none; background: rgba(255,255,255,0.5); }
+.day-panel .tc.tickable:hover { background: rgba(255,255,255,0.6); transform: none; }
+.day-panel .tc .tl { font-size: 13px; }
+.day-panel .tc .tt { font-size: 12px; min-width: 76px; }
+.day-panel .tc .tn { font-size: 11.5px; }
+.day-panel .tc.fnh { background: rgba(29,158,117,0.06); }
+.day-panel .tc.teaching { background: rgba(166,124,184,0.06); }
+.day-panel .tc.ticked { background: #f0faf4; }
 
 /* TIMELINE TAB */
 #tab-timeline { overflow: auto; height: calc(100vh - 40px); padding: 16px; -webkit-overflow-scrolling: touch; }
@@ -734,13 +750,14 @@ body { -webkit-font-smoothing: antialiased; }
   .nav-bar { margin: 0 0 12px; gap: 8px; flex-wrap: nowrap; }
   .nb { flex: 1; text-align: center; min-height: 42px; font-size: 12.5px; border-radius: 11px; }
   .nb-copy { flex: 0 0 auto; margin-left: auto; }
-  .dh-top { padding: 16px 16px 14px; border-radius: 14px; align-items: center; margin-bottom: 8px; }
+  .dh-top { padding: 16px 0 12px; align-items: center; margin-bottom: 4px; }
   .dh-dow { font-size: 26px; }
   .dh-date { font-size: 14px; }
-  .dh-progress { font-size: 11px; padding: 4px 12px; }
-  .dh-focus { font-size: 13px; line-height: 1.5; padding: 12px 14px; margin-bottom: 12px; border-radius: 0 10px 10px 0; }
-  .sl { font-size: 10.5px; padding: 5px 10px; margin: 18px 0 8px; }
+  .dh-progress { font-size: 11px; }
+  .dh-focus { font-size: 13px; line-height: 1.5; padding: 10px 2px; margin-bottom: 6px; }
+  .sl { font-size: 10.5px; margin: 20px 0 10px; }
   .tc { padding: 13px 14px; border-radius: 12px; margin-bottom: 8px; gap: 10px; }
+  .day-panel .tc { padding: 14px 8px 14px 12px; margin-bottom: 0; gap: 10px; }
   .tl { font-size: 14px; line-height: 1.42; }
   .tt { font-size: 12.5px; min-width: 84px; }
   .tn { font-size: 12px; line-height: 1.45; margin-top: 4px; }
@@ -753,7 +770,7 @@ body { -webkit-font-smoothing: antialiased; }
   .cat-legend-item { font-size: 11px; }
   .cat-total { font-size: 11px; }
   /* Compass card — bump the micro type so it reads on a phone */
-  .compass-card { padding: 16px 16px !important; }
+  .compass-card { padding: 4px 2px 0 !important; }
   .compass-card [style*="font-size:8px"] { font-size: 10px !important; }
   .compass-card [style*="font-size:9px"] { font-size: 11px !important; }
   .compass-card [style*="font-size:7px"] { font-size: 9px !important; }
@@ -813,6 +830,7 @@ body { -webkit-font-smoothing: antialiased; }
   .day-panel > div:first-of-type { margin-bottom: 8px !important; }
   .cat-bar-wrap { margin-bottom: 8px !important; }
   .sl { font-size: 10px !important; margin: 6px 0 4px !important; }
+  .sl::before, .sl::after { display: none !important; }
   .tc { margin-bottom: 4px !important; padding: 4px 0 !important; }
   [id^="chain-status-"] { display: none !important; }
   .chain-flow { gap: 4px !important; }
@@ -884,7 +902,7 @@ body { -webkit-font-smoothing: antialiased; }
 .priority-num { font-weight:700; }
 .priority-num.red { color:#C0392B; }
 .priority-num.amber { color:#C98A4A; }
-.goal-banner { padding:10px 14px; background:linear-gradient(135deg,#f8f4ff,#fef4f0); border:1px solid #D8CCE8; border-radius:10px; margin-bottom:16px; }
+.goal-banner { padding: 12px 0; border-top: 1px solid #E8E4DB; margin: 14px 0 0; }
 .goal-banner-inner { display:flex; gap:12px; flex-wrap:wrap; font-size:10px; line-height:1.4; }
 .goal-banner-item { flex:1; min-width:140px; }
 .goal-banner-item .label { font-weight:700; }
@@ -3665,22 +3683,22 @@ function renderDays() {
       h += '</div></div>';
     }
     // Daily Compass + Morning Chain — unified card
-    h += '<div class="compass-card" style="margin:12px 0 16px;padding:14px 16px;background:linear-gradient(180deg,#fff 0%,#fafaf8 100%);border:1px solid #E8E6DF;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04);">';
+    h += '<div class="compass-card" style="margin:14px 0 2px;padding:2px 0 0;">';
     // Compass section
     h += '<div style="font-size:8px;color:#9a9080;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">🧭 Compass</div>';
     h += '<div style="display:flex;gap:8px;margin-bottom:10px;">';
-    h += '<div style="flex:1;padding:8px 10px;background:linear-gradient(135deg,#fef0ee,#fdf6f4);border-radius:8px;border-left:3px solid #C0392B;"><div style="font-size:8px;color:#C0392B;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Work</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Deepen FNH craft</div></div>';
-    h += '<div style="flex:1;padding:8px 10px;background:linear-gradient(135deg,#f8f2e8,#faf5f0);border-radius:8px;border-left:3px solid #C98A4A;"><div style="font-size:8px;color:#C98A4A;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Practices</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Teach · Refer · Pause</div></div>';
+    h += '<div style="flex:1;padding:6px 0 6px 10px;border-left:3px solid #C0392B;"><div style="font-size:8px;color:#C0392B;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Work</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Deepen FNH craft</div></div>';
+    h += '<div style="flex:1;padding:6px 0 6px 10px;border-left:3px solid #C98A4A;"><div style="font-size:8px;color:#C98A4A;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Practices</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Teach · Refer · Pause</div></div>';
     h += '</div>';
     // Four Gifts
-    h += '<div class="gift-row" style="display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap;">';
-    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;background:linear-gradient(135deg,#fef0ee,#fdf6f4);border-radius:8px;text-align:center;border:1px solid rgba(192,57,43,0.08);"><div style="font-size:12px;">🎯</div><div style="font-size:8px;color:#C0392B;font-weight:700;margin-top:2px;">Competence</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">20 min craft</div></div>';
-    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;background:linear-gradient(135deg,#f8f2e8,#faf5f0);border-radius:8px;text-align:center;border:1px solid rgba(201,138,74,0.08);"><div style="font-size:12px;">✨</div><div style="font-size:8px;color:#C98A4A;font-weight:700;margin-top:2px;">Style</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Yours alone</div></div>';
-    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;background:linear-gradient(135deg,#f6f0f8,#faf5fa);border-radius:8px;text-align:center;border:1px solid rgba(200,120,168,0.08);"><div style="font-size:12px;">💎</div><div style="font-size:8px;color:#C878A8;font-weight:700;margin-top:2px;">Commitment</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Whole-hearted</div></div>';
-    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;background:linear-gradient(135deg,#f0faf2,#f4fdf6);border-radius:8px;text-align:center;border:1px solid rgba(29,158,117,0.08);"><div style="font-size:12px;">🎵</div><div style="font-size:8px;color:#1D9E75;font-weight:700;margin-top:2px;">Lightness</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Pure enjoyment</div></div>';
+    h += '<div class="gift-row" style="display:flex;gap:0;margin-bottom:4px;flex-wrap:wrap;">';
+    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">🎯</div><div style="font-size:8px;color:#C0392B;font-weight:700;margin-top:2px;">Competence</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">20 min craft</div></div>';
+    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">✨</div><div style="font-size:8px;color:#C98A4A;font-weight:700;margin-top:2px;">Style</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Yours alone</div></div>';
+    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">💎</div><div style="font-size:8px;color:#C878A8;font-weight:700;margin-top:2px;">Commitment</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Whole-hearted</div></div>';
+    h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">🎵</div><div style="font-size:8px;color:#1D9E75;font-weight:700;margin-top:2px;">Lightness</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Pure enjoyment</div></div>';
     h += '</div>';
     // Divider
-    h += '<div style="border-top:1px solid #f0f0f0;margin:0 0 12px;"></div>';
+    h += '<div style="border-top:1px solid #E8E4DB;margin:0 0 12px;"></div>';
     // Morning Chain — horizontal flow
     h += '<div>';
     h += '<div style="font-size:8px;color:#9a9080;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">📸 Morning Chain · ~10 min</div>';
@@ -3805,7 +3823,7 @@ function applyHeight() {
         }
       }
     }
-    if (m && m >= 60) tc.style.minHeight = Math.max(36, Math.round(m * 0.75)) + 'px';
+    if (m && m >= 60) tc.style.minHeight = Math.max(36, Math.min(72, Math.round(m * 0.5))) + 'px';
   });
 }
 
