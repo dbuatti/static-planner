@@ -3240,21 +3240,23 @@ var DAYS = [
        {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
        {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
      ]},
-     {id:'mon10aug', dow:'Monday', date:'10 August', dateISO:'2026-08-10', dot:'dc-music', week:'August',
-     sub:'Sangha meditation 10am · Brendan 3pm · 🎭 Carey Cabaret Night',
-     focus:'Sangha meditation 10am (West Footscray) · Brendan FNH (COMMUNITY-FREE) 3pm · Carey Cabaret Night 5:15pm',
-     events:[
-        {time:'10:00–11:30', text:'🧘 Sangha meditation — Sbal\'s birthday, Nisha\'s place, 24 Clarke St, West Footscray'},
-        {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
-        {time:'12:00–14:00', text:'🍴 Lunch'},
-        {time:'15:00–16:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true},
-       {time:'17:15–21:00', text:'🎭 Carey Cabaret Night 2026 — arrive 5:15pm (setup) · band soundcheck 5:30 · singers from 5:40 · doors 6:45 · show from 7pm', teaching:true}
-     ]},
+      {id:'mon10aug', dow:'Monday', date:'10 August', dateISO:'2026-08-10', dot:'dc-music', week:'August',
+      sub:'Sangha meditation 10am · Brendan 3pm · 🎭 Carey Cabaret Night',
+      focus:'Sangha meditation 10am (West Footscray) · Brendan FNH (COMMUNITY-FREE) 3pm · Carey Cabaret Night 5pm',
+      events:[
+         {time:'10:00–11:30', text:'🧘 Sangha meditation — Sbal\'s birthday, Nisha\'s place, 24 Clarke St, West Footscray'},
+         {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
+         {time:'12:00–14:00', text:'🍴 Lunch'},
+         {time:'15:00–16:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true},
+         {time:'16:30–17:00', text:'🚗 Travel'},
+         {time:'17:00–19:15', text:'🎭 Carey Cabaret Night 2026 — performance at Carey Baptist Grammar · arrive 5pm · band soundcheck 5:30 · doors 6:45 · show from 7pm', teaching:true}
+      ]},
        {id:'tue11aug', dow:'Tuesday', date:'11 August', dateISO:'2026-08-11', dot:'dc-music', week:'August',
-        sub:'Q&A 9am · Invoice 10:45 · Notion 11 · Anita 2pm (offer FNH) · Track 3–5pm · Nicole 5:30pm (offer FNH)',
-        focus:'FNH Q&A 9am · Invoice Carey 10:45 · Notion 11 · Anita 2pm (offer FNH) · Track: "How it ends" 3pm · Nicole 5:30pm (offer FNH)',
-        events:[
-          {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+         sub:'Shower visit 7:30 · Q&A 9am · Invoice 10:45 · Notion 11 · Anita 2pm (offer FNH) · Track 3–5pm · Nicole 5:30pm (offer FNH)',
+         focus:'Shower visit 7:30am · FNH Q&A 9am · Invoice Carey 10:45 · Notion 11 · Anita 2pm (offer FNH) · Track: "How it ends" 3pm · Nicole 5:30pm (offer FNH)',
+         events:[
+           {time:'07:30–08:00', text:'🚿 SHOWER VISIT #1'},
+           {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
           {time:'10:45–11:00', text:'🧾 Invoice Carey — Cabaret Night', tickable:true},
           {time:'11:00–11:15', text:'📋 Notion — summarise FNH Appt 29 Jul: Susan Ford', tickable:true},
           {time:'11:15–11:30', text:'📋 Notion — summarise FNH Appt 29 Jul: Brendan Jelley', tickable:true},
@@ -3267,11 +3269,12 @@ var DAYS = [
           {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true},
          {time:'19:00–20:00', text:'🍽️ Dinner'}
        ]},
-       {id:'wed12aug', dow:'Wednesday', date:'12 August', dateISO:'2026-08-12', dot:'dc-kine', week:'August',
-        sub:'Film FNH talk 9am · Lily FNH 2pm (follow up)',
-        focus:'Film FNH talk-to-camera 9am (Toorak) · Lily FNH 2pm',
-        events:[
-          {time:'09:00–09:30', text:'🚗 Travel to Toorak studio', tickable:true},
+        {id:'wed12aug', dow:'Wednesday', date:'12 August', dateISO:'2026-08-12', dot:'dc-kine', week:'August',
+         sub:'Shower visit 8:30 · Film FNH talk 9am · Lily FNH 2pm (follow up)',
+         focus:'Shower visit 8:30am · Film FNH talk-to-camera 9am (Toorak) · Lily FNH 2pm',
+         events:[
+           {time:'08:30–09:00', text:'🚿 SHOWER VISIT #2'},
+           {time:'09:00–09:30', text:'🚗 Travel to Toorak studio', tickable:true},
           {time:'09:30–11:00', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true},
           {time:'11:00–11:30', text:'🚗 Travel home', tickable:true},
           {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -3308,29 +3311,38 @@ var DAYS = [
         {time:'14:00–14:30', text:'📓 Write gig reflection', tickable:true},
         {time:'14:30–15:00', text:'🍽️ Reply Tim Liu + Brad — games night options', tickable:true},
         {time:'15:00–15:30', text:'📅 Schedule catch-up with Phil', tickable:true},
-        {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true},
-        {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+         {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true},
+         {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+       ]},
+      {id:'sat15aug', dow:'Saturday', date:'15 August', dateISO:'2026-08-15', dot:'dc-social', week:'August',
+       sub:'Deploy 10am · 🍽️ DINNER — Tim x Brad x Daniele 6pm',
+       focus:'Deploy supabase function 10am · DINNER — Tim x Brad x Daniele 6–10pm',
+       events:[
+         {time:'10:00–10:30', text:'🛠 Deploy kinesiology function — supabase functions deploy get-calcom-slots', tickable:true},
+         {time:'18:00–22:00', text:'🍽️ DINNER — Tim x Brad x Daniele'}
       ]},
-     {id:'sun16aug', dow:'Sunday', date:'16 August', dateISO:'2026-08-16', dot:'dc-music', week:'August',
-     sub:'🎬 MTT Filming 11am',
-     focus:'MTT Filming — The Clubroom 11am–3pm',
-     events:[
-        {time:'11:00–15:00', text:'🎬 MTT Filming on Stage (The Clubroom)'},
+      {id:'sun16aug', dow:'Sunday', date:'16 August', dateISO:'2026-08-16', dot:'dc-music', week:'August',
+      sub:'🎬 MTT Filming 11am',
+      focus:'MTT Filming — The Clubroom 11am–3pm',
+      events:[
+         {time:'11:00–15:00', text:'🎬 MTT Filming on Stage (The Clubroom)'},
+      ]},
+     {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
+      sub:'Blood test 8am · Susan FNH 10am · Bella 4:30pm · Mastery 6pm',
+      focus:'🩸 Blood test walk-in 8am · Susan FNH 10am · Bella 4:30pm · FNH Mastery Catch Up 6–8pm',
+      events:[
+        {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
+        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
+        {time:'16:30–17:00', text:'🎵 Voice and Piano Coaching — Bella (trial)', teaching:true},
+        {time:'18:00–20:00', text:'🧠 FNH Mastery Catch Up', fnh:true}
      ]},
-    {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
-     sub:'Blood test 8am · Susan FNH 10am · Mastery 6pm',
-     focus:'🩸 Blood test walk-in 8am · Susan FNH 10am · FNH Mastery Catch Up 6–8pm',
-     events:[
-       {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
-       {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
-       {time:'18:00–20:00', text:'🧠 FNH Mastery Catch Up', fnh:true}
-    ]},
-    {id:'tue18aug', dow:'Tuesday', date:'18 August', dateISO:'2026-08-18', dot:'dc-music', week:'August',
-     sub:'Q&A 9am · Nicole 5:30pm',
-     focus:'FNH Q&A 9am · Nicole 5:30pm',
-     events:[
-       {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true}
-    ]},
+     {id:'tue18aug', dow:'Tuesday', date:'18 August', dateISO:'2026-08-18', dot:'dc-music', week:'August',
+      sub:'Q&A 9am · Nicole 5:30pm',
+      focus:'FNH Q&A 9am · Nicole 5:30pm',
+      events:[
+        {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+        {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true}
+     ]},
     {id:'wed19aug', dow:'Wednesday', date:'19 August', dateISO:'2026-08-19', dot:'dc-kine', week:'August',
      sub:'Jacqui FNH 2pm · Ashna FNH 3:30pm · Bradley FNH 4:45pm',
      focus:'Jacqui Dwyer FNH 2pm · Book Ashna (3:30pm) · Move Bradley to 4:45pm · Ashna FNH 3:30 · Bradley FNH 4:45',
@@ -3349,17 +3361,30 @@ var DAYS = [
        {time:'12:30–13:30', text:'🎵 Piano accompaniment — Sam\'s Grade 3 cello exam'},
        {time:'13:30–14:00', text:'🔒 Placeholder'}
      ]},
-    {id:'mon24aug', dow:'Monday', date:'24 August', dateISO:'2026-08-24', dot:'dc-music', week:'August',
-     sub:'Susan FNH 10am',
-     focus:'Susan FNH 10am',
-     events:[
-       {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true}
-    ]},
-    {id:'tue25aug', dow:'Tuesday', date:'25 August', dateISO:'2026-08-25', dot:'dc-music', week:'August',
-     sub:'Q&A 9am · Lizzy 4:15pm',
-     focus:'FNH Q&A 9am · Lizzy 4:15pm',
-     events:[
-       {time:'16:15–17:15', text:'🎵 Voice and Piano Coaching — Lizzy', teaching:true}
+     {id:'sat22aug', dow:'Saturday', date:'22 August', dateISO:'2026-08-22', dot:'dc-rest', week:'August',
+      sub:'🧘 Kriya Yoga Initiation Ceremony 8:15am',
+      focus:'Kriya Yoga Initiation Ceremony 8:15am–6pm — Emerald Hall, The Russian House, 118 Greeves St, Fitzroy',
+      events:[
+        {time:'08:15–18:00', text:'🧘 Kriya Yoga Initiation Ceremony — Emerald Hall, The Russian House, 118 Greeves St, Fitzroy VIC 3065'}
+     ]},
+     {id:'sun23aug', dow:'Sunday', date:'23 August', dateISO:'2026-08-23', dot:'dc-rest', week:'August',
+      sub:'🧘 Kriya Yoga Technique Review 8:30am',
+      focus:'Kriya Yoga Technique Review 8:30am–3pm — Emerald Hall, The Russian House',
+      events:[
+        {time:'08:30–15:00', text:'🧘 Kriya Yoga Technique Review and Practice — Emerald Hall, The Russian House, 118 Greeves St, Fitzroy VIC 3065'}
+     ]},
+     {id:'mon24aug', dow:'Monday', date:'24 August', dateISO:'2026-08-24', dot:'dc-music', week:'August',
+      sub:'Susan FNH 10am',
+      focus:'Susan FNH 10am',
+      events:[
+        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true}
+     ]},
+     {id:'tue25aug', dow:'Tuesday', date:'25 August', dateISO:'2026-08-25', dot:'dc-music', week:'August',
+      sub:'Q&A 9am · Lizzy 4:15pm',
+      focus:'FNH Q&A 9am · Lizzy 4:15pm',
+      events:[
+        {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+        {time:'16:15–17:15', text:'🎵 Voice and Piano Coaching — Lizzy', teaching:true}
     ]},
     {id:'wed26aug', dow:'Wednesday', date:'26 August', dateISO:'2026-08-26', dot:'dc-kine', week:'August',
      sub:'Anita 10am',
@@ -3428,9 +3453,9 @@ function populateRecurring() {
     var dow = d.getDay(); // 0=Sun,1=Mon,...,6=Sat
     var day = addDay(d);
 
-    // Tue: Weekly Q&A 9-9:30
+    // Tue: Weekly Q&A 9-10:30
     if (dow === 2 && !hasEvent(day, /Weekly Q&A/)) {
-      day.events.push({time:'09:00–09:30', text:'🧠 FNH Weekly Q&A', fnh:true});
+      day.events.push({time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true});
     }
     // Thu: Weekly Q&A 6-8pm
     if (dow === 4 && !hasEvent(day, /Weekly Q&A/)) {
