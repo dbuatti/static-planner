@@ -3215,28 +3215,27 @@ var DAYS = [
        {time:'17:00–17:30', text:'🧽 Kitchen clean', tickable:true, done:true}
      ]},
     {id:'sat8aug', dow:'Saturday', date:'8 August', dateISO:'2026-08-08', dot:'dc-rest', week:'August',
-     sub:'🏀 Free Day · Shop 9:30 · Study 11am · Clean kitchen 12pm · Vacuum 1pm',
-     focus:'🏀 Free Day · Groceries 9:30 · Anchors 10am · FNH study 11am · Clean kitchen 12pm · Vacuum house 1pm',
+     sub:'🏀 Free Day · Study 11am',
+     focus:'🏀 Free Day · Anchors 10am · FNH study 11am',
+     events:[
+       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
+       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+       {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
+       {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
+     ]},
+    {id:'sun9aug', dow:'Sunday', date:'9 August', dateISO:'2026-08-09', dot:'dc-rest', week:'August',
+     sub:'🏀 Free Day · Shop 9:30 · Clean kitchen 12pm · Vacuum 1pm',
+     focus:'🏀 Free Day · Groceries 9:30 · Anchors 10am · Clean kitchen 12pm · Vacuum 1pm · Money date 3pm',
      events:[
        {time:'09:30–10:15', text:'🛒 Grocery shopping', tickable:true},
        {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
        {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-       {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
-       {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
+       {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
        {time:'12:00–13:00', text:'🍳 Kitchen clean — decent clean', tickable:true},
        {time:'13:00–13:30', text:'🧹 Vacuum the house — one good pass', tickable:true},
+       {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
        {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
      ]},
-   {id:'sun9aug', dow:'Sunday', date:'9 August', dateISO:'2026-08-09', dot:'dc-rest', week:'August',
-    sub:'🏀 Free Day',
-    focus:'🏀 Free Day · Anchors 10am · Money date 3pm',
-    events:[
-      {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
-      {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-      {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
-      {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
-      {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
-    ]},
      {id:'mon10aug', dow:'Monday', date:'10 August', dateISO:'2026-08-10', dot:'dc-music', week:'August',
      sub:'Sangha meditation 10am · Brendan 3pm · 🎭 Carey Cabaret Night',
      focus:'Sangha meditation 10am (West Footscray) · Brendan FNH (COMMUNITY-FREE) 3pm · Carey Cabaret Night 5:15pm',
