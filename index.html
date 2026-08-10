@@ -5,7 +5,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Plan">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="theme-color" content="#f5f5f3">
+<meta name="theme-color" content="#FFF7F4">
 <title>Plan — Jul 2026 → Jan 2027</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -795,6 +795,101 @@ body { -webkit-font-smoothing: antialiased; }
   .gift-cell { flex: 1 1 46% !important; min-width: 0 !important; }
   .tc { min-height: 0 !important; }
 }
+
+/* ============ KAWAII THEME ============ */
+body, .main { background: #FFF7F4; }
+.tab-bar, .sidebar, #search-overlay { background: #FFFDFB; border-color: #F2DDD5; }
+.tab-bar.scrolly::after { background: linear-gradient(90deg, rgba(255,253,251,0), #FFFDFB); }
+.tab-btn.active { color: #E86A9A; border-bottom-color: #E86A9A; }
+.tab-btn:hover { background: #FFF0F4; }
+.day-btn:hover { background: #FFF0EC; }
+.day-btn.active { background: #FFE9EE; color: #D65A8E; }
+.sidebar .week-label { color: #E8B4C4; }
+.day-btn.today .dbn { color: #B98A4E; }
+.sb-btn.active { background: #FFE9EE; color: #D65A8E; }
+.tab-dd-content { border-top-color: #E86A9A; border-radius: 0 0 14px 14px; }
+.tab-dd-item.active { color: #D65A8E; background: #FFE9EE; }
+.tab-dd-item:hover { background: #FFF0F4; }
+
+/* cards — rounder + softer */
+.tc { border-radius: 14px; border-color: #F0D8D0; }
+.tc:hover { box-shadow: 0 4px 14px rgba(240,130,155,0.12); border-color: #F0A6BE; }
+.tc.fixed { background: #FDF8F5; }
+.tc.tickable:hover { background: #FFF0F4; }
+.tc.warn-t { border-color: #E8C882; background: #FFFBF0; }
+.day-panel .tc { border-radius: 0; border-bottom-color: #F4E3DC; border-left-color: #F0D8D0; }
+.day-panel .tc:hover { background: rgba(255,240,244,0.7); }
+.day-panel .tc.tickable:hover { background: #FFF0F4; }
+.day-panel .tc.fnh { background: rgba(180,230,205,0.16); }
+.day-panel .tc.teaching { background: rgba(205,190,230,0.16); }
+.day-panel .tc.ticked { background: #F8FFF8; }
+.tc.now-event { background: #FFF0F4; border-color: #F0A6BE; box-shadow: inset 3px 0 0 #E86A9A; }
+.tc.next-event { background: #F2FBF4; border-color: #A8D8BC; box-shadow: inset 3px 0 0 #1D9E75; }
+
+/* cute heart checkboxes */
+.chk { border-radius: 50%; border-color: #F2B8C8; }
+.tc.tickable:hover .chk { border-color: #E86A9A; box-shadow: 0 0 0 3px rgba(232,106,154,0.16); }
+.tc.ticked .chk { background: linear-gradient(135deg,#F49AC1,#E86A9A); border-color: #E86A9A; }
+.tc.ticked .chk::after { content: '♥'; }
+
+/* pill buttons */
+.nb { border-radius: 999px; border-color: #F0D8D0; background: #FFFDFB; }
+.nb:hover { border-color: #F0A6BE; background: #FFF0F4; }
+.nb-copy { border-color: #A8D8BC; color: #3D8F6A; }
+.nb-copy:hover { border-color: #3D8F6A; background: #F2FBF4; }
+
+/* section labels */
+.sl { color: #C98A9E; letter-spacing: 0.14em; }
+.sl::before, .sl::after { background: #F4D9DE; }
+
+/* day header */
+.dh-dow { color: #6A5A5A; }
+.dh-date { color: #B89AA4; }
+.dh-progress { color: #C98A9E; }
+.dh-progress.all { color: #3D8F6A; }
+.dh-focus { border-left-color: #F0A6BE; }
+
+/* timeline */
+.tl-col { border-radius: 14px; border-color: #F0D8D0; background: #FFFDFB; }
+.tl-ev { border-radius: 9px; border-color: #F2E2DC; background: #FFF8F5; }
+.tl-col-body { background: repeating-linear-gradient(to bottom, transparent, transparent 49px, #F7E8E2 49px, #F7E8E2 50px); }
+
+/* overview + stats + rows */
+.oc, .stat-card, .day-row { border-radius: 14px; border-color: #F0D8D0; }
+.oc:hover { background: #FFF0F4; }
+.oc.warn-ov, .oc.heavy-ov, .oc.red-ov { border-left-width: 4px; }
+
+/* cat bar + legend */
+.cat-bar { border-radius: 999px; background: #F7E8E2; }
+.bx, .tag, .risk-badge, .pressure-badge, .hr-chip { border-radius: 999px; }
+
+/* weather */
+.weather-widget { background: linear-gradient(135deg,#FFF0F4,#FFF7E8); border-color: #F5D9D0; }
+
+/* dropdown + sheet */
+.m-sheet { border-radius: 20px 20px 0 0; }
+.m-sheet-item { border-radius: 12px; }
+.mn-btn.active { color: #E86A9A; }
+
+/* Coffee corner — cute little grouped section */
+.coffee-corner {
+  background: linear-gradient(155deg, #FFF6F1, #FFF0EC 55%, #FFF6F1);
+  border: 2px dashed #F2C4BA;
+  border-radius: 16px;
+  padding: 8px 12px 6px;
+  margin: 2px 0 12px;
+}
+.coffee-head {
+  display: flex; align-items: baseline; gap: 8px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  color: #B97282;
+  padding: 2px 2px 6px;
+  margin-bottom: 2px;
+  border-bottom: 1px dashed #F2D2CA;
+}
+.coffee-sub { font-weight: 400; font-size: 9px; color: #D8A2AE; letter-spacing: 0.03em; }
+.coffee-corner .tc { margin-bottom: 1px; }
+.day-panel .coffee-corner .tc { border-left-color: #F2C4BA; }
 
 /* PRINT */
 @media print {
@@ -3258,12 +3353,12 @@ var DAYS = [
            {time:'07:30–08:00', text:'🚿 SHOWER VISIT #1'},
            {time:'08:00–08:15', text:'🧹 Tidy room — 15 min', tickable:true},
            {time:'09:00–10:00', text:'🧠 FNH Weekly Q&A', fnh:true},
-           {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:true},
-           {time:'10:30–10:45', text:'🧾 Invoice Carey — Cabaret Night', tickable:true},
-           {time:'10:45–11:00', text:'📋 Notion — summarise FNH Appt 29 Jul: Susan Ford', tickable:true},
-           {time:'11:00–11:15', text:'📋 Notion — summarise FNH Appt 29 Jul: Brendan Jelley', tickable:true},
-           {time:'11:15–11:30', text:'📋 Notion — summarise FNH Appt 3 Aug: Susan Ford', tickable:true},
-           {time:'11:30–11:45', text:'📧 Check + clear inbox', tickable:true},
+            {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:true, coffee:true},
+            {time:'10:30–10:45', text:'🧾 Invoice Carey — Cabaret Night', tickable:true, coffee:true},
+            {time:'10:45–11:00', text:'📋 Notion — summarise FNH Appt 29 Jul: Susan Ford', tickable:true, coffee:true},
+            {time:'11:00–11:15', text:'📋 Notion — summarise FNH Appt 29 Jul: Brendan Jelley', tickable:true, coffee:true},
+            {time:'11:15–11:30', text:'📋 Notion — summarise FNH Appt 3 Aug: Susan Ford', tickable:true, coffee:true},
+            {time:'11:30–11:45', text:'📧 Check + clear inbox', tickable:true, coffee:true},
            {time:'12:00–14:00', text:'🍴 Lunch'},
            {time:'15:00–17:00', text:'🎹 Track: "How it ends" (Big Fish) — James Lambropoulos · AUDITION READY · D major (2♯) · from bar 1→20, cut 21–44, bar 45→end · RUSH (due Wed 12)', perf:true, tickable:true},
           {time:'17:15–17:30', text:'💬 Offer FNH session — Nicole Rotenstein', tickable:true},
@@ -3552,6 +3647,7 @@ function timeRange(t) { var p=t.trim().split(/[–\-]/); return {start:p[0].trim
 function getPeriod(t) { var h=toMin(timeRange(t).start); if(h<720) return 'MORNING'; if(h<1080) return 'AFTERNOON'; return 'EVENING'; }
 
 var CATEGORIES = [
+  {id:'coffee',   label:'Coffee',   color:'#E8A26A', test:function(ev){return ev.coffee;}},
   {id:'teaching', label:'Teaching', color:'#A67CB8', test:function(ev){return ev.teaching;}},
   {id:'perf',     label:'Performance', color:'#DAA520', test:function(ev){return ev.perf;}},
   {id:'fnh',     label:'FNH',      color:'#1D9E75', test:function(ev){return /FNH|Psycholog|GP|Doctor|Psychology/i.test(ev.text);}},
@@ -3801,6 +3897,7 @@ function renderDays() {
     h += '</div></div>';
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
+    var inCoffee = false;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
@@ -3808,6 +3905,13 @@ function renderDays() {
       if (isDayOff) {
         h += '<div class="day-off-banner"><span class="day-off-tl">'+ev.text+'</span><span class="day-off-sub">'+ev.time+'</span></div>';
         return;
+      }
+      if (ev.coffee && !inCoffee) {
+        h += '<div class="coffee-corner"><div class="coffee-head">☕ Coffee Corner <span class="coffee-sub">coffee + a little admin</span></div>';
+        inCoffee = true;
+      } else if (!ev.coffee && inCoffee) {
+        h += '</div>';
+        inCoffee = false;
       }
       var evColor = eventCategory(ev).color;
       var period = getPeriod(ev.time);
@@ -3822,6 +3926,7 @@ function renderDays() {
       if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
       h += '</div></div></div>';
     });
+    if (inCoffee) h += '</div>';
     if (completedEvs.length) {
       var allDone = doneN === totalN;
       h += '<details class="done-fold"'+(allDone?' open':'')+'>';
