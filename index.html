@@ -1361,11 +1361,6 @@ body, .main { background: #FFF7F4; }
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">📅 Reschedule Albert — Cherish meeting</div>
-    <div class="tn">Moved off Wed 5 Aug (Zealous gig). Weeks either way — no rush.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📋 Summarise + add to Notion — FNH Appt 29 Jul: Susan Ford</div>
     <div class="tn">Summarise the appointment and file it in Notion.</div>
   </div></div>
@@ -3361,9 +3356,10 @@ var DAYS = [
          {time:'19:00–20:00', text:'🍽️ Dinner'}
        ]},
          {id:'wed12aug', dow:'Wednesday', date:'12 August', dateISO:'2026-08-12', dot:'dc-kine', week:'August',
-          sub:'Film FNH talk 9:30am · Lily FNH 2pm (follow up) · Study 11am · Flights 3pm',
-          focus:'Film FNH talk-to-camera 9:30am (Toorak) · 📚 FNH study 11am · Lily FNH 2pm · ✈️ Book Bali flights 3pm · Cancel Acuity 4pm',
+          sub:'Post Office 9am · Film FNH talk 9:30am · Lily FNH 2pm (follow up) · Study 11am · Flights 3pm',
+          focus:'🏦 Post Office 9am · Film FNH talk-to-camera 9:30am (Toorak) · 📚 FNH study 11am · Lily FNH 2pm · ✈️ Book Bali flights 3pm · Cancel Acuity 4pm',
           events:[
+            {time:'09:00–09:15', text:'🏦 Withdraw money from Post Office', tickable:true},
             {time:'09:30–11:00', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true},
             {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
             {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -3374,16 +3370,14 @@ var DAYS = [
             {time:'16:00–16:15', text:'📧 Cancel Acuity subscription — booking is on cal.com now', tickable:true, done:true}
         ]},
     {id:'thu13aug', dow:'Thursday', date:'13 August', dateISO:'2026-08-13', dot:'dc-rest', week:'August',
-     sub:'Mastery 9am · Psychology 11:15am · Emails 2pm · Q&A 6pm',
-     focus:'Mastery 9–11 · Psychology 11:15 · Emails 2–3 · Q&A 6–8pm',
+     sub:'Mastery 9am · Psychology 11:15am · Emails 2:30pm · Q&A 6pm',
+     focus:'Mastery 9–11 · Psychology 11:15 · Emails 2:30–4:45 · Q&A 6–8pm',
      events:[
         {time:'09:00–11:00', text:'🧠 FNH Mastery Catch Up', fnh:true},
         {time:'11:15–12:15', text:'🧠 Psychology'},
-        {time:'12:30–13:30', text:'🍴 Lunch'},
-        {time:'14:00–14:30', text:'📧 Email SHINE — Oct–Dec function bookings', tickable:true},
-        {time:'14:30–14:45', text:'📩 Confirm Jason Parker — Starbound $880', tickable:true},
-        {time:'14:45–15:00', text:'📅 Reschedule Albert — Cherish meeting', tickable:true},
-        {time:'15:00–15:15', text:'🎵 Check / review Sibelius subscription', tickable:true, done:true},
+         {time:'12:30–13:30', text:'🍴 Lunch'},
+         {time:'14:30–14:45', text:'📩 Confirm Jason Parker — Starbound $880', tickable:true},
+         {time:'14:45–15:00', text:'🎵 Check / review Sibelius subscription', tickable:true, done:true},
         {time:'15:15–15:45', text:'📧 List hygiene + segmented emails — Victorians 1:1 FNH', tickable:true},
         {time:'15:45–16:15', text:'📧 Segmented email — interstate: Custom backing tracks', tickable:true},
         {time:'16:15–16:45', text:'✍️ Instagram — link field · delete bio text · rewrite bio', tickable:true},
