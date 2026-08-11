@@ -882,15 +882,24 @@ body, .main { background: #FFF7F4; }
   box-shadow: 0 4px 16px rgba(217, 110, 36, 0.18);
 }
 .coffee-head {
-  display: flex; align-items: center; gap: 8px;
-  font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
-  color: #B3551A;
-  padding: 2px 2px 10px;
-  margin-bottom: 10px;
-  border-bottom: 2px dashed #E8A66A;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 2px 2px 4px;
+  margin-bottom: 2px;
 }
-.coffee-head .coffee-cup { font-size: 16px; }
-.coffee-sub { font-weight: 600; font-size: 9px; color: #C97A35; letter-spacing: 0.04em; }
+.coffee-title {
+  display: flex; align-items: baseline; gap: 6px;
+  font-size: 13px; font-weight: 900; letter-spacing: 0.03em; color: #B3551A;
+}
+.coffee-dur { font-size: 10px; font-weight: 800; color: #D98A4A; }
+.coffee-time {
+  font-size: 11px; font-weight: 800; color: #F08A3C;
+  background: #FFF8EC; border: 2px solid #F08A3C; border-radius: 999px;
+  padding: 3px 12px; white-space: nowrap; letter-spacing: 0.02em;
+}
+.coffee-sub {
+  font-weight: 600; font-size: 9px; color: #C97A35; letter-spacing: 0.04em;
+  padding: 0 2px 10px; margin-bottom: 10px; border-bottom: 2px dashed #E8A66A;
+}
 .coffee-corner .tc {
   margin-bottom: 10px;
   border-radius: 18px;
@@ -910,6 +919,46 @@ body, .main { background: #FFF7F4; }
 .coffee-corner .tc.ticked { background: #F4EFE2; }
 .coffee-corner .tc.ticked .chk { background: linear-gradient(135deg,#F5A55A,#E86A2A); border-color: #E86A2A; }
 .day-panel .coffee-corner .tc { border-left: 3px solid #F08A3C; border-left-color: #F08A3C; }
+
+/* Home corner — calm blue box for house chores */
+.home-corner {
+  position: relative;
+  background: linear-gradient(150deg, #EDF5FF, #DCEBFB 55%, #EDF5FF);
+  border: 3px solid #5A8BC0;
+  border-radius: 30px;
+  padding: 16px 16px 12px;
+  margin: 6px 0 16px;
+  box-shadow: 0 4px 16px rgba(90, 139, 192, 0.18);
+}
+.home-head {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
+  color: #2F5B8A;
+  padding: 2px 2px 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #A9C4E0;
+}
+.home-head .home-icon { font-size: 16px; }
+.home-sub { font-weight: 600; font-size: 9px; color: #5A8BC0; letter-spacing: 0.04em; }
+.home-corner .tc {
+  margin-bottom: 10px;
+  border-radius: 18px;
+  border: 2px solid #A9C4E0;
+  border-bottom-color: #8FB0D0;
+  background: #FBFDFF;
+  padding: 11px 14px;
+  box-shadow: 0 3px 0 #8FB0D0;
+}
+.home-corner .tc:last-child { margin-bottom: 2px; }
+.home-corner .tc .tl { font-size: 12.5px; font-weight: 700; color: #2C4A68; }
+.home-corner .tc .tt { color: #5A8BC0; font-weight: 700; }
+.home-corner .tc:hover { background: #F0F7FF; transform: translateY(-1px); box-shadow: 0 4px 0 #8FB0D0; }
+.home-corner .tc.tickable:hover { background: #EAF3FC; }
+.home-corner .tc.tickable:hover .chk { border-color: #3E7CB1; box-shadow: 0 0 0 3px rgba(62,124,177,0.18); }
+.home-corner .chk { width: 18px; height: 18px; min-width: 18px; border-radius: 7px; border: 2px solid #8FB0D0; background: #F4FAFF; margin-top: 1px; }
+.home-corner .tc.ticked { background: #EAF3FC; }
+.home-corner .tc.ticked .chk { background: linear-gradient(135deg,#7FA8C8,#3E7CB1); border-color: #3E7CB1; }
+.day-panel .home-corner .tc { border-left: 3px solid #5A8BC0; border-left-color: #5A8BC0; }
 
 /* PRINT */
 @media print {
@@ -3363,7 +3412,7 @@ var DAYS = [
            {time:'07:30–08:00', text:'🚿 SHOWER VISIT #1'},
            {time:'08:00–08:15', text:'🧹 Tidy room — 15 min', tickable:true},
            {time:'09:00–10:00', text:'🧠 FNH Weekly Q&A', fnh:true},
-            {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:true, coffee:true},
+             {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
             {time:'10:30–10:45', text:'🧾 Invoice Carey — Cabaret Night', tickable:true, coffee:true},
             {time:'10:45–11:00', text:'📋 Notion — summarise FNH Appt 29 Jul: Susan Ford', tickable:true, coffee:true},
             {time:'11:00–11:15', text:'📋 Notion — summarise FNH Appt 29 Jul: Brendan Jelley', tickable:true, coffee:true},
@@ -3380,7 +3429,7 @@ var DAYS = [
           focus:'🏦 Post Office 9:45am (on the way to coffee) · ☕ Coffee Corner 10am · 🎬 Film FNH talk 11am · 📚 FNH study 12:30pm · 🩺 Lily FNH 2pm · ✈️ Book Bali flights 3pm · 🎵 Upload sheet music 3:45pm · Cancel Acuity 4pm',
           events:[
             {time:'09:45–10:00', text:'🏦 Withdraw money from Post Office — on the way to coffee', tickable:true},
-            {time:'10:00–11:00', text:'☕ Coffee — @Little Quarter', tickable:true, coffee:true},
+             {time:'10:00–11:00', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
             {time:'10:15–10:30', text:'📝 Summarise + send notes to Nicole — from her lesson yesterday', tickable:true, coffee:true},
             {time:'10:30–10:45', text:'🎵 Download "Maybe This Time" sheet music — MacBook Pro', tickable:true, coffee:true},
             {time:'11:00–12:30', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true},
@@ -3914,6 +3963,7 @@ function renderDays() {
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
     var inCoffee = false;
+    var inHome = false;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
@@ -3923,11 +3973,19 @@ function renderDays() {
         return;
       }
       if (ev.coffee && !inCoffee) {
-        h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-cup">☕</span> Coffee Corner <span class="coffee-sub">sip + tick things off</span></div>';
+        h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
+        return;
       } else if (!ev.coffee && inCoffee) {
         h += '</div>';
         inCoffee = false;
+      }
+      if (ev.home && !inHome) {
+        h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span></div>';
+        inHome = true;
+      } else if (!ev.home && inHome) {
+        h += '</div>';
+        inHome = false;
       }
       var evColor = eventCategory(ev).color;
       var period = getPeriod(ev.time);
@@ -3943,6 +4001,7 @@ function renderDays() {
       h += '</div></div></div>';
     });
     if (inCoffee) h += '</div>';
+    if (inHome) h += '</div>';
     if (completedEvs.length) {
       var allDone = doneN === totalN;
       h += '<details class="done-fold"'+(allDone?' open':'')+'>';
