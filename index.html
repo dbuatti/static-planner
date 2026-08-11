@@ -873,23 +873,37 @@ body, .main { background: #FFF7F4; }
 
 /* Coffee corner — cute little grouped section */
 .coffee-corner {
-  background: linear-gradient(155deg, #FFF6F1, #FFF0EC 55%, #FFF6F1);
-  border: 2px dashed #F2C4BA;
-  border-radius: 16px;
-  padding: 8px 12px 6px;
-  margin: 2px 0 12px;
+  background: linear-gradient(150deg, #FFF4E8, #FFE9D6 60%, #FFF3E9);
+  border: 2px solid #F2994A;
+  border-radius: 26px;
+  padding: 14px 16px 12px;
+  margin: 4px 0 14px;
+  box-shadow: 0 3px 14px rgba(242, 153, 74, 0.15);
 }
 .coffee-head {
   display: flex; align-items: baseline; gap: 8px;
-  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
-  color: #B97282;
-  padding: 2px 2px 6px;
-  margin-bottom: 2px;
-  border-bottom: 1px dashed #F2D2CA;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
+  color: #C96F1E;
+  padding: 2px 2px 10px;
+  margin-bottom: 8px;
+  border-bottom: 2px dashed #F7C99A;
 }
-.coffee-sub { font-weight: 400; font-size: 9px; color: #D8A2AE; letter-spacing: 0.03em; }
-.coffee-corner .tc { margin-bottom: 1px; }
-.day-panel .coffee-corner .tc { border-left-color: #F2C4BA; }
+.coffee-sub { font-weight: 400; font-size: 9.5px; color: #D98A4A; letter-spacing: 0.04em; }
+.coffee-corner .tc {
+  margin-bottom: 9px;
+  border-radius: 14px;
+  border: 1.5px solid #FAD3AE;
+  background: rgba(255,255,255,0.72);
+  padding: 10px 12px;
+  box-shadow: none;
+}
+.coffee-corner .tc:last-child { margin-bottom: 2px; }
+.coffee-corner .tc:hover { background: rgba(255,255,255,0.95); }
+.coffee-corner .tc.tickable:hover { background: rgba(255,249,242,0.98); }
+.coffee-corner .chk { border-color: #F2A463; }
+.coffee-corner .tc.tickable:hover .chk { border-color: #E8864A; box-shadow: 0 0 0 3px rgba(232,134,74,0.18); }
+.coffee-corner .tc.ticked .chk { background: linear-gradient(135deg,#F5A55A,#E8864A); border-color: #E8864A; }
+.day-panel .coffee-corner .tc { border-left-color: #F2994A; }
 
 /* PRINT */
 @media print {
@@ -3356,15 +3370,16 @@ var DAYS = [
          {time:'19:00–20:00', text:'🍽️ Dinner'}
        ]},
          {id:'wed12aug', dow:'Wednesday', date:'12 August', dateISO:'2026-08-12', dot:'dc-kine', week:'August',
-          sub:'Post Office 9am · Film FNH talk 9:30am · Study 11am · Nicole notes 11:30am · Lily FNH 2pm (follow up) · Flights 3pm',
-          focus:'🏦 Post Office 9am · Film FNH talk-to-camera 9:30am (Toorak) · 📚 FNH study 11am · 📝 Nicole notes 11:30am · 🧽 Dishwasher 11:40am · Lily FNH 2pm · ✈️ Book Bali flights 3pm · Cancel Acuity 4pm',
+          sub:'Post Office 9:45am · ☕ Coffee 10am · Film 11am · Study 12:30pm · Lily FNH 2pm (follow up) · Flights 3pm',
+          focus:'🏦 Post Office 9:45am (on the way to coffee) · ☕ Coffee Corner 10am · 🎬 Film FNH talk 11am · 📚 FNH study 12:30pm · 🩺 Lily FNH 2pm · ✈️ Book Bali flights 3pm · Cancel Acuity 4pm',
           events:[
-            {time:'09:00–09:15', text:'🏦 Withdraw money from Post Office', tickable:true},
-            {time:'09:30–11:00', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true},
-            {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
-            {time:'11:30–11:40', text:'📝 Summarise + send notes to Nicole — from her lesson yesterday', tickable:true},
-            {time:'11:40–11:50', text:'🧽 Empty dishwasher', tickable:true},
-            {time:'12:00–14:00', text:'🍴 Lunch'},
+            {time:'09:45–10:00', text:'🏦 Withdraw money from Post Office — on the way to coffee', tickable:true},
+            {time:'10:00–11:00', text:'☕ Coffee — @Little Quarter', tickable:true, coffee:true},
+            {time:'10:15–10:30', text:'📝 Summarise + send notes to Nicole — from her lesson yesterday', tickable:true, coffee:true},
+            {time:'11:00–12:30', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true},
+            {time:'12:30–14:00', text:'🍴 Lunch'},
+            {time:'12:30–13:00', text:'📚 FNH study block', fnh:true},
+            {time:'13:00–13:10', text:'🧽 Empty dishwasher', tickable:true},
             {time:'13:45–14:00', text:'💬 Follow up Lily — confirm monthly cadence', tickable:true},
             {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Lily Walker', fnh:true},
             {time:'15:00–15:45', text:'✈️ Book flights to Bali — Sep 7–19 · compare options, pay before end of August', tickable:true},
