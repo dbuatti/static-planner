@@ -3825,6 +3825,18 @@ function buildEvents(d) {
     };
     return ev;
   });
+  var hasDinner = evs.some(function(ev){ return /Dinner|🍽/i.test(ev.text) && !/Reply|reschedule/i.test(ev.text); });
+  if (!hasDinner) {
+    var busy = evs.some(function(ev){
+      var fullDay = eventCategory(ev).id === 'free' && ev.endMin - ev.startMin >= 600;
+      if (fullDay) return false;
+      return ev.startMin < 1200 && ev.endMin > 1080;
+    });
+    if (!busy) {
+      evs.push({time:'18:00–20:00', text:'🍽️ Dinner', startMin:1080, endMin:1200, dur:120,
+        buffer:false, meal:true, tickable:false, done:false, teaching:false, perf:false, coffee:false, home:false, fnh:false});
+    }
+  }
   evs.sort(function(a,b){return a.startMin-b.startMin;});
 
   var freeSlots = findFreeSlots(evs);
@@ -4027,8 +4039,9 @@ function renderDays() {
       var cls = 'tc'+(ev.tickable?' tickable':'')+(ev.buffer?' buffer':'')+(ev.free?' free '+ev.freeCls:'')+(ev.teaching?' teaching':'')+(ev.fnh?' fnh':'');
       cls += ' dot-'+dotType;
       var did = ev.tickable ? ' data-tickid="'+ev._tickId+'"' : '';
+      var dataLive = ev.free ? ' data-s="'+ev.startMin+'" data-e="'+ev.endMin+'"' : '';
       var inlineStyle = ev.free ? '' : ' style="border-left:3px solid '+evColor+'"';
-      h += '<div class="'+cls+'"'+did+inlineStyle+'>';
+      h += '<div class="'+cls+'"'+did+dataLive+inlineStyle+'>';
       if (ev.tickable) h += '<div class="chk"></div>';
       h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+ev.text;
       if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
@@ -4898,6 +4911,24 @@ function highlightNow() {
     if (!r) return;
     if (nowMin >= r[0] && nowMin < r[1]) { tc.classList.add('now-event'); return; }
     if (!foundNext && nowMin < r[0]) { tc.classList.add('next-event'); foundNext = true; }
+  });
+  // Live free blocks: shrink to "now–end" as time passes, hide once fully past
+  active.querySelectorAll('.tc.free').forEach(function(tc) {
+    var s = parseInt(tc.getAttribute('data-s'), 10);
+    var e = parseInt(tc.getAttribute('data-e'), 10);
+    if (isNaN(s) || isNaN(e)) return;
+    if (nowMin >= e) { tc.style.display = 'none'; return; }
+    tc.style.display = '';
+    var liveStart = Math.max(nowMin, s);
+    var remain = e - liveStart;
+    var tt = tc.querySelector('.tt');
+    if (tt) tt.textContent = minToTime(liveStart) + '–' + minToTime(e);
+    var tl = tc.querySelector('.tl');
+    if (tl) {
+      var dot = remain >= 180 ? '🟢' : remain >= 120 ? '🟡' : '🟠';
+      tl.textContent = dot + ' ' + fmtDur(remain) + ' free';
+    }
+    tc.style.minHeight = Math.max(36, Math.min(72, Math.round(remain * 0.5))) + 'px';
   });
 }
 
