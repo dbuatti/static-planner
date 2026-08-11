@@ -69,7 +69,7 @@ body { -webkit-font-smoothing: antialiased; }
 .main > .day-panel, .main > #week-summary-container { max-width: 900px; }
 
 /* DAY PANELS */
-.day-panel { display: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.day-panel { position: relative; display: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .day-panel.active { display: block; opacity: 1; transform: translateY(0); }
 
 /* SIDEBAR */
@@ -381,6 +381,21 @@ body { -webkit-font-smoothing: antialiased; }
 /* NOW HIGHLIGHT */
 .tc.now-event { background: #eef4fa; border-color: #5A8BC0; box-shadow: inset 3px 0 0 #5A8BC0; }
 .tc.next-event { background: #f8fbf6; border-color: #A8D8BC; box-shadow: inset 3px 0 0 #1D9E75; }
+
+/* NOW TIME LINE — thin glowing blue marker tracking the present moment */
+.now-line {
+  position: absolute; left: 2px; right: 2px; height: 2px; top: 0;
+  background: #5A8BC0; border-radius: 2px;
+  box-shadow: 0 0 8px 2px rgba(90,139,192,0.55), 0 0 2px rgba(90,139,192,0.9);
+  pointer-events: none; opacity: 0;
+  transition: top 0.6s linear, opacity 0.3s ease; z-index: 5;
+}
+.now-line.show { opacity: 1; }
+.now-line::after {
+  content: ''; position: absolute; left: 0; top: -2px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #5A8BC0; box-shadow: 0 0 6px 1px rgba(90,139,192,0.8);
+}
 
 /* TEACHING CARDS */
 .tc.teaching { background: #f6f2fa; border-color: #D0C0E0; }
@@ -1008,6 +1023,7 @@ body, .main { background: #FFF7F4; }
   body.print-single .day-panel.active { page-break-after: auto !important; }
   /* Don't show completed items */
   .tc.done { display: none !important; }
+  .now-line { display: none !important; }
   .chk { display: none !important; }
   .bx, .td { display: none !important; }
   .dh-progress { display: none !important; }
@@ -4035,6 +4051,7 @@ function renderDays() {
       });
       h += '</div></details>';
     }
+    h += '<div class="now-line"></div>';
     h += '</div>';
     c.innerHTML += h;
   });
@@ -4902,6 +4919,35 @@ function highlightNow() {
     }
     tc.style.minHeight = Math.max(36, Math.min(72, Math.round(remain * 0.5))) + 'px';
   });
+  // Now line: map time-of-day to a Y position across the card stack
+  var line = active.querySelector('.now-line');
+  if (line) {
+    var pts = [];
+    active.querySelectorAll('.tc').forEach(function(tc) {
+      if (tc.closest('.done-fold')) return;
+      if (tc.classList.contains('ticked')) return;
+      var h = tc.offsetHeight;
+      if (!h) return;
+      var r = parseRange(tc);
+      if (!r) return;
+      pts.push([r[0], tc.offsetTop]);
+      pts.push([r[1], tc.offsetTop + h]);
+    });
+    pts.sort(function(a, b) { return a[0] - b[0]; });
+    var y = -1;
+    if (pts.length && nowMin >= pts[0][0] && nowMin <= pts[pts.length - 1][0]) {
+      for (var i = 1; i < pts.length; i++) {
+        if (pts[i][0] < nowMin) continue;
+        var p0 = pts[i - 1], p1 = pts[i];
+        if (p1[0] === p0[0]) { y = p1[1]; break; }
+        var t = (nowMin - p0[0]) / (p1[0] - p0[0]);
+        y = p0[1] + t * (p1[1] - p0[1]);
+        break;
+      }
+    }
+    if (y >= 0) { line.style.top = Math.round(y) + 'px'; line.classList.add('show'); }
+    else { line.classList.remove('show'); }
+  }
 }
 
 // ── TAB-BAR SCROLL FADE (shows there are more tabs) ──
