@@ -871,39 +871,46 @@ body, .main { background: #FFF7F4; }
 .m-sheet-item { border-radius: 12px; }
 .mn-btn.active { color: #E86A9A; }
 
-/* Coffee corner — cute little grouped section */
+/* Coffee corner — cute cartoony sticker box housing its tasks */
 .coffee-corner {
-  background: linear-gradient(150deg, #FFF4E8, #FFE9D6 60%, #FFF3E9);
-  border: 2px solid #F2994A;
-  border-radius: 26px;
-  padding: 14px 16px 12px;
-  margin: 4px 0 14px;
-  box-shadow: 0 3px 14px rgba(242, 153, 74, 0.15);
+  position: relative;
+  background: linear-gradient(150deg, #FFF0DC, #FFE2BE 55%, #FFF3E2);
+  border: 3px solid #F08A3C;
+  border-radius: 30px;
+  padding: 16px 16px 12px;
+  margin: 6px 0 16px;
+  box-shadow: 0 6px 0 #D96E24, 0 12px 22px rgba(217, 110, 36, 0.22);
+  transform: rotate(-0.6deg);
 }
 .coffee-head {
-  display: flex; align-items: baseline; gap: 8px;
-  font-size: 12px; font-weight: 800; letter-spacing: 0.06em;
-  color: #C96F1E;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 900; letter-spacing: 0.05em;
+  color: #B3551A;
   padding: 2px 2px 10px;
-  margin-bottom: 8px;
-  border-bottom: 2px dashed #F7C99A;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #E8A66A;
 }
-.coffee-sub { font-weight: 400; font-size: 9.5px; color: #D98A4A; letter-spacing: 0.04em; }
+.coffee-head .coffee-cup { font-size: 16px; }
+.coffee-sub { font-weight: 600; font-size: 9px; color: #C97A35; letter-spacing: 0.04em; }
 .coffee-corner .tc {
-  margin-bottom: 9px;
-  border-radius: 14px;
-  border: 1.5px solid #FAD3AE;
-  background: rgba(255,255,255,0.72);
-  padding: 10px 12px;
-  box-shadow: none;
+  margin-bottom: 10px;
+  border-radius: 18px;
+  border: 2px solid #F0B072;
+  border-bottom-color: #E0A060;
+  background: #FFFEFB;
+  padding: 11px 14px;
+  box-shadow: 0 3px 0 #E0A060;
 }
 .coffee-corner .tc:last-child { margin-bottom: 2px; }
-.coffee-corner .tc:hover { background: rgba(255,255,255,0.95); }
-.coffee-corner .tc.tickable:hover { background: rgba(255,249,242,0.98); }
-.coffee-corner .chk { border-color: #F2A463; }
-.coffee-corner .tc.tickable:hover .chk { border-color: #E8864A; box-shadow: 0 0 0 3px rgba(232,134,74,0.18); }
-.coffee-corner .tc.ticked .chk { background: linear-gradient(135deg,#F5A55A,#E8864A); border-color: #E8864A; }
-.day-panel .coffee-corner .tc { border-left-color: #F2994A; }
+.coffee-corner .tc .tl { font-size: 12.5px; font-weight: 700; color: #6B4318; }
+.coffee-corner .tc .tt { color: #C97A35; font-weight: 700; }
+.coffee-corner .tc:hover { background: #FFFBEF; transform: translateY(-1px); box-shadow: 0 4px 0 #E0A060; }
+.coffee-corner .tc.tickable:hover { background: #FFF6DF; }
+.coffee-corner .tc.tickable:hover .chk { border-color: #E86A2A; box-shadow: 0 0 0 3px rgba(232,106,42,0.18); }
+.coffee-corner .chk { width: 18px; height: 18px; min-width: 18px; border-radius: 7px; border: 2px solid #F0A84E; background: #FFF8EC; margin-top: 1px; }
+.coffee-corner .tc.ticked { background: #F4EFE2; }
+.coffee-corner .tc.ticked .chk { background: linear-gradient(135deg,#F5A55A,#E86A2A); border-color: #E86A2A; }
+.day-panel .coffee-corner .tc { border-left: 3px solid #F08A3C; border-left-color: #F08A3C; }
 
 /* PRINT */
 @media print {
@@ -3914,7 +3921,7 @@ function renderDays() {
         return;
       }
       if (ev.coffee && !inCoffee) {
-        h += '<div class="coffee-corner"><div class="coffee-head">☕ Coffee Corner <span class="coffee-sub">coffee + a little admin</span></div>';
+        h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-cup">☕</span> Coffee Corner <span class="coffee-sub">sip + tick things off</span></div>';
         inCoffee = true;
       } else if (!ev.coffee && inCoffee) {
         h += '</div>';
