@@ -960,6 +960,31 @@ body, .main { background: #FFF7F4; }
 .home-corner .tc.ticked .chk { background: linear-gradient(135deg,#7FA8C8,#3E7CB1); border-color: #3E7CB1; }
 .day-panel .home-corner .tc { border-left: 3px solid #5A8BC0; border-left-color: #5A8BC0; }
 
+/* Meal corner — quiet grey box for lunch/dinner placeholders */
+.meal-corner {
+  position: relative;
+  background: linear-gradient(150deg, #F3F3F0, #E7E7E2 55%, #F3F3F0);
+  border: 3px solid #C9C9C4;
+  border-radius: 30px;
+  padding: 12px 16px;
+  margin: 6px 0 16px;
+  box-shadow: 0 4px 16px rgba(120, 120, 115, 0.10);
+}
+.meal-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 2px 2px 2px;
+}
+.meal-title {
+  display: flex; align-items: baseline; gap: 6px;
+  font-size: 12px; font-weight: 800; letter-spacing: 0.03em; color: #7A7A74;
+}
+.meal-dur { font-size: 10px; font-weight: 700; color: #9E9E97; }
+.meal-time {
+  font-size: 11px; font-weight: 800; color: #8F8F88;
+  background: #FAFAF7; border: 2px solid #C9C9C4; border-radius: 999px;
+  padding: 3px 12px; white-space: nowrap; letter-spacing: 0.02em;
+}
+
 /* PRINT */
 @media print {
   @page { size: A4 portrait; margin: 12mm 14mm; }
@@ -3783,12 +3808,13 @@ function findFreeSlots(evs) {
 function buildEvents(d) {
   var evs = (d.events||[]).map(function(e) {
     var r=timeRange(e.time);
-    return {
+    var ev = {
       time:e.time, text:e.text,
       startMin:toMin(r.start), endMin:toMin(r.end),
       dur:calcDur(e),
       buffer:e.buffer!==undefined?e.buffer:e.text.startsWith('🔒'),
-      tickable:e.tickable!==false,
+      meal:/Lunch|Dinner|Breakfast|Meal/i.test(e.text),
+      tickable:e.tickable!==false && !/Lunch|Dinner|Breakfast|Meal/i.test(e.text),
       done:e.done===true,
       teaching:e.teaching===true,
       perf:e.perf===true,
@@ -3796,6 +3822,7 @@ function buildEvents(d) {
       home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean room|Room clean|Clean kitchen|Kitchen clean|Bedroom|Tidy the house|Tidy room/i.test(e.text),
       fnh:e.fnh===true
     };
+    return ev;
   });
   evs.sort(function(a,b){return a.startMin-b.startMin;});
 
@@ -3986,6 +4013,12 @@ function renderDays() {
       } else if (!ev.home && inHome) {
         h += '</div>';
         inHome = false;
+      }
+      if (ev.meal) {
+        var period = getPeriod(ev.time);
+        if (period !== lastPeriod) { h += '<div class="sl">'+period+'</div>'; lastPeriod = period; }
+        h += '<div class="meal-corner"><div class="meal-head"><span class="meal-title">'+esc(ev.text)+' <span class="meal-dur">'+fmtDur(ev.dur)+'</span></span><span class="meal-time">'+esc(ev.time)+'</span></div></div>';
+        return;
       }
       var evColor = eventCategory(ev).color;
       var period = getPeriod(ev.time);
