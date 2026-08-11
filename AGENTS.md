@@ -12,7 +12,7 @@
 
 ## Week planning conventions
 - The weekly discretionary cap is ~6h on top of booked appointments. Appointments are fixed and never changed.
-- Tasks/anchors should be scheduled between **10am–4pm** where the day has room; splitting/not-back-to-back is fine.
+- Tasks/anchors should be scheduled between **10am–4pm** where the day has room; splitting/not-back-to-back is fine. Tasks start **no earlier than 10am** unless the day genuinely can't fit them otherwise (e.g. an errand that closes, or a morning-only commitment).
 - Daily anchors (when requested): 15m room clean, 15m journal — the incremental path toward the weekly goals (clean room, house vacuumed).
 - **Transaction cadence**: transactions are caught up to 29 Jul. Update transactions **every Sunday** (that's the recurring transaction task; the Sunday money date handles it). **Thursday** is the **allowance transfer** day (dynamic Thu rule adds "💰 Allowance transfer" 11–11:30). No daily transaction-anchor tasks.
 - When the user asks for a "week plan", pull tasks from the **Tasks page** (`#tab-lookin`, Eisenhower matrix) and the Strategy cards — not invented tasks.
