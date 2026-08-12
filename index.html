@@ -111,8 +111,18 @@ body { -webkit-font-smoothing: antialiased; }
 .weather-desc { font-size: 11px; color: #5F5E5A; }
 .weather-meta { margin-left: auto; font-size: 10px; color: #8A8880; text-align: right; line-height: 1.5; }
 
+/* Weather as a chip inside the day title header */
+.day-panel .dh-top .weather-widget {
+  margin: 0; padding: 4px 12px; gap: 8px; align-self: center;
+  border-radius: 999px; flex: 0 1 auto; min-width: 0; max-width: 100%;
+}
+.day-panel .dh-top .weather-widget .weather-emoji { font-size: 17px; }
+.day-panel .dh-top .weather-widget .weather-temp { font-size: 14px; }
+.day-panel .dh-top .weather-widget .weather-desc { font-size: 10px; }
+.day-panel .dh-top .weather-widget .weather-meta { display: none; }
+
 /* NAV BAR */
-.nav-bar { display: flex; gap: 8px; margin-bottom: 14px; position: sticky; top: 0; z-index: 40; background: #f5f5f3; padding: 8px 0; margin: -8px 0 14px; }
+.nav-bar { display: flex; gap: 8px; margin-bottom: 14px; position: sticky; top: 0; z-index: 40; background: rgba(255,247,244,0.92); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); padding: 8px 0; margin: -8px 0 14px; border-radius: 10px; }
 .nb { padding: 5px 12px; border: 1px solid #D3D1C7; border-radius: 6px; background: #fff; cursor: pointer; font-size: 11px; font-family: inherit; transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .nb:hover { background: #F7F6F2; border-color: #B0ADA3; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
 .nb:active { transform: translateY(0); }
@@ -4624,14 +4634,22 @@ function placeWeather() {
   var w = document.getElementById('weather-widget');
   if (!w) return;
   var active = document.querySelector('.day-panel.active');
-  var anchor = active ? (active.querySelector('.dh-focus') || active.querySelector('.dh-top')) : null;
-  if (!anchor) {
-    var main = document.querySelector('.main');
-    if (main && w.parentElement !== main) main.insertBefore(w, main.firstChild);
+  var top = active ? active.querySelector('.dh-top') : null;
+  if (top) {
+    if (w.parentElement === top) return;
+    var prog = top.querySelector('.dh-progress');
+    if (prog) top.insertBefore(w, prog);
+    else top.appendChild(w);
     return;
   }
-  if (w.parentElement === active && w.previousElementSibling === anchor) return;
-  anchor.parentNode.insertBefore(w, anchor.nextSibling);
+  var anchor = active ? (active.querySelector('.dh-focus') || null) : null;
+  if (anchor) {
+    if (w.parentElement === anchor.parentNode && w.previousElementSibling === anchor) return;
+    anchor.parentNode.insertBefore(w, anchor.nextSibling);
+    return;
+  }
+  var main = document.querySelector('.main');
+  if (main && w.parentElement !== main) main.insertBefore(w, main.firstChild);
 }
 
 // ── MORNING CHAIN TOGGLE ──
