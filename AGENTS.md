@@ -14,6 +14,7 @@
 - The weekly discretionary cap is ~6h on top of booked appointments. Appointments are fixed and never changed.
 - Tasks/anchors should be scheduled between **10am–4pm** where the day has room; splitting/not-back-to-back is fine. Tasks start **no earlier than 10am** unless the day genuinely can't fit them otherwise (e.g. an errand that closes, or a morning-only commitment).
 - Daily anchors (when requested): 15m room clean, 15m journal — the incremental path toward the weekly goals (clean room, house vacuumed).
+- **Daily coffee corner**: each day gets a ~10:00–11:00 coffee corner (@Little Quarter) for admin tasks — a `☕ Coffee` anchor (`tickable:false, coffee:true`) followed by that day's admin tasks marked `coffee:true`. If 10–11 is already booked (e.g. Mastery), anchor the corner to that day's main admin block instead.
 - **Transaction cadence**: transactions are caught up to 29 Jul. Update transactions **every Sunday** (that's the recurring transaction task; the Sunday money date handles it). **Thursday** is the **allowance transfer** day (dynamic Thu rule adds "💰 Allowance transfer" 11–11:30). No daily transaction-anchor tasks.
 - When the user asks for a "week plan", pull tasks from the **Tasks page** (`#tab-lookin`, Eisenhower matrix) and the Strategy cards — not invented tasks.
 - Blood test is a **walk-in on Mon 17 Aug 8–9am**, not a "book it" task. It is due 4 weeks from 20 Jul, so it must stay on/after 17 Aug.
