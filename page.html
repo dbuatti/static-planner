@@ -263,7 +263,7 @@ body { -webkit-font-smoothing: antialiased; }
   top: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, rgba(29,158,117,0.12) 0%, rgba(230,126,34,0.14) 25%, rgba(74,144,217,0.14) 50%, rgba(244,162,97,0.12) 75%, rgba(149,165,166,0.10) 100%);
+  background: linear-gradient(90deg, rgba(29,158,117,0.06) 0%, rgba(230,126,34,0.07) 25%, rgba(74,144,217,0.07) 50%, rgba(244,162,97,0.06) 75%, rgba(149,165,166,0.05) 100%);
   transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
   border-radius: 10px;
@@ -276,44 +276,88 @@ body { -webkit-font-smoothing: antialiased; }
   100% { background-position: 0% 50%; }
 }
 .chain-flow-h .chain-progress.complete {
-  background: linear-gradient(90deg, rgba(29,158,117,0.22) 0%, rgba(230,126,34,0.22) 25%, rgba(74,144,217,0.22) 50%, rgba(244,162,97,0.18) 75%, rgba(149,165,166,0.15) 100%);
+  background: linear-gradient(90deg, rgba(29,158,117,0.12) 0%, rgba(230,126,34,0.12) 25%, rgba(74,144,217,0.12) 50%, rgba(244,162,97,0.10) 75%, rgba(149,165,166,0.08) 100%);
   animation: none;
 }
 .chain-flow-h .chain-step {
   position: relative;
-  flex: 1;
-  padding: 6px 2px;
+  flex: 0 0 auto;
   flex-direction: column;
   align-items: center;
-  min-width: 0;
+  justify-content: center;
+  min-width: 84px;
+  padding: 10px 8px 8px;
+  border-radius: 16px;
+  border: 1.5px solid rgba(0,0,0,0.07);
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  margin: 2px 3px;
+  z-index: 1;
 }
 .chain-flow-h .chain-step .chain-dot {
   position: static;
   transform: none;
-  margin-bottom: 4px;
+  display: none;
+}
+.chain-flow-h .chain-step .chain-emoji {
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: 3px;
 }
 .chain-flow-h .chain-step .chain-label {
-  font-size: 9px;
+  font-size: 9.5px;
+  font-weight: 600;
   text-align: center;
-  line-height: 1.2;
+  line-height: 1.25;
   white-space: nowrap;
+  color: #3a3833;
 }
 .chain-flow-h .chain-step .chain-desc {
   font-size: 7px;
   text-align: center;
   color: #aaa;
-  margin-top: 1px;
+  margin-top: 2px;
   white-space: nowrap;
 }
+.chain-flow-h .chain-step.done {
+  background: linear-gradient(135deg, rgba(29,158,117,0.14) 0%, rgba(230,126,34,0.14) 25%, rgba(74,144,217,0.14) 50%, rgba(244,162,97,0.12) 75%, rgba(149,165,166,0.10) 100%);
+  border-color: rgba(29,158,117,0.35);
+  opacity: 1;
+}
+.chain-flow-h .chain-step.done .chain-label {
+  text-decoration: none;
+  color: #3a3833;
+}
+.chain-flow-h .chain-step.done .chain-emoji {
+  opacity: 0.75;
+  filter: saturate(0.7);
+}
+.chain-flow-h .chain-step .chain-check {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #1D9E75;
+  color: #fff;
+  font-size: 10px;
+  line-height: 18px;
+  text-align: center;
+  box-shadow: 0 0 0 2px #fff;
+  display: none;
+  z-index: 2;
+}
+.chain-flow-h .chain-step.done .chain-check { display: block; }
 .chain-flow-h .chain-arrow-h {
   flex-shrink: 0;
-  width: 24px;
+  width: 18px;
   height: 2px;
-  background: #8A7B6B;
+  background: #CFC9BE;
   position: relative;
   margin: 0 -2px;
-  margin-top: -14px;
   align-self: center;
+  opacity: 0.8;
 }
 .chain-flow-h .chain-arrow-h::after {
   content: '';
@@ -322,7 +366,7 @@ body { -webkit-font-smoothing: antialiased; }
   top: -3px;
   width: 0;
   height: 0;
-  border-left: 6px solid #8A7B6B;
+  border-left: 6px solid #CFC9BE;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;
 }
@@ -396,6 +440,64 @@ body { -webkit-font-smoothing: antialiased; }
   width: 6px; height: 6px; border-radius: 50%;
   background: #5A8BC0; box-shadow: 0 0 6px 1px rgba(90,139,192,0.8);
 }
+
+/* NEXT-UP CARD — curved box under the day title showing the literal next task */
+.nextup {
+  margin: 0 0 12px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #EEF6FF, #F4F9FF 55%, #F0F7F4);
+  border: 1.5px solid #5A8BC0;
+  box-shadow: 0 2px 10px rgba(90,139,192,0.14);
+  cursor: pointer;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s;
+}
+.nextup:active { transform: scale(0.985); }
+.nextup:hover { box-shadow: 0 3px 14px rgba(90,139,192,0.2); }
+.nextup-emoji {
+  font-size: 26px; line-height: 1; flex-shrink: 0;
+  width: 46px; height: 46px; border-radius: 14px;
+  background: #fff; border: 1px solid #DCE8F5;
+  display: flex; align-items: center; justify-content: center;
+}
+.nextup-body { flex: 1; min-width: 0; }
+.nextup-kicker { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5A8BC0; margin-bottom: 2px; }
+.nextup-label { font-size: 13px; font-weight: 700; color: #1a1a18; line-height: 1.3; }
+.nextup-meta { font-size: 10px; color: #8A8880; margin-top: 2px; }
+.nextup-arrow { font-size: 14px; color: #5A8BC0; flex-shrink: 0; }
+.nextup.all-done {
+  background: linear-gradient(135deg, #F0FFF4, #F7FFF8);
+  border-color: #A8D8BC;
+  cursor: default;
+}
+.nextup.all-done .nextup-emoji { border-color: #C8E8D4; }
+.nextup.all-done .nextup-kicker { color: #1D9E75; }
+.nextup.all-done:hover { box-shadow: 0 2px 10px rgba(29,158,117,0.14); }
+.nextup[data-next="chain"] { border-color: #D4A07A; background: linear-gradient(135deg,#FFF8F0,#FFFDF8 55%,#F4F9FF); box-shadow: 0 2px 10px rgba(212,160,122,0.16); }
+.nextup[data-next="chain"] .nextup-kicker { color: #C98A4A; }
+.nextup[data-next="chain"] .nextup-emoji { border-color: #F0E0D0; }
+.nextup[data-next="chain"] .nextup-arrow { color: #C98A4A; }
+.nextup[data-next="pm"] { border-color: #A67CB8; background: linear-gradient(135deg,#F7F2FA,#FCF9FD 55%,#F0F7F4); box-shadow: 0 2px 10px rgba(166,124,184,0.16); }
+.nextup[data-next="pm"] .nextup-kicker { color: #8E6B9E; }
+.nextup[data-next="pm"] .nextup-emoji { border-color: #E4D6EC; }
+.nextup[data-next="pm"] .nextup-arrow { color: #A67CB8; }
+
+/* COMPASS TOGGLE — collapsible Compass section */
+.compass-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%;
+  border: none; background: none; cursor: pointer; padding: 2px 0;
+  font-family: inherit; text-align: left;
+}
+.compass-toggle .compass-caret {
+  margin-left: auto; font-size: 10px; color: #9a9080;
+  transition: transform 0.25s ease;
+}
+.compass-card.open .compass-caret { transform: rotate(90deg); }
+.compass-body { display: none; }
+.compass-card.open .compass-body { display: block; }
 
 /* TEACHING CARDS */
 .tc.teaching { background: #f6f2fa; border-color: #D0C0E0; }
@@ -746,18 +848,18 @@ body { -webkit-font-smoothing: antialiased; }
   .scroll-today { bottom: calc(var(--m-bottom) + 14px); right: 18px; width: 46px; height: 46px; font-size: 19px; }
   .ov-grid { grid-template-columns: 1fr; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .chain-flow-h { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-  .chain-flow-h .chain-step { flex: none; min-width: 86px; }
-  .chain-flow-h .chain-step .chain-label { font-size: 10px; }
+  .chain-flow-h { overflow-x: auto; -webkit-overflow-scrolling: touch; padding-bottom: 4px; }
+  .chain-flow-h .chain-step { flex: none; min-width: 104px; padding: 14px 10px 12px; margin: 2px 4px; }
+  .chain-flow-h .chain-step .chain-emoji { font-size: 24px; margin-bottom: 5px; }
+  .chain-flow-h .chain-step .chain-label { font-size: 11px; }
+  .chain-flow-h .chain-arrow-h { width: 14px; }
+  .chain-flow-h .chain-step.done { opacity: 1; }
   .weather-widget { flex-wrap: wrap; gap: 8px; }
   .tl-ruler { left: 8px; }
   .day-btn { padding: 11px 16px; }
   .sidebar .dbn { font-size: 13px; }
   .sidebar .dbs { font-size: 11px; }
   .sidebar .week-label { font-size: 10px; }
-  .chain-flow-h .chain-step.done,
-  .chain-flow-h .chain-arrow-h:has(+ .chain-step.done),
-  .chain-flow-h .chain-step.done + .chain-arrow-h { display: none; }
   .day-panel .tc.ticked { display: none; }
   .day-panel .sl-completed { display: none; }
   .day-panel .done-fold { display: none; }
@@ -809,6 +911,11 @@ body { -webkit-font-smoothing: antialiased; }
   .weather-widget { padding: 7px 10px; }
   .gift-cell { flex: 1 1 46% !important; min-width: 0 !important; }
   .tc { min-height: 0 !important; }
+  .nextup { padding: 14px 14px; border-radius: 20px; }
+  .nextup-emoji { font-size: 28px; width: 52px; height: 52px; border-radius: 16px; }
+  .nextup-label { font-size: 14px; }
+  .nextup-kicker { font-size: 9px; }
+  .nextup-meta { font-size: 11px; }
 }
 
 /* ============ KAWAII THEME ============ */
@@ -3874,13 +3981,13 @@ function renderDays() {
     });
     var freeSlots = findFreeSlots(activeEvs);
     var h = '<div id="view-'+d.id+'" class="day-panel'+(/^Sat|^Sun/.test(d.dow)?' weekend':'')+'">';
-    h += '<div class="nav-bar"><button class="nb" onclick="go(\''+prevId+'\')">← '+prevLabel+'</button><button class="nb" onclick="go(\''+nextId+'\')">'+nextLabel+' →</button><button class="nb nb-copy" onclick="copyCompleted(\''+d.id+'\')" title="Copy completed tasks">✓ Copy</button></div>';
     h += '<div class="dh-top"><div class="dh-dow">'+d.dow+'</div><div class="dh-date">'+d.date+'</div>';
     var doneN = completedEvs.length;
     var totalN = doneN + activeEvs.filter(function(ev){return ev.tickable;}).length;
     if (totalN > 0) h += '<div class="dh-progress" id="dp-'+d.id+'">'+doneN+'/'+totalN+' done</div>';
     h += '</div>';
     h += '<div class="dh-focus">'+d.focus+'</div>';
+    h += '<div class="nextup" id="nextup-'+d.id+'"></div>';
     // Category bar — hide on days with no real events
     var catTotals = {};
     activeEvs.forEach(function(ev) {
@@ -3913,10 +4020,13 @@ function renderDays() {
       });
       h += '</div></div>';
     }
+    // Prev / Next / Copy navigation
+    h += '<div class="nav-bar"><button class="nb" onclick="go(\''+prevId+'\')">← '+prevLabel+'</button><button class="nb" onclick="go(\''+nextId+'\')">'+nextLabel+' →</button><button class="nb nb-copy" onclick="copyCompleted(\''+d.id+'\')" title="Copy completed tasks">✓ Copy</button></div>';
     // Daily Compass + Morning Chain — unified card
-    h += '<div class="compass-card" style="margin:14px 0 2px;padding:2px 0 0;">';
-    // Compass section
-    h += '<div style="font-size:8px;color:#9a9080;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">🧭 Compass</div>';
+    h += '<div class="compass-card" id="compass-'+d.id+'" style="margin:14px 0 2px;padding:2px 0 0;">';
+    // Compass section (collapsible)
+    h += '<button class="compass-toggle" onclick="toggleCompass()"><span style="font-size:8px;color:#9a9080;text-transform:uppercase;letter-spacing:0.1em;">🧭 Compass</span><span class="compass-caret">▶</span></button>';
+    h += '<div class="compass-body">';
     h += '<div style="display:flex;gap:8px;margin-bottom:10px;">';
     h += '<div style="flex:1;padding:6px 0 6px 10px;border-left:3px solid #C0392B;"><div style="font-size:8px;color:#C0392B;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Work</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Deepen FNH craft</div></div>';
     h += '<div style="flex:1;padding:6px 0 6px 10px;border-left:3px solid #C98A4A;"><div style="font-size:8px;color:#C98A4A;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;">The Practices</div><div style="font-size:9px;color:#5F5E5A;margin-top:3px;line-height:1.3;">Teach · Refer · Pause</div></div>';
@@ -3928,6 +4038,7 @@ function renderDays() {
     h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">💎</div><div style="font-size:8px;color:#C878A8;font-weight:700;margin-top:2px;">Commitment</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Whole-hearted</div></div>';
     h += '<div class="gift-cell" style="flex:1 1 22%;min-width:88px;padding:6px 4px;text-align:center;"><div style="font-size:12px;">🎵</div><div style="font-size:8px;color:#1D9E75;font-weight:700;margin-top:2px;">Lightness</div><div style="font-size:7px;color:#8A8880;margin-top:1px;">Pure enjoyment</div></div>';
     h += '</div>';
+    h += '</div>'; // close compass-body
     // Divider
     h += '<div style="border-top:1px solid #E8E4DB;margin:0 0 12px;"></div>';
     // Morning Chain — horizontal flow
@@ -3949,10 +4060,10 @@ function renderDays() {
     ];
     chainItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="color:'+step.color+';">';
-      h += '<div class="chain-dot" style="border-color:'+step.color+';"></div>';
-      h += '<span class="chain-label">'+step.icon+' '+step.label+'</span>';
-      h += '<span class="chain-desc">'+step.desc+'</span>';
+      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<span class="chain-emoji">'+step.icon+'</span>';
+      h += '<span class="chain-label">'+step.label+'</span>';
+      h += '<span class="chain-check">✓</span>';
       h += '</div>';
     });
     h += '</div>';
@@ -3973,10 +4084,10 @@ function renderDays() {
     ];
     pmItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="color:'+step.color+';">';
-      h += '<div class="chain-dot" style="border-color:'+step.color+';"></div>';
-      h += '<span class="chain-label">'+step.icon+' '+step.label+'</span>';
-      h += '<span class="chain-desc">'+step.desc+'</span>';
+      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<span class="chain-emoji">'+step.icon+'</span>';
+      h += '<span class="chain-label">'+step.label+'</span>';
+      h += '<span class="chain-check">✓</span>';
       h += '</div>';
     });
     h += '</div>';
@@ -4419,6 +4530,103 @@ function restoreTicks() {
   updateAllDayProgress();
 }
 
+// ── NEXT-UP CARD ──
+function renderNextUp(dayId) {
+  var box = document.getElementById('nextup-' + dayId);
+  if (!box) return;
+  var panel = document.getElementById('view-' + dayId);
+  if (!panel) return;
+  var next = null;
+  // 1. Morning chain steps (in order, skip done)
+  panel.querySelectorAll('[data-chain^="' + dayId + '-chain-"]').forEach(function(el) {
+    if (next) return;
+    if (localStorage.getItem('chain-' + el.getAttribute('data-chain')) === '1') return;
+    next = { el: el, kind: 'chain' };
+  });
+  // 2. Day events in listed order (skip ticked)
+  if (!next) {
+    var evs = panel.querySelectorAll('.tc.tickable:not(.ticked)');
+    for (var i = 0; i < evs.length; i++) {
+      if (evs[i].closest('.done-fold')) continue;
+      next = { el: evs[i], kind: 'event' };
+      break;
+    }
+  }
+  // 3. Evening wind-down steps (in order, skip done)
+  if (!next) {
+    panel.querySelectorAll('[data-chain^="' + dayId + '-pm-chain-"]').forEach(function(el) {
+      if (next) return;
+      if (localStorage.getItem('chain-' + el.getAttribute('data-chain')) === '1') return;
+      next = { el: el, kind: 'pm' };
+    });
+  }
+  if (!next) {
+    box.className = 'nextup all-done';
+    box.setAttribute('data-next', '');
+    box.onclick = null;
+    box.innerHTML = '<div class="nextup-emoji">🎉</div><div class="nextup-body"><div class="nextup-kicker">All done</div><div class="nextup-label">Everything is ticked off — enjoy the rest of the day.</div></div>';
+    return;
+  }
+  var el = next.el;
+  var emoji = '✅', label = '', meta = '';
+  if (next.kind === 'chain' || next.kind === 'pm') {
+    var em = el.querySelector('.chain-emoji');
+    var lb = el.querySelector('.chain-label');
+    if (em) emoji = em.textContent.trim();
+    if (lb) label = lb.textContent.trim().replace(/<[^>]*>/g, '');
+    meta = next.kind === 'pm' ? 'Evening wind-down' : 'Morning chain';
+  } else {
+    var tl = el.querySelector('.tl');
+    var tt = el.querySelector('.tt');
+    if (tl) {
+      label = tl.textContent.trim();
+      var m = label.match(/^\s*(\p{Extended_Pictographic})\s*(.*)$/u);
+      if (m) { emoji = m[1]; label = m[2]; }
+    }
+    if (tt) meta = tt.textContent.trim();
+  }
+  box.className = 'nextup';
+  box.setAttribute('data-next', next.kind);
+  box.innerHTML = '<div class="nextup-emoji">' + emoji + '</div>'
+    + '<div class="nextup-body"><div class="nextup-kicker">Next up</div>'
+    + '<div class="nextup-label">' + label + '</div>'
+    + (meta ? '<div class="nextup-meta">' + meta + '</div>' : '')
+    + '</div><span class="nextup-arrow">→</span>';
+  box.onclick = function() {
+    if (el.click) el.click();
+    renderNextUp(dayId);
+  };
+}
+
+// ── COMPASS TOGGLE ──
+function toggleCompass() {
+  var open = localStorage.getItem('compass-open') === '1';
+  localStorage.setItem('compass-open', open ? '0' : '1');
+  applyCompassState();
+}
+
+function applyCompassState() {
+  var open = localStorage.getItem('compass-open') === '1';
+  document.querySelectorAll('.compass-card').forEach(function(card) {
+    card.classList.toggle('open', open);
+  });
+}
+
+// ── WEATHER PLACEMENT ──
+function placeWeather() {
+  var w = document.getElementById('weather-widget');
+  if (!w) return;
+  var active = document.querySelector('.day-panel.active');
+  var anchor = active ? (active.querySelector('.dh-focus') || active.querySelector('.dh-top')) : null;
+  if (!anchor) {
+    var main = document.querySelector('.main');
+    if (main && w.parentElement !== main) main.insertBefore(w, main.firstChild);
+    return;
+  }
+  if (w.parentElement === active && w.previousElementSibling === anchor) return;
+  anchor.parentNode.insertBefore(w, anchor.nextSibling);
+}
+
 // ── MORNING CHAIN TOGGLE ──
 function chainCount(flow) {
   var total = 0, done = 0;
@@ -4463,6 +4671,7 @@ function toggleChain(el, id) {
   }
   // Update progress bar
   updateChainProgress(dayId);
+  renderNextUp(dayId);
 }
 
 function updateChainProgress(dayId) {
@@ -4531,6 +4740,10 @@ function restoreChains() {
   document.querySelectorAll('[id^="chain-status-"]').forEach(function(statusEl) {
     var dayId = statusEl.id.replace('chain-status-', '');
     updateChainProgress(dayId);
+  });
+  // Rebuild next-up cards for all days
+  document.querySelectorAll('[id^="nextup-"]').forEach(function(box) {
+    renderNextUp(box.id.replace('nextup-', ''));
   });
 }
 
@@ -4787,6 +5000,8 @@ function go(id) {
     var el = document.getElementById('view-' + v);
     if (el) el.classList.toggle('active', v === id);
   });
+  placeWeather();
+  if (id.indexOf('view-') === 0) renderNextUp(id.replace('view-', ''));
   document.querySelectorAll('.day-btn').forEach(function(b) {
     b.classList.toggle('active', (b.getAttribute('onclick') || '').includes("'" + id + "'"));
   });
@@ -4973,6 +5188,7 @@ window.addEventListener('DOMContentLoaded', function() {
   renderGifts();
   restoreTicks();
   restoreChains();
+  applyCompassState();
   // Open to today's date if it exists in the plan, otherwise Overview
   var today = new Date(); today.setHours(0,0,0,0);
   var todayStr = localDateStr(today);
@@ -5033,7 +5249,11 @@ document.addEventListener('click', function(e) {
   }
   if (id && id.indexOf('mdate-') === 0) updateMDateStatus();
   var panel = tc.closest ? tc.closest('.day-panel') : null;
-  if (panel) updateDayProgress(panel.id.replace('view-', ''));
+  if (panel) {
+    var pid = panel.id.replace('view-', '');
+    updateDayProgress(pid);
+    renderNextUp(pid);
+  }
 });
 
 // ── SEARCH ──
