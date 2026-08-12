@@ -4168,7 +4168,7 @@ function renderDays() {
     ];
     chainItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label+' habit" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label.replace(/<[^>]*>/g,'')+' habit" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="--cc:'+step.color+';">';
       h += '<span class="chain-emoji">'+step.icon+'</span>';
       h += '<span class="chain-label">'+step.label+'</span>';
       h += '<span class="chain-check">✓</span>';
@@ -4192,7 +4192,7 @@ function renderDays() {
     ];
     pmItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label+' habit" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label.replace(/<[^>]*>/g,'')+' habit" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="--cc:'+step.color+';">';
       h += '<span class="chain-emoji">'+step.icon+'</span>';
       h += '<span class="chain-label">'+step.label+'</span>';
       h += '<span class="chain-check">✓</span>';
