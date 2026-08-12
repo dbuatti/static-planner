@@ -139,18 +139,27 @@ body { -webkit-font-smoothing: antialiased; }
   border-bottom: 1px solid #EFEAE2;
   margin-bottom: 10px;
 }
+/* HERO CARD — wraps header + focus + next up + category bar as one premium card */
+.dh-hero {
+  border-radius: 22px;
+  border: 1px solid #EEDCCE;
+  background: linear-gradient(160deg, #FFF9F4, #FAF2EA 55%, #F5EDE3);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+  padding: 14px 16px 16px;
+  margin-bottom: 16px;
+}
 .day-panel .dh-top.has-nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-  padding: 10px 20px;
+  padding: 0;
   border-bottom: none;
-  margin-bottom: 16px;
-  border-radius: 9999px;
-  border: 1px solid #EEDCCE;
-  background: linear-gradient(135deg, #FFF8F3, #FAF2EA);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.8);
+  margin: 0 0 6px;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
 }
 .dh-left, .dh-right {
   display: flex; align-items: center; gap: 12px; min-width: 0;
@@ -208,6 +217,12 @@ body { -webkit-font-smoothing: antialiased; }
   border-left: 3px solid #C0392B;
   font-weight: 500;
   line-height: 1.5;
+}
+.dh-hero .dh-focus {
+  margin: 0 0 12px;
+  padding: 4px 2px 2px 10px;
+  border-left-color: #E3C9B8;
+  color: #6B5F57;
 }
 .day-panel.weekend .dh-top {
   border-bottom-color: #E6E1D6;
@@ -950,7 +965,8 @@ body { -webkit-font-smoothing: antialiased; }
   .nb { flex: 1; text-align: center; min-height: 42px; font-size: 12.5px; border-radius: 11px; }
   .nb-copy { flex: 0 0 auto; margin-left: auto; }
   .dh-top { padding: 16px 0 12px; align-items: center; margin-bottom: 4px; }
-  .dh-top.has-nav { gap: 6px; padding: 10px 8px; }
+  .dh-hero { padding: 12px 10px 14px; border-radius: 18px; }
+  .dh-top.has-nav { gap: 6px; padding: 0; }
   .nb-arrow { width: 44px; height: 44px; font-size: 20px; }
   .dh-right .nb-copy { width: 40px; height: 40px; }
   .dh-right .nb-copy svg { width: 17px; height: 17px; }
@@ -1057,13 +1073,13 @@ body, .main { background: #FFF7F4; }
 .dh-date { color: #B89AA4; }
 .dh-progress { color: #C98A9E; }
 .dh-progress.all { color: #3D8F6A; }
-.dh-focus { border-left-color: #F0A6BE; }
+.dh-focus, .dh-hero .dh-focus { border-left-color: #F0A6BE; }
 .dh-title .dh-dow { color: #2C2222; }
 .dh-title .dh-date { color: #8C7373; }
-.day-panel .dh-top.has-nav {
-  background: linear-gradient(135deg, #FFF8F3, #FAF2EA);
+.dh-hero {
+  background: linear-gradient(160deg, #FFF9F4, #FAF2EA 55%, #F5EDE3);
   border-color: #EEDCCE;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255,255,255,0.8);
 }
 .dh-right .dh-progress { color: #A86B77; }
 .dh-right .dh-progress.all { color: #3D8F6A; }
@@ -4081,7 +4097,8 @@ function renderDays() {
     });
     var freeSlots = findFreeSlots(activeEvs);
     var h = '<div id="view-'+d.id+'" class="day-panel'+(/^Sat|^Sun/.test(d.dow)?' weekend':'')+'">';
-    // Header bar: back + date | weather | progress + actions
+    // Hero card: header + focus + next up + category bar in one premium card
+    h += '<div class="dh-hero">';
     h += '<div class="dh-top has-nav">';
     h += '<div class="dh-left">';
     h += '<button class="nb-arrow" onclick="go(\''+prevId+'\')" title="'+prevLabel+'">←</button>';
@@ -4130,6 +4147,7 @@ function renderDays() {
       });
       h += '</div></div>';
     }
+    h += '</div>'; // close dh-hero
     // Daily Compass + Morning Chain — unified card
     h += '<div class="compass-card" id="compass-'+d.id+'" style="margin:14px 0 2px;padding:2px 0 0;">';
     // Compass section (collapsible)
