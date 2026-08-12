@@ -330,8 +330,13 @@ body { -webkit-font-smoothing: antialiased; }
   align-items: center;
   gap: 0;
   padding: 6px 0;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
+.chain-flow-h::-webkit-scrollbar { display: none; }
 .chain-flow-h .chain-progress {
   position: absolute;
   left: 0;
@@ -532,7 +537,7 @@ body { -webkit-font-smoothing: antialiased; }
   transition: transform 0.15s, box-shadow 0.2s, border-color 0.2s;
 }
 .nextup:active { transform: scale(0.985); }
-.nextup:hover { box-shadow: 0 3px 14px rgba(90,139,192,0.2); }
+.nextup:hover { box-shadow: 0 3px 14px rgba(90,139,192,0.2); border-color: #7BA8D8; }
 .nextup-emoji {
   font-size: 26px; line-height: 1; flex-shrink: 0;
   width: 46px; height: 46px; border-radius: 14px;
@@ -541,9 +546,10 @@ body { -webkit-font-smoothing: antialiased; }
 }
 .nextup-body { flex: 1; min-width: 0; }
 .nextup-kicker { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #5A8BC0; margin-bottom: 2px; }
-.nextup-label { font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif; font-size: 13px; font-weight: 700; color: #1a1a18; line-height: 1.3; }
+.nextup-label { font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif; font-size: 14px; font-weight: 700; color: #1a1a18; line-height: 1.3; }
 .nextup-meta { font-size: 10px; color: #8A8880; margin-top: 2px; }
-.nextup-arrow { font-size: 14px; color: #5A8BC0; flex-shrink: 0; }
+.nextup-arrow { font-size: 14px; color: #5A8BC0; flex-shrink: 0; transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.nextup:hover .nextup-arrow { transform: translateX(3px); }
 .nextup.all-done {
   background: linear-gradient(135deg, #F0FFF4, #F7FFF8);
   border-color: #A8D8BC;
@@ -643,7 +649,7 @@ body { -webkit-font-smoothing: antialiased; }
   animation: starPulse 2s ease-in-out infinite;
 }
 @keyframes starPulse { 0%, 100% { transform: scale(1); opacity: 0.6; } 50% { transform: scale(1.3); opacity: 1; } }
-.cat-legend { display:flex; flex-wrap:wrap; gap:4px 12px; margin-top:5px; }
+.cat-legend { display:flex; flex-wrap:wrap; gap:4px 12px; margin-top:8px; }
 .cat-legend-item { font-size:10px; color:#5F5E5A; display:inline-flex; align-items:center; gap:4px; }
 .cat-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
 .cat-time { color:#B4B2A9; font-size:9px; font-weight:700; }
@@ -1308,9 +1314,9 @@ body, .main { background: #FFF7F4; }
 .priority-num { font-weight:700; }
 .priority-num.red { color:#C0392B; }
 .priority-num.amber { color:#C98A4A; }
-.goal-banner { padding: 12px 0; border-top: 1px solid #E8E4DB; margin: 14px 0 0; }
+.goal-banner { padding: 14px 0 0; border-top: 1px solid #E8E4DB; margin: 16px 0 0; }
 .goal-banner-inner { display:flex; gap:12px; flex-wrap:wrap; font-size:10px; line-height:1.4; }
-.goal-banner-item { flex:1; min-width:140px; }
+.goal-banner-item { flex:1; min-width:140px; background:#FFFDFB; border:1px solid #EFEAE2; border-radius:12px; padding:10px 12px; box-shadow:0 1px 3px rgba(60,54,40,0.04); }
 .goal-banner-item .label { font-weight:700; }
 .goal-banner-item .label.wish { color:#7B5EA7; }
 .goal-banner-item .label.fiveyear { color:#C98A4A; }
@@ -4162,7 +4168,7 @@ function renderDays() {
     ];
     chainItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label+' habit" onclick="toggleChain(this,\''+d.id+'-chain-'+step.i+'\')" data-chain="'+d.id+'-chain-'+step.i+'" style="--cc:'+step.color+';">';
       h += '<span class="chain-emoji">'+step.icon+'</span>';
       h += '<span class="chain-label">'+step.label+'</span>';
       h += '<span class="chain-check">✓</span>';
@@ -4186,7 +4192,7 @@ function renderDays() {
     ];
     pmItems.forEach(function(step, idx) {
       if (idx > 0) h += '<div class="chain-arrow-h"></div>';
-      h += '<div class="chain-step" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="--cc:'+step.color+';">';
+      h += '<div class="chain-step" tabindex="0" role="button" aria-label="'+step.label+' habit" onclick="toggleChain(this,\''+d.id+'-pm-chain-'+step.i+'\')" data-chain="'+d.id+'-pm-chain-'+step.i+'" style="--cc:'+step.color+';">';
       h += '<span class="chain-emoji">'+step.icon+'</span>';
       h += '<span class="chain-label">'+step.label+'</span>';
       h += '<span class="chain-check">✓</span>';
@@ -4777,18 +4783,56 @@ function toggleChain(el, id) {
       statusEl.innerHTML = '✨🎉✨ Chain complete! ✨🎉✨';
       statusEl.style.color = '#1D9E75';
       statusEl.style.fontWeight = '600';
+      statusEl.style.background = 'rgba(29,158,117,0.10)';
+      statusEl.style.border = '1px solid rgba(29,158,117,0.30)';
+      statusEl.style.borderRadius = '999px';
+      statusEl.style.padding = '3px 12px';
+      statusEl.style.display = 'inline-block';
       statusEl.style.animation = 'none';
       setTimeout(function() { if (statusEl) { statusEl.style.animation = 'sparkleFloat 2s ease-in-out infinite'; }}, 10);
     } else {
       statusEl.innerHTML = c.done + ' of ' + c.total + ' done';
       statusEl.style.color = '#9a9080';
       statusEl.style.fontWeight = '400';
+      statusEl.style.background = 'transparent';
+      statusEl.style.border = 'none';
+      statusEl.style.padding = '0';
+      statusEl.style.display = '';
     }
   }
   // Update progress bar
   updateChainProgress(dayId);
   renderNextUp(dayId);
 }
+
+// Keyboard navigation for chain steps: Enter/Space toggles, arrows move focus
+document.addEventListener('keydown', function(e) {
+  var el = document.activeElement;
+  if (!el || !el.classList || !el.classList.contains('chain-step')) return;
+  var flow = el.closest('.chain-flow-h');
+  if (!flow) return;
+  if (e.key === 'Enter' || e.key === ' ') {
+    e.preventDefault();
+    toggleChain(el, el.getAttribute('data-chain'));
+  } else if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    var steps = Array.prototype.slice.call(flow.querySelectorAll('.chain-step'));
+    var i = steps.indexOf(el);
+    var ni = e.key === 'ArrowRight' ? i + 1 : i - 1;
+    if (ni >= 0 && ni < steps.length) {
+      steps[ni].focus();
+      steps[ni].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    }
+  } else if (e.key === 'Home' || e.key === 'End') {
+    e.preventDefault();
+    var all = Array.prototype.slice.call(flow.querySelectorAll('.chain-step'));
+    var target = e.key === 'Home' ? all[0] : all[all.length - 1];
+    if (target) {
+      target.focus();
+      target.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' });
+    }
+  }
+});
 
 function updateChainProgress(dayId) {
   var bar = document.getElementById('chain-progress-' + dayId);
@@ -4845,11 +4889,21 @@ function restoreChains() {
     var flow = document.getElementById('chain-flow-' + dayId);
     var c = chainCount(flow);
     if (c.total > 0 && c.done === c.total) {
-      statusEl.innerHTML = '🎉 Chain closed!';
+      statusEl.innerHTML = '🎉 Chain complete!';
       statusEl.style.color = '#1D9E75';
       statusEl.style.fontWeight = '600';
+      statusEl.style.background = 'rgba(29,158,117,0.10)';
+      statusEl.style.border = '1px solid rgba(29,158,117,0.30)';
+      statusEl.style.borderRadius = '999px';
+      statusEl.style.padding = '3px 12px';
+      statusEl.style.display = 'inline-block';
     } else {
       statusEl.innerHTML = c.done + ' of ' + c.total + ' done';
+      statusEl.style.color = '#9a9080';
+      statusEl.style.background = 'transparent';
+      statusEl.style.border = 'none';
+      statusEl.style.padding = '0';
+      statusEl.style.display = '';
     }
   });
   // Restore progress bars
