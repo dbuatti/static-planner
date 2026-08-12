@@ -113,12 +113,16 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* Weather as a chip inside the day title header */
 .day-panel .dh-top .weather-widget {
-  margin: 0; padding: 4px 12px; gap: 8px; align-self: center;
+  margin: 0; padding: 3px 12px; gap: 7px; align-self: center;
   border-radius: 999px; flex: 0 1 auto; min-width: 0; max-width: 100%;
+  border: 1px solid rgba(214,209,196,0.6);
+  background: linear-gradient(135deg, rgba(255,255,255,0.88), rgba(255,252,248,0.6));
+  box-shadow: 0 1px 2px rgba(60,54,40,0.04), inset 0 1px 0 rgba(255,255,255,0.8);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
 }
-.day-panel .dh-top .weather-widget .weather-emoji { font-size: 17px; }
-.day-panel .dh-top .weather-widget .weather-temp { font-size: 14px; }
-.day-panel .dh-top .weather-widget .weather-desc { font-size: 10px; }
+.day-panel .dh-top .weather-widget .weather-emoji { font-size: 16px; }
+.day-panel .dh-top .weather-widget .weather-temp { font-family: Georgia, 'Times New Roman', serif; font-size: 14px; font-weight: 600; }
+.day-panel .dh-top .weather-widget .weather-desc { font-size: 10px; color: #6F6B62; }
 .day-panel .dh-top .weather-widget .weather-meta { display: none; }
 
 /* NAV BAR */
@@ -135,12 +139,12 @@ body { -webkit-font-smoothing: antialiased; }
   align-items: baseline;
   gap: 10px;
   padding: 14px 2px 10px;
-  border-bottom: 1px solid #E8E4DB;
+  border-bottom: 1px solid #EFEAE2;
   margin-bottom: 10px;
 }
 .day-panel .dh-top.has-nav {
   align-items: center;
-  padding: 10px 2px 12px;
+  padding: 12px 2px 14px;
 }
 .dh-top-center {
   flex: 1; min-width: 0;
@@ -148,25 +152,49 @@ body { -webkit-font-smoothing: antialiased; }
   flex-wrap: wrap; gap: 6px 10px;
 }
 .dh-title {
-  display: inline-flex; align-items: baseline; gap: 6px;
+  display: inline-flex; align-items: baseline; gap: 7px;
   white-space: nowrap; min-width: 0;
 }
-.dh-title .dh-dow { font-size: 20px; font-weight: 700; color: #2e2c28; letter-spacing: -0.02em; }
-.dh-title .dh-date { font-size: 12px; color: #8A8880; font-weight: 500; }
-.dh-top-center .dh-progress { margin-left: 0; }
+.dh-title .dh-dow {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 21px; font-weight: 600; letter-spacing: -0.01em;
+  color: #23201B;
+}
+.dh-title .dh-date {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 12px; font-weight: 400; color: #8A857C;
+}
+.dh-top-center .dh-progress {
+  margin-left: 0;
+  padding: 3px 11px; border-radius: 999px; white-space: nowrap;
+  background: rgba(255,255,255,0.72);
+  border: 1px solid #ECE7DE;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.03em; color: #6F6B62;
+}
+.dh-top-center .dh-progress.all {
+  color: #1D9E75; border-color: #C9E8D6; background: rgba(236,249,243,0.7);
+}
 .nb-arrow {
-  flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid #E0D9CE; background: #fff; color: #8A8880;
-  font-size: 16px; line-height: 1; cursor: pointer;
+  flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid #E5DED4; background: rgba(255,255,255,0.78);
+  color: #8A857C; font-size: 15px; line-height: 1; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 1px 2px rgba(60,54,40,0.05);
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.nb-arrow:hover { border-color: #B0ADA3; color: #2e2c28; transform: translateY(-1px); box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.nb-arrow:hover {
+  border-color: #C9C1B4; color: #2e2c28; transform: translateY(-1px);
+  box-shadow: 0 3px 9px rgba(60,54,40,0.10);
+}
 .nb-arrow:active { transform: translateY(0); }
 .dh-top-center .nb-copy {
   border: none; background: none; cursor: pointer;
-  font-family: inherit; font-size: 10px; color: #8A8880; padding: 2px 6px;
-  border-radius: 999px; transition: color 0.2s, background 0.2s;
+  font-family: inherit; font-size: 9px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: #9A958A; padding: 3px 8px; border-radius: 999px;
+  transition: color 0.2s, background 0.2s;
 }
 .dh-top-center .nb-copy:hover { color: #1D9E75; background: #E8F7F0; }
 .dh-dow { font-size: 26px; font-weight: 700; color: #2e2c28; letter-spacing: -0.02em; }
@@ -1020,6 +1048,10 @@ body, .main { background: #FFF7F4; }
 .dh-progress { color: #C98A9E; }
 .dh-progress.all { color: #3D8F6A; }
 .dh-focus { border-left-color: #F0A6BE; }
+.dh-title .dh-dow { color: #6A5A5A; }
+.dh-title .dh-date { color: #B89AA4; }
+.dh-top-center .dh-progress { color: #C98A9E; border-color: #F4E3E8; background: rgba(255,255,255,0.72); }
+.dh-top-center .dh-progress.all { color: #3D8F6A; border-color: #CBE8D6; }
 
 /* timeline */
 .tl-col { border-radius: 14px; border-color: #F0D8D0; background: #FFFDFB; }
