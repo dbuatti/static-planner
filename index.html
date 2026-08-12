@@ -113,13 +113,13 @@ body { -webkit-font-smoothing: antialiased; }
 
 /* Weather as an inline element inside the day header bar */
 .day-panel .dh-top .weather-widget {
-  margin: 0; padding: 0; gap: 6px; align-self: center;
+  margin: 0; padding: 0; gap: 8px; align-self: center;
   background: transparent; border: none; box-shadow: none;
   -webkit-backdrop-filter: none; backdrop-filter: none;
 }
-.day-panel .dh-top .weather-widget .weather-emoji { font-size: 16px; }
-.day-panel .dh-top .weather-widget .weather-temp { font-family: Georgia, 'Times New Roman', serif; font-size: 14px; font-weight: 600; }
-.day-panel .dh-top .weather-widget .weather-desc { font-size: 10px; color: #6F6B62; }
+.day-panel .dh-top .weather-widget .weather-emoji { font-size: 20px; }
+.day-panel .dh-top .weather-widget .weather-temp { font-size: 14px; font-weight: 700; color: #2D2323; }
+.day-panel .dh-top .weather-widget .weather-desc { font-size: 11px; color: #8C7373; }
 .day-panel .dh-top .weather-widget .weather-meta { display: none; }
 
 /* NAV BAR */
@@ -140,19 +140,24 @@ body { -webkit-font-smoothing: antialiased; }
   margin-bottom: 10px;
 }
 .day-panel .dh-top.has-nav {
+  display: flex;
   align-items: center;
-  padding: 10px 12px;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 20px;
   border-bottom: none;
-  margin-bottom: 14px;
-  border-radius: 18px;
-  border: 1px solid #DCE8F5;
-  background: linear-gradient(135deg,#EEF6FF,#F7FAFF);
-  box-shadow: 0 2px 10px rgba(90,139,192,0.10), inset 0 1px 0 rgba(255,255,255,0.7);
+  margin-bottom: 16px;
+  border-radius: 9999px;
+  border: 1px solid #EEDCCE;
+  background: linear-gradient(135deg, #FFF8F3, #FAF2EA);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.8);
 }
-.dh-top-center {
+.dh-left, .dh-right {
+  display: flex; align-items: center; gap: 12px; min-width: 0;
+}
+.dh-center {
   flex: 1; min-width: 0;
-  display: flex; flex-direction: row; align-items: center; justify-content: center;
-  flex-wrap: wrap; gap: 6px 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
 }
 .dh-title {
   display: inline-flex; align-items: baseline; gap: 7px;
@@ -160,44 +165,40 @@ body { -webkit-font-smoothing: antialiased; }
 }
 .dh-title .dh-dow {
   font-family: Georgia, 'Times New Roman', serif;
-  font-size: 21px; font-weight: 600; letter-spacing: -0.01em;
-  color: #23201B;
+  font-size: 20px; font-weight: 700; letter-spacing: -0.01em;
+  color: #2C2222;
 }
 .dh-title .dh-date {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
-  font-size: 12px; font-weight: 400; color: #8A857C;
+  font-size: 13px; font-weight: 400; color: #8C7373;
 }
-.dh-top-center .dh-progress {
-  margin-left: 0;
-  font-size: 10px; font-weight: 600; letter-spacing: 0.02em; color: #6F6B62;
-  white-space: nowrap;
+.dh-right .dh-progress {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+  color: #A86B77; white-space: nowrap;
 }
-.dh-top-center .dh-progress.all { color: #1D9E75; }
+.dh-right .dh-progress.all { color: #1D9E75; }
 .nb-arrow {
   flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%;
-  border: 1px solid #E5DED4; background: rgba(255,255,255,0.78);
-  color: #8A857C; font-size: 15px; line-height: 1; cursor: pointer;
+  border: 1px solid #EFE4DC; background: rgba(255,255,255,0.8);
+  color: #7A6262; font-size: 15px; line-height: 1; cursor: pointer;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 1px 2px rgba(60,54,40,0.05);
-  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .nb-arrow:hover {
-  border-color: #C9C1B4; color: #2e2c28; transform: translateY(-1px);
+  background: #fff; color: #2D2323; transform: translateY(-1px);
   box-shadow: 0 3px 9px rgba(60,54,40,0.10);
 }
 .nb-arrow:active { transform: translateY(0); }
-.dh-top-center .nb-copy {
+.dh-right .nb-copy {
   width: 30px; height: 30px; border-radius: 50%;
   border: 1px solid transparent; background: transparent;
-  color: #6F6B62; cursor: pointer; padding: 0;
+  color: #7A6262; cursor: pointer; padding: 0;
   display: flex; align-items: center; justify-content: center;
   transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
-.dh-top-center .nb-copy:hover {
-  color: #1D9E75; background: rgba(255,255,255,0.65);
-  border-color: rgba(29,158,117,0.35); transform: translateY(-1px);
+.dh-right .nb-copy:hover {
+  color: #2D2323; background: #fff; border-color: #EFE4DC;
 }
 .dh-dow { font-size: 26px; font-weight: 700; color: #2e2c28; letter-spacing: -0.02em; }
 .dh-date { font-size: 13px; color: #8A8880; font-weight: 500; }
@@ -945,8 +946,8 @@ body { -webkit-font-smoothing: antialiased; }
   .dh-top { padding: 16px 0 12px; align-items: center; margin-bottom: 4px; }
   .dh-top.has-nav { gap: 6px; padding: 10px 8px; }
   .nb-arrow { width: 44px; height: 44px; font-size: 20px; }
-  .dh-top-center .nb-copy { width: 40px; height: 40px; }
-  .dh-top-center .nb-copy svg { width: 17px; height: 17px; }
+  .dh-right .nb-copy { width: 40px; height: 40px; }
+  .dh-right .nb-copy svg { width: 17px; height: 17px; }
   .dh-dow { font-size: 26px; }
   .dh-date { font-size: 14px; }
   .dh-progress { font-size: 11px; }
@@ -1051,15 +1052,15 @@ body, .main { background: #FFF7F4; }
 .dh-progress { color: #C98A9E; }
 .dh-progress.all { color: #3D8F6A; }
 .dh-focus { border-left-color: #F0A6BE; }
-.dh-title .dh-dow { color: #6A5A5A; }
-.dh-title .dh-date { color: #B89AA4; }
+.dh-title .dh-dow { color: #2C2222; }
+.dh-title .dh-date { color: #8C7373; }
 .day-panel .dh-top.has-nav {
-  background: linear-gradient(135deg,#FFF0F4,#FFF7E8);
-  border-color: #F5D9D0;
-  box-shadow: 0 2px 10px rgba(232,106,154,0.12), inset 0 1px 0 rgba(255,255,255,0.8);
+  background: linear-gradient(135deg, #FFF8F3, #FAF2EA);
+  border-color: #EEDCCE;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), inset 0 1px 0 rgba(255,255,255,0.8);
 }
-.dh-top-center .dh-progress { color: #C98A9E; }
-.dh-top-center .dh-progress.all { color: #3D8F6A; }
+.dh-right .dh-progress { color: #A86B77; }
+.dh-right .dh-progress.all { color: #3D8F6A; }
 
 /* timeline */
 .tl-col { border-radius: 14px; border-color: #F0D8D0; background: #FFFDFB; }
@@ -4074,16 +4075,20 @@ function renderDays() {
     });
     var freeSlots = findFreeSlots(activeEvs);
     var h = '<div id="view-'+d.id+'" class="day-panel'+(/^Sat|^Sun/.test(d.dow)?' weekend':'')+'">';
-    // Merged header: arrows flanking a horizontal title bar
+    // Header bar: back + date | weather | progress + actions
     h += '<div class="dh-top has-nav">';
+    h += '<div class="dh-left">';
     h += '<button class="nb-arrow" onclick="go(\''+prevId+'\')" title="'+prevLabel+'">←</button>';
-    h += '<div class="dh-top-center"><span class="dh-title"><span class="dh-dow">'+d.dow+'</span> <span class="dh-date">'+d.date+'</span></span>';
+    h += '<span class="dh-title"><span class="dh-dow">'+d.dow+'</span> <span class="dh-date">'+d.date+'</span></span>';
+    h += '</div>';
+    h += '<div class="dh-center"></div>';
+    h += '<div class="dh-right">';
     var doneN = completedEvs.length;
     var totalN = doneN + activeEvs.filter(function(ev){return ev.tickable;}).length;
     if (totalN > 0) h += '<div class="dh-progress" id="dp-'+d.id+'">'+doneN+'/'+totalN+' done</div>';
     h += '<button class="nb-copy" onclick="copyCompleted(\''+d.id+'\')" title="Copy completed tasks"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>';
-    h += '</div>';
     h += '<button class="nb-arrow" onclick="go(\''+nextId+'\')" title="'+nextLabel+'">→</button>';
+    h += '</div>';
     h += '</div>';
     h += '<div class="dh-focus">'+d.focus+'</div>';
     h += '<div class="nextup" id="nextup-'+d.id+'"></div>';
@@ -4715,6 +4720,12 @@ function placeWeather() {
   if (!w) return;
   var active = document.querySelector('.day-panel.active');
   var top = active ? active.querySelector('.dh-top') : null;
+  var center = top ? top.querySelector('.dh-center') : null;
+  if (center) {
+    if (w.parentElement === center) return;
+    center.appendChild(w);
+    return;
+  }
   if (top) {
     if (w.parentElement === top) return;
     var prog = top.querySelector('.dh-progress');
