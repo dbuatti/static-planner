@@ -38,8 +38,8 @@ body { -webkit-font-smoothing: antialiased; }
   --c-social:    #C878A8;
   --c-free:      #D8D6CF;
   /* Mobile app shell — fixed bars (0 on desktop) */
-  --m-top: calc(44px + env(safe-area-inset-top, 0px));
-  --m-bottom: calc(52px + env(safe-area-inset-bottom, 0px));
+  --m-top: calc(50px + env(safe-area-inset-top, 0px));
+  --m-bottom: calc(84px + env(safe-area-inset-bottom, 0px));
 }
 
 /* TAB BAR */
@@ -913,21 +913,21 @@ body { -webkit-font-smoothing: antialiased; }
 .tab-dd-item.active { color: #185FA5; font-weight: 600; background: #EEF4FD; }
 
 /* MOBILE APP SHELL — top bar, bottom nav, more sheet, search (hidden on desktop) */
-.m-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: none; align-items: center; background: rgba(250,250,248,0.92); -webkit-backdrop-filter: saturate(180%) blur(12px); backdrop-filter: saturate(180%) blur(12px); border-bottom: 0.5px solid rgba(211,209,199,0.9); padding-top: env(safe-area-inset-top, 0px); }
-.mtb-ic { width: 46px; height: 44px; flex-shrink: 0; border: none; background: none; font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #1a1a18; }
-.mtb-ic:active { background: rgba(0,0,0,0.05); }
-.mtb-title { flex: 1; min-width: 0; font-size: 15px; font-weight: 600; color: #1a1a18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.m-topbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: none; align-items: center; background: linear-gradient(180deg, rgba(255,253,251,0.98), rgba(255,248,244,0.92)); -webkit-backdrop-filter: saturate(180%) blur(18px); backdrop-filter: saturate(180%) blur(18px); border-bottom: 1px solid rgba(238,220,206,0.9); box-shadow: 0 2px 14px rgba(120, 70, 45, 0.06); padding-top: env(safe-area-inset-top, 0px); }
+.mtb-ic { width: 50px; height: 50px; flex-shrink: 0; border: none; background: none; font-size: 19px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #1a1a18; -webkit-tap-highlight-color: transparent; }
+.mtb-ic:active { background: rgba(232,106,154,0.10); }
+.mtb-title { flex: 1; min-width: 0; text-align: center; font-size: 16px; font-weight: 700; letter-spacing: 0.01em; color: #1a1a18; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
 
 .m-search-row { position: fixed; top: 0; left: 0; right: 0; z-index: 1001; display: none; align-items: center; gap: 4px; background: #fff; border-bottom: 1px solid #D3D1C7; padding: 4px 10px calc(4px + env(safe-area-inset-top, 0px)); }
 .m-search-row input { flex: 1; min-width: 0; font-size: 16px; font-family: inherit; color: #1a1a18; border: none; outline: none; background: transparent; padding: 8px 4px; }
 
-.m-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1200; display: none; background: rgba(250,250,248,0.95); -webkit-backdrop-filter: saturate(180%) blur(12px); backdrop-filter: saturate(180%) blur(12px); border-top: 0.5px solid rgba(211,209,199,0.9); padding-bottom: env(safe-area-inset-bottom, 0px); }
-.mn-btn { flex: 1; min-width: 0; height: 52px; border: none; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: #8A8880; font-family: inherit; }
-.mn-btn:active { background: rgba(0,0,0,0.04); }
-.mn-ic { font-size: 20px; line-height: 1; }
-.mn-lb { font-size: 10px; font-weight: 500; }
-.mn-btn.active { color: #185FA5; }
-.mn-btn.active .mn-ic { transform: translateY(-1px); }
+.m-bottom-nav { position: fixed; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom, 0px)); z-index: 1200; display: none; align-items: stretch; height: 58px; padding: 6px; gap: 4px; border-radius: 24px; background: rgba(255,253,251,0.97); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border: 1px solid rgba(238,220,206,0.9); box-shadow: 0 10px 30px rgba(120, 70, 45, 0.16), 0 2px 8px rgba(120, 70, 45, 0.08), inset 0 1px 0 rgba(255,255,255,0.9); }
+.mn-btn { flex: 1; min-width: 0; height: 44px; border: none; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1px; color: #9A8F88; font-family: inherit; border-radius: 18px; transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease; -webkit-tap-highlight-color: transparent; }
+.mn-btn:active { background: rgba(232,106,154,0.08); transform: scale(0.96); }
+.mn-ic { font-size: 21px; line-height: 1; }
+.mn-lb { font-size: 10px; font-weight: 600; letter-spacing: 0.01em; }
+.mn-btn.active { color: #D65A8E; background: linear-gradient(135deg, #FFE9EE, #FFDEE7); }
+.mn-btn.active .mn-ic { transform: translateY(-1px) scale(1.06); }
 
 .m-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.35); z-index: 1100; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
 .m-overlay.open { opacity: 1; pointer-events: auto; }
@@ -951,9 +951,12 @@ body { -webkit-font-smoothing: antialiased; }
   .m-topbar { display: flex; }
   .m-bottom-nav { display: flex; }
   /* Panes clear the fixed bars (safe areas included) */
-  .tab-pane.active:not(#tab-plan) { padding-top: var(--m-top); padding-bottom: var(--m-bottom); }
   .app-wrap { flex-direction: column; padding-top: var(--m-top); min-height: calc(100dvh - var(--m-bottom)); }
-  .main { padding: 14px 14px 28px; height: calc(100vh - var(--m-top) - var(--m-bottom)); height: calc(100dvh - var(--m-top) - var(--m-bottom)); }
+  .tab-pane.active:not(#tab-plan) { padding-top: var(--m-top); padding-bottom: var(--m-bottom); }
+  .main { padding: 14px 14px 40px; height: calc(100vh - var(--m-top) - var(--m-bottom)); height: calc(100dvh - var(--m-top) - var(--m-bottom)); }
+  /* Native-feel: no scrollbar chrome on the app shell */
+  .main, #tab-timeline, #archive-scroll, #tab-lookin { scrollbar-width: none; }
+  .main::-webkit-scrollbar, #tab-timeline::-webkit-scrollbar, #archive-scroll::-webkit-scrollbar { display: none; }
   #tab-timeline { height: calc(100vh - var(--m-top) - var(--m-bottom)); height: calc(100dvh - var(--m-top) - var(--m-bottom)); padding: calc(12px + env(safe-area-inset-top, 0px)) 10px 12px; }
   #archive-scroll { height: calc(100vh - var(--m-top) - var(--m-bottom)); height: calc(100dvh - var(--m-top) - var(--m-bottom)); padding: calc(12px + env(safe-area-inset-top, 0px)) 10px 12px; }
   .sidebar { position: fixed; top: var(--m-top); left: -260px; width: 240px; z-index: 1000; transition: left 0.22s ease; max-height: calc(100dvh - var(--m-top)); border-radius: 0 14px 14px 0; box-shadow: 4px 0 24px rgba(0,0,0,0.10); padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
@@ -987,8 +990,8 @@ body { -webkit-font-smoothing: antialiased; }
   .nb { flex: 1; text-align: center; min-height: 42px; font-size: 12.5px; border-radius: 11px; }
   .nb-copy { flex: 0 0 auto; margin-left: auto; }
   .dh-top { padding: 16px 0 12px; align-items: center; margin-bottom: 4px; }
-  .dh-hero { padding: 12px 10px 14px; border-radius: 18px; }
-  .dh-top.has-nav { gap: 6px; padding: 0; }
+  .dh-hero { padding: 16px 14px 18px; border-radius: 24px; box-shadow: 0 10px 28px rgba(120, 70, 45, 0.10), inset 0 1px 0 rgba(255,255,255,0.9); }
+  .dh-top.has-nav { gap: 10px; padding: 0; }
   .nb-arrow { width: 44px; height: 44px; font-size: 20px; }
   .dh-right .nb-copy { width: 40px; height: 40px; }
   .dh-right .nb-copy svg { width: 17px; height: 17px; }
@@ -1040,6 +1043,20 @@ body { -webkit-font-smoothing: antialiased; }
   .nextup-label { font-size: 14px; }
   .nextup-kicker { font-size: 9px; }
   .nextup-meta { font-size: 11px; }
+}
+
+/* Small phones — tighten scale so nothing clips */
+@media (max-width: 400px) {
+  .dh-dow { font-size: 20px; }
+  .dh-date { font-size: 12.5px; }
+  .dh-hero { padding: 14px 12px 16px; border-radius: 22px; }
+  .tt { min-width: 0; font-size: 11.5px; }
+  .tl { font-size: 13.5px; }
+  .tc { padding: 12px 10px; gap: 8px; }
+  .coffee-time, .meal-time { font-size: 10px; padding: 2px 10px; }
+  .coffee-corner, .home-corner, .meal-corner { border-radius: 24px; }
+  .dh-progress { font-size: 10.5px; }
+  .mn-ic { font-size: 20px; }
 }
 
 /* ============ KAWAII THEME ============ */
@@ -1145,6 +1162,7 @@ body, .main { background: #FFF7F4; }
 }
 .coffee-title {
   display: flex; align-items: baseline; gap: 6px;
+  flex: 1; min-width: 0;
   font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
   font-size: 13px; font-weight: 800; letter-spacing: 0.03em; color: #B3551A;
 }
@@ -1236,6 +1254,7 @@ body, .main { background: #FFF7F4; }
 }
 .meal-title {
   display: flex; align-items: baseline; gap: 6px;
+  flex: 1; min-width: 0;
   font-size: 12px; font-weight: 800; letter-spacing: 0.03em; color: #7A7A74;
 }
 .meal-dur { font-size: 10px; font-weight: 700; color: #9E9E97; }
@@ -3691,8 +3710,8 @@ var DAYS = [
           {time:'18:00–20:00', text:'🍽️ Dinner'}
         ]},
           {id:'wed12aug', dow:'Wednesday', date:'12 August', dateISO:'2026-08-12', dot:'dc-kine', week:'August',
-           sub:'Coffee 10am · Film 11am · Study 12:30pm · Lily FNH 2pm · Grocery 3pm · Flights 3:30pm',
-           focus:'☕ Coffee Corner 10am · 🎬 Film FNH talk 11am · 📚 FNH study 12:30pm · 🩺 Lily FNH 2pm · 🛒 Grocery 3pm · ✈️ Book Bali flights 3:30pm',
+           sub:'Coffee 10am · Film 11am · Study 12:30pm · Walk + groceries 3:30pm · Flights 4:30pm',
+           focus:'☕ Coffee Corner 10am · 🎬 Film FNH talk 11am · 📚 FNH study 12:30pm · 🚶 Walk to Woolworths + groceries 3:30pm · ✈️ Book Bali flights 4:30pm',
           events:[
             {time:'09:45–10:00', text:'🏦 Withdraw money from Post Office — on the way to coffee', tickable:true, tid:0, archived:true, done:true},
              {time:'10:00–11:00', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
@@ -3705,8 +3724,8 @@ var DAYS = [
             {time:'13:00–13:10', text:'🧽 Empty dishwasher', tickable:true, tid:5, archived:true, done:true},
             {time:'13:45–14:00', text:'💬 Follow up Lily — confirm monthly cadence', tickable:true, tid:6, archived:true, done:true},
             {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Lily Walker', fnh:true, archived:true, done:true},
-            {time:'15:00–15:30', text:'🛒 Walk to Woolworths — quick grocery shop', tickable:true, tid:10},
-            {time:'15:30–16:15', text:'✈️ Book flights to Bali — Sep 7–19 · compare options, pay before end of August', tickable:true, tid:7},
+            {time:'15:30–16:30', text:'🚶 Walk to Woolworths + quick grocery shop', tickable:true, tid:10},
+            {time:'16:30–17:15', text:'✈️ Book flights to Bali — Sep 7–19 · compare options, pay before end of August', tickable:true, tid:7},
             {time:'15:45–16:00', text:'🎵 Upload "Maybe This Time" sheet music — MacBook → iPad', tickable:true, tid:8, archived:true, done:true},
             {time:'16:00–16:15', text:'📧 Cancel Acuity subscription — booking is on cal.com now', tickable:true, tid:9, done:true, archived:true},
             {time:'18:00–20:00', text:'🍽️ Dinner'}
