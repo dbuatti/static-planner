@@ -4060,6 +4060,7 @@ function buildEvents(d) {
       meal:/Lunch|Dinner|Breakfast|Meal/i.test(e.text),
       tickable:e.tickable!==false && !/Lunch|Dinner|Breakfast|Meal/i.test(e.text),
       done:e.done===true,
+      archived:e.archived===true,
       teaching:e.teaching===true,
       perf:e.perf===true,
       coffee:e.coffee===true,
