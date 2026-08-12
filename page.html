@@ -144,10 +144,15 @@ body { -webkit-font-smoothing: antialiased; }
 }
 .dh-top-center {
   flex: 1; min-width: 0;
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
+  display: flex; flex-direction: row; align-items: center; justify-content: center;
+  flex-wrap: wrap; gap: 6px 10px;
 }
-.dh-top-center .dh-dow,
-.dh-top-center .dh-date { text-align: center; }
+.dh-title {
+  display: inline-flex; align-items: baseline; gap: 6px;
+  white-space: nowrap; min-width: 0;
+}
+.dh-title .dh-dow { font-size: 20px; font-weight: 700; color: #2e2c28; letter-spacing: -0.02em; }
+.dh-title .dh-date { font-size: 12px; color: #8A8880; font-weight: 500; }
 .dh-top-center .dh-progress { margin-left: 0; }
 .nb-arrow {
   flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%;
@@ -4029,10 +4034,10 @@ function renderDays() {
     });
     var freeSlots = findFreeSlots(activeEvs);
     var h = '<div id="view-'+d.id+'" class="day-panel'+(/^Sat|^Sun/.test(d.dow)?' weekend':'')+'">';
-    // Merged header: arrows flanking the centred title
+    // Merged header: arrows flanking a horizontal title bar
     h += '<div class="dh-top has-nav">';
     h += '<button class="nb-arrow" onclick="go(\''+prevId+'\')" title="'+prevLabel+'">←</button>';
-    h += '<div class="dh-top-center"><div class="dh-dow">'+d.dow+'</div><div class="dh-date">'+d.date+'</div>';
+    h += '<div class="dh-top-center"><span class="dh-title"><span class="dh-dow">'+d.dow+'</span> <span class="dh-date">'+d.date+'</span></span>';
     var doneN = completedEvs.length;
     var totalN = doneN + activeEvs.filter(function(ev){return ev.tickable;}).length;
     if (totalN > 0) h += '<div class="dh-progress" id="dp-'+d.id+'">'+doneN+'/'+totalN+' done</div>';
