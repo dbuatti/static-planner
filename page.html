@@ -951,7 +951,7 @@ body { -webkit-font-smoothing: antialiased; }
   .m-topbar { display: flex; }
   .m-bottom-nav { display: flex; }
   /* Panes clear the fixed bars (safe areas included) */
-  .app-wrap { flex-direction: column; padding-top: var(--m-top); min-height: calc(100dvh - var(--m-bottom)); }
+  .app-wrap { flex-direction: column; padding-top: var(--m-top); padding-bottom: calc(var(--m-bottom) + 24px); min-height: calc(100dvh - var(--m-bottom)); }
   .tab-pane.active:not(#tab-plan) { padding-top: var(--m-top); padding-bottom: var(--m-bottom); }
   .main { padding: 14px 14px 40px; height: calc(100vh - var(--m-top) - var(--m-bottom)); height: calc(100dvh - var(--m-top) - var(--m-bottom)); }
   /* Native-feel: no scrollbar chrome on the app shell */
