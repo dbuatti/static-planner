@@ -4061,18 +4061,19 @@ var DAYS = [
          {time:'16:15–16:30', text:'✈️ Bali flights — compare + shortlist options · Sep 7–19', tickable:true, coffee:true, done:true},
          {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
        ]},
-     {id:'fri14aug', dow:'Friday', date:'14 August', dateISO:'2026-08-14', dot:'dc-rest', week:'August',
-         sub:'Coffee + admin 10am · Study 11:15 · Bin 2pm · Fold laundry 2:10 · Gig reflection 2:40 · Alice 3:30pm · Book flights 4:30pm',
-         focus:'Coffee + admin 10am · Change sheets 1 · Study 11:15 · Bin 2pm · Fold laundry 2:10 · Gig reflection (Ali\'s party) 2:40 · Book Bali flights 4:30pm',
+      {id:'fri14aug', dow:'Friday', date:'14 August', dateISO:'2026-08-14', dot:'dc-rest', week:'August',
+          sub:'Coffee + admin 10am · Piano 11:15 · Bin 2pm · Fold laundry 2:10 · Gig reflection 2:40 · Alice 3:30pm · Book flights 4:30pm',
+          focus:'Coffee + admin 10am · Change sheets 1 · Piano practice 11:15 · Study 1:30 · Bin 2pm · Fold laundry 2:10 · Gig reflection (Ali\'s party) 2:40 · Book Bali flights 4:30pm',
       events:[
         {time:'09:45–10:00', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:30–10:45', text:'📩 Reply Tim Liu + Brad — games night options', tickable:true, coffee:true},
         {time:'10:45–11:00', text:'💬 Message Ali — post-gig thank you + photos/videos + follow-up', tickable:true, coffee:true},
         {time:'11:00–11:15', text:'📅 Schedule catch-up with Phil', tickable:true, coffee:true},
-        {time:'11:15–12:00', text:'📚 Study — 45 min', tickable:true},
+        {time:'11:15–12:00', text:'🎹 Piano practice — 45 min', tickable:true},
         {time:'12:00–13:00', text:'🍴 Lunch'},
         {time:'13:00–13:30', text:'🛏️ Change sheets', tickable:true, done:true},
+        {time:'13:30–14:00', text:'📚 Study — 30 min', tickable:true},
         {time:'14:00–14:10', text:'🗑️ Empty kitchen bin', tickable:true, home:true},
         {time:'14:10–14:40', text:'🧺 Fold laundry — one load', tickable:true},
         {time:'14:40–15:10', text:'📓 Write gig reflection — Ali\'s party', tickable:true},
@@ -4094,28 +4095,32 @@ var DAYS = [
       events:[
          {time:'11:00–15:00', text:'🎬 MTT Filming on Stage (The Clubroom)'},
       ]},
-     {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
-      sub:'Blood test 8am · Susan FNH 10am · Bella 4:30pm · Mastery 6pm',
-      focus:'🩸 Blood test walk-in 8am · Susan FNH 10am · Bella 4:30pm · FNH Mastery Catch Up 6–8pm',
-      events:[
-        {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
-        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
-        {time:'16:30–17:00', text:'🎵 Voice and Piano Coaching — Bella (trial)', teaching:true},
-        {time:'18:00–20:00', text:'🧠 FNH Mastery Catch Up', fnh:true}
-     ]},
-      {id:'tue18aug', dow:'Tuesday', date:'18 August', dateISO:'2026-08-18', dot:'dc-music', week:'August',
-       sub:'Q&A 9am · Anita 2pm · Nicole 5:30pm',
-       focus:'FNH Q&A 9am · Anita 2pm (offer FNH) · Nicole 5:30pm',
+      {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
+       sub:'Blood test 8am · Susan FNH 10am · Sam sheet music 11:15 · Bella 4:30pm · Mastery 6pm',
+       focus:'🩸 Blood test walk-in 8am · Susan FNH 10am · Message Sam 11 · Sheet music → PDF 11:15 · Bella 4:30pm · FNH Mastery Catch Up 6–8pm',
        events:[
-         {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
-         {time:'13:45–14:00', text:'💬 Offer FNH session — Anita La Terra', tickable:true},
-         {time:'14:00–14:45', text:'🎵 Voice and Piano Coaching — Anita La Terra', teaching:true},
-         {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true}
+         {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
+         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
+         {time:'11:00–11:15', text:'📩 Message Sam — find a time for a cello rehearsal before Thu 27 Aug', tickable:true},
+         {time:'11:15–12:00', text:'🎵 Sam\'s cello sheet music — extract + export + convert to PDF (one task)', tickable:true},
+         {time:'16:30–17:00', text:'🎵 Voice and Piano Coaching — Bella (trial)', teaching:true},
+         {time:'18:00–20:00', text:'🧠 FNH Mastery Catch Up', fnh:true}
       ]},
+       {id:'tue18aug', dow:'Tuesday', date:'18 August', dateISO:'2026-08-18', dot:'dc-music', week:'August',
+        sub:'Q&A 9am · iPad upload 10:30 · Anita 2pm · Nicole 5:30pm',
+        focus:'FNH Q&A 9am · Upload Sam sheet music → iPad 10:30 · Anita 2pm (offer FNH) · Nicole 5:30pm',
+        events:[
+          {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+          {time:'10:30–10:45', text:'📱 Upload Sam\'s cello sheet music PDF — MacBook → iPad', tickable:true},
+          {time:'13:45–14:00', text:'💬 Offer FNH session — Anita La Terra', tickable:true},
+          {time:'14:00–14:45', text:'🎵 Voice and Piano Coaching — Anita La Terra', teaching:true},
+          {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true}
+       ]},
     {id:'wed19aug', dow:'Wednesday', date:'19 August', dateISO:'2026-08-19', dot:'dc-kine', week:'August',
-     sub:'Jacqui FNH 2pm · Ashna FNH 3:30pm',
-     focus:'Jacqui Dwyer FNH 2pm · Ashna FNH 3:30pm ($70)',
+     sub:'Practice 11am · Jacqui FNH 2pm · Ashna FNH 3:30pm',
+     focus:'Piano practice (Sam\'s cello pieces) 11 · Jacqui Dwyer FNH 2pm · Ashna FNH 3:30pm ($70)',
      events:[
+       {time:'11:00–11:45', text:'🎹 Piano practice — Sam\'s cello pieces · 45 min', tickable:true},
        {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Jacqui Dwyer', fnh:true},
         {time:'15:30–16:30', text:'🩺 FNH Neuro-Health Assessment — Ashna Nain ($70)', fnh:true}
     ]},
@@ -4148,10 +4153,11 @@ var DAYS = [
         {time:'15:30–16:30', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true}
      ]},
      {id:'tue25aug', dow:'Tuesday', date:'25 August', dateISO:'2026-08-25', dot:'dc-music', week:'August',
-      sub:'Q&A 9am · Lizzy 4:15pm',
-      focus:'FNH Q&A 9am · Lizzy 4:15pm',
+      sub:'Q&A 9am · Practice 11am · Lizzy 4:15pm',
+      focus:'FNH Q&A 9am · Piano practice (Sam\'s cello pieces) 11 · Lizzy 4:15pm',
       events:[
         {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
+        {time:'11:00–11:45', text:'🎹 Piano practice — Sam\'s cello pieces · 45 min', tickable:true},
         {time:'16:15–17:15', text:'🎵 Voice and Piano Coaching — Lizzy', teaching:true}
     ]},
     {id:'wed26aug', dow:'Wednesday', date:'26 August', dateISO:'2026-08-26', dot:'dc-kine', week:'August',
@@ -4325,7 +4331,7 @@ var CATEGORIES = [
   {id:'admin',    label:'Admin',    color:'#5A8BC0', test:function(ev){return /Reply|Pay |Order |Confirm|Download|Facebook|Pay rego|Post|Social media/i.test(ev.text);}},
   {id:'chore',    label:'Chores',   color:'#C98A4A', test:function(ev){return /Laundry|Vacuum|Tidy|Fold|Wash/i.test(ev.text);}},
   {id:'errand',   label:'Errands',  color:'#D4A07A', test:function(ev){return /Collect|Grocery|Shopping|medication/i.test(ev.text);}},
-  {id:'practice', label:'Practice', color:'#35AFA0', test:function(ev){return /Elly|Piano improv|Pack keyboard/i.test(ev.text);}},
+  {id:'practice', label:'Practice', color:'#35AFA0', test:function(ev){return /Elly|Piano improv|Pack keyboard|Piano practice/i.test(ev.text);}},
   {id:'reflect',  label:'Reflect',  color:'#C878A8', test:function(ev){return /Reflect/i.test(ev.text);}},
   {id:'travel',   label:'Travel',   color:'#C8A04A', test:function(ev){return /Travel|Flight/i.test(ev.text);}},
   {id:'meal',     label:'Meals',    color:'#A8A8A8', test:function(ev){return /Lunch|Dinner|Breakfast|Meal/i.test(ev.text);}},
