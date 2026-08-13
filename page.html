@@ -1447,6 +1447,7 @@ body, .main { background: #FFF7F4; }
   <button class="tab-dd-item" onclick="switchTab('strat')">🧭 Strategic Foundation</button>
   <button class="tab-dd-item" onclick="switchTab('plan75')">🎯 $70K Plan</button>
   <button class="tab-dd-item" onclick="switchTab('budget')">💰 Financial Plan</button>
+  <button class="tab-dd-item" onclick="switchTab('forecast')">🔭 Business Forecast</button>
 </div>
 <div id="dd-life" class="tab-dd-content">
   <button class="tab-dd-item" onclick="switchTab('mindful')">🧘 Mindfulness</button>
@@ -1500,6 +1501,7 @@ body, .main { background: #FFF7F4; }
   <button class="m-sheet-item" onclick="mMore('strat')">Strategic Foundation</button>
   <button class="m-sheet-item" onclick="mMore('plan75')">$70K Plan</button>
   <button class="m-sheet-item" onclick="mMore('budget')">Financial Plan</button>
+  <button class="m-sheet-item" onclick="mMore('forecast')">🔭 Business Forecast</button>
   <div class="m-sheet-lbl">🔬 Research</div>
   <button class="m-sheet-item" onclick="mMore('videos')">Videos</button>
   <button class="m-sheet-item" onclick="mMore('research')">Books &amp; Research</button>
@@ -2433,7 +2435,8 @@ body, .main { background: #FFF7F4; }
           <div style="font-size:8px;font-weight:700;color:#185FA5;margin:2px 0 3px;">WEDNESDAY · clinic + voice</div>
           <div style="font-size:8.5px;padding:2px 4px;background:#f0fff4;border:1px dashed #1D9E75;border-radius:3px;color:#1D9E75;margin-bottom:2px;">10:00 OPEN · advertising</div>
           <div style="font-size:8.5px;padding:2px 4px;background:#fef5f0;border-left:2px solid #C0392B;border-radius:3px;margin-bottom:2px;">14:00 Lily? · monthly · cruise</div>
-          <div style="font-size:8.5px;padding:2px 4px;background:#f4eef8;border-left:2px solid #A67CB8;border-radius:3px;">15:30 Anah? · pending 12 Aug</div>
+          <div style="font-size:8.5px;padding:2px 4px;background:#f4eef8;border-left:2px solid #A67CB8;border-radius:3px;margin-bottom:2px;">15:30 Ashna · FNH · $70</div>
+          <div style="font-size:8.5px;padding:2px 4px;background:#f4eef8;border-left:2px solid #A67CB8;border-radius:3px;">16:45 Bradley · FNH · free</div>
         </div>
       </div>
 
@@ -2572,6 +2575,100 @@ body, .main { background: #FFF7F4; }
 
   <div style="text-align:center;padding:10px;background:#f5f5f3;border-radius:6px;font-size:9px;color:#8A8880;">
     Revisit monthly · Update numbers as pipeline changes · The plan flexes, the direction doesn't
+  </div>
+
+</div>
+</div>
+
+<div id="tab-forecast" class="tab-pane" style="display: none;">
+<div style="max-width:640px;margin:0 auto;padding:24px 20px;">
+
+  <div style="text-align:center;margin-bottom:24px;">
+    <div style="font-size:22px;font-weight:300;font-family:Georgia,'Times New Roman',serif;color:#1a1a18;">🎯 Business Forecast</div>
+    <div style="font-size:11px;color:#9a9080;margin-top:4px;">FNH + Voice · slots · rates · what's actually possible · Updated 13 Aug 2026</div>
+  </div>
+
+  <!-- THE ROOF -->
+  <div style="font-size:11px;font-weight:700;color:#185FA5;margin-bottom:8px;padding:4px 8px;background:#f0f7ff;border-radius:4px;">🏔 The Roof — absolute capacity on the current calendar</div>
+  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>Saleable slots / week (Mon–Wed)</span><span style="font-weight:600;">9</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#8A8880;">Mon 10:00 · 14:00 · 16:30 &nbsp;·&nbsp; Tue 15:00 · 16:15 · 17:30 &nbsp;·&nbsp; Wed 10:00 · 14:00 · 15:30</span><span style="font-weight:600;color:#1D9E75;">filled ~6</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>Empty right now (unfilled slots)</span><span style="font-weight:600;color:#C0392B;">~3</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>Roof at current rates (~$70 avg)</span><span style="font-weight:600;color:#185FA5;">~$2,200–2,600/mo</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>Roof at 2027 rates ($95–120)</span><span style="font-weight:600;color:#185FA5;">~$3,200–3,700/mo</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;"><span>Beyond the roof</span><span style="font-weight:600;color:#5F5E5A;">Thursday Richmond clinic — the only lever left on time</span></div>
+    <div style="font-size:9px;color:#9a9080;margin-top:8px;padding:6px;background:#f5f5f3;border-radius:4px;">
+      The constraint is <strong>not</strong> slots — the roof sits far above the $2,000 goal. The constraint is filling the ~3 empty slots and holding the rate. 3 more recurring clients at $70 ≈ $840/mo; at $95 ≈ $1,140/mo.
+    </div>
+  </div>
+
+  <!-- BOOKED SNAPSHOT -->
+  <div style="font-size:11px;font-weight:700;color:#1D9E75;margin-bottom:8px;padding:4px 8px;background:#f0fff4;border-radius:4px;">📋 Booked — forward calendar (from cal.com, 17 Aug – 12 Oct)</div>
+  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+    <table style="width:100%;border-collapse:collapse;font-size:10px;">
+      <tbody><tr style="background:#f5f5f3;"><th style="text-align:left;padding:4px 6px;font-weight:600;">When</th><th style="text-align:left;padding:4px 6px;font-weight:600;">Client</th><th style="text-align:left;padding:4px 6px;font-weight:600;">Type</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Rate</th></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Mon 17 Aug · 10:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Susan</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Mon 17 Aug · 16:30</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Bella</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice/Piano · 30m · trial</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Tue 18 Aug · 14:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Anita</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice/Piano · 45m</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$75</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Tue 18 Aug · 17:30</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Nicole</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice/Piano · 45m</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$75</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Wed 19 Aug · 14:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Jacqui</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$30</td></tr>
+      <tr style="background:#f0fff4;"><td style="padding:4px 6px;border-bottom:1px solid #eee;">Wed 19 Aug · 15:30</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;color:#1D9E75;">Ashna ★ new</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH — self-booked via cal.com</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#1D9E75;">$70</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Wed 19 Aug · 16:45</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Bradley</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH · community-free</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#9a9080;">$0</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Mon 24 Aug · 10:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Susan</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Mon 24 Aug · 15:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Brendan</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH · community-free</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#9a9080;">$0</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Tue 25 Aug · 16:15</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Lizzy</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice · 60m</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$95</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Wed 26 Aug · 10:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Anita</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice/Piano · 45m</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$75</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Mon 31 Aug · 10:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Susan</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Tue 1 Sep · 17:30</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Nicole</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Voice/Piano · 45m</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$75</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Wed 2 Sep · 14:00</td><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:600;">Jacqui</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$30</td></tr>
+      <tr><td style="padding:4px 6px;">Mon 12 Oct · 14:00</td><td style="padding:4px 6px;font-weight:600;">Lily</td><td style="padding:4px 6px;">FNH · monthly</td><td style="text-align:center;padding:4px 6px;">$50</td></tr>
+    </tbody></table>
+    <div style="font-size:9px;color:#9a9080;margin-top:8px;padding:6px;background:#f0fff4;border-radius:4px;">
+      <strong>Paying revenue already on the calendar for the next 4 weeks (17 Aug – 14 Sep): ≈ $725.</strong> Ashna is the first client to self-book FNH via the cal.com link since the link-field fix — the funnel works. Brendan + Bradley are community-free ($0) by design — they're the shopfront, not revenue.
+    </div>
+  </div>
+
+  <!-- THE MONEY -->
+  <div style="font-size:11px;font-weight:700;color:#C98A4A;margin-bottom:8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">💰 This month — FNH + Voice</div>
+  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>Confirmed recurring base</span><span style="font-weight:600;">~$1,245/mo (Susan, Nicole, Anita, Jacqui, Lizzy, Bella)</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>+ Ashna (new, 19 Aug)</span><span style="font-weight:600;color:#1D9E75;">+$70 (weekly → +$280/mo)</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;border-bottom:1px solid #f0f0f0;"><span>August plan target (FNH/Voice)</span><span style="font-weight:600;color:#185FA5;">$1,000</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:10px;padding:3px 0;"><span>Booked forward</span><span style="font-weight:600;color:#1D9E75;">≈ $725 over the next 4 weeks — already ahead</span></div>
+    <div style="font-size:9px;color:#9a9080;margin-top:8px;padding:6px;background:#f5f5f3;border-radius:4px;">
+      To reach the <strong>$2,000/mo</strong> FNH+Voice goal from here: <strong>3 more recurring clients</strong> at $70, or 2 at $95 (Nov+). Not 4 — Ashna already banked one of them.
+    </div>
+  </div>
+
+  <!-- LEAKS -->
+  <div style="font-size:11px;font-weight:700;color:#C0392B;margin-bottom:8px;padding:4px 8px;background:#fef5f0;border-radius:4px;">🩹 Where the money leaks</div>
+  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+    <div style="font-size:10px;font-weight:600;color:#5F5E5A;margin-bottom:6px;">Charged now vs the $70 standard — on confirmed bookings alone:</div>
+    <table style="width:100%;border-collapse:collapse;font-size:10px;">
+      <tbody><tr style="background:#f5f5f3;"><th style="text-align:left;padding:4px 6px;font-weight:600;">Client</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Cadence</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Charged</th><th style="text-align:center;padding:4px 6px;font-weight:600;">At $70</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Lost/mo</th></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Susan · FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">weekly</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$70</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#C0392B;">$80</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Jacqui · FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">fortnightly</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$30</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$70</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#C0392B;">$80</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Lily · FNH</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">monthly</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$70</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#C0392B;">$20</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;">Bella · piano</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">trial</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$50</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">$70</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;color:#C0392B;">—</td></tr>
+      <tr><td style="padding:4px 6px;">+ 3 empty slots Mon–Wed</td><td style="text-align:center;padding:4px 6px;">weekly</td><td style="text-align:center;padding:4px 6px;">$0</td><td style="text-align:center;padding:4px 6px;">$70</td><td style="text-align:center;padding:4px 6px;color:#C0392B;">$840</td></tr>
+    </tbody></table>
+    <div style="font-size:9px;color:#9a9080;margin-top:8px;padding:6px;background:#f5f5f3;border-radius:4px;line-height:1.5;">
+      <strong>~$180/mo</strong> is left on the table on confirmed FNH bookings (PiT/study rates). The plan holds: honour existing clients, but <strong>new FNH clients are $95 from 1 Nov</strong> and $120 from Jan 2027 — don't grandfather Ashna's pricing when she renews. And 5 students in the room (Lisa, Nicole, Anita, Anah, Lizzy) still haven't been offered FNH — that's ~$1,160/mo of potential sitting with people who already trust you.
+    </div>
+  </div>
+
+  <!-- 6-MONTH FORECAST -->
+  <div style="font-size:11px;font-weight:700;color:#A67CB8;margin-bottom:8px;padding:4px 8px;background:#f4eef8;border-radius:4px;">📈 Six-month forecast — snapshots every 2 months</div>
+  <div style="background:#fff;border:0.5px solid #E8E6DF;border-radius:8px;padding:12px;margin-bottom:16px;">
+    <table style="width:100%;border-collapse:collapse;font-size:10px;">
+      <tbody><tr style="background:#f5f5f3;"><th style="text-align:left;padding:4px 6px;font-weight:600;">Snapshot</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Slots filled</th><th style="text-align:center;padding:4px 6px;font-weight:600;">Avg rate</th><th style="text-align:center;padding:4px 6px;font-weight:600;">FNH+Voice /mo</th><th style="text-align:left;padding:4px 6px;font-weight:600;">The move</th></tr>
+      <tr style="background:#f0fff4;"><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:700;">NOW</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">~6 of 9</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">~$65</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;font-weight:700;">~$1,245</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Convert Bella's trial · make Ashna weekly · Jacqui weekly → $1,245 becomes ~$1,500</td></tr>
+      <tr><td style="padding:4px 6px;border-bottom:1px solid #eee;font-weight:700;">A</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">6 → 8</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;">~$70</td><td style="text-align:center;padding:4px 6px;border-bottom:1px solid #eee;font-weight:700;">$1,000 → $1,400</td><td style="padding:4px 6px;border-bottom:1px solid #eee;">Aug–Oct: fill Tue 15:00 + Wed 10:00 · offer FNH to the 5 students · Q&amp;A/Mastery mention</td></tr>
+      <tr><td style="padding:4px 6px;font-weight:700;">B</td><td style="text-align:center;padding:4px 6px;">8 → 9</td><td style="text-align:center;padding:4px 6px;">~$85–95</td><td style="text-align:center;padding:4px 6px;font-weight:700;color:#1D9E75;">$1,600 → $2,000+</td><td style="padding:4px 6px;">Nov–Jan: $95 new clients · end PiT 1 Nov · $120 new Jan · roof still ~$3,200–3,700 above you</td></tr>
+    </tbody></table>
+    <div style="font-size:9px;color:#9a9080;margin-top:8px;padding:6px;background:#f4eef8;border-radius:4px;">
+      The plan flexes, the direction doesn't: <strong>fill then raise</strong>. Slots fill Aug–Oct (revenue up ~$400/mo), rates rise Nov–Jan (revenue up another ~$600/mo). By January the $2,000 FNH+Voice goal is behind you, and the only thing between that and the roof is deciding whether to add the Thursday Richmond clinic day.
+    </div>
   </div>
 
 </div>
@@ -3313,7 +3410,7 @@ function showTab(tab) {
 var switchTab = showTab;
 
 // ── MOBILE APP SHELL (top bar title, bottom nav, more sheet, search) ──
-var M_TITLES = { plan:'Daily Plan', lookin:'Tasks', timeline:'Timeline', archive:'Archive', ov:'Overview', strat:'Strategic Foundation', plan75:'$70K Plan', budget:'Financial Plan', mindful:'Mindfulness', dreams:'Dreams', gifts:'Gifts', snap:'Daily Snap', videos:'Videos', research:'Books & Research', lookinto:'Look Into' };
+var M_TITLES = { plan:'Daily Plan', lookin:'Tasks', timeline:'Timeline', archive:'Archive', ov:'Overview', strat:'Strategic Foundation', plan75:'$70K Plan', budget:'Financial Plan', forecast:'Business Forecast', mindful:'Mindfulness', dreams:'Dreams', gifts:'Gifts', snap:'Daily Snap', videos:'Videos', research:'Books & Research', lookinto:'Look Into' };
 function setMobileTitle(tab) {
   var el = document.getElementById('m-topbar-title');
   if (el) el.textContent = M_TITLES[tab] || tab;
