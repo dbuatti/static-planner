@@ -4311,6 +4311,7 @@ function renderDays() {
         return;
       }
       if (ev.coffee && !inCoffee) {
+        if (inHome) { h += '</div>'; inHome = false; }
         h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
         return;
@@ -4319,6 +4320,7 @@ function renderDays() {
         inCoffee = false;
       }
       if (ev.home && !inHome) {
+        if (inCoffee) { h += '</div>'; inCoffee = false; }
         h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span></div>';
         inHome = true;
       } else if (!ev.home && inHome) {

@@ -3771,7 +3771,7 @@ var DAYS = [
         {time:'12:00–13:00', text:'🍴 Lunch'},
         {time:'13:00–13:30', text:'🛏️ Change sheets', tickable:true, done:true},
         {time:'13:30–14:00', text:'🧹 Tidy the house', tickable:true},
-        {time:'14:00–14:10', text:'🗑️ Empty kitchen bin', tickable:true},
+        {time:'14:00–14:10', text:'🗑️ Empty kitchen bin', tickable:true, home:true},
         {time:'14:10–14:40', text:'🧺 Laundry — one load', tickable:true},
         {time:'14:40–15:10', text:'📓 Write gig reflection', tickable:true},
          {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true, done:true},
@@ -4311,6 +4311,7 @@ function renderDays() {
         return;
       }
       if (ev.coffee && !inCoffee) {
+        if (inHome) { h += '</div>'; inHome = false; }
         h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
         return;
@@ -4319,6 +4320,7 @@ function renderDays() {
         inCoffee = false;
       }
       if (ev.home && !inHome) {
+        if (inCoffee) { h += '</div>'; inCoffee = false; }
         h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span></div>';
         inHome = true;
       } else if (!ev.home && inHome) {
