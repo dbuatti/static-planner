@@ -637,6 +637,17 @@ body { -webkit-font-smoothing: antialiased; }
 .day-off-banner .day-off-tl { font-size:12.5px; font-weight:600; color:#1a1a18; flex:1; }
 .day-off-banner .day-off-sub { font-size:9px; color:#B4A8C0; white-space:nowrap; }
 
+/* BALI STAR BANNER */
+.bali-banner { position:relative; margin:14px 0 8px; padding:0 0 18px; border-radius:16px; overflow:hidden; text-align:center; background:linear-gradient(180deg,#0d1130 0%,#1c1b42 55%,#331d52 100%); box-shadow:0 3px 16px rgba(20,25,70,0.35); }
+.bb-sky { position:relative; height:120px; }
+.bb-star { position:absolute; background:#fff; border-radius:50%; animation:bbtwinkle ease-in-out infinite; }
+.bb-moon { position:absolute; right:14px; top:10px; font-size:22px; opacity:0.95; filter:drop-shadow(0 0 6px rgba(255,240,180,0.8)); }
+.bb-bigstar { position:absolute; left:16px; top:14px; font-size:20px; animation:bbtwinkle 2.2s ease-in-out infinite; }
+.bb-title { font-family:'Baloo 2','Quicksand',sans-serif; font-weight:700; font-size:15px; letter-spacing:0.12em; text-transform:uppercase; color:#F4E9C9; text-shadow:0 0 12px rgba(255,215,130,0.55); }
+.bb-cta { margin:8px 14px 0; padding:10px 12px; border-radius:12px; background:linear-gradient(90deg,#FFD36E,#F5A623,#FFD36E); color:#3A2500; font-family:'Baloo 2','Quicksand',sans-serif; font-weight:700; font-size:14px; text-transform:uppercase; letter-spacing:0.06em; box-shadow:0 2px 12px rgba(245,166,35,0.5); }
+.bb-sub { margin-top:8px; font-size:9px; color:#B9B2D8; }
+@keyframes bbtwinkle { 0%,100%{ opacity:0.25; transform:scale(0.85); } 50%{ opacity:1; transform:scale(1.15); } }
+
 /* CATEGORY BAR */
 .cat-bar-wrap { margin: 10px 0 0; }
 .cat-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#eee; }
@@ -1745,21 +1756,6 @@ body, .main { background: #FFF7F4; }
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🩸 Blood test — due by Mon 17 Aug</div>
-    <div class="tn">GP said 4 weeks from 20 Jul. Book pathology appointment in advance.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🎬 Film FNH talk-to-camera — 2 spots, $70 intro rate</div>
-    <div class="tn">30–45s, one idea: what FNH is and who it's for. Open with "a neurological approach to feeling safe in your body." Film in Toorak studio. Caption handles spots/rate. Delayed from 7 Aug — film next week. New clients at $70 until Nov, then $95.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">📓 Write gig reflection</div>
-    <div class="tn">Journal how it went — any issues, what I found, what I learned.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🚫 Hold on new clients — not ready yet</div>
     <div class="tn">Accept I'm not at a point to take on new clients. Work through what's on my plate first.</div>
   </div></div>
@@ -1780,11 +1776,6 @@ body, .main { background: #FFF7F4; }
   </div></div>
 
   <div style="font-size:9px;font-weight:700;color:#5A8BC0;margin:1.5rem 0 8px;padding:4px 8px;background:#eef4fa;border-radius:4px;">🔵 QUICK WINS — Urgent, Less Important</div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">🍽️ Games night / dinner — Tim Liu + Brad</div>
-    <div class="tn">Proposed Feb 2026 — long overdue. Brad can host (no housemates); his last ask was your dinner availabilities. Reply with a few options.</div>
-  </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🧹 Tidy the house</div>
@@ -1823,10 +1814,6 @@ body, .main { background: #FFF7F4; }
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">💭 Reflect on dinner &amp; sing-through idea</div>
     <div class="tn">~8-10 music-inclined people, low stakes, dinner + show run-through. Community building / fun night.</div>
-  </div></div>
-
-  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
-    <div class="tl">📅 Schedule catch-up with Phil</div>
   </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #A8A8A8;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -4075,24 +4062,23 @@ var DAYS = [
          {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
        ]},
      {id:'fri14aug', dow:'Friday', date:'14 August', dateISO:'2026-08-14', dot:'dc-rest', week:'August',
-         sub:'Coffee + admin 10am · Rent 10:45 · Tidy 1:30 · Bin 2pm · Laundry 2:10 · Gig reflection 2:40 · Alice 3:30pm · Book flights 4:30pm',
-         focus:'Coffee + admin 10am · Rent transfer 10:45 · Change sheets 1 · Tidy house 1:30 · Bin 2pm · Laundry 2:10 · Gig reflection 2:40 · Book Bali flights 4:30pm',
+         sub:'Coffee + admin 10am · Study 11:15 · Bin 2pm · Fold laundry 2:10 · Gig reflection 2:40 · Alice 3:30pm · Book flights 4:30pm',
+         focus:'Coffee + admin 10am · Change sheets 1 · Study 11:15 · Bin 2pm · Fold laundry 2:10 · Gig reflection (Ali\'s party) 2:40 · Book Bali flights 4:30pm',
       events:[
         {time:'09:45–10:00', text:'🧹 Room clean — 15 min', tickable:true},
         {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:30–10:45', text:'📩 Reply Tim Liu + Brad — games night options', tickable:true, coffee:true},
-        {time:'10:45–11:00', text:'💰 Redo rent transfer — $366 bounced 12 Aug', tickable:true, coffee:true},
+        {time:'10:45–11:00', text:'💬 Message Ali — post-gig thank you + photos/videos + follow-up', tickable:true, coffee:true},
         {time:'11:00–11:15', text:'📅 Schedule catch-up with Phil', tickable:true, coffee:true},
-        {time:'11:15–11:30', text:'📓 Journal — 15 min', tickable:true},
-        {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
+        {time:'11:15–12:00', text:'📚 Study — 45 min', tickable:true},
         {time:'12:00–13:00', text:'🍴 Lunch'},
         {time:'13:00–13:30', text:'🛏️ Change sheets', tickable:true, done:true},
-        {time:'13:30–14:00', text:'🧹 Tidy the house', tickable:true},
         {time:'14:00–14:10', text:'🗑️ Empty kitchen bin', tickable:true, home:true},
-        {time:'14:10–14:40', text:'🧺 Laundry — one load', tickable:true},
-        {time:'14:40–15:10', text:'📓 Write gig reflection', tickable:true},
+        {time:'14:10–14:40', text:'🧺 Fold laundry — one load', tickable:true},
+        {time:'14:40–15:10', text:'📓 Write gig reflection — Ali\'s party', tickable:true},
          {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true, done:true},
-         {time:'16:30–16:45', text:'✈️ Book Bali flights — Sep 7–19 · compare options, pay before end of August', tickable:true}
+         {time:'16:30–16:45', text:'✈️ Book Bali flights — Sep 7–19 · compare options, pay before end of August', tickable:true},
+         {time:'16:45–17:00', text:'⭐ Bali flights', tickable:false, banner:true}
         ]},
        {id:'sat15aug', dow:'Saturday', date:'15 August', dateISO:'2026-08-15', dot:'dc-social', week:'August',
         sub:'Deploy 10am · Film 11am · 🍽️ DINNER — Tim x Brad x Daniele 6pm',
@@ -4417,6 +4403,7 @@ function buildEvents(d) {
       teaching:e.teaching===true,
       perf:e.perf===true,
       coffee:e.coffee===true,
+      banner:e.banner===true,
       home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean room|Room clean|Clean kitchen|Kitchen clean|Bedroom|Tidy the house|Tidy room/i.test(e.text),
       fnh:e.fnh===true
     };
@@ -4510,7 +4497,7 @@ function renderDays() {
     // Category bar — hide on days with no real events
     var catTotals = {};
     activeEvs.forEach(function(ev) {
-      if (ev.free) return;
+      if (ev.free || ev.banner) return;
       var cat = eventCategory(ev);
       if (cat.id === 'meal') return;
       var dur = ev.dur || 0;
@@ -4648,6 +4635,18 @@ function renderDays() {
         var period = getPeriod(ev.time);
         if (period !== lastPeriod) { h += '<div class="sl">'+period+'</div>'; lastPeriod = period; }
         h += '<div class="meal-corner"><div class="meal-head"><span class="meal-title">'+esc(ev.text)+' <span class="meal-dur">'+fmtDur(ev.dur)+'</span></span><span class="meal-time">'+esc(ev.time)+'</span></div></div>';
+        return;
+      }
+      if (ev.banner) {
+        var stars = '';
+        for (var s = 0; s < 48; s++) {
+          stars += '<span class="bb-star" style="left:'+(Math.random()*100).toFixed(1)+'%;top:'+(Math.random()*72).toFixed(1)+'%;width:'+(Math.random()*2+1).toFixed(1)+'px;height:'+(Math.random()*2+1).toFixed(1)+'px;animation-delay:'+(Math.random()*4).toFixed(2)+'s;animation-duration:'+(2.5+Math.random()*3).toFixed(2)+'s;"></span>';
+        }
+        h += '<div class="bali-banner"><div class="bb-sky">'+stars+'<span class="bb-moon">🌙</span><span class="bb-bigstar">⭐</span></div>';
+        h += '<div class="bb-title">Bali · Sep 7–19</div>';
+        h += '<div class="bb-cta">You must book your Bali flight</div>';
+        h += '<div class="bb-sub">compare options tonight · pay before end of August</div>';
+        h += '</div>';
         return;
       }
       var evColor = eventCategory(ev).color;
