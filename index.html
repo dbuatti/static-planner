@@ -648,6 +648,33 @@ body { -webkit-font-smoothing: antialiased; }
 .bb-sub { margin-top:8px; font-size:9px; color:#B9B2D8; }
 @keyframes bbtwinkle { 0%,100%{ opacity:0.25; transform:scale(0.85); } 50%{ opacity:1; transform:scale(1.15); } }
 
+/* WEEKEND FOCUS DASHBOARD */
+.dash-card {
+  position: relative;
+  margin: 14px 0 8px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(180deg, #101C33 0%, #1B2B4A 55%, #27407A 100%);
+  box-shadow: 0 3px 16px rgba(16, 28, 51, 0.35);
+  color: #EDF1F7;
+}
+.dash-head { padding: 12px 14px 6px; display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
+.dash-title { font-family:'Baloo 2','Quicksand',sans-serif; font-weight:800; font-size:14px; letter-spacing:0.06em; text-transform:uppercase; color:#FFD36E; }
+.dash-tag { font-size:8.5px; color:#AFC3E0; text-align:right; }
+.dash-body { padding: 4px 12px 12px; }
+.dash-item {
+  display:flex; align-items:flex-start; gap:8px;
+  padding:8px 10px; margin-bottom:6px;
+  background: rgba(255,255,255,0.07);
+  border-left: 3px solid #FFD36E;
+  border-radius: 8px;
+  font-size: 10.5px; color: #F2F5FA; line-height: 1.4;
+}
+.dash-item b { color: #FFE9B8; }
+.dash-flag { flex-shrink:0; font-size: 13px; }
+.dash-item.dash-hot { border-left-color: #FF7A6E; background: rgba(255,122,110,0.10); }
+.dash-item.dash-hot b { color: #FFC4BE; }
+
 /* CATEGORY BAR */
 .cat-bar-wrap { margin: 10px 0 0; }
 .cat-bar { display:flex; height:8px; border-radius:4px; overflow:hidden; background:#eee; }
@@ -4152,7 +4179,8 @@ var DAYS = [
        {id:'sat15aug', dow:'Saturday', date:'15 August', dateISO:'2026-08-15', dot:'dc-social', week:'August',
         sub:'Deploy 10am · Film 11am · 🍽️ DINNER — Tim x Brad x Daniele 6pm',
         focus:'Deploy supabase function 10am · 🎬 Film FNH talk 11am · DINNER — Tim x Brad x Daniele 6–10pm',
-        events:[
+         events:[
+          {time:'07:00–07:00', text:'🎯 Focuses this week', tickable:false, dashboard:true},
           {time:'10:00–10:30', text:'🛠 Deploy kinesiology function — supabase functions deploy get-calcom-slots', tickable:true},
           {time:'11:00–12:30', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true, tid:4},
           {time:'18:00–22:00', text:'🍽️ DINNER — Tim x Brad x Daniele'}
@@ -4161,6 +4189,7 @@ var DAYS = [
       sub:'🎬 MTT Filming 11am',
       focus:'MTT Filming — The Clubroom 11am–3pm',
       events:[
+         {time:'07:00–07:00', text:'🎯 Focuses this week', tickable:false, dashboard:true},
          {time:'11:00–15:00', text:'🎬 MTT Filming on Stage (The Clubroom)'},
       ]},
       {id:'mon17aug', dow:'Monday', date:'17 August', dateISO:'2026-08-17', dot:'dc-music', week:'August',
@@ -4490,6 +4519,7 @@ function buildEvents(d) {
       coffee:e.coffee===true,
       study:e.study===true,
       banner:e.banner===true,
+      dashboard:e.dashboard===true,
       home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean room|Room clean|Clean kitchen|Kitchen clean|Bedroom|Tidy the house|Tidy room/i.test(e.text),
       fnh:e.fnh===true
     };
@@ -4583,7 +4613,7 @@ function renderDays() {
     // Category bar — hide on days with no real events
     var catTotals = {};
     activeEvs.forEach(function(ev) {
-      if (ev.free || ev.banner) return;
+      if (ev.free || ev.banner || ev.dashboard) return;
       if (ev.study && !ev.tickable) return;
       var cat = eventCategory(ev);
       if (cat.id === 'meal') return;
@@ -4694,9 +4724,23 @@ function renderDays() {
     var inCoffee = false;
     var inHome = false;
     var inStudy = false;
+    var dashDone = false;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
+      if (ev.dashboard) {
+        if (dashDone) return;
+        dashDone = true;
+        h += '<div class="dash-card"><div class="dash-head"><div class="dash-title">🎯 Focuses this week</div><div class="dash-tag">Same for Sat + Sun</div></div><div class="dash-body">';
+        h += '<div class="dash-item dash-hot"><span class="dash-flag">🏋️</span><span><b>Cancel gym membership</b> — follow through, don\'t let the weekend slide</span></div>';
+        h += '<div class="dash-item"><span class="dash-flag">🎹</span><span><b>Piano practise</b> — keep it in the day, even 15 min</span></div>';
+        h += '<div class="dash-item"><span class="dash-flag">🚶</span><span><b>Walks / exercise</b> — move daily</span></div>';
+        h += '<div class="dash-item dash-hot"><span class="dash-flag">🧘</span><span><b>HUMM open house</b> — Sat 15 + Sun 16 Aug · free guided walk-through · 10 / 12 / 2 / 4pm · St Kilda · try to book a slot</span></div>';
+        h += '<div class="dash-item"><span class="dash-flag">🏠</span><span><b>2 housemate viewings Sun</b> — times TBC</span></div>';
+        h += '<div class="dash-item"><span class="dash-flag">👯</span><span><b>Aaron may come Sat</b> — pending</span></div>';
+        h += '</div></div>';
+        return;
+      }
       var isDayOff = !ev.free && eventCategory(ev).id === 'free';
       if (isDayOff) {
         h += '<div class="day-off-banner"><span class="day-off-tl">'+ev.text+'</span><span class="day-off-sub">'+ev.time+'</span></div>';
