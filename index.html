@@ -1869,6 +1869,15 @@ body, .main { background: #FFF7F4; }
     <div class="tn">Flight in 6 Sep, out 5 Oct. Check eVOA vs visa-free window (30 days) — extension if needed. Sort before leaving.</div>
   </div></div>
 
+  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl">🛠 Deploy kinesiology function — supabase functions deploy get-calcom-slots</div>
+  </div></div>
+
+  <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl">🎬 Film FNH talk-to-camera</div>
+    <div class="tn">Toorak studio · 30–45s, one idea: what FNH is and who it's for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro.</div>
+  </div></div>
+
   <div style="font-size:9px;font-weight:700;color:#5A8BC0;margin:1.5rem 0 8px;padding:4px 8px;background:#eef4fa;border-radius:4px;">🔵 QUICK WINS — Urgent, Less Important</div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #5A8BC0;"><div class="chk"></div><div class="tb" style="flex:1;">
@@ -3815,9 +3824,8 @@ var DAYS = [
    focus:'MTT Emotional Performance Prep 1pm',
     events:[
        {time:'08:00–08:45', text:'🍳 Breakfast on balcony (45 min)'},
-       {time:'08:45–09:00', text:'💿 Shower (15 min)'},
-          {time:'09:00–09:20', text:'🧹 Tidy room (20 min)'},
-          {time:'11:30–11:45', text:'🎹 Pack keyboard / digital piano (15 min)'},
+        {time:'08:45–09:00', text:'💿 Shower (15 min)'},
+           {time:'11:30–11:45', text:'🎹 Pack keyboard / digital piano (15 min)'},
         {time:'11:45–12:00', text:'🚗 Travel to Prahran'},
         {time:'12:00–13:00', text:'☕ Catch up with Brad & Brendan — Prahran'},
       {time:'13:00–16:00', text:'🎭 MTT – Emotional Performance Prep'},
@@ -3928,7 +3936,6 @@ var DAYS = [
         {time:'09:00–09:30', text:'🧠 FNH Mentor Catch Up', fnh:true, repeat:'weekly'},
         {time:'10:00–10:45', text:'🍃 Haircut'},
         {time:'10:45–11:00', text:'💰 Check rent + message housemates reminders'},
-        {time:'11:00–11:15', text:'🧹 Clean room (15 min)'},
         {time:'11:15–11:30', text:'🧷 Fold laundry (15 min)'},
         {time:'12:00–13:00', text:'🍴 Lunch'},
        {time:'14:00–14:45', text:'🎵 Voice and Piano Coaching — Anita La Terra', teaching:true},
@@ -3950,12 +3957,11 @@ var DAYS = [
      ]},
     {id:'thu30jul', dow:'Thursday', date:'30 July', dateISO:'2026-07-30', dot:'dc-rest', week:'July — Week 3+',
      sub:'Mastery 9am · Coffee 11am · Gig prep · Q&A 6pm',
-     focus:'Mastery 9–11 · Coffee @Little Quarter 11 · Tidy · Prep · Q&A 6–8pm',
-      events:[
-        {time:'09:00–11:00', text:'🧠 FNH Mastery Catch Up', fnh:true},
-        {time:'11:00–11:30', text:'🚶 Walk + ☕ Coffee @Little Quarter (money stuff)', repeat:'weekly'},
-        {time:'11:30–12:00', text:'🧹 Tidy room · 🧷 Empty suitcase'},
-        {time:'12:00–13:00', text:'🍴 Lunch'},
+      focus:'Mastery 9–11 · Coffee @Little Quarter 11 · Prep · Q&A 6–8pm',
+       events:[
+         {time:'09:00–11:00', text:'🧠 FNH Mastery Catch Up', fnh:true},
+         {time:'11:00–11:30', text:'🚶 Walk + ☕ Coffee @Little Quarter (money stuff)', repeat:'weekly'},
+         {time:'12:00–13:00', text:'🍴 Lunch'},
         {time:'13:00–13:30', text:'👕 Prep clothes for Elly\'s 50th gig'},
         {time:'13:30–14:30', text:'🎵 Sing through songs — Elly\'s 50th'},
         {time:'14:30–14:50', text:'🧹 Clean kitchen'},
@@ -3969,17 +3975,15 @@ var DAYS = [
         {time:'11:00–11:30', text:'👕 Prep clothes for Elly\'s 50th gig'},
         {time:'11:30–12:00', text:'🧹 Clean kitchen', done:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
-        {time:'14:00–14:30', text:'🧹 Tidy room · 🧷 Empty suitcase'},
       {time:'18:00–19:30', text:'🍽️ Early dinner'},
       {time:'20:00–23:00', text:'🎹 Elly\'s 50th — private gig, Brunswick East', perf:true, tickable:false},
       {time:'23:00–00:00', text:'🚗 Travel home', dur:60}
    ]},
    {id:'sat1aug', dow:'Saturday', date:'1 August', dateISO:'2026-08-01', dot:'dc-rest', week:'August',
       sub:'Drop off Bose 10am',
-     focus:'🛌 Sleep 10pm · 🧹 Bedroom 30min — Drop off Bose S1 Pro 10am',
+      focus:'🛌 Sleep 10pm — Drop off Bose S1 Pro 10am',
      events:[
         {time:'10:00–11:00', text:'🛍 Drop off Bose S1 Pro speaker — DJ Warehouse'},
-        {time:'21:00–21:30', text:'🧹 Bedroom reset — 30 min, clean & calm'},
         {time:'22:00–22:30', text:'😴 Sleep by 10pm — lights out'}
      ]},
    {id:'sun2aug', dow:'Sunday', date:'2 August', dateISO:'2026-08-02', dot:'dc-social', week:'August',
@@ -3995,9 +3999,8 @@ var DAYS = [
     {id:'mon3aug', dow:'Monday', date:'3 August', dateISO:'2026-08-03', dot:'dc-music', week:'August',
      sub:'FNH Susan 10am · Carey 3pm · FNH Mastery 6pm',
       focus:'Susan FNH 10am · Download music 11am · Carey 3pm · Mastery 6pm · Anchors 11:30',
-       events:[
-        {time:'11:45–12:00', text:'🧹 Room clean — 15 min', tickable:true},
-        {time:'14:00–14:15', text:'📓 Journal — 15 min', tickable:true},
+        events:[
+         {time:'14:00–14:15', text:'📓 Journal — 15 min', tickable:true},
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
         {time:'11:00–11:30', text:'📥 Download Carey music & upload to iPad'},
         {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -4013,7 +4016,6 @@ var DAYS = [
       events:[
         {time:'09:00–09:30', text:'🧠 FNH Weekly Q&A', fnh:true},
         {time:'10:30–10:45', text:'🚫 Stop MOISES subscription', tickable:true, done:true},
-        {time:'10:45–11:00', text:'🧹 Room clean — 15 min', tickable:true, done:true},
         {time:'11:00–11:15', text:'📓 Journal — 15 min', tickable:true, done:true},
         {time:'11:15–11:45', text:'📚 FNH study block', fnh:true},
         {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -4038,7 +4040,6 @@ var DAYS = [
     sub:'Alison 1pm · Q&A 6pm · Allowance 11am · Voice notes 3:30pm',
     focus:'Session with Alison 1–3pm · Q&A 6–8pm · Anchors 10am · FNH study 3pm',
         events:[
-            {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true, done:true},
           {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true, done:true},
           {time:'11:30–12:00', text:'🎹 Piano practice — 30 min', tickable:true},
           {time:'12:00–13:00', text:'🍴 Lunch'},
@@ -4050,10 +4051,9 @@ var DAYS = [
     ]},
    {id:'fri7aug', dow:'Friday', date:'7 August', dateISO:'2026-08-07', dot:'dc-rest', week:'August',
      sub:'Nick Moss 11am · 🏀 Free Day · Track (Samantha) 3pm',
-     focus:'Vacuum 10:15 · Nick Moss 11–1 (Richmond) · Lunch 1:30 · Journal 2pm · Track 3pm',
+      focus:'Nick Moss 11–1 (Richmond) · Lunch 1:30 · Journal 2pm · Track 3pm',
      events:[
-       {time:'10:15–10:30', text:'🧹 Vacuum skirting boards — bedroom (small nose attachment pass)', tickable:true, done:true},
-       {time:'10:30–11:00', text:'🚌 Travel to SoulPod — Richmond (public transport, ~30 min)', tickable:true, done:true},
+        {time:'10:30–11:00', text:'🚌 Travel to SoulPod — Richmond (public transport, ~30 min)', tickable:true, done:true},
        {time:'11:00–13:00', text:'🧠 Nick Moss — SoulPod Health & Healing, 14 Stanley St, Richmond', fnh:true, tickable:true, done:true},
        {time:'13:00–13:30', text:'🚌 Travel home — public transport (~30 min)', tickable:true, done:true},
        {time:'13:30–14:00', text:'🍴 Lunch (after Nick Moss)'},
@@ -4066,19 +4066,17 @@ var DAYS = [
      sub:'🏀 Free Day · Study 11am',
      focus:'🏀 Free Day · Anchors 10am · FNH study 11am',
      events:[
-       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
        {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-       {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
+        {time:'11:00–11:30', text:'📚 FNH study block', fnh:true},
        {time:'09:00–21:00', text:'🏀 FREE DAY', tickable:false}
      ]},
     {id:'sun9aug', dow:'Sunday', date:'9 August', dateISO:'2026-08-09', dot:'dc-rest', week:'August',
      sub:'🏀 Free Day · Shop 9:30 · Clean kitchen 12pm · Vacuum 1pm',
      focus:'🏀 Free Day · Groceries 9:30 · Anchors 10am · Clean kitchen 12pm · Vacuum 1pm · Money date 3pm',
      events:[
-       {time:'09:30–10:15', text:'🛒 Grocery shopping', tickable:true},
-       {time:'10:15–10:30', text:'🧹 Room clean — 15 min', tickable:true},
-       {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
-       {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
+        {time:'09:30–10:15', text:'🛒 Grocery shopping', tickable:true},
+        {time:'10:30–10:45', text:'📓 Journal — 15 min', tickable:true},
+        {time:'11:00–11:30', text:'🎹 Piano practice — 30 min', tickable:true},
        {time:'12:00–13:00', text:'🍳 Kitchen clean — decent clean', tickable:true},
        {time:'13:00–13:30', text:'🧹 Vacuum the house — one good pass', tickable:true},
        {time:'15:00–15:15', text:'💰 Sunday money date — log set-aside + review', tickable:true},
@@ -4096,11 +4094,10 @@ var DAYS = [
          {time:'17:00–19:15', text:'🎭 Carey Cabaret Night 2026 — performance at Carey Baptist Grammar · arrive 5pm · band soundcheck 5:30 · doors 6:45 · show from 7pm', teaching:true}
       ]},
         {id:'tue11aug', dow:'Tuesday', date:'11 August', dateISO:'2026-08-11', dot:'dc-music', week:'August',
-         sub:'Shower visit 7:30 · Tidy room 8 · Q&A 9am · ☕ Coffee Corner 10am · Track 3–5pm · Nicole 5:30pm (offer FNH)',
-         focus:'Shower visit 7:30am · 🧹 Tidy room 8am · FNH Q&A 9–10am · ☕ Coffee Corner 10am · Track: "How it ends" 3pm · Nicole 5:30pm (offer FNH)',
+         sub:'Shower visit 7:30 · Q&A 9am · ☕ Coffee Corner 10am · Track 3–5pm · Nicole 5:30pm (offer FNH)',
+         focus:'Shower visit 7:30am · FNH Q&A 9–10am · ☕ Coffee Corner 10am · Track: "How it ends" 3pm · Nicole 5:30pm (offer FNH)',
          events:[
            {time:'07:30–08:00', text:'🚿 SHOWER VISIT #1'},
-           {time:'08:00–08:15', text:'🧹 Tidy room — 15 min', tickable:true},
            {time:'09:00–10:00', text:'🧠 FNH Weekly Q&A', fnh:true},
              {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
             {time:'10:30–10:45', text:'🧾 Invoice Carey — Cabaret Night', tickable:true, coffee:true},
@@ -4171,18 +4168,15 @@ var DAYS = [
         {time:'14:45–14:55', text:'🧽 Empty dishwasher', tickable:true, home:true, done:true},
         {time:'14:55–15:05', text:'🗑️ Empty kitchen bin', tickable:true, home:true, done:true},
         {time:'15:05–15:35', text:'🧹 General kitchen tidy', tickable:true, home:true, done:true},
-        {time:'15:35–15:45', text:'🧹 Vacuum bedroom floor', tickable:true, home:true, done:true},
          {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true, done:true},
           {time:'17:45–18:00', text:'✈️ Book Bali flights — out 6 Sep (OD 178) · back 5 Oct (OD 177) · PNR OBIUQN / KSTAGQ', tickable:true, done:true},
          {time:'18:00–18:15', text:'⭐ Bali flights', tickable:false, banner:true}
         ]},
        {id:'sat15aug', dow:'Saturday', date:'15 August', dateISO:'2026-08-15', dot:'dc-social', week:'August',
-        sub:'Deploy 10am · Film 11am · 🍽️ DINNER — Tim x Brad x Daniele 6pm',
-        focus:'Deploy supabase function 10am · 🎬 Film FNH talk 11am · DINNER — Tim x Brad x Daniele 6–10pm',
+        sub:'🍽️ DINNER — Tim x Brad x Daniele 6pm',
+        focus:'DINNER — Tim x Brad x Daniele 6–10pm',
          events:[
           {time:'07:00–07:00', text:'🎯 Focuses this week', tickable:false, dashboard:true},
-          {time:'10:00–10:30', text:'🛠 Deploy kinesiology function — supabase functions deploy get-calcom-slots', tickable:true},
-          {time:'11:00–12:30', text:'🎬 Film FNH talk-to-camera — Toorak studio · 30–45s, one idea: what FNH is and who it\'s for · open with "a neurological approach to feeling safe in your body" · 2 spots, $70 intro', tickable:true, tid:4},
           {time:'18:00–22:00', text:'🍽️ DINNER — Tim x Brad x Daniele'}
       ]},
       {id:'sun16aug', dow:'Sunday', date:'16 August', dateISO:'2026-08-16', dot:'dc-music', week:'August',
@@ -4349,15 +4343,12 @@ function populateRecurring() {
     if (dow === 4 && !hasEvent(day, /Allowance transfer/)) {
       day.events.push({time:'11:00–11:30', text:'💰 Allowance transfer — $200 (150 lean · 250 good month)'});
     }
-    // Weekly focus: SLEEP + BEDROOM (daily, ADHD-friendly small steps)
-    if (!hasEvent(day, /Bedroom reset/)) {
-      day.events.push({time:'21:00–21:30', text:'🧹 Bedroom reset — 30 min, clean & calm'});
-    }
+    // Weekly anchor: SLEEP
     if (!hasEvent(day, /Sleep by 10pm/)) {
       day.events.push({time:'22:00–22:30', text:'😴 Sleep by 10pm — lights out'});
     }
     if (day.focus.indexOf('🛌 Sleep 10pm') === -1) {
-      day.focus = '🛌 Sleep 10pm · 🧹 Bedroom 30min' + (day.focus ? ' — ' + day.focus : '');
+      day.focus = '🛌 Sleep 10pm' + (day.focus ? ' — ' + day.focus : '');
     }
   }
 
@@ -4377,18 +4368,6 @@ function populateRecurring() {
     var day = addDay(d);
     if (!hasEvent(day, /Mastery|Master/)) {
       day.events.unshift({time:'09:00–11:00', text:'🧠 FNH Mastery Catch Up', fnh:true});
-    }
-  }
-
-  // Kriya Yoga: Sun 4-5pm, Body Voice Centre Footscray (weekly, starting Aug 2)
-  for (var d = new Date('2026-08-02'); d <= endDate; d.setDate(d.getDate() + 7)) {
-    var y = d.getFullYear(), mo = d.getMonth(), da = d.getDate();
-    var iso = isoDate(y,mo,da);
-    var day = addDay(d);
-    if (!hasEvent(day, /Kriya/)) {
-      day.events.push({time:'15:00–16:00', text:'🚗 Travel to Footscray — Kriya Yoga'});
-      day.events.push({time:'16:00–17:00', text:'🧘 Kriya Yoga — Body Voice Centre, Footscray'});
-      day.events.push({time:'17:00–18:00', text:'🚗 Travel home from Kriya'});
     }
   }
 
@@ -4520,7 +4499,7 @@ function buildEvents(d) {
       study:e.study===true,
       banner:e.banner===true,
       dashboard:e.dashboard===true,
-      home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean room|Room clean|Clean kitchen|Kitchen clean|Bedroom|Tidy the house|Tidy room/i.test(e.text),
+      home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean kitchen|Kitchen clean|Tidy the house/i.test(e.text),
       fnh:e.fnh===true
     };
     return ev;
@@ -4956,8 +4935,7 @@ function renderWeekSummary(idx) {
   // Weekly goal — one clear win by end of week
   h += '<div style="background:#f2faf5;border:1px solid #dcebe2;border-left:3px solid #1D9E75;border-radius:10px;padding:14px 16px;margin-bottom:20px;">';
   h += '<div style="font-size:9px;color:#1D9E75;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;">🎯 Goal by end of week</div>';
-  h += '<div style="font-size:12px;color:#1a1a18;line-height:1.5;">A <strong>clean room</strong> and the <strong>house vacuumed</strong>.</div>';
-  h += '<div style="font-size:10px;color:#5F5E5A;margin-top:6px;">15 min room clean each day · one good vacuum pass on Saturday. Small increments beat one big push.</div>';
+  h += '<div style="font-size:12px;color:#1a1a18;line-height:1.5;">A clear, calm week — one thing at a time.</div>';
   h += '</div>';
 
   // Metrics cards
