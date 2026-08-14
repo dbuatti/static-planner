@@ -1065,7 +1065,7 @@ body { -webkit-font-smoothing: antialiased; }
   .tl { font-size: 13.5px; }
   .tc { padding: 12px 10px; gap: 8px; }
   .coffee-time, .meal-time { font-size: 10px; padding: 2px 10px; }
-  .coffee-corner, .home-corner, .meal-corner { border-radius: 24px; }
+  .coffee-corner, .home-corner, .study-corner, .meal-corner { border-radius: 24px; }
   .dh-progress { font-size: 10.5px; }
   .mn-ic { font-size: 20px; }
 }
@@ -1248,6 +1248,58 @@ body, .main { background: #FFF7F4; }
 .home-corner .tc.ticked { background: #EAF3FC; }
 .home-corner .tc.ticked .chk { background: linear-gradient(135deg,#7FA8C8,#3E7CB1); border-color: #3E7CB1; }
 .day-panel .home-corner .tc { border-left: 3px solid #5A8BC0; border-left-color: #5A8BC0; }
+
+/* Study corner — green FNH box for the all-in immersion */
+.study-corner {
+  position: relative;
+  background: linear-gradient(150deg, #EAF7EF, #D5EFE2 55%, #EAF7EF);
+  border: 3px solid #1D9E75;
+  border-radius: 30px;
+  padding: 16px 16px 12px;
+  margin: 6px 0 16px;
+  box-shadow: 0 4px 16px rgba(29, 158, 117, 0.18);
+}
+.study-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 2px 2px 4px;
+  margin-bottom: 2px;
+}
+.study-title {
+  display: flex; align-items: baseline; gap: 6px;
+  flex: 1; min-width: 0;
+  font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.03em; color: #116B4E;
+}
+.study-dur { font-size: 10px; font-weight: 800; color: #3FAa82; }
+.study-time {
+  font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
+  font-size: 11px; font-weight: 700; color: #1D9E75;
+  background: #F0FBF5; border: 2px solid #1D9E75; border-radius: 999px;
+  padding: 3px 12px; white-space: nowrap; letter-spacing: 0.02em;
+}
+.study-sub {
+  font-weight: 700; font-size: 9px; color: #2E8B6B; letter-spacing: 0.04em;
+  padding: 0 2px 10px; margin-bottom: 10px; border-bottom: 2px dashed #7BC3A5;
+}
+.study-corner .tc {
+  margin-bottom: 10px;
+  border-radius: 18px;
+  border: 2px solid #7BC3A5;
+  border-bottom-color: #5FB490;
+  background: #FCFEFD;
+  padding: 11px 14px;
+  box-shadow: 0 3px 0 #5FB490;
+}
+.study-corner .tc:last-child { margin-bottom: 2px; }
+.study-corner .tc .tl { font-size: 12.5px; font-weight: 700; color: #1F5C46; }
+.study-corner .tc .tt { color: #1D9E75; font-weight: 700; }
+.study-corner .tc:hover { background: #F2FCF7; transform: translateY(-1px); box-shadow: 0 4px 0 #5FB490; }
+.study-corner .tc.tickable:hover { background: #E9F8F0; }
+.study-corner .tc.tickable:hover .chk { border-color: #1D9E75; box-shadow: 0 0 0 3px rgba(29,158,117,0.18); }
+.study-corner .chk { width: 18px; height: 18px; min-width: 18px; border-radius: 7px; border: 2px solid #7BC3A5; background: #F2FBF6; margin-top: 1px; }
+.study-corner .tc.ticked { background: #E9F8F0; }
+.study-corner .tc.ticked .chk { background: linear-gradient(135deg,#3FCB96,#1D9E75); border-color: #1D9E75; }
+.day-panel .study-corner .tc { border-left: 3px solid #1D9E75; border-left-color: #1D9E75; }
 
 /* Meal corner — quiet grey box for lunch/dinner placeholders */
 .meal-corner {
@@ -4062,8 +4114,8 @@ var DAYS = [
          {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
        ]},
       {id:'fri14aug', dow:'Friday', date:'14 August', dateISO:'2026-08-14', dot:'dc-rest', week:'August',
-          sub:'Coffee + admin 10–11:30 · Piano 11:30 · Home corner 1:30 · Gig reflection 2:25 · Alice 3:30pm · Book flights 4:30pm',
-          focus:'Coffee + admin 10am (Tim · Ali · Phil · Aaron) · Piano 11:30 · Home corner 1:30 · Gig reflection 2:25 · Study 2:55 · Book Bali flights 4:30pm',
+          sub:'Coffee + admin 10–11:30 · Piano 11:30 · Home corner 1:30 · Study corner 2:55 · Book flights 4:30pm',
+          focus:'Coffee + admin 10am (Tim · Ali · Phil · Aaron) · Piano 11:30 · Home corner 1:30 · Gig reflection 2:25 · FNH Study 2:55 · Book Bali flights 4:30pm',
       events:[
         {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:30–10:45', text:'📩 Reply Tim Liu + Brad — games night options', tickable:true, coffee:true},
@@ -4077,7 +4129,10 @@ var DAYS = [
         {time:'13:45–13:55', text:'🗑️ Empty kitchen bin', tickable:true, home:true},
         {time:'13:55–14:25', text:'🧺 Fold laundry — one load', tickable:true, home:true},
         {time:'14:25–14:55', text:'📓 Write gig reflection — Ali\'s party', tickable:true},
-        {time:'14:55–15:25', text:'📚 Study — 30 min', tickable:true},
+        {time:'14:55–15:55', text:'📚 FNH Study Corner', tickable:false, study:true},
+        {time:'14:55–15:30', text:'🎥 Watch FNH foundation videos', tickable:true, study:true},
+        {time:'15:30–15:45', text:'🌐 Check in — FNH Kajabi site', tickable:true, study:true},
+        {time:'15:45–15:55', text:'📝 FNH worksheets', tickable:true, study:true},
          {time:'15:30–16:30', text:'🎭 Review "Alice by Heart" for Jane — Carey', tickable:true, done:true},
          {time:'16:30–16:45', text:'✈️ Book Bali flights — Sep 7–19 · compare options, pay before end of August', tickable:true},
          {time:'16:45–17:00', text:'⭐ Bali flights', tickable:false, banner:true}
@@ -4409,6 +4464,7 @@ function buildEvents(d) {
       teaching:e.teaching===true,
       perf:e.perf===true,
       coffee:e.coffee===true,
+      study:e.study===true,
       banner:e.banner===true,
       home:e.home===true||/🧹|🧽|🧺|Laundry|Vacuum|Dishwasher|Clean room|Room clean|Clean kitchen|Kitchen clean|Bedroom|Tidy the house|Tidy room/i.test(e.text),
       fnh:e.fnh===true
@@ -4504,6 +4560,7 @@ function renderDays() {
     var catTotals = {};
     activeEvs.forEach(function(ev) {
       if (ev.free || ev.banner) return;
+      if (ev.study && !ev.tickable) return;
       var cat = eventCategory(ev);
       if (cat.id === 'meal') return;
       var dur = ev.dur || 0;
@@ -4612,6 +4669,7 @@ function renderDays() {
     var lastPeriod = '';
     var inCoffee = false;
     var inHome = false;
+    var inStudy = false;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
@@ -4622,6 +4680,7 @@ function renderDays() {
       }
       if (ev.coffee && !inCoffee) {
         if (inHome) { h += '</div>'; inHome = false; }
+        if (inStudy) { h += '</div>'; inStudy = false; }
         h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
         return;
@@ -4631,11 +4690,22 @@ function renderDays() {
       }
       if (ev.home && !inHome) {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
+        if (inStudy) { h += '</div>'; inStudy = false; }
         h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span></div>';
         inHome = true;
       } else if (!ev.home && inHome) {
         h += '</div>';
         inHome = false;
+      }
+      if (ev.study && !inStudy) {
+        if (inHome) { h += '</div>'; inHome = false; }
+        if (inCoffee) { h += '</div>'; inCoffee = false; }
+        h += '<div class="study-corner"><div class="study-head"><span class="study-title">'+esc(ev.text)+' <span class="study-dur">'+fmtDur(ev.dur)+'</span></span><span class="study-time">'+esc(ev.time)+'</span></div><div class="study-sub">watch · Kajabi · worksheets</div>';
+        inStudy = true;
+        return;
+      } else if (!ev.study && inStudy) {
+        h += '</div>';
+        inStudy = false;
       }
       if (ev.meal) {
         var period = getPeriod(ev.time);
@@ -4671,6 +4741,7 @@ function renderDays() {
     });
     if (inCoffee) h += '</div>';
     if (inHome) h += '</div>';
+    if (inStudy) h += '</div>';
     if (completedEvs.length) {
       var allDone = doneN === totalN;
       h += '<details class="done-fold"'+(allDone?' open':'')+'>';
