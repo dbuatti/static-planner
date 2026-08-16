@@ -1330,6 +1330,21 @@ body, .main { background: #FFF7F4; }
 .study-corner .tc.ticked .chk { background: linear-gradient(135deg,#3FCB96,#1D9E75); border-color: #1D9E75; }
 .day-panel .study-corner .tc { border-left: 3px solid #1D9E75; border-left-color: #1D9E75; }
 
+/* Daily reminder — out of time, shows on every day until a set date */
+.daily-reminder {
+  position: relative;
+  background: linear-gradient(150deg, #FBF3E4, #F5E6C8 55%, #FBF3E4);
+  border: 3px solid #C98A4A;
+  border-radius: 30px;
+  padding: 14px 16px 12px;
+  margin: 16px 0 14px;
+  box-shadow: 0 4px 16px rgba(201, 138, 74, 0.18);
+}
+.reminder-head { padding: 0 2px 6px; border-bottom: 2px dashed #D9B97E; margin-bottom: 8px; }
+.reminder-title { font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif; font-size: 12.5px; font-weight: 800; letter-spacing: 0.03em; color: #8B6914; }
+.reminder-line { font-size: 11px; font-weight: 600; color: #5F5E5A; line-height: 1.45; padding: 2px; }
+.reminder-line b { font-weight: 800; color: #C0392B; }
+
 /* Meal corner — quiet grey box for lunch/dinner placeholders */
 .meal-corner {
   position: relative;
@@ -4613,6 +4628,18 @@ function createFree(s, e, cls) {
 }
 
 // ── RENDER DAYS ──
+// ── DAILY REMINDER (out of time — shows on every day until the date below) ──
+var DAILY_REMINDER = {
+  until: '2026-09-06',
+  icon: '📌',
+  title: 'Events before Bali',
+  lines: [
+    '<b>🎤 Choir</b> — \u201cKoda\u201d from the notebook, 2\u20133h \u00b7 Infinity Co TBC (20\u201330) \u00b7 Laura + Susan already asked \u00b7 open: cost, length, schedule',
+    '<b>🎹 Piano bath</b> — sound / relaxation / embodiment \u00b7 maybe Fri 4 Sep \u00b7 waiting on Elle @ Infinity Co (or Body Voice Center) \u00b7 open: price, space',
+    '<b>🔗 Today:</b> open the project \u2014 look at the links, check the posts, chase what\'s waiting. One touch is enough.'
+  ]
+};
+
 function renderDays() {
   var c = document.getElementById('day-panels-container');
   if (!c) return;
@@ -4770,6 +4797,12 @@ function renderDays() {
     h += '<div class="goal-banner-item"><span class="label wish">🌍 Wish:</span> <span class="text">A world where everyone has the nervous system safety to express their unique self.</span></div>';
     h += '<div class="goal-banner-item"><span class="label fiveyear">🎯 5-Year:</span> <span class="text">A full-time FNH + voice practice at $100K+, helping performers and overthinkers — using all of me.</span></div>';
     h += '</div></div>';
+    if (DAILY_REMINDER && d.dateISO <= DAILY_REMINDER.until) {
+      h += '<div class="daily-reminder">';
+      h += '<div class="reminder-head"><span class="reminder-title">'+DAILY_REMINDER.icon+' '+DAILY_REMINDER.title+'</span></div>';
+      DAILY_REMINDER.lines.forEach(function(l) { h += '<div class="reminder-line">'+l+'</div>'; });
+      h += '</div>';
+    }
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
     var inCoffee = false;
