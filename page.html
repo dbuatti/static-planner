@@ -1330,6 +1330,88 @@ body, .main { background: #FFF7F4; }
 .study-corner .tc.ticked .chk { background: linear-gradient(135deg,#3FCB96,#1D9E75); border-color: #1D9E75; }
 .day-panel .study-corner .tc { border-left: 3px solid #1D9E75; border-left-color: #1D9E75; }
 
+/* FNH corner — dark green box for assessments + catch-ups */
+.fnh-corner {
+  position: relative;
+  background: linear-gradient(150deg, #E6F5ED, #D0EBDB 55%, #E6F5ED);
+  border: 3px solid #1A7A56;
+  border-radius: 30px;
+  padding: 16px 16px 12px;
+  margin: 6px 0 16px;
+  box-shadow: 0 4px 16px rgba(26, 122, 86, 0.18);
+}
+.fnh-head {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
+  color: #145C3E;
+  padding: 2px 2px 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #7AB89A;
+}
+.fnh-head .fnh-icon { font-size: 16px; }
+.fnh-sub { font-weight: 700; font-size: 9px; color: #1A7A56; letter-spacing: 0.04em; }
+.fnh-corner .tc {
+  margin-bottom: 10px;
+  border-radius: 18px;
+  border: 2px solid #8CC4A8;
+  border-bottom-color: #7AB496;
+  background: #F6FCF9;
+  padding: 11px 14px;
+  box-shadow: 0 3px 0 #7AB496;
+}
+.fnh-corner .tc:last-child { margin-bottom: 2px; }
+.fnh-corner .tc .tl { font-size: 12.5px; font-weight: 700; color: #1A5C42; }
+.fnh-corner .tc .tt { color: #1A7A56; font-weight: 700; }
+.fnh-corner .tc:hover { background: #EFF9F3; transform: translateY(-1px); box-shadow: 0 4px 0 #7AB496; }
+.fnh-corner .tc.tickable:hover { background: #E5F5EC; }
+.fnh-corner .tc.tickable:hover .chk { border-color: #1A7A56; box-shadow: 0 0 0 3px rgba(26,122,86,0.18); }
+.fnh-corner .chk { width: 18px; height: 18px; min-width: 18px; border-radius: 7px; border: 2px solid #7AB496; background: #F2FBF6; margin-top: 1px; }
+.fnh-corner .tc.ticked { background: #E5F5EC; }
+.fnh-corner .tc.ticked .chk { background: linear-gradient(135deg,#3CB88A,#1A7A56); border-color: #1A7A56; }
+.day-panel .fnh-corner .tc { border-left: 3px solid #1A7A56; border-left-color: #1A7A56; }
+
+/* Teaching corner — purple box for voice + piano lessons */
+.teaching-corner {
+  position: relative;
+  background: linear-gradient(150deg, #F3ECF8, #E6DBF2 55%, #F3ECF8);
+  border: 3px solid #8A5CA0;
+  border-radius: 30px;
+  padding: 16px 16px 12px;
+  margin: 6px 0 16px;
+  box-shadow: 0 4px 16px rgba(138, 92, 160, 0.18);
+}
+.teaching-head {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
+  font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
+  color: #5A3D72;
+  padding: 2px 2px 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px dashed #B89ECE;
+}
+.teaching-head .teaching-icon { font-size: 16px; }
+.teaching-sub { font-weight: 700; font-size: 9px; color: #8A5CA0; letter-spacing: 0.04em; }
+.teaching-corner .tc {
+  margin-bottom: 10px;
+  border-radius: 18px;
+  border: 2px solid #C8B0DC;
+  border-bottom-color: #B89ECE;
+  background: #FAF7FD;
+  padding: 11px 14px;
+  box-shadow: 0 3px 0 #B89ECE;
+}
+.teaching-corner .tc:last-child { margin-bottom: 2px; }
+.teaching-corner .tc .tl { font-size: 12.5px; font-weight: 700; color: #5A3D72; }
+.teaching-corner .tc .tt { color: #8A5CA0; font-weight: 700; }
+.teaching-corner .tc:hover { background: #F5F0FA; transform: translateY(-1px); box-shadow: 0 4px 0 #B89ECE; }
+.teaching-corner .tc.tickable:hover { background: #EDE5F4; }
+.teaching-corner .tc.tickable:hover .chk { border-color: #8A5CA0; box-shadow: 0 0 0 3px rgba(138,92,160,0.18); }
+.teaching-corner .chk { width: 18px; height: 18px; min-width: 18px; border-radius: 7px; border: 2px solid #B89ECE; background: #F8F4FC; margin-top: 1px; }
+.teaching-corner .tc.ticked { background: #EDE5F4; }
+.teaching-corner .tc.ticked .chk { background: linear-gradient(135deg,#A078B8,#8A5CA0); border-color: #8A5CA0; }
+.day-panel .teaching-corner .tc { border-left: 3px solid #8A5CA0; border-left-color: #8A5CA0; }
+
 /* Daily reminder — out of time, shows on every day until a set date */
 .daily-reminder {
   position: relative;
@@ -4285,14 +4367,15 @@ var DAYS = [
           {time:'15:30–16:30', text:'🩺 FNH Neuro-Health Assessment — Ashna Nain ($70)', fnh:true}
      ]},
      {id:'thu20aug', dow:'Thursday', date:'20 August', dateISO:'2026-08-20', dot:'dc-rest', week:'August',
-      sub:'☕ Coffee 10am · Bali visa + accom 10:30 · Room pile + bathroom 2pm',
-      focus:'Coffee @Little Quarter 10 · Bali visa/entry check 10:30 · Book first-night accom (6 Sep) 11 · Room pile + bathroom 2',
+       sub:'☕ Coffee 10am · Bali visa + accom 10:30 · Room pile + bathroom + air fryer 2pm',
+       focus:'Coffee @Little Quarter 10 · Bali visa/entry check 10:30 · Book first-night accom (6 Sep) 11 · Room pile + bathroom + air fryer 2',
       events:[
         {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:30–11:00', text:'🛂 Check Bali visa / entry — eVOA vs 30-day visa-free', tickable:true},
 {time:'11:00–11:45', text:'🏨 Research + book first-night accommodation — Bali (arrive 6 Sep 11:25am)', tickable:true},
          {time:'14:00–14:15', text:'🧺 Room floor pile — sort: bin/recycle (part 3)', tickable:true, home:true},
          {time:'14:15–14:30', text:'🧹 Tidy bathroom (15m)', tickable:true, home:true},
+         {time:'14:30–14:50', text:'🍟 Clean the air fryer', tickable:true, home:true},
          {time:'12:00–14:00', text:'🍴 Lunch'}
      ]},
      {id:'fri21aug', dow:'Friday', date:'21 August', dateISO:'2026-08-21', dot:'dc-rest', week:'August',
@@ -4816,6 +4899,8 @@ function renderDays() {
     var inCoffee = false;
     var inHome = false;
     var inStudy = false;
+    var inFnh = false;
+    var inTeaching = false;
     var dashDone = false;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
@@ -4842,6 +4927,8 @@ function renderDays() {
       if (ev.coffee && !inCoffee) {
         if (inHome) { h += '</div>'; inHome = false; }
         if (inStudy) { h += '</div>'; inStudy = false; }
+        if (inFnh) { h += '</div>'; inFnh = false; }
+        if (inTeaching) { h += '</div>'; inTeaching = false; }
         h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
         return;
@@ -4852,6 +4939,8 @@ function renderDays() {
       if (ev.home && !inHome) {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
         if (inStudy) { h += '</div>'; inStudy = false; }
+        if (inFnh) { h += '</div>'; inFnh = false; }
+        if (inTeaching) { h += '</div>'; inTeaching = false; }
         h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span></div>';
         inHome = true;
       } else if (!ev.home && inHome) {
@@ -4861,12 +4950,36 @@ function renderDays() {
       if (ev.study && !inStudy) {
         if (inHome) { h += '</div>'; inHome = false; }
         if (inCoffee) { h += '</div>'; inCoffee = false; }
+        if (inFnh) { h += '</div>'; inFnh = false; }
+        if (inTeaching) { h += '</div>'; inTeaching = false; }
         h += '<div class="study-corner"><div class="study-head"><span class="study-title">'+esc(ev.text)+' <span class="study-dur">'+fmtDur(ev.dur)+'</span></span><span class="study-time">'+esc(ev.time)+'</span></div><div class="study-sub">watch · Kajabi · worksheets</div>';
         inStudy = true;
         return;
       } else if (!ev.study && inStudy) {
         h += '</div>';
         inStudy = false;
+      }
+      if (ev.fnh && !inFnh) {
+        if (inCoffee) { h += '</div>'; inCoffee = false; }
+        if (inHome) { h += '</div>'; inHome = false; }
+        if (inStudy) { h += '</div>'; inStudy = false; }
+        if (inTeaching) { h += '</div>'; inTeaching = false; }
+        h += '<div class="fnh-corner"><div class="fnh-head"><span class="fnh-icon">🧠</span> FNH <span class="fnh-sub">assessments + catch-ups</span></div>';
+        inFnh = true;
+      } else if (!ev.fnh && inFnh) {
+        h += '</div>';
+        inFnh = false;
+      }
+      if (ev.teaching && !inTeaching) {
+        if (inCoffee) { h += '</div>'; inCoffee = false; }
+        if (inHome) { h += '</div>'; inHome = false; }
+        if (inStudy) { h += '</div>'; inStudy = false; }
+        if (inFnh) { h += '</div>'; inFnh = false; }
+        h += '<div class="teaching-corner"><div class="teaching-head"><span class="teaching-icon">🎵</span> Teaching <span class="teaching-sub">voice + piano lessons</span></div>';
+        inTeaching = true;
+      } else if (!ev.teaching && inTeaching) {
+        h += '</div>';
+        inTeaching = false;
       }
       if (ev.meal) {
         var period = getPeriod(ev.time);
@@ -4903,6 +5016,8 @@ function renderDays() {
     if (inCoffee) h += '</div>';
     if (inHome) h += '</div>';
     if (inStudy) h += '</div>';
+    if (inFnh) h += '</div>';
+    if (inTeaching) h += '</div>';
     if (completedEvs.length) {
       var allDone = doneN === totalN;
       h += '<details class="done-fold"'+(allDone?' open':'')+'>';
