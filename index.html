@@ -535,8 +535,8 @@ body { -webkit-font-smoothing: antialiased; }
 .tl { font-size: 12px; font-weight: 400; line-height: 1.35; color: #1a1a18; }
 .tl a { color: #2A6DB5; text-decoration: underline; text-decoration-color: #2A6DB580; text-underline-offset: 2px; }
 .tl a:hover { text-decoration-color: #2A6DB5; }
-.gap-row { display:flex; justify-content:center; padding:6px 0 6px 38px; }
-.gap-label { font-size:11px; font-weight:500; color:#999; letter-spacing:0.02em; }
+.gap-row { display:flex; justify-content:center; padding:8px 0 8px 38px; }
+.gap-label { font-size:11px; font-weight:600; color:#7A9A6A; background:#EFF6EC; border:1px solid #C8DFC0; border-radius:10px; padding:2px 10px; letter-spacing:0.03em; }
 .tn { font-size: 11px; color: #5F5E5A; margin-top: 3px; line-height: 1.4; }
 
 /* EVENT CATEGORY ACCENT */
@@ -1124,7 +1124,7 @@ body, .main { background: #FFF7F4; }
 .tc.fixed { background: #FDF8F5; }
 .tc.tickable:hover { background: #FFF0F4; }
 .tc.warn-t { border-color: #E8C882; background: #FFFBF0; }
-.day-panel .tc { border-radius: 0; border-bottom-color: #F4E3DC; border-left-color: #F0D8D0; }
+.day-panel .tc { border-radius: 0; border-left-color: #F0D8D0; }
 .day-panel .tc:hover { background: rgba(255,240,244,0.7); }
 .day-panel .tc.tickable:hover { background: #FFF0F4; }
 .day-panel .tc.fnh { background: rgba(180,230,205,0.16); }
@@ -4929,10 +4929,19 @@ function renderDays() {
     var inFnh = false;
     var inTeaching = false;
     var dashDone = false;
-    var lastEndMin = null;
+    var prevEndMin = null;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
+      var evEnd = ev.endMin || ev.startMin;
+      if (prevEndMin !== null && ev.startMin > prevEndMin && !ev.free && !ev.meal && !ev.banner && !ev.dashboard) {
+        var gap = ev.startMin - prevEndMin;
+        if (gap >= 10 && gap < 60) {
+          var gM = gap%60;
+          h += '<div class="gap-row"><span class="gap-label">'+gM+' min free</span></div>';
+        }
+      }
+      prevEndMin = evEnd;
       if (ev.dashboard) {
         if (dashDone) return;
         dashDone = true;
@@ -5009,17 +5018,6 @@ function renderDays() {
       } else if (!ev.teaching && inTeaching) {
         h += '</div>';
         inTeaching = false;
-      }
-      if (!ev.free && !ev.meal && !ev.banner) {
-        var inCornerNow = inCoffee || inHome || inStudy || inFnh || inTeaching;
-        if (!inCornerNow && lastEndMin !== null && ev.startMin > lastEndMin) {
-          var gap = ev.startMin - lastEndMin;
-          if (gap >= 10 && gap < 60) {
-            var gM = gap%60;
-            h += '<div class="gap-row"><span class="gap-label">'+gM+'m</span></div>';
-          }
-        }
-        if (!inCornerNow) lastEndMin = ev.endMin;
       }
       if (ev.meal) {
         var period = getPeriod(ev.time);
