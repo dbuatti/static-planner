@@ -1251,7 +1251,7 @@ body, .main { background: #FFF7F4; }
   box-shadow: 0 4px 16px rgba(90, 139, 192, 0.18);
 }
 .home-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
   font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
   color: #2F5B8A;
@@ -1262,6 +1262,7 @@ body, .main { background: #FFF7F4; }
 .home-head .home-icon { font-size: 16px; }
 .home-sub { font-weight: 700; font-size: 9px; color: #5A8BC0; letter-spacing: 0.04em; }
 .home-time {
+  margin-left: auto;
   font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
   font-size: 11px; font-weight: 700; color: #5A8BC0;
   background: #EDF4FB; border: 2px solid #5A8BC0; border-radius: 999px;
@@ -1350,7 +1351,7 @@ body, .main { background: #FFF7F4; }
   box-shadow: 0 4px 16px rgba(26, 122, 86, 0.18);
 }
 .fnh-head {
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  display: flex; align-items: center; gap: 8px;
   font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
   font-size: 13px; font-weight: 800; letter-spacing: 0.05em;
   color: #145C3E;
@@ -1361,6 +1362,7 @@ body, .main { background: #FFF7F4; }
 .fnh-head .fnh-icon { font-size: 16px; }
 .fnh-sub { font-weight: 700; font-size: 9px; color: #1A7A56; letter-spacing: 0.04em; }
 .fnh-time {
+  margin-left: auto;
   font-family: 'Baloo 2', 'Quicksand', -apple-system, sans-serif;
   font-size: 11px; font-weight: 700; color: #1A7A56;
   background: #E8F6EF; border: 2px solid #1A7A56; border-radius: 999px;
@@ -4945,14 +4947,6 @@ function renderDays() {
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
       var evEnd = ev.endMin || ev.startMin;
-      if (prevEndMin !== null && ev.startMin > prevEndMin && !ev.free && !ev.meal && !ev.banner && !ev.dashboard) {
-        var gap = ev.startMin - prevEndMin;
-        if (gap >= 10 && gap < 60) {
-          var gM = gap%60;
-          h += '<div class="gap-row"><span class="gap-label">'+gM+' min free</span></div>';
-        }
-      }
-      prevEndMin = evEnd;
       if (ev.dashboard) {
         if (dashDone) return;
         dashDone = true;
@@ -4973,6 +4967,19 @@ function renderDays() {
         return;
       }
       var wasInCorner = inCoffee || inHome || inStudy || inFnh || inTeaching;
+      var cornerEndMin = null;
+      if (!ev.coffee && inCoffee) { cornerEndMin = prevEndMin; h += '</div>'; inCoffee = false; }
+      if (!ev.home && inHome) { cornerEndMin = prevEndMin; h += '</div>'; inHome = false; }
+      if (!ev.study && inStudy) { cornerEndMin = prevEndMin; h += '</div>'; inStudy = false; }
+      if (!ev.fnh && inFnh) { cornerEndMin = prevEndMin; h += '</div>'; inFnh = false; }
+      if (!ev.teaching && inTeaching) { cornerEndMin = prevEndMin; h += '</div>'; inTeaching = false; }
+      if (wasInCorner && cornerEndMin !== null && ev.startMin > cornerEndMin && !ev.free && !ev.meal && !ev.banner && !ev.dashboard) {
+        var gap = ev.startMin - cornerEndMin;
+        if (gap >= 10 && gap < 60) {
+          var gM = gap%60;
+          h += '<div class="gap-row"><span class="gap-label">'+gM+' min free</span></div>';
+        }
+      }
       if (ev.coffee && !inCoffee) {
         if (inHome) { h += '</div>'; inHome = false; }
         if (inStudy) { h += '</div>'; inStudy = false; }
@@ -4981,9 +4988,6 @@ function renderDays() {
         h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
         inCoffee = true;
         return;
-      } else if (!ev.coffee && inCoffee) {
-        h += '</div>';
-        inCoffee = false;
       }
       if (ev.home && !inHome) {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
@@ -4992,9 +4996,6 @@ function renderDays() {
         if (inTeaching) { h += '</div>'; inTeaching = false; }
         h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span><span class="home-time">'+esc(ev.time)+'</span></div>';
         inHome = true;
-      } else if (!ev.home && inHome) {
-        h += '</div>';
-        inHome = false;
       }
       if (ev.study && !inStudy) {
         if (inHome) { h += '</div>'; inHome = false; }
@@ -5004,9 +5005,6 @@ function renderDays() {
         h += '<div class="study-corner"><div class="study-head"><span class="study-title">'+esc(ev.text)+' <span class="study-dur">'+fmtDur(ev.dur)+'</span></span><span class="study-time">'+esc(ev.time)+'</span></div><div class="study-sub">watch · Kajabi · worksheets</div>';
         inStudy = true;
         return;
-      } else if (!ev.study && inStudy) {
-        h += '</div>';
-        inStudy = false;
       }
       if (ev.fnh && !inFnh) {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
@@ -5015,9 +5013,6 @@ function renderDays() {
         if (inTeaching) { h += '</div>'; inTeaching = false; }
         h += '<div class="fnh-corner"><div class="fnh-head"><span class="fnh-icon">🧠</span> FNH <span class="fnh-sub">assessments + catch-ups</span><span class="fnh-time">'+esc(ev.time)+'</span></div>';
         inFnh = true;
-      } else if (!ev.fnh && inFnh) {
-        h += '</div>';
-        inFnh = false;
       }
       if (ev.teaching && !inTeaching) {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
@@ -5026,9 +5021,6 @@ function renderDays() {
         if (inFnh) { h += '</div>'; inFnh = false; }
         h += '<div class="teaching-corner"><div class="teaching-head"><span class="teaching-icon">🎵</span> Teaching <span class="teaching-sub">voice + piano lessons</span></div>';
         inTeaching = true;
-      } else if (!ev.teaching && inTeaching) {
-        h += '</div>';
-        inTeaching = false;
       }
       if (ev.meal) {
         var period = getPeriod(ev.time);
@@ -5048,6 +5040,7 @@ function renderDays() {
         h += '</div>';
         return;
       }
+      prevEndMin = evEnd;
       var evColor = eventCategory(ev).color;
       var period = getPeriod(ev.time);
       if (period !== lastPeriod) { h += '<div class="sl">'+period+'</div>'; lastPeriod = period; }
