@@ -533,8 +533,8 @@ body { -webkit-font-smoothing: antialiased; }
 .tt { font-size: 11px; font-weight: 600; color: #5F5E5A; min-width: 70px; flex-shrink: 0; padding-top: 1px; }
 .tb { flex: 1; min-width: 0; }
 .tl { font-size: 12px; font-weight: 400; line-height: 1.35; color: #1a1a18; }
-.tl a { color: inherit; text-decoration: none; border-bottom: 1px dotted #aaa; }
-.tl a:hover { border-bottom-color: #1a1a18; }
+.tl a { color: #2A6DB5; text-decoration: underline; text-decoration-color: #2A6DB580; text-underline-offset: 2px; }
+.tl a:hover { text-decoration-color: #2A6DB5; }
 .tn { font-size: 11px; color: #5F5E5A; margin-top: 3px; line-height: 1.4; }
 
 /* EVENT CATEGORY ACCENT */
@@ -5033,7 +5033,7 @@ function renderDays() {
       var inlineStyle = ev.free ? '' : ' style="border-left:3px solid '+evColor+'"';
       h += '<div class="'+cls+'"'+did+dataLive+inlineStyle+'>';
       if (ev.tickable || ev.free) h += '<div class="chk"></div>';
-      h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">'+ev.text+'</a>':ev.text);
+      h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text);
       if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
       h += '</div></div></div>';
     });
@@ -5052,7 +5052,7 @@ function renderDays() {
         var did = ' data-tickid="'+ev._tickId+'"';
         h += '<div class="'+cls+'"'+did+' style="opacity:0.5;">';
         h += '<div class="chk">✓</div>';
-        h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:#888;">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">'+ev.text+'</a>':ev.text)+'</div></div></div>';
+        h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:#888;">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text)+'</div></div></div>';
       });
       h += '</div></details>';
     }
@@ -5766,7 +5766,7 @@ function renderArchive() {
       html += '<div class="tc ticked" style="opacity:0.55;margin-bottom:6px;">';
       html += '<div class="chk">✓</div>';
       html += '<div class="tt" style="min-width:66px;">' + ev.time + '</div>';
-      html += '<div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:#888;">' + (ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()" style="color:inherit;text-decoration:none;">'+ev.text+'</a>':ev.text) + '</div></div></div>';
+      html += '<div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:#888;">' + (ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text) + '</div></div></div>';
     });
   });
   if (!any) html += '<div style="color:#B4B2A9;font-size:12px;padding:24px 4px;text-align:center;">Nothing archived yet.</div>';
