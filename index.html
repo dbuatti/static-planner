@@ -4686,7 +4686,7 @@ function buildEvents(d) {
   var evs = (d.events||[]).map(function(e) {
     var r=timeRange(e.time);
     var ev = {
-      time:e.time, text:e.text,
+      time:e.time, text:e.text, link:e.link||null,
       startMin:toMin(r.start), endMin:toMin(r.end),
       dur:calcDur(e),
       buffer:e.buffer!==undefined?e.buffer:e.text.startsWith('🔒'),
