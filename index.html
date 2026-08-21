@@ -5001,6 +5001,8 @@ function renderDays() {
     var inTeaching = false;
     var dashDone = false;
     var prevEndMin = null;
+    var cornerStartMin = null;
+    var prevCornerType = null;
     var merged = activeEvs.concat(freeSlots);
     merged.sort(function(a,b){return a.startMin-b.startMin;});
     merged.forEach(function(ev) {
@@ -5025,6 +5027,7 @@ function renderDays() {
         return;
       }
       var wasInCorner = inCoffee || inHome || inStudy || inFnh || inTeaching;
+      prevCornerType = wasInCorner ? (inCoffee ? 'coffee' : inHome ? 'home' : inStudy ? 'study' : inFnh ? 'fnh' : 'teaching') : null;
       var cornerEndMin = null;
       if (!ev.coffee && inCoffee) { cornerEndMin = prevEndMin; h += '</div>'; inCoffee = false; }
       if (!ev.home && inHome) { cornerEndMin = prevEndMin; h += '</div>'; inHome = false; }
@@ -5038,12 +5041,16 @@ function renderDays() {
           h += '<div class="gap-row"><span class="gap-label">'+gM+' min free</span></div>';
         }
       }
+      if (!wasInCorner && prevCornerType) {
+        h = h.replace(/(<span class="corner-time-range">)([^<]*)(<\/span>)/, '$1'+minToTime(cornerStartMin)+'–'+minToTime(prevEndMin)+' <span class="corner-dur">'+fmtDur(prevEndMin - cornerStartMin)+'<\/span>$3');
+      }
       if (ev.coffee && !inCoffee) {
         if (inHome) { h += '</div>'; inHome = false; }
         if (inStudy) { h += '</div>'; inStudy = false; }
         if (inFnh) { h += '</div>'; inFnh = false; }
         if (inTeaching) { h += '</div>'; inTeaching = false; }
-        h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time">'+esc(ev.time)+'</span></div><div class="coffee-sub">sip + tick things off</div>';
+        h += '<div class="coffee-corner"><div class="coffee-head"><span class="coffee-title">'+esc(ev.text)+' <span class="coffee-dur">'+fmtDur(ev.dur)+'</span></span><span class="coffee-time"><span class="corner-time-range">'+esc(ev.time)+'</span></span></div><div class="coffee-sub">sip + tick things off</div>';
+        cornerStartMin = ev.startMin;
         inCoffee = true;
         return;
       }
@@ -5052,7 +5059,8 @@ function renderDays() {
         if (inStudy) { h += '</div>'; inStudy = false; }
         if (inFnh) { h += '</div>'; inFnh = false; }
         if (inTeaching) { h += '</div>'; inTeaching = false; }
-        h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span><span class="home-time">'+esc(ev.time)+'</span></div>';
+        h += '<div class="home-corner"><div class="home-head"><span class="home-icon">🏠</span> Home Corner <span class="home-sub">chores + house bits</span><span class="home-time"><span class="corner-time-range">'+esc(ev.time)+'</span></span></div>';
+        cornerStartMin = ev.startMin;
         inHome = true;
       }
       if (ev.study && !inStudy) {
@@ -5060,7 +5068,8 @@ function renderDays() {
         if (inCoffee) { h += '</div>'; inCoffee = false; }
         if (inFnh) { h += '</div>'; inFnh = false; }
         if (inTeaching) { h += '</div>'; inTeaching = false; }
-        h += '<div class="study-corner"><div class="study-head"><span class="study-title">'+esc(ev.text)+' <span class="study-dur">'+fmtDur(ev.dur)+'</span></span><span class="study-time">'+esc(ev.time)+'</span></div><div class="study-sub">watch · Kajabi · worksheets</div>';
+        h += '<div class="study-corner"><div class="study-head"><span class="study-title">'+esc(ev.text)+' <span class="study-dur">'+fmtDur(ev.dur)+'</span></span><span class="study-time"><span class="corner-time-range">'+esc(ev.time)+'</span></span></div><div class="study-sub">watch · Kajabi · worksheets</div>';
+        cornerStartMin = ev.startMin;
         inStudy = true;
         return;
       }
@@ -5069,7 +5078,8 @@ function renderDays() {
         if (inHome) { h += '</div>'; inHome = false; }
         if (inStudy) { h += '</div>'; inStudy = false; }
         if (inTeaching) { h += '</div>'; inTeaching = false; }
-        h += '<div class="fnh-corner"><div class="fnh-head"><span class="fnh-icon">🧠</span> FNH <span class="fnh-sub">assessments + catch-ups</span><span class="fnh-time">'+esc(ev.time)+'</span></div>';
+        h += '<div class="fnh-corner"><div class="fnh-head"><span class="fnh-icon">🧠</span> FNH <span class="fnh-sub">assessments + catch-ups</span><span class="fnh-time"><span class="corner-time-range">'+esc(ev.time)+'</span></span></div>';
+        cornerStartMin = ev.startMin;
         inFnh = true;
       }
       if (ev.teaching && !inTeaching) {
@@ -5078,6 +5088,7 @@ function renderDays() {
         if (inStudy) { h += '</div>'; inStudy = false; }
         if (inFnh) { h += '</div>'; inFnh = false; }
         h += '<div class="teaching-corner"><div class="teaching-head"><span class="teaching-icon">🎵</span> Teaching <span class="teaching-sub">voice + piano lessons</span></div>';
+        cornerStartMin = ev.startMin;
         inTeaching = true;
       }
       if (ev.meal) {
