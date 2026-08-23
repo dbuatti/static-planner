@@ -1217,6 +1217,7 @@ body, .main { background: #FFF7F4; }
   background: #FFF8EC; border: 2px solid #F08A3C; border-radius: 999px;
   padding: 3px 12px; white-space: nowrap; letter-spacing: 0.02em;
 }
+.corner-dur { font-weight: 400; opacity: 0.7; margin-left: 4px; }
 .coffee-sub {
   font-weight: 700; font-size: 9px; color: #C97A35; letter-spacing: 0.04em;
   padding: 0 2px 10px; margin-bottom: 10px; border-bottom: 2px dashed #E8A66A;
@@ -4471,11 +4472,12 @@ var DAYS = [
          {time:'08:30–15:00', text:'🧘 Kriya Yoga Technique Review and Practice — Emerald Hall, The Russian House, 118 Greeves St, Fitzroy VIC 3065'}
      ]},
      {id:'mon24aug', dow:'Monday', date:'24 August', dateISO:'2026-08-24', dot:'dc-music', week:'August',
-       sub:'🩸 Blood test 8am · Study 9am · Susan FNH 10am · ☕ Coffee 11am · Candy FNH 2pm · Brendan FNH 3:30pm · Bella 4:45pm · Sam rehearsal 6:30pm',
-      focus:'🩸 Blood test walk-in 8am · Study 9am · Susan FNH 10am · Coffee with friends 11 · Candy FNH 2pm · Brendan FNH (COMMUNITY-FREE) 3:30pm · Bella piano 4:45pm · Sam cello rehearsal 6:30pm',
+       sub:'🩸 Blood test 8am · Study 9am · 📱 Post Qigong 9:30 · Susan FNH 10am · ☕ Coffee 11am · Candy FNH 2pm · Brendan FNH 3:30pm · Bella 4:45pm · Sam rehearsal 6:30pm',
+      focus:'🩸 Blood test walk-in 8am · Study 9am · Post about Qigong for Friday 9:30 · Susan FNH 10am · Coffee with friends 11 · Candy FNH 2pm · Brendan FNH (COMMUNITY-FREE) 3:30pm · Bella piano 4:45pm · Sam cello rehearsal 6:30pm',
 events:[
         {time:'08:00–09:00', text:'🩸 Blood test — walk-in, morning', tickable:true},
         {time:'09:00–09:30', text:'📚 FNH study block — 📖 Resume: 14:05 Session 1, Nick (8wks post ACL)', tickable:true, fnh:true, link:'https://share.descript.com/view/WOLaoP1s9i8'},
+        {time:'09:30–09:35', text:'📱 Post about Qigong — this Friday 10am', tickable:true},
           {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
           {time:'11:00–12:00', text:'☕ Coffee with friends'},
           {time:'12:00–14:00', text:'🍴 Lunch'},
@@ -4509,6 +4511,12 @@ events:[
          {time:'14:30–15:00', text:'🎹 Piano practice — Sam\'s cello pieces · 30 min', tickable:true},
          {time:'15:00–16:00', text:'🩺 FNH Neuro-Health Assessment — Ashna Nain ($50)', fnh:true},
          {time:'16:30–17:30', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Bradley Dylan', fnh:true}
+     ]},
+     {id:'fri28aug', dow:'Friday', date:'28 August', dateISO:'2026-08-28', dot:'dc-rest', week:'August',
+      sub:'🧘 Qigong in the park 10am',
+      focus:'Qigong in the park 10–11am',
+      events:[
+        {time:'10:00–11:00', text:'🧘 Qigong in the park'}
      ]},
      {id:'mon31aug', dow:'Monday', date:'31 August', dateISO:'2026-08-31', dot:'dc-music', week:'August',
       sub:'Susan FNH 10am · 🚗 Clean car 5pm · 🟢 Green bin out 5:30pm · Mastery 6pm',
@@ -5042,11 +5050,12 @@ function renderDays() {
       var wasInCorner = inCoffee || inHome || inStudy || inFnh || inTeaching;
       prevCornerType = wasInCorner ? (inCoffee ? 'coffee' : inHome ? 'home' : inStudy ? 'study' : inFnh ? 'fnh' : 'teaching') : null;
       var cornerEndMin = null;
-      if (!ev.coffee && inCoffee) { cornerEndMin = prevEndMin; h += '</div>'; inCoffee = false; }
-      if (!ev.home && inHome) { cornerEndMin = prevEndMin; h += '</div>'; inHome = false; }
-      if (!ev.study && inStudy) { cornerEndMin = prevEndMin; h += '</div>'; inStudy = false; }
-      if (!ev.fnh && inFnh) { cornerEndMin = prevEndMin; h += '</div>'; inFnh = false; }
-      if (!ev.teaching && inTeaching) { cornerEndMin = prevEndMin; h += '</div>'; inTeaching = false; }
+      var cornerClosed = false;
+      if (!ev.coffee && inCoffee) { cornerEndMin = prevEndMin; cornerClosed = true; h += '</div>'; inCoffee = false; }
+      if (!ev.home && inHome) { cornerEndMin = prevEndMin; cornerClosed = true; h += '</div>'; inHome = false; }
+      if (!ev.study && inStudy) { cornerEndMin = prevEndMin; cornerClosed = true; h += '</div>'; inStudy = false; }
+      if (!ev.fnh && inFnh) { cornerEndMin = prevEndMin; cornerClosed = true; h += '</div>'; inFnh = false; }
+      if (!ev.teaching && inTeaching) { cornerEndMin = prevEndMin; cornerClosed = true; h += '</div>'; inTeaching = false; }
       if (wasInCorner && cornerEndMin !== null && ev.startMin > cornerEndMin && !ev.free && !ev.meal && !ev.banner && !ev.dashboard) {
         var gap = ev.startMin - cornerEndMin;
         if (gap >= 10 && gap < 60) {
@@ -5054,8 +5063,9 @@ function renderDays() {
           h += '<div class="gap-row"><span class="gap-label">'+gM+' min free</span></div>';
         }
       }
-      if (!wasInCorner && prevCornerType) {
+      if (cornerClosed && prevCornerType && cornerStartMin !== null) {
         h = h.replace(/(<span class="corner-time-range">)([^<]*)(<\/span>)/, '$1'+minToTime(cornerStartMin)+'–'+minToTime(prevEndMin)+' <span class="corner-dur">'+fmtDur(prevEndMin - cornerStartMin)+'<\/span>$3');
+        cornerStartMin = null;
       }
       if (ev.coffee && !inCoffee) {
         if (inHome) { h += '</div>'; inHome = false; }
@@ -6283,14 +6293,14 @@ window.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.day-btn').forEach(function(b) {
         if ((b.getAttribute('onclick') || '').includes("'" + id + "'")) {
           b.classList.add('today');
+        }
+      });
+      break;
+    }
   }
   highlightNow();
   // Refresh now-indicator every minute
   setInterval(highlightNow, 60000);
-});
-      break;
-    }
-  }
 });
 
 // ── CAPACITY NAV ──
