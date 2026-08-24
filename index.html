@@ -1605,9 +1605,32 @@ body, .main { background: #FFF7F4; }
 .ev-accent.perf { border-color:#DAA520; }
 .ev-accent.free { border-color:#D8D6CF; }
 .ev-accent.meal { border-color:#BDC3C7; }
+
+/* Task detail modal */
+.detail-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.55); z-index:9000; justify-content:center; align-items:flex-end; }
+.detail-overlay.open { display:flex; }
+.detail-sheet { background:#faf9f6; border-radius:16px 16px 0 0; width:100%; max-width:520px; max-height:80vh; overflow-y:auto; padding:24px 20px 32px; box-shadow:0 -4px 24px rgba(0,0,0,0.15); animation:slideUp .25s ease-out; }
+@keyframes slideUp { from { transform:translateY(100%); } to { transform:translateY(0); } }
+.detail-close { display:block; width:36px; height:4px; background:#d5d3ce; border-radius:2px; margin:0 auto 16px; cursor:pointer; }
+.detail-title { font-size:15px; font-weight:700; color:#1a1a18; margin-bottom:12px; }
+.detail-body { font-size:13px; color:#4a4a45; line-height:1.65; }
+.detail-body a { color:#1D9E75; text-decoration:underline; text-decoration-style:dotted; text-underline-offset:2px; }
+.detail-hint { font-size:10px; color:#b5b0a5; margin-top:8px; }
+.tc[data-detail] .tl { cursor:pointer; }
+.tc[data-detail] .tl::after { content:' →'; color:#b5b0a5; font-size:11px; }
 </style>
 </head>
 <body inject_newvt_svd="true">
+
+<!-- Task detail overlay -->
+<div id="task-detail-overlay" class="detail-overlay" onclick="if(event.target===this)closeDetail()">
+  <div class="detail-sheet">
+    <div class="detail-close" onclick="closeDetail()"></div>
+    <div id="task-detail-title" class="detail-title"></div>
+    <div id="task-detail-body" class="detail-body"></div>
+    <div class="detail-hint">Tap outside to close</div>
+  </div>
+</div>
 
 <!-- TAB BAR -->
 <div class="tab-bar">
@@ -1941,12 +1964,22 @@ body, .main { background: #FFF7F4; }
 
   <div style="font-size:9px;font-weight:700;color:#C0392B;margin-bottom:8px;padding:4px 8px;background:#fef0ee;border-radius:4px;">🔴 DO FIRST — Urgent &amp; Important</div>
 
+  <div class="tc tickable" data-detail="<strong>From:</strong> Wise &lt;noreply@wise.com&gt;<br><strong>Date:</strong> 23 Aug 2026, 08:21<br><strong>To:</strong> info@danielebuatti.com<br><br><hr style='border:none;border-top:1px solid #e5e3de;margin:12px 0;'><p style='margin:0 0 8px;'>Hello Daniele Ezio A,</p><p style='margin:0 0 8px;'>We've had to <strong>restrict your account</strong>.</p><p style='margin:0 0 8px;'>This is because you didn't confirm your personal details by <strong>22 August 2026</strong>.</p><p style='margin:0 0 8px;'>To continue using your account as normal, please let us know we've got the right details by tapping the button below. You'll also find a link to update your information in your Wise account — this will appear in a banner on your account page.</p><p style='margin:0 0 8px;'>Until you've confirmed your details, you <strong>won't be able to send or receive any money</strong>.</p><p style='margin:12px 0;'><a href='https://wise.com/profile-information-confirmation' target='_blank' style='display:inline-block;padding:10px 20px;background:#1D9E75;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;'>Confirm your details →</a></p><p style='margin:0 0 8px;'>Thanks,<br>The Wise team</p>" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl">⚠️ Wise — account restricted, confirm details</div>
+    <div class="tn">Account restricted 23 Aug — can't send/receive money until confirmed. Tap task to read full email.</div>
+  </div></div>
+
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C0392B;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">📩 Reply Mary Buckingham — St Faith's hall viewing</div>
     <div class="tn">She replied Fri 7 Aug — free Mon 10 or Tue 11 after ~10am. Propose <strong>Tue 11 Aug ~15:00</strong> (after Anita 14:45, before Nicole 17:15). Reply before Monday.</div>
   </div></div>
 
   <div style="font-size:9px;font-weight:700;color:#C98A4A;margin:1.5rem 0 8px;padding:4px 8px;background:#f8f2e8;border-radius:4px;">🟠 SCHEDULE — Important, Not Urgent</div>
+
+  <div class="tc tickable" data-detail="<strong>From:</strong> Supabase &lt;noreply@supabase.com&gt;<br><strong>Date:</strong> 22 Aug 2026, 03:00<br><strong>To:</strong> daniele.kinesiology@gmail.com<br><br><hr style='border:none;border-top:1px solid #e5e3de;margin:12px 0;'><p style='margin:0 0 8px;'>Hi there,</p><p style='margin:0 0 8px;'>We're writing to let you know that the <code style='background:#f0efeb;padding:2px 5px;border-radius:3px;font-size:12px;'>analytics/endpoints/logs.all</code> endpoint is being removed on <strong>September 23, 2026</strong>.</p><p style='margin:0 0 8px;'>We can see that you are calling this endpoint directly via scripts, integrations, or tools, so you'll need to migrate to <code style='background:#f0efeb;padding:2px 5px;border-radius:3px;font-size:12px;'>analytics/endpoints/logs</code> before the cutoff. Dashboard-based log exploration is unaffected.</p><p style='margin:12px 0;'><a href='https://supabase.com/changelog/48235-migration-of-supabase-management-api-logs-all-analytics-endpoint-to-logs-endpoint' target='_blank' style='display:inline-block;padding:10px 20px;background:#1D9E75;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;'>View the migration guide →</a></p><p style='margin:0 0 8px;font-size:12px;color:#888;'>Dashboard log exploration is not affected — only scripts/integrations using the API directly.</p><p style='margin:0 0 8px;font-size:12px;color:#888;'>If you have questions, open a support ticket at supabase.com/dashboard/support.</p><hr style='border:none;border-top:1px solid #e5e3de;margin:12px 0;'><p style='margin:0;font-size:12px;color:#888;'><strong>ACTION ITEMS:</strong></p><ol style='margin:8px 0 0;padding-left:20px;font-size:12px;color:#555;'><li>Find all Supabase projects using <code>logs.all</code></li><li>Update API calls to use <code>logs</code> endpoint</li><li>Test each app before Sep 23 deadline</li></ol>" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
+    <div class="tl">🔧 Migrate Supabase logs.all → logs endpoint</div>
+    <div class="tn">Deadline: <strong>23 Sep 2026</strong>. All apps using <code>logs.all</code> API need updating. Tap task to read full email + action items.</div>
+  </div></div>
 
   <div class="tc tickable" style="margin-bottom:6px;border-left:3px solid #C98A4A;"><div class="chk"></div><div class="tb" style="flex:1;">
     <div class="tl">🚫 Hold on new clients — not ready yet</div>
@@ -4499,6 +4532,7 @@ events:[
        sub:'🩸 Check blood test fasting 8:55 · Q&A 9am · Study 10:30 · Practice 11am · Study 11:45 · Study + Money Worksheet 2pm · Descript 3pm · Kajabi doc 3:30pm · Lizzy 4:15pm',
        focus:'Check blood test documentation — fasting? 8:55 · FNH Q&A 9am · Study 10:30 · Piano practice (Sam\'s cello pieces) 11 · Study 11:45 · Study 2pm · Money Worksheet (Nick Moss) 2:30 · Watch Descript 3pm · Kajabi communities doc 3:30 · Lizzy 4:15pm',
 events:[
+         {time:'08:30–08:45', text:'⚠️ Wise — confirm account details (restricted)', tickable:true, link:'https://wise.com/profile-information-confirmation'},
          {time:'08:55–09:00', text:'🩸 Check blood test documentation — do I need to fast?', tickable:true},
          {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
          {time:'10:30–11:00', text:'📚 FNH study block — 📖 Resume: 14:05 Session 1, Nick (8wks post ACL)', tickable:true, fnh:true, link:'https://share.descript.com/view/WOLaoP1s9i8'},
@@ -4557,9 +4591,10 @@ events:[
         {time:'16:30–17:30', text:'🩺 FNH Neuro-Health Assessment — Ashna Nain ($50)', fnh:true}
     ]},
     {id:'thu3sep', dow:'Thursday', date:'3 September', dateISO:'2026-09-03', dot:'dc-rest', week:'September',
-     sub:'🧠 Q&A 6pm',
-     focus:'FNH Weekly Q&A 6–8pm',
+     sub:'🔧 Migrate Supabase logs.all · 🧠 Q&A 6pm',
+     focus:'Migrate Supabase logs.all → logs endpoint · FNH Weekly Q&A 6–8pm',
      events:[
+        {time:'10:00–12:00', text:'🔧 Migrate Supabase logs.all → logs — check all projects', tickable:true, link:'https://supabase.com/changelog/48235-migration-of-supabase-management-api-logs-all-analytics-endpoint-to-logs-endpoint'},
         {time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true}
     ]},
     {id:'sat5sep', dow:'Saturday', date:'5 September', dateISO:'2026-09-05', dot:'dc-rest', week:'September',
@@ -6064,6 +6099,24 @@ function copyPrompt(el) {
   if (!prompt) return;
   copyText(prompt, '✓ Prompt copied');
 }
+
+function openDetail(el) {
+  var card = el.closest ? el.closest('.tc') : el;
+  if (!card || !card.getAttribute('data-detail')) return;
+  var title = card.querySelector('.tl');
+  var detail = card.getAttribute('data-detail');
+  document.getElementById('task-detail-title').textContent = title ? title.textContent.replace(/→$/,'').trim() : '';
+  document.getElementById('task-detail-body').innerHTML = detail;
+  document.getElementById('task-detail-overlay').classList.add('open');
+}
+function closeDetail() {
+  document.getElementById('task-detail-overlay').classList.remove('open');
+}
+
+document.addEventListener('click', function(e) {
+  var tl = e.target.closest('.tc[data-detail] .tl');
+  if (tl) { e.preventDefault(); e.stopPropagation(); openDetail(tl); }
+}, true);
 
 function surprisePrompt() {
   var cards = document.querySelectorAll('#tab-lookin .tc[data-prompt]');
