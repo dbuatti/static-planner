@@ -6380,7 +6380,31 @@ window.addEventListener('DOMContentLoaded', function() {
   highlightNow();
   // Refresh now-indicator every minute
   setInterval(highlightNow, 60000);
+  showLiveBadge();
 });
+
+// ── LIVE VERSION BADGE ──
+function showLiveBadge() {
+  var el = document.getElementById('live-badge');
+  if (!el) return;
+  // Fetch the served file and read its Last-Modified header: this is the real
+  // "latest code actually on the server" timestamp, displayed on the iPhone.
+  fetch(window.location.href, { cache: 'no-store', method: 'GET' })
+    .then(function(r) {
+      var lm = r.headers.get('Last-Modified');
+      if (!lm) { el.style.display = 'none'; return; }
+      var d = new Date(lm);
+      var now = new Date();
+      var sameDay = d.toDateString() === now.toDateString();
+      var when = sameDay
+        ? String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0')
+        : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+      el.textContent = '● ' + when;
+      el.style.display = 'inline';
+      el.title = 'Live from server · ' + d.toLocaleString();
+    })
+    .catch(function() { el.style.display = 'none'; });
+}
 
 // ── CAPACITY NAV ──
 function capShow(id) {
