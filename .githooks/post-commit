@@ -1,0 +1,12 @@
+#!/bin/bash
+# Post-commit hook: audit every commit for the edit log.
+AUDIT_DIR="$HOME/.imessage-agent"
+AUDIT_LOG="$AUDIT_DIR/edit_log.txt"
+mkdir -p "$AUDIT_DIR" 2>/dev/null || exit 0
+SHORT_SHA="$(git rev-parse --short HEAD 2>/dev/null)"
+SUBJECT="$(git log -1 --pretty=%s 2>/dev/null)"
+FILES="$(git show --name-only --pretty=format: HEAD 2>/dev/null | grep -v '^$' | tr '\n' ' ')"
+if [ -n "$SHORT_SHA" ] && [ -n "$SUBJECT" ]; then
+  printf '%s | %s | %s | %s\n' "$(date '+%Y-%m-%d %H:%M:%S %Z')" "$SHORT_SHA" "$SUBJECT" "$FILES" >> "$AUDIT_LOG" 2>/dev/null
+fi
+exit 0

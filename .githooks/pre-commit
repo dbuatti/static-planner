@@ -1,0 +1,4 @@
+#!/bin/bash
+# Pre-commit hook: reject commits that leave index.html unable to parse.
+MY_DIR="$(cd "$(dirname "$0")" && pwd)"
+exec "$MY_DIR/../tools/validate.sh"

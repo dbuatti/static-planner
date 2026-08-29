@@ -49,5 +49,17 @@
   `node -e "const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const m=h.match(/<script>([\s\S]*?)<\/script>/);new Function(m[1]);console.log('PARSE OK')"`
 - To sum DAYS data in node, extract `var DAYS = [ ... ];` by bracket-matching from `src.indexOf('var DAYS = [')`.
 
+## AI Edit Protocol (text-triggered agent edits)
+- This repo has hooks in `.githooks/` (enabled via `core.hooksPath`). A pre-commit hook runs `tools/validate.sh` and **blocks any commit that leaves `index.html` unparseable**; a post-commit hook appends every commit to `~/.imessage-agent/edit_log.txt` for audit/recovery.
+- When the agent edits `index.html` on your instruction, it MUST follow this order, in one batch:
+  1. Edit the target day's `events` array (or Tasks page section) in `index.html`.
+  2. Sync the duplicate: `cp index.html page.html`.
+  3. Stage both: `git add index.html page.html`.
+  4. Commit with a short, concrete message matching repo style (what changed, where).
+  5. Push to `origin/main`.
+- Never commit without running 1–4 together; the prepare-commit-validation and audit depend on it.
+- If a commit is blocked by the hook (index.html doesn't parse), fix the broken edit first — do not force-past the guard.
+- If a bad edit slips through and needs reverting: `git revert <sha>` (or restore the commit's pre-edit version) and tell the user where it landed.
+
 ## Tone
 - August theme is "back to basics" — quiet, one thing at a time, not for show. Keep additions small, honest, and non-showy.
