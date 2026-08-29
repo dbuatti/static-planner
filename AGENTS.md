@@ -41,6 +41,9 @@
 - Recurring tasks naturally return later in the week on their own — **do not** move recurring tasks to a future day, since they'll occur again anyway. This includes the daily 15m anchors (transaction work / room clean / journal), FNH recurring blocks, and any task that will re-appear without me moving it.
 - For non-recurring unfinished tasks, **move them myself**: find the next sensible open slot in the coming days (respecting the 10am–4pm and ~6h-cap conventions) and relocate them there, then tell the user where they landed.
 
+## Commit policy
+- At the end of every session, commit all changes (index.html, page.html, and any others intended) and push to origin/main. Brief, accurate message matching repo style.
+
 ## Validation
 - After any JS/DAYS edit, verify the inline script parses:
   `node -e "const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const m=h.match(/<script>([\s\S]*?)<\/script>/);new Function(m[1]);console.log('PARSE OK')"`
