@@ -4605,9 +4605,9 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
       focus:'Susan FNH 10am · 🟢 Take green (grass) bin out 5:30pm · FNH Mastery Catch Up 6–8pm',
       events:[
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
-        {time:'14:00–15:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Candice (Candy) Sweetman'},
-        {time:'15:30–16:30', text:'FNH Neuro-Health Assessment (60 min) — free community place between Daniele Buatti and Brendan Jelley'},
-        {time:'16:45–17:15', text:'Voice and Piano Coaching (30 min) — $50 between Daniele Buatti and Bella'},
+        {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Candy Sweetman ($70)', fnh:true},
+        {time:'15:30–16:30', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true},
+        {time:'16:45–17:15', text:'🎵 Voice and Piano Coaching — Bella', teaching:true},
         {time:'17:30–18:00', text:'🟢 Take green (grass) bin out', tickable:true, home:true},
     ]},
     {id:'tue1sep', dow:'Tuesday', date:'1 September', dateISO:'2026-09-01', dot:'dc-music', week:'September',
@@ -4618,7 +4618,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'11:00–12:00', text:'🗓 Draft Town AI calendar proposal', tickable:true},
         {time:'14:00–14:45', text:'🎵 Voice and Piano Coaching — Anita La Terra', teaching:true},
         {time:'15:00–16:00', text:'🎵 Voice and Piano Coaching — Maria Papoulias', teaching:true},
-        {time:'16:00–16:45', text:'Voice and Piano Coaching (45 min) — $75 between Daniele Buatti and Lisa Capon'},
+        {time:'16:00–16:45', text:'🎵 Voice and Piano Coaching — Lisa Capon', teaching:true},
         {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true},
     ]},
     {id:'wed2sep', dow:'Wednesday', date:'2 September', dateISO:'2026-09-02', dot:'dc-kine', week:'September',
@@ -4948,18 +4948,6 @@ function createFree(s, e, cls) {
 }
 
 // ── RENDER DAYS ──
-// ── DAILY REMINDER (out of time — shows on every day until the date below) ──
-var DAILY_REMINDER = {
-  until: '2026-09-06',
-  icon: '📌',
-  title: 'Events before Bali',
-  lines: [
-    '<b>🎤 Choir</b> — \u201cKoda\u201d from the notebook, 2\u20133h \u00b7 Infinity Co TBC (20\u201330) \u00b7 Laura + Susan already asked \u00b7 open: cost, length, schedule',
-    '<b>🎹 Piano bath</b> — sound / relaxation / embodiment \u00b7 maybe Fri 4 Sep \u00b7 waiting on Elle @ Infinity Co (or Body Voice Center) \u00b7 open: price, space',
-    '<b>📘 Group:</b> <a href="https://www.facebook.com/groups/828921456594314/?sorting_setting=RECENT_ACTIVITY" target="_blank" rel="noopener">Resonance ~ Community Hub</a> — \u201cCoda\u201d post is up \u00b7 Elizabeth asked if June was cancelled (reply?)',
-    '<b>🔗 Today:</b> open the project \u2014 look at the links, check the posts, chase what\'s waiting. One touch is enough.'
-  ]
-};
 
 function renderDays() {
   var c = document.getElementById('day-panels-container');
@@ -5118,12 +5106,6 @@ function renderDays() {
     h += '<div class="goal-banner-item"><span class="label wish">🌍 Wish:</span> <span class="text">A world where everyone has the nervous system safety to express their unique self.</span></div>';
     h += '<div class="goal-banner-item"><span class="label fiveyear">🎯 5-Year:</span> <span class="text">A full-time FNH + voice practice at $100K+, helping performers and overthinkers — using all of me.</span></div>';
     h += '</div></div>';
-    if (DAILY_REMINDER && d.dateISO <= DAILY_REMINDER.until) {
-      h += '<div class="daily-reminder">';
-      h += '<div class="reminder-head"><span class="reminder-title">'+DAILY_REMINDER.icon+' '+DAILY_REMINDER.title+'</span></div>';
-      DAILY_REMINDER.lines.forEach(function(l) { h += '<div class="reminder-line">'+l+'</div>'; });
-      h += '</div>';
-    }
     var dotType = d.dot.replace('dc-','');
     var lastPeriod = '';
     var inCoffee = false;
