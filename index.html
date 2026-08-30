@@ -6476,8 +6476,31 @@ document.addEventListener('click', function(e) {
     var pid = panel.id.replace('view-', '');
     updateDayProgress(pid);
     renderNextUp(pid);
+    syncTickToBackend(pid, tc, id, tc.classList.contains('ticked'));
   }
 });
+
+// ── TICK → BACKEND (Neon) ──
+// Mirrors a day-panel tick/untick to planner-api so the Mini job can rename
+// the matching iCloud Tasks entry with a ✔ prefix. Keyed on day+startMin+text
+// (same composite as the Neon UNIQUE), so no-op when the row isn't pushed yet.
+function syncTickToBackend(pid, tc, tickId, done) {
+  var day = DAY_DATES[pid];
+  if (!day) return;
+  var ttEl = tc.querySelector && tc.querySelector('.tt');
+  var tlEl = tc.querySelector && tc.querySelector('.tl');
+  if (!ttEl || !tlEl) return;
+  var startMin = toMin(timeRange(ttEl.textContent).start);
+  var text = tlEl.textContent.trim();
+  if (!text) return;
+  try {
+    fetch('https://planner-api.daniele-buatti.workers.dev/tasks/done', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ day: day, startMin: startMin, done: done })
+    }).catch(function(){});
+  } catch (e) {}
+}
 
 // ── SEARCH ──
 function openSearch() {
