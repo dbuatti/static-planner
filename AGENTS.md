@@ -61,5 +61,12 @@
 - If a commit is blocked by the hook (index.html doesn't parse), fix the broken edit first — do not force-past the guard.
 - If a bad edit slips through and needs reverting: `git revert <sha>` (or restore the commit's pre-edit version) and tell the user where it landed.
 
+## Backend & tick sync (architecture)
+- **planner-api** (`dbuatti/planner-api`, private): Cloudflare Worker (`planner-api.danielebuatti.workers.dev`) over Neon Postgres. Endpoints: `GET /health`, `GET /tasks?day=`, `POST /tasks` (upsert), `POST /tasks/done {day,startMin,done}`, `DELETE /tasks`. CORS `*`.
+- **Neon** (`ep-mute-forest-a72jfml4-pooler.ap-southeast-2.aws.neon.tech/neondb`): `tasks` (id, day, start_min, duration, text, done, created_at, updated_at, **done_changed_at**) — `done_changed_at` stamps only on real done flips (no loops). Plus `memory` + `schema_migrations`. Conn string only in `~/.imessage-agent/.env` (Mini, chmod 600), never in git.
+- **Tick hook** in `index.html` (`syncTickToBackend`, ~line 6483): on day-panel tick/untick, `POST /tasks/done` with `day` (from `DAY_DATES[panelId]`), `startMin` (from chip `.tt` via `toMin(timeRange().start)`), `text` (`.tl`). No-op if no row yet.
+- **tick_rename.py** (Mini, `~/.imessage-agent/`, src in `dbuatti/planner-mini`): polls Neon for `done_changed_at > watermark`, osascript-renames the matching iCloud Tasks event with a `✔ ` prefix (or strips it) using a temp `.scpt` + `delta`-comparison AppleScript body (NOT `osascript -e`). Runs via launchd `daniele.tick-rename.plist` every 180s.
+- **Repos**: `static-planner` (app), `planner-api` (worker), `planner-mini` (Mini daemon/sync/schema scripts). All three pushed to GitHub (private for api/mini).
+
 ## Tone
 - August theme is "back to basics" — quiet, one thing at a time, not for show. Keep additions small, honest, and non-showy.
