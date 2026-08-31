@@ -4606,7 +4606,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
       sub:'Susan FNH 10am · 🟢 Green bin out 5:30pm · Mastery 6pm',
       focus:'Susan FNH 10am · 🟢 Take green (grass) bin out 5:30pm · FNH Mastery Catch Up 6–8pm',
       events:[
-        {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment — Susan Elizabeth Lord', fnh:true},
         {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Candy Sweetman ($70)', fnh:true},
         {time:'15:30–16:30', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Brendan Jelley', fnh:true},
@@ -4618,14 +4617,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      focus:'FNH Weekly Q&A 9am · Anita La Terra 2pm · Maria Papoulias 3pm · Nicole Rotenstein 5:30pm',
      events:[
         {time:'09:00–10:30', text:'🧠 FNH Weekly Q&A', fnh:true},
-        {time:'10:30–10:45', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
-        {time:'10:45–10:55', text:'📱 Respond to Cara', tickable:true, coffee:true},
-        {time:'10:55–11:00', text:'Respond to Cara', tickable:true, coffee:true},
         {time:'11:00–12:00', text:'🗓 Draft Town AI calendar proposal', tickable:true},
         {time:'14:00–14:45', text:'🎵 Voice and Piano Coaching — Anita La Terra', teaching:true},
         {time:'15:00–16:00', text:'🎵 Voice and Piano Coaching — Maria Papoulias', teaching:true},
         {time:'16:00–16:45', text:'🎵 Voice and Piano Coaching — Lisa Capon', teaching:true},
-        {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true}
+        {time:'17:30–18:15', text:'🎵 Voice and Piano Coaching — Nicole Rotenstein', teaching:true},
     ]},
     {id:'wed2sep', dow:'Wednesday', date:'2 September', dateISO:'2026-09-02', dot:'dc-kine', week:'September',
      sub:'Jacqui FNH 3pm · Ashna FNH 4:30pm',
@@ -4749,11 +4745,6 @@ function populateRecurring() {
     var iso = isoDate(y,mo,da);
     var dow = d.getDay(); // 0=Sun,1=Mon,...,6=Sat
     var day = addDay(d);
-
-    // Daily lunch 12-2pm
-    if (!hasEvent(day, /Lunch/)) {
-      day.events.push({time:'12:00–14:00', text:'🍴 Lunch'});
-    }
 
     // Tue: Weekly Q&A 9-10:30
     if (dow === 2 && !hasEvent(day, /Weekly Q&A/)) {
