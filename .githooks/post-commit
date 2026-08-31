@@ -1,5 +1,6 @@
 #!/bin/bash
-# Post-commit hook: audit every commit for the edit log.
+# Post-commit hook: audit every commit for the edit log, and keep
+# index.html/page.html group-writable for the TOWN daemon (danieletown).
 AUDIT_DIR="$HOME/.imessage-agent"
 AUDIT_LOG="$AUDIT_DIR/edit_log.txt"
 mkdir -p "$AUDIT_DIR" 2>/dev/null || exit 0
@@ -9,4 +10,6 @@ FILES="$(git show --name-only --pretty=format: HEAD 2>/dev/null | grep -v '^$' |
 if [ -n "$SHORT_SHA" ] && [ -n "$SUBJECT" ]; then
   printf '%s | %s | %s | %s\n' "$(date '+%Y-%m-%d %H:%M:%S %Z')" "$SHORT_SHA" "$SUBJECT" "$FILES" >> "$AUDIT_LOG" 2>/dev/null
 fi
+# Best-effort group-write (owner-only chmod; no-op for TOWN-owned checkouts).
+chmod g+w index.html page.html 2>/dev/null
 exit 0
