@@ -7,7 +7,6 @@ var DAYS = [
    focus:'FNH Assessment 10am · MTT Masterclass Week 5 6pm',
    events:[
         {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Jacqui Dwyer', fnh:true},
-        {time:'11:30–12:00', text:'ZZTEST daemon check'},
         {time:'12:00–14:00', text:'🍴 Lunch'},
         {time:'17:00–18:00', text:'🔒 Buffer – MTT Masterclass'},
         {time:'18:00–21:00', text:'🎭 MTT – Masterclass (Week 5)'},
