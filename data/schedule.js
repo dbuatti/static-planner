@@ -6,12 +6,13 @@ var DAYS = [
    sub:'FNH sessions · 💵 $180 · MTT 6pm',
    focus:'FNH Assessment 10am · MTT Masterclass Week 5 6pm',
    events:[
-      {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Jacqui Dwyer', fnh:true},
-     {time:'12:00–14:00', text:'🍴 Lunch'},
-     {time:'17:00–18:00', text:'🔒 Buffer – MTT Masterclass'},
-     {time:'18:00–21:00', text:'🎭 MTT – Masterclass (Week 5)'},
-     {time:'21:00–22:00', text:'🔒 Buffer – MTT Masterclass'}
-   ]},
+        {time:'10:00–11:00', text:'🩺 FNH Neuro-Health Assessment (COMMUNITY-FREE) — Jacqui Dwyer', fnh:true},
+        {time:'11:30–12:00', text:'ZZTEST daemon check'},
+        {time:'12:00–14:00', text:'🍴 Lunch'},
+        {time:'17:00–18:00', text:'🔒 Buffer – MTT Masterclass'},
+        {time:'18:00–21:00', text:'🎭 MTT – Masterclass (Week 5)'},
+        {time:'21:00–22:00', text:'🔒 Buffer – MTT Masterclass'}
+    ]},
   {id:'thu16jul', dow:'Thursday', date:'16 July', dateISO:'2026-07-16', dot:'dc-rest', week:'July',
    sub:'Psychologist 11am · Lisa Capon 5pm',
    focus:'🩺 FNH Mastery 9am · 🚗 Travel to Psych · Psychologist 11:15am · Voice & Piano 5pm',
