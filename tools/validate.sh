@@ -1,5 +1,6 @@
 #!/bin/bash
-# Validate that the inline script in index.html parses. Exit 0 if OK, 1 if broken.
+# Validate that every inline <script> in every .html page parses, and every
+# standalone .js file parses. Exit 0 if OK, 1 if broken.
 # Portable: finds node via PATH, Homebrew, or nvm.
 set -u
 
@@ -8,8 +9,6 @@ if command -v git >/dev/null 2>&1; then
 fi
 [ -n "${ROOT:-}" ] || ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT" || exit 0
-
-[ -f index.html ] || exit 0
 
 NODE=""
 if command -v node >/dev/null 2>&1; then NODE="$(command -v node)"
@@ -26,9 +25,37 @@ if [ -z "$NODE" ]; then
   exit 0
 fi
 
-if "$NODE" -e "const fs=require('fs');const h=fs.readFileSync('index.html','utf8');const m=h.match(/<script>([\s\S]*?)<\/script>/);if(!m){console.error('NO SCRIPT TAG');process.exit(1)};new Function(m[1]);console.log('PARSE OK')" ; then
+FAIL=0
+
+# 1. Every inline <script> (no src) inside each HTML page.
+for f in index.html page.html plan.html practice.html spending.html more.html; do
+  [ -f "$f" ] || continue
+  "$NODE" -e '
+    const fs = require("fs");
+    const h = fs.readFileSync(process.argv[1], "utf8");
+    const re = /<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi;
+    let m, n = 0, ok = true;
+    while ((m = re.exec(h))) {
+      n++;
+      try { new Function(m[1]); } catch (e) { console.error(process.argv[1] + ": inline script " + n + " does not parse: " + e.message); ok = false; }
+    }
+    if (n === 0) { console.error(process.argv[1] + ": NO INLINE SCRIPT"); ok = false; }
+    if (!ok) process.exit(1);
+  ' "$f" || { echo "validate.sh: $f failed - commit blocked" >&2; FAIL=1; }
+done
+
+# 2. Every standalone JS file.
+for f in data/schedule.js assets/js/*.js; do
+  [ -f "$f" ] || continue
+  "$NODE" -e '
+    const fs = require("fs");
+    try { new Function(fs.readFileSync(process.argv[1], "utf8")); }
+    catch (e) { console.error(process.argv[1] + ": does not parse: " + e.message); process.exit(1); }
+  ' "$f" || { echo "validate.sh: $f failed - commit blocked" >&2; FAIL=1; }
+done
+
+if [ "$FAIL" -eq 0 ]; then
+  echo "validate.sh: PARSE OK"
   exit 0
-else
-  echo "validate.sh: index.html does not parse - commit blocked" >&2
-  exit 1
 fi
+exit 1

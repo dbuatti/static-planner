@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Spending">
+<meta name="theme-color" content="#F6F3EE">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<title>Spending</title>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <button class="nav-round" id="prev" aria-label="Previous week">‹</button>
+    <h1 id="title">This week</h1>
+    <button class="nav-round" id="next" aria-label="Next week">›</button>
+  </div>
+  <p class="dates" id="dates"></p>
+
+  <section class="score" id="score" aria-live="polite">
+    <span class="big" id="left">$0</span>
+    <p id="scoreText"></p>
+    <div class="meter"><i id="meter"></i></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Café coffee</h2><span class="amt" id="aCafe"></span></div>
+    <div class="ticks" id="tCafe"></div>
+    <p class="hint" id="hCafe"></p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Coffee at home</h2><span class="amt" id="aHome"></span></div>
+    <div class="ticks" id="tHome"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Meals out</h2><span class="amt" id="aMeal"></span></div>
+    <div class="ticks" id="tMeal"></div>
+    <p class="hint" id="hMeal"></p>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Groceries</h2><span class="amt" id="aGroc"></span></div>
+    <div class="add">
+      <label class="sr-only" for="iGroc">Add a grocery shop</label>
+      <div class="money"><span>$</span><input id="iGroc" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Add a shop"></div>
+      <button class="btn" data-add="groc">Add</button>
+    </div>
+    <div class="chips" id="cGroc"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Going out, gifts and treats</h2><span class="amt" id="aFun"></span></div>
+    <div class="add">
+      <label class="sr-only" for="iFun">Add a going-out or treat amount</label>
+      <div class="money"><span>$</span><input id="iFun" type="number" inputmode="decimal" min="0" step="0.01" placeholder="Add an amount"></div>
+      <button class="btn" data-add="fun">Add</button>
+    </div>
+    <div class="chips" id="cFun"></div>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>How did the week go?</h2></div>
+    <div class="feel" id="feel">
+      <button data-v="held">Held the plan</button>
+      <button data-v="mostly">Mostly</button>
+      <button data-v="slipped">Slipped</button>
+    </div>
+    <label class="sr-only" for="note">Note for this week</label>
+    <textarea id="note" placeholder="What helped, what got in the way"></textarea>
+  </section>
+
+  <section class="card">
+    <div class="card-head"><h2>Last eight weeks</h2><span class="amt" id="aHist"></span></div>
+    <div class="hist" id="hist"></div>
+  </section>
+
+  <details>
+    <summary>Weekly plan settings</summary>
+    <div class="plan-grid" id="plan"></div>
+    <button class="reset" id="clearWeek">Clear this week</button>
+    <p class="foot">Saved on this phone only. Tap a remove chip to take an amount off. The plan matches your monthly budget: café coffee every second day, two meals out, $85 of groceries and about $28 for going out.</p>
+  </details>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/helpers.js"></script>
+<script src="assets/js/spending.js"></script>
+<script src="assets/js/nav.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var CUP = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h11v5a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 9.5h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8.5 3.5c0 1 1 1 1 2M11.5 3.5c0 1 1 1 1 2"/></svg>';
+  var PLATE = '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="4"/></svg>';
+  var DOT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9h9v4a4.5 4.5 0 0 1-9 0z"/></svg>';
+
+  Spending.migrate();
+
+  var $ = function (id) { return document.getElementById(id); };
+  function money(n) { return Helpers.money(n); }
+  function money0(n) { return Helpers.money0(n); }
+
+  var thisMon = Helpers.mondayISO(Helpers.melbNowISO());
+  var cur = thisMon;
+
+  function week(k) { return Spending.week(k); }
+  function setWeek(k, w) { Spending.setWeek(k, w); }
+
+  function ticks(host, count, filled, icon, planN, cls, onTap, label) {
+    var h = "";
+    for (var i = 0; i < count; i++) {
+      var extra = planN !== null && i >= planN;
+      h += '<button class="tick ' + (cls || "") + (extra ? " extra" : "") + '" aria-pressed="' + (i < filled) + '" data-i="' + i + '" aria-label="' + label + ' ' + (i + 1) + '">' + icon + '</button>';
+    }
+    host.innerHTML = h;
+    Array.prototype.forEach.call(host.children, function (b) {
+      b.addEventListener("click", function () { onTap(+b.dataset.i); });
+    });
+  }
+
+  function render() {
+    var data = Spending.getData();
+    var p = data.plan;
+    var w = week(cur);
+    var s = Spending.spent(w, p);
+    var pt = Spending.planTotal(p);
+    var end = Helpers.addDaysISO(cur, 6);
+    var isThis = cur === thisMon;
+
+    $("title").textContent = isThis ? "This week"
+      : cur === Helpers.addDaysISO(thisMon, -7) ? "Last week"
+      : "Week of " + new Date(cur + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "long" });
+    $("dates").textContent =
+      new Date(cur + "T00:00:00").toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short" })
+      + " to " + new Date(end + "T00:00:00").toLocaleDateString("en-AU", { weekday: "short", day: "numeric", month: "short" });
+    $("next").disabled = isThis;
+
+    var left = pt - s.total;
+    var st = Spending.state(s.total, pt);
+    var sc = $("score"); sc.className = "score " + (st === "ok" ? "" : st);
+    $("left").textContent = left >= 0 ? money0(left) + " left" : money0(-left) + " over";
+    $("scoreText").innerHTML = "<strong>" + money0(s.total) + "</strong> spent of a <strong>" + money0(pt) + "</strong> week. "
+      + (s.total === 0 ? "Tick things off as they happen."
+        : st === "ok" ? "You're on track."
+        : st === "warn" ? "Just over. A home coffee or a cooked meal pulls it back."
+        : "Over plan this week. Next week starts fresh.");
+    $("meter").style.width = Math.min(100, pt ? s.total / pt * 100 : 0) + "%";
+
+    var cafeSlots = Math.max(p.cafeN + 2, w.cafe + 1); cafeSlots = Math.min(cafeSlots, 14);
+    ticks($("tCafe"), cafeSlots, w.cafe, CUP, p.cafeN, "", function (i) {
+      var x = week(cur); x.cafe = (i + 1 === x.cafe) ? i : i + 1; setWeek(cur, x); render();
+    }, "Café coffee");
+    $("aCafe").textContent = w.cafe + " · " + money(s.cafe);
+    $("aCafe").className = "amt " + (w.cafe === 0 ? "" : Spending.state(w.cafe, p.cafeN));
+    $("hCafe").textContent = "Plan is " + (p.cafeN - 1) + " or " + p.cafeN + " a week, about every second day. Dashed cups are extras.";
+
+    ticks($("tHome"), 7, w.home, DOT, null, "small", function (i) {
+      var x = week(cur); x.home = (i + 1 === x.home) ? i : i + 1; setWeek(cur, x); render();
+    }, "Coffee at home");
+    $("aHome").textContent = w.home + " · " + money(s.home);
+
+    var mealSlots = Math.min(Math.max(p.mealN + 3, w.meal + 1), 14);
+    ticks($("tMeal"), mealSlots, w.meal, PLATE, p.mealN, "", function (i) {
+      var x = week(cur); x.meal = (i + 1 === x.meal) ? i : i + 1; setWeek(cur, x); render();
+    }, "Meal out");
+    $("aMeal").textContent = w.meal + " · " + money(s.meal);
+    $("aMeal").className = "amt " + (w.meal === 0 ? "" : Spending.state(w.meal, p.mealN));
+    $("hMeal").textContent = "Plan is " + p.mealN + " a week at about " + money(p.mealP) + " each.";
+
+    function chips(host, list, key) {
+      host.innerHTML = list.map(function (v, i) {
+        return '<button class="chip" data-i="' + i + '" aria-label="Remove ' + money(v) + '"><b>' + money(v) + '</b><span>×</span></button>';
+      }).join("");
+      Array.prototype.forEach.call(host.children, function (b) {
+        b.addEventListener("click", function () {
+          var x = week(cur); x[key].splice(+b.dataset.i, 1); setWeek(cur, x); render();
+        });
+      });
+    }
+    chips($("cGroc"), w.groc, "groc"); chips($("cFun"), w.fun, "fun");
+    $("aGroc").textContent = money(s.groc) + " of " + money0(p.groc);
+    $("aGroc").className = "amt " + (s.groc ? Spending.state(s.groc, p.groc) : "");
+    $("aFun").textContent = money(s.fun) + " of " + money0(p.fun);
+    $("aFun").className = "amt " + (s.fun ? Spending.state(s.fun, p.fun) : "");
+
+    Array.prototype.forEach.call($("feel").children, function (b) {
+      b.setAttribute("aria-pressed", b.dataset.v === w.feel ? "true" : "false");
+    });
+    if (document.activeElement !== $("note")) $("note").value = w.note || "";
+
+    var h = "", held = 0, counted = 0;
+    for (var j = 7; j >= 0; j--) {
+      var m = Helpers.addDaysISO(thisMon, -7 * j);
+      var mw = data.weeks[m];
+      var ms = mw ? Spending.spent(mw, p).total : 0;
+      var ratio = mw && ms ? Math.min(1.4, ms / pt) : 0;
+      var cls = !mw || !ms ? "none" : Spending.state(ms, pt);
+      if (mw && ms) { counted++; if (cls === "ok") held++; }
+      h += '<button class="' + (m === cur ? "cur" : "") + '" data-k="' + m + '" aria-label="Week of ' + new Date(m + "T00:00:00").toLocaleDateString("en-AU", { day: "numeric", month: "short" }) + (ms ? ", " + money0(ms) + " spent" : "") + '">'
+        + '<i class="' + cls + '" style="height:' + (ratio ? Math.max(6, ratio / 1.4 * 64) : 3) + 'px"></i><small>' + new Date(m + "T00:00:00").getDate() + '/' + (new Date(m + "T00:00:00").getMonth() + 1) + '</small></button>';
+    }
+    $("hist").innerHTML = h;
+    Array.prototype.forEach.call($("hist").children, function (b) {
+      b.addEventListener("click", function () {
+        cur = b.dataset.k; render(); window.scrollTo(0, 0);
+      });
+    });
+    $("aHist").textContent = counted ? held + " of " + counted + " on plan" : "";
+  }
+
+  function addAmount(key) {
+    var inp = $(key === "groc" ? "iGroc" : "iFun");
+    var v = parseFloat(inp.value);
+    if (!isFinite(v) || v <= 0) { inp.focus(); return; }
+    var x = week(cur);
+    x[key].push(Math.round(v * 100) / 100);
+    setWeek(cur, x);
+    inp.value = ""; inp.blur(); render();
+  }
+  document.querySelectorAll("[data-add]").forEach(function (b) {
+    b.addEventListener("click", function () { addAmount(b.dataset.add); });
+  });
+  $("iGroc").addEventListener("keydown", function (e) { if (e.key === "Enter") addAmount("groc"); });
+  $("iFun").addEventListener("keydown", function (e) { if (e.key === "Enter") addAmount("fun"); });
+
+  Array.prototype.forEach.call($("feel").children, function (b) {
+    b.addEventListener("click", function () {
+      var x = week(cur);
+      x.feel = x.feel === b.dataset.v ? "" : b.dataset.v;
+      setWeek(cur, x); render();
+    });
+  });
+  $("note").addEventListener("input", function () {
+    var x = week(cur); x.note = $("note").value; setWeek(cur, x);
+  });
+
+  $("prev").addEventListener("click", function () { cur = Helpers.addDaysISO(cur, -7); render(); });
+  $("next").addEventListener("click", function () { if (cur !== thisMon) { cur = Helpers.addDaysISO(cur, 7); render(); } });
+
+  var data = Spending.getData();
+  var FIELDS = [
+    ["cafeN", "Café coffees a week (upper)", 1, 0],
+    ["cafeP", "Café coffee price", 0.1, 1],
+    ["homeP", "Home coffee cost", 0.05, 1],
+    ["mealN", "Meals out a week", 1, 0],
+    ["mealP", "Meal out price", 1, 1],
+    ["groc", "Groceries a week", 5, 1],
+    ["fun", "Going out and treats a week", 1, 1]
+  ];
+  $("plan").innerHTML = FIELDS.map(function (f) {
+    return '<label for="p_' + f[0] + '">' + f[1] + '</label><div class="money">' + (f[3] ? '<span>$</span>' : '') + '<input id="p_' + f[0] + '" type="number" inputmode="decimal" min="0" step="' + f[2] + '" value="' + data.plan[f[0]] + '"></div>';
+  }).join("");
+  FIELDS.forEach(function (f) {
+    $("p_" + f[0]).addEventListener("input", function () {
+      var v = parseFloat(this.value);
+      if (isFinite(v) && v >= 0) {
+        var d = Spending.getData();
+        d.plan[f[0]] = v;
+        Spending.save(d);
+        render();
+      }
+    });
+  });
+  $("clearWeek").addEventListener("click", function () {
+    if (confirm("Clear everything ticked and added for this week?")) {
+      var d = Spending.getData();
+      delete d.weeks[cur];
+      Spending.save(d);
+      render();
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

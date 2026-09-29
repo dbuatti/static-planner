@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Practice">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#F6F3EE">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+<title>Practice</title>
+<style>
+.template-day { padding: 10px 0; border-bottom: 1px solid var(--rule); }
+.template-day .td-head { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.template-day .td-body { font-size: 14px; color: var(--soft); }
+.template-day.now { background: var(--tap); margin: 0 -12px; padding-left: 12px; padding-right: 12px; border-radius: 12px; border-bottom-color: transparent; }
+.streak-hero { text-align: center; padding: 8px 0 16px; }
+.streak-hero .big { font-family: "Young Serif", Georgia, serif; font-size: 48px; }
+.streak-hero .sub { font-size: 14px; color: var(--soft); }
+.hist-dots { display: flex; justify-content: center; gap: 6px; }
+.hist-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.hist-dots span.f { background: var(--ok); }
+.hist-dots span.p { background: var(--warn); }
+.hist-dots span.n { background: var(--tap); }
+.piano-dur { font-size: 13px; color: var(--soft); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <h1>Practice</h1>
+
+  <div class="streak-hero">
+    <div class="big" id="streak-num">0</div>
+    <div class="sub" id="streak-label">day streak</div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">
+      <h2>This week</h2>
+      <span class="amt" id="week-count"></span>
+    </div>
+    <div class="pgrid" id="pGrid"></div>
+    <p class="hint">Circle is the sit, square is piano. The minimum version (5 min sit, 10 min piano) counts.</p>
+    <div class="toggle-row" style="margin-top:10px;">
+      <span style="font-size:14px;">Minimum version</span>
+      <button class="toggle" id="min-toggle" aria-pressed="false" aria-label="Toggle minimum version"></button>
+    </div>
+    <p class="piano-dur" id="piano-dur"></p>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Focus</h2></div>
+    <div class="pfields">
+      <div><label for="pTech">Technique focus</label><input id="pTech" placeholder="Chosen at Monday planning"></div>
+      <div><label for="pPiece">Stretch piece</label><input id="pPiece" placeholder="A piece slightly beyond you"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Last 8 weeks</h2></div>
+    <div class="hist-dots" id="hist-dots"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-head"><h2>Daily template</h2></div>
+    <div id="template-list"></div>
+  </div>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/helpers.js"></script>
+<script src="assets/js/practice.js"></script>
+<script src="assets/js/nav.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  var SIT = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6a2 2 0 1 0 0-.01M6 18c2-3 4-4 6-4s4 1 6 4M4 20h16"/></svg>';
+  var KEYS = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="14" rx="1.5"/><path d="M9.3 5v14M14.7 5v14M8 5v8h2.6V5M13.4 5v8H16V5"/></svg>';
+
+  var WD_SHORT = ["S", "M", "T", "W", "T", "F", "S"];
+
+  var todayISO = Helpers.melbNowISO();
+  var wd = Helpers.melbWeekday();
+  var dayIdx = (wd + 6) % 7;
+  var monday = Helpers.mondayISO(todayISO);
+
+  Practice.migrate();
+
+  function render() {
+    var w = Practice.getWeek(monday);
+
+    // Week grid
+    var grid = document.getElementById("pGrid");
+    var html = "", done = 0;
+    for (var i = 0; i < 7; i++) {
+      if (w.sit[i] && w.pno[i]) done++;
+      html += '<div class="pday' + (i === dayIdx ? ' now' : '') + '"><small>' + WD_SHORT[i] + '</small>'
+        + '<button class="pt sit" data-t="sit" data-i="' + i + '" aria-pressed="' + !!w.sit[i] + '" aria-label="Sit, day ' + (i + 1) + '">' + SIT + '</button>'
+        + '<button class="pt pno" data-t="pno" data-i="' + i + '" aria-pressed="' + !!w.pno[i] + '" aria-label="Piano, day ' + (i + 1) + '">' + KEYS + '</button></div>';
+    }
+    grid.innerHTML = html;
+    Array.prototype.forEach.call(grid.querySelectorAll(".pt"), function (b) {
+      b.addEventListener("click", function () { Practice.toggle(+b.dataset.i, b.dataset.t, monday); render(); });
+    });
+
+    document.getElementById("week-count").textContent = done + " of 7 days";
+    document.getElementById("week-count").className = "amt " + (done >= 5 ? "ok" : "");
+
+    // Focus fields
+    var techEl = document.getElementById("pTech");
+    var pieceEl = document.getElementById("pPiece");
+    if (document.activeElement !== techEl) techEl.value = w.focusTech || "";
+    if (document.activeElement !== pieceEl) pieceEl.value = w.focusPiece || "";
+
+    // Minimum toggle
+    var minMode = Practice.getMinMode();
+    var tog = document.getElementById("min-toggle");
+    tog.setAttribute("aria-pressed", minMode);
+    var dur = minMode ? "Minimum version: 5 min sit, 10 min piano" : "Full session: technique 15, stretch 15, free play 10";
+    document.getElementById("piano-dur").textContent = dur;
+
+    // Streak
+    var s = Practice.streak();
+    document.getElementById("streak-num").textContent = s;
+    document.getElementById("streak-label").textContent = s === 1 ? "day streak" : "day streak";
+
+    // History
+    var hist = Practice.history(8);
+    var dotsHtml = "";
+    hist.forEach(function (h) {
+      var cls = h.done >= 5 ? "f" : (h.done >= 3 ? "p" : "n");
+      dotsHtml += '<span class="' + cls + '" title="' + h.monday + ': ' + h.done + ' of 7"></span>';
+    });
+    document.getElementById("hist-dots").innerHTML = dotsHtml;
+  }
+
+  document.getElementById("min-toggle").addEventListener("click", function () {
+    var cur = Practice.getMinMode();
+    Practice.setMinMode(!cur);
+    render();
+  });
+
+  ["pTech", "pPiece"].forEach(function (id) {
+    document.getElementById(id).addEventListener("input", function () {
+      var w = Practice.getWeek(monday);
+      if (id === "pTech") w.focusTech = document.getElementById(id).value;
+      else w.focusPiece = document.getElementById(id).value;
+      Practice.setWeek(monday, w);
+    });
+  });
+
+  // Template
+  var TEMPLATE = [
+    { d: "Mon", t: "Sit 8:30, piano 8:50, weekly planning 9:45, projects until 12" },
+    { d: "Tue", t: "Sit 8:30, FNH Q&A 9:00, piano 9:40, projects 10:30 to 12:30, yoga 6pm" },
+    { d: "Wed", t: "Sit 8:30, piano 8:50, projects 9:45 to 12" },
+    { d: "Thu", t: "Sit 8:30, piano 8:50, FNH Q&A 6pm. Fortnightly FNH Mastery 9 to 11, when sit and piano move to 8:00" },
+    { d: "Fri", t: "Sit 8:30, piano 8:50, project overflow morning, record 30 sec of the stretch piece" },
+    { d: "Sat", t: "Sit 8:30, piano 8:50, then a rest block" },
+    { d: "Sun", t: "Piano 8:50, Be You check-in 10:30, Kriya class 3:50pm (counts as the sit)" }
+  ];
+  var wdNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  var todayDow = wdNames[wd];
+  var templateHtml = "";
+  TEMPLATE.forEach(function (t) {
+    templateHtml += '<div class="template-day' + (t.d === todayDow ? ' now' : '') + '"><div class="td-head">' + t.d + '</div><div class="td-body">' + t.t + '</div></div>';
+  });
+  document.getElementById("template-list").innerHTML = templateHtml;
+
+  render();
+})();
+</script>
+</body>
+</html>

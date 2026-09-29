@@ -1,5 +1,5 @@
 /* ── sw.js — cache-first service worker (offline support) ── */
-const VERSION = "planner-v1";
+const VERSION = "planner-v2";
 const CORE = [
   "./",
   "./index.html",
@@ -11,6 +11,9 @@ const CORE = [
   "./assets/css/styles.css",
   "./assets/js/store.js",
   "./assets/js/nav.js",
+  "./assets/js/helpers.js",
+  "./assets/js/practice.js",
+  "./assets/js/spending.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/icon-maskable-512.png",
