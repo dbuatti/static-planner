@@ -103,14 +103,18 @@
     var grid = document.getElementById("pGrid");
     var html = "", done = 0;
     for (var i = 0; i < 7; i++) {
-      if (w.sit[i] && w.pno[i]) done++;
+      if (w.sit[i] && Practice.pianoDone(w, i)) done++;
       html += '<div class="pday' + (i === dayIdx ? ' now' : '') + '"><small>' + WD_SHORT[i] + '</small>'
         + '<button class="pt sit" data-t="sit" data-i="' + i + '" aria-pressed="' + !!w.sit[i] + '" aria-label="Sit, day ' + (i + 1) + '">' + SIT + '</button>'
-        + '<button class="pt pno" data-t="pno" data-i="' + i + '" aria-pressed="' + !!w.pno[i] + '" aria-label="Piano, day ' + (i + 1) + '">' + KEYS + '</button></div>';
+        + '<button class="pt pno" data-t="pno" data-i="' + i + '" aria-pressed="' + Practice.pianoDone(w, i) + '" aria-label="Piano, day ' + (i + 1) + '">' + KEYS + '</button></div>';
     }
     grid.innerHTML = html;
     Array.prototype.forEach.call(grid.querySelectorAll(".pt"), function (b) {
-      b.addEventListener("click", function () { Practice.toggle(+b.dataset.i, b.dataset.t, monday); render(); });
+      b.addEventListener("click", function () {
+        if (b.dataset.t === "pno") Practice.togglePiano(+b.dataset.i, monday);
+        else Practice.toggle(+b.dataset.i, b.dataset.t, monday);
+        render();
+      });
     });
 
     document.getElementById("week-count").textContent = done + " of 7 days";

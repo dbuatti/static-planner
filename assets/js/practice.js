@@ -1,21 +1,23 @@
 /* ============================================================
    practice.js — practice domain model on top of store.js.
    Namespace: planner.practice.
-    Shape: { weeks: { "<mondayISO>": { sit:[7], pno:[7], tech:[7], piece:[7], free:[7], focusTech:"", focusPiece:"" } }, minMode:bool }
-    Note: `tech`/`piece` are per-day tick arrays; the focus text fields live
-    in `focusTech`/`focusPiece` (the legacy weekly-check-v1 shape used plain
-    strings for tech/piece, so migrate() moves them across).
-   Migrates the legacy weekly-check-v1 "practice" field if present.
+   Shape: { weeks: { "<mondayISO>": { sit:[7], tech:[7], piece:[7], free:[7], focusTech:"", focusPiece:"" } }, minMode:bool }
+
+   The piano session is 40 min = technique 15 + stretch piece 15 +
+   free play 10. "Piano done" is DERIVED from those three sub-ticks,
+   so the granular ticks on the Today page and the single piano tick
+   on the Practice page always agree. The legacy weekly-check-v1
+   shape stored piano as a single `pno` array and used tech/piece as
+   focus text strings; migrate() moves those across.
    ============================================================ */
 (function (global) {
   "use strict";
 
   var NS = "practice";
   var DEFAULTS = { weeks: {}, minMode: false };
-
   var LEGACY_KEY = "weekly-check-v1";
 
-  var KINDS = ["sit", "pno", "tech", "piece", "free"];
+  var KINDS = ["sit", "tech", "piece", "free"];
 
   function migrate() {
     try {
@@ -33,21 +35,35 @@
   }
 
   function emptyWeek() {
-    return { sit: [0, 0, 0, 0, 0, 0, 0], pno: [0, 0, 0, 0, 0, 0, 0], tech: [0, 0, 0, 0, 0, 0, 0], piece: [0, 0, 0, 0, 0, 0, 0], free: [0, 0, 0, 0, 0, 0, 0], focusTech: "", focusPiece: "" };
+    return {
+      sit: [0, 0, 0, 0, 0, 0, 0],
+      tech: [0, 0, 0, 0, 0, 0, 0],
+      piece: [0, 0, 0, 0, 0, 0, 0],
+      free: [0, 0, 0, 0, 0, 0, 0],
+      focusTech: "",
+      focusPiece: ""
+    };
   }
 
-  // Legacy weeks stored tech/piece as focus text strings; move them to
-  // focusTech/focusPiece and give every kind a clean 7-slot array.
+  // Legacy weeks stored piano as `pno` and tech/piece as focus text
+  // strings; move them across to the granular shape.
   function normaliseWeek(w) {
     var out = emptyWeek();
     if (!w || typeof w !== "object") return out;
+    var i;
     KINDS.forEach(function (kind) {
       if (Array.isArray(w[kind])) {
-        for (var i = 0; i < 7; i++) out[kind][i] = w[kind][i] ? 1 : 0;
+        for (i = 0; i < 7; i++) out[kind][i] = w[kind][i] ? 1 : 0;
       }
     });
-    if (typeof w.tech === "string") { out.focusTech = w.tech; out.tech = [0, 0, 0, 0, 0, 0, 0]; }
-    if (typeof w.piece === "string") { out.focusPiece = w.piece; out.piece = [0, 0, 0, 0, 0, 0, 0]; }
+    // Legacy piano (pno) → all three sub-sessions done.
+    if (Array.isArray(w.pno)) {
+      for (i = 0; i < 7; i++) {
+        if (w.pno[i]) { out.tech[i] = 1; out.piece[i] = 1; out.free[i] = 1; }
+      }
+    }
+    if (typeof w.tech === "string") out.focusTech = w.tech;
+    if (typeof w.piece === "string") out.focusPiece = w.piece;
     if (typeof w.focusTech === "string") out.focusTech = w.focusTech;
     if (typeof w.focusPiece === "string") out.focusPiece = w.focusPiece;
     return out;
@@ -65,12 +81,22 @@
     Store.set(NS, data);
   }
 
+  function pianoDone(w, i) {
+    return !!(w.tech[i] && w.piece[i] && w.free[i]);
+  }
+
   function toggle(day, kind, mondayISO) {
     if (KINDS.indexOf(kind) === -1) return;
     var w = getWeek(mondayISO);
-    var arr = w[kind].slice();
-    arr[day] = arr[day] ? 0 : 1;
-    w[kind] = arr;
+    w[kind][day] = w[kind][day] ? 0 : 1;
+    setWeek(mondayISO, w);
+  }
+
+  // Toggle the whole piano session (all three sub-sessions together).
+  function togglePiano(day, mondayISO) {
+    var w = getWeek(mondayISO);
+    var v = pianoDone(w, day) ? 0 : 1;
+    w.tech[day] = v; w.piece[day] = v; w.free[day] = v;
     setWeek(mondayISO, w);
   }
 
@@ -92,7 +118,7 @@
       var m = Helpers.mondayISO(iso);
       var idx = (Helpers.weekdayOf(iso) + 6) % 7;
       var w = getWeek(m);
-      if (w.sit[idx] && w.pno[idx]) { n++; }
+      if (w.sit[idx] && pianoDone(w, idx)) { n++; }
       else break;
       iso = Helpers.addDaysISO(iso, -1);
       if (n > 3650) break;
@@ -104,7 +130,7 @@
   function weekDoneCount(mondayISO) {
     var w = getWeek(mondayISO);
     var c = 0;
-    for (var i = 0; i < 7; i++) if (w.sit[i] && w.pno[i]) c++;
+    for (var i = 0; i < 7; i++) if (w.sit[i] && pianoDone(w, i)) c++;
     return c;
   }
 
@@ -125,6 +151,8 @@
     getWeek: getWeek,
     setWeek: setWeek,
     toggle: toggle,
+    togglePiano: togglePiano,
+    pianoDone: pianoDone,
     getMinMode: getMinMode,
     setMinMode: setMinMode,
     streak: streak,

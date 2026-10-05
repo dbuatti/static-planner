@@ -10,6 +10,11 @@
   var PREFIX = "planner.";
   var NAMESPACES = ["practice", "spending", "tasks"];
 
+  // The full planner (plan.html) stores its own device-only state under these
+  // prefixes (day ticks, chains, tax tracker, gifts, compass). A backup must
+  // capture them so Export → Import restores everything exactly.
+  var PLANNER_KEY_RE = /^(tick-|chain-|tax|gift-|compass-)/;
+
   function key(ns) { return PREFIX + ns; }
 
   function safe(fn, fallback) {
@@ -67,7 +72,7 @@
 
   // One JSON payload for the whole app, plus the legacy tracker key.
   function exportAll() {
-    var payload = { version: SCHEMA_VERSION, namespaces: {}, legacy: null };
+    var payload = { version: SCHEMA_VERSION, namespaces: {}, legacy: null, planner: {} };
     NAMESPACES.forEach(function (ns) {
       payload.namespaces[ns] = safe(function () {
         var raw = localStorage.getItem(key(ns));
@@ -78,6 +83,14 @@
       var legacy = localStorage.getItem("weekly-check-v1");
       return legacy === null ? null : JSON.parse(legacy);
     }, null);
+    payload.planner = safe(function () {
+      var out = {};
+      for (var i = 0; i < localStorage.length; i++) {
+        var k = localStorage.key(i);
+        if (k && PLANNER_KEY_RE.test(k)) out[k] = localStorage.getItem(k);
+      }
+      return out;
+    }, {});
     return payload;
   }
 
@@ -94,6 +107,16 @@
       if (payload.legacy !== undefined) {
         if (payload.legacy === null) localStorage.removeItem("weekly-check-v1");
         else localStorage.setItem("weekly-check-v1", JSON.stringify(payload.legacy));
+      }
+      if (payload.planner && typeof payload.planner === "object") {
+        // Replace the planner's own state with the snapshot.
+        for (var i = localStorage.length - 1; i >= 0; i--) {
+          var k = localStorage.key(i);
+          if (k && PLANNER_KEY_RE.test(k)) localStorage.removeItem(k);
+        }
+        Object.keys(payload.planner).forEach(function (k) {
+          if (PLANNER_KEY_RE.test(k)) localStorage.setItem(k, payload.planner[k]);
+        });
       }
       return true;
     }, false);
