@@ -665,7 +665,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      events:[
         {time:'09:30–16:45', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},]},
 
-  {id:'sat10oct', dow:'Saturday', date:'10 October', dateISO:'2026-10-10', week:'October',
+  {id:'sat10oct', dow:'Saturday', date:'10 October', dateISO:'2026-10-10', dot:'dc-rest', week:'October',
    sub:'', focus:'',
    events:[
         {time:'10:00–10:15', text:'Pay gas bill', tickable:true, coffee:true},
