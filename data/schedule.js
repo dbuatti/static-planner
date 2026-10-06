@@ -668,33 +668,48 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      events:[
         {time:'21:00–22:00', text:'✈️ Flight OD 177 — DPS → MEL · Batik Air · dep Bali 9:00pm · arrives Melbourne 5:40am Tue 6 Oct · PNR KSTAGQ'}
     ]},
-    {id:'tue7oct', dow:'Tuesday', date:'7 October', dateISO:'2026-10-07', dot:'dc-music', week:'October',
-     sub:'🎭 VCE recital rehearsal ~1–3pm (TBC)',
-     focus:'Carey VCE recital rehearsal with vocalists ~1–3pm',
+    {id:'tue6oct', dow:'Tuesday', date:'6 October', dateISO:'2026-10-06', dot:'dc-music', week:'October',
+     sub:'✈️ Arrive MEL 5:40am · 🎭 Rehearsal with Phil 6–7pm',
+     focus:'✈️ Flight OD 177 lands Melbourne 5:40am · Rehearsal with Phil 6–7pm',
      events:[
-       {time:'13:00–15:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true}
+        {time:'05:40', text:'✈️ Arrive Melbourne — Flight OD 177 from DPS · PNR KSTAGQ'},
+        {time:'18:00–19:00', text:'🎭 Rehearsal — Phil\'s event (voice),', cal:true},
+    ]},
+    {id:'wed7oct', dow:'Wednesday', date:'7 October', dateISO:'2026-10-07', dot:'dc-music', week:'October',
+     sub:'🎹 Record pianist audition (Montgomery Wilson) 12:30 · backings due Fri',
+     focus:'Record three excerpts — cocktail jazz, musical theatre, funeral/memorial — plus a headshot. Applications close Sat 10 Oct.',
+     events:[
+        {time:'08:30–08:45', text:'Sit (Kriya)', cal:true, desc:'15 min, straight after the affirmation, before the phone. Minimum version: 5 min. Sunday\'s...'},
+        {time:'08:50–09:30', text:'Piano', cal:true, desc:'Technique 15, stretch piece 15, free play 10. Minimum version: 10 min. On FNH Mastery Thur...'},
+        {time:'10:00–11:30', text:'Stage Roster profile — set up', cal:true, desc:'Create the profile page on The Stage Roster — bio, credits (Wicked, The Bodyguard, Into th...'},
+        {time:'12:30–14:00', text:'Record pianist audition — Montgomery Wilson', cal:true, desc:'Applications close Sat 10 Oct. Three excerpts, about 15–20 sec each: 1. Cocktail jazz: fin...'},
+        {time:'14:45–16:15', text:'Piano Backings — record Emily + Charlie', cal:true, desc:'Record and deliver the two backing tracks: Emily (Modest Maid, Marc Blitzstein — audition...'},
+        {time:'13:00–15:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true},
     ]},
     {id:'mon12oct', dow:'Monday', date:'12 October', dateISO:'2026-10-12', dot:'dc-kine', week:'October',
      sub:'Lily Walker FNH 2pm',
      focus:'Lily Walker FNH 2pm',
      events:[
-        {time:'10:00–11:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Susan Elizabeth Lord'},
+        {time:'09:45–10:05', text:'Weekly planning', cal:true, desc:'Pick the week\'s technique focus, check the stretch piece, look at the week\'s commitments.'},
+        {time:'10:00–11:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Susan Elizabeth Lord', solo:true},
         {time:'14:00–15:00', text:'🩺 FNH Neuro-Health Assessment — Lily Walker ($50)', fnh:true},
-        {time:'16:30–17:00', text:'Voice and Piano Coaching (30 min) — $50 between Daniele Buatti and Bella'},
+        {time:'14:00–20:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
+        {time:'16:30–17:00', text:'Voice and Piano Coaching (30 min) — $50 between Daniele Buatti and Bella', solo:true},
     ]},
     {id:'tue13oct', dow:'Tuesday', date:'13 October', dateISO:'2026-10-13', dot:'dc-music', week:'October',
-     sub:'🎭 VCE recital rehearsal 1–3pm',
-     focus:'Carey VCE recital rehearsal with vocalists 1–3pm',
+     sub:'🎭 Mrs Doubtfire rehearsals 2–8pm',
+     focus:'Mrs Doubtfire rehearsals — call 2pm',
      events:[
+        {time:'09:40–10:20', text:'Piano', cal:true, desc:'After Nick\'s Q&A. Technique 15, stretch piece 15, free play 10.'},
+        {time:'14:00–20:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
         {time:'13:00–15:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true},
-        {time:'14:00–20:00', text:'MRS DOUBTFIRE REHEARSALS'},
         {time:'15:00–17:00', text:'[CAREY] VCE recital rehearsal'},
     ]},
     {id:'mon19oct', dow:'Monday', date:'19 October', dateISO:'2026-10-19', dot:'dc-music', week:'October',
-     sub:'🎭 VCE recital rehearsal 2–4pm',
-     focus:'Carey VCE recital rehearsal with vocalists 2–4pm',
+     sub:'🎭 Mrs Doubtfire rehearsals 2–8pm',
+     focus:'Mrs Doubtfire rehearsals — call 2pm',
      events:[
-       {time:'14:00–16:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true}
+        {time:'14:00–18:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true, desc:'Confirmed with Jen Bartlett 25 Sep 2026. Hours not yet confirmed for this week - assumed 2...'},
     ]},
     {id:'sun25oct', dow:'Sunday', date:'25 October', dateISO:'2026-10-25', dot:'dc-music', week:'October',
      sub:'🎭 Carey VCE vocal exams 9am',
@@ -706,12 +721,19 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      sub:'🎭 Starbound audition day 10am',
      focus:'Starbound audition day 10am–12pm',
      events:[
-       {time:'10:00–12:00', text:'🎹 Starbound audition day — accompanist', perf:true}
+        {time:'10:00–12:00', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},
     ]},
     {id:'sun15nov', dow:'Sunday', date:'15 November', dateISO:'2026-11-15', dot:'dc-music', week:'November',
      sub:'🎭 Starbound audition day 9:30am',
      focus:'Starbound audition day 9:30am–4:45pm',
      events:[
-       {time:'09:30–16:45', text:'🎹 Starbound audition day — accompanist', perf:true}
+        {time:'09:30–16:45', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},
     ]},
-   ]
+
+  {id:'sat10oct', dow:'Saturday', date:'10 October', dateISO:'2026-10-10', week:'October',
+   sub:'', focus:'',
+   events:[
+        {time:'10:00–10:15', text:'Pay gas bill', tickable:true, coffee:true},
+        {time:'10:15–10:30', text:'Pay electricity bill', tickable:true, coffee:true}
+    ]},
+]
