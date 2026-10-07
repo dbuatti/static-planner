@@ -695,4 +695,10 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'15:00–16:00', text:'PHIL’S PERFORMANCE PIANO (2:15pm)', cal:true},
         {time:'16:30–18:30', text:'Phil\'s event — St Peter\'s Church Melbourne (voice),', cal:true},
     ]},
+
+  {id:'thu8oct', dow:'Thursday', date:'8 October', dateISO:'2026-10-08', dot:'dc-rest', week:'October',
+   sub:'', focus:'',
+   events:[
+        {time:'10:00–10:30', text:'Read this'}
+    ]},
 ]
