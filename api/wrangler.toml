@@ -1,0 +1,14 @@
+name = "planner-api"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# The static planner site and the JSON API share one host:
+#   https://planner-api.daniele-buatti.workers.dev/
+# Assets (this repo's root) are matched first; anything that isn't a file falls
+# through to the Worker fetch() so /health, /tasks, /tasks/done and /spending
+# keep working.
+[assets]
+directory = ".."
+binding = "ASSETS"
+
+# DATABASE_URL is set as a Worker secret (not in this file).

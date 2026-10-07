@@ -1,0 +1,12 @@
+/.git/
+/.dyad/
+/.wrangler/
+/node_modules/
+/api/
+/tools/
+/AGENTS.md
+/AI_RULES.md
+/pnpm-workspace.yaml
+/.gitignore
+/index (BACKUP).html
+/*.log

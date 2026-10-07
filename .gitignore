@@ -1,1 +1,3 @@
 .dyad/
+.wrangler/
+node_modules/
