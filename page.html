@@ -219,11 +219,14 @@
 
   function syncTick(day, ev, done) {
     try {
-      var startMin = toMin(timeRange(ev.time).start);
+      var tr = timeRange(ev.time || "");
+      var startMin = toMin(tr.start);
+      var dur = tr.end ? (toMin(tr.end) - startMin) : 0;
+      if (!(dur > 0)) dur = 30;
       fetch("https://planner-api.daniele-buatti.workers.dev/tasks/done", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ day: day.dateISO, startMin: startMin, done: done })
+        body: JSON.stringify({ day: day.dateISO, startMin: startMin, done: done, text: ev.text || "", duration: dur })
       }).catch(function () {});
     } catch (e) {}
   }
