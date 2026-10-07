@@ -699,6 +699,10 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
   {id:'thu8oct', dow:'Thursday', date:'8 October', dateISO:'2026-10-08', dot:'dc-rest', week:'October',
    sub:'', focus:'',
    events:[
-        {time:'10:00–10:30', text:'Read this'}
+        {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
+        {time:'08:50–09:30', text:'Piano', cal:true},
+        {time:'09:00–11:00', text:'FNH MASTERY CATCH UP', cal:true},
+        {time:'11:15–12:15', text:'Gena Fawn', cal:true},
+        {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
     ]},
 ]
