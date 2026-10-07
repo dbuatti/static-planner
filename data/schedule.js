@@ -624,7 +624,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true, desc:'15 min, straight after the affirmation, before the phone. Minimum version: 5 min. Sunday\'s...'},
         {time:'08:50–09:30', text:'Piano', cal:true, desc:'Technique 15, stretch piece 15, free play 10. Minimum version: 10 min. On FNH Mastery Thur...'},
-        {time:'10:00–11:30', text:'Stage Roster profile — set up', cal:true, desc:'Create the profile page on The Stage Roster — bio, credits (Wicked, The Bodyguard, Into th...'},
+        {time:'10:00–11:30', text:'Stage Roster profile — set up', cal:true, tickable:true, desc:'Create the profile page on The Stage Roster — bio, credits (Wicked, The Bodyguard, Into th...'},
         {time:'12:30–14:00', text:'Record pianist audition — Montgomery Wilson', cal:true, desc:'Applications close Sat 10 Oct. Three excerpts, about 15–20 sec each: 1. Cocktail jazz: fin...'},
         {time:'13:00–15:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true},
         {time:'14:45–16:15', text:'Piano Backings — record Emily + Charlie', cal:true, desc:'Record and deliver the two backing tracks: Emily (Modest Maid, Marc Blitzstein — audition...'},]},
