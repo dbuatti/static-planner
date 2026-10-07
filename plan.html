@@ -4238,7 +4238,7 @@ function buildEvents(d) {
   var evs = (d.events||[]).map(function(e) {
     var r=timeRange(e.time);
     var ev = {
-      time:e.time, text:e.text, link:e.link||null,
+      time:e.time, text:e.text, desc:e.desc||'', link:e.link||null,
       startMin:toMin(r.start), endMin:toMin(r.end),
       dur:calcDur(e),
       buffer:e.buffer!==undefined?e.buffer:e.text.startsWith('🔒'),
@@ -4584,7 +4584,9 @@ function renderDays() {
       if (ev.tickable || ev.free) h += '<div class="chk"></div>';
       h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text);
       if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
-      h += '</div></div></div>';
+      h += '</div>';
+      if (ev.desc) h += '<div class="dsub" title="'+esc(ev.desc)+'">'+esc(ev.desc)+'</div>';
+      h += '</div></div>';
     });
     if (inCoffee) h += '</div>';
     if (inHome) h += '</div>';

@@ -161,6 +161,12 @@
   }
 
   // ---- Schedule ----
+  function esc(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function renderSchedule() {
     var host = document.getElementById("sched-list");
     var day = todayDay();
@@ -173,7 +179,7 @@
       var meal = /Lunch|Dinner|Breakfast|Meal/i.test(e.text);
       var free = /FREE DAY|DAY OFF|SYDNEY|FREE|day off/i.test(e.text);
       var cls = meal ? "is-meal" : (free ? "is-free" : "");
-      html += '<div class="sched-row ' + cls + '"><span class="tm">' + (e.time || "") + '</span><span class="tx">' + (e.text || "") + '</span></div>';
+      html += '<div class="sched-row ' + cls + '"><span class="tm">' + (e.time || "") + '</span><span class="tx">' + (e.text || "") + (e.desc ? '<span class="dsub" title="' + esc(e.desc) + '">' + esc(e.desc) + '</span>' : '') + '</span></div>';
     });
     host.innerHTML = html;
   }
