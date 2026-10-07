@@ -249,6 +249,7 @@
 
   $("prev").addEventListener("click", function () { cur = Helpers.addDaysISO(cur, -7); render(); });
   $("next").addEventListener("click", function () { if (cur !== thisMon) { cur = Helpers.addDaysISO(cur, 7); render(); } });
+  window.addEventListener("planner:spending-restore", function () { render(); });
 
   var data = Spending.getData();
   var FIELDS = [
