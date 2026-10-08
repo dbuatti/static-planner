@@ -68,6 +68,25 @@
     return "$" + Math.round(n).toLocaleString("en-AU");
   }
 
+  // Stable, content-based tick id so a task ticked ahead of its day keeps the
+  // SAME id once the day arrives — positional counters shift when recurring
+  // events (allowance, money date, Q&A) appear/disappear. Explicit `tid`
+  // fields are preserved verbatim (past archived days rely on them).
+  function stableTickId(dayId, ev) {
+    if (ev.tid !== undefined) return dayId + "-t" + ev.tid;
+    var s = "";
+    var p = String(ev.time || "").trim().split(/[–\-]/);
+    if (p[0]) {
+      var c = p[0].trim().split(":");
+      if (c.length >= 2) s += (parseInt(c[0], 10) * 60 + parseInt(c[1], 10)) + "x";
+    }
+    var t = String(ev.text || "").toLowerCase();
+    var h = 0;
+    for (var i = 0; i < t.length; i++) h = ((h << 5) - h + t.charCodeAt(i)) | 0;
+    s += h < 0 ? -h : h;
+    return dayId + "-t" + s;
+  }
+
   global.Helpers = {
     WD: WD,
     isoFromDate: isoFromDate,
@@ -77,6 +96,7 @@
     addDaysISO: addDaysISO,
     mondayISO: mondayISO,
     money: money,
-    money0: money0
+    money0: money0,
+    stableTickId: stableTickId
   };
 })(window);

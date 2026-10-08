@@ -3892,6 +3892,7 @@ body, .main { background: #FFF7F4; }
 
 <script src="data/schedule.js"></script>
 <script src="assets/js/recurring.js"></script>
+<script src="assets/js/helpers.js"></script>
 <script src="assets/js/nav.js"></script>
 <script>
 // ── GUARDED STORAGE ──────────────────────────────────────────
@@ -4234,10 +4235,9 @@ function renderDays() {
     var nextLabel=nextId==='ov'?'Overview':dayLabel(nextId);
     var allEvs = buildEvents(d);
     var activeEvs = [], completedEvs = [];
-    var tickN = 0;
     var archDone = 0, archTotal = 0;
     allEvs.forEach(function(ev) {
-      if (ev.tickable) ev._tickId = d.id+'-t'+(ev.tid!==undefined?ev.tid:tickN++);
+      if (ev.tickable) ev._tickId = Helpers.stableTickId(d.id, ev);
       if (ev.archived) {
         archTotal++;
         if (ev.done || LS.get('tick-'+ev._tickId) === '1') archDone++;

@@ -191,11 +191,10 @@
       return toMin(timeRange(a.time).start) - toMin(timeRange(b.time).start);
     });
     var out = [];
-    var n = 0;
     evs.forEach(function (e) {
       var meal = /Lunch|Dinner|Breakfast|Meal/i.test(e.text);
       if (e.tickable === false || meal) return;
-      out.push({ ev: e, tickId: day.id + "-t" + (e.tid !== undefined ? e.tid : n++) });
+      out.push({ ev: e, tickId: Helpers.stableTickId(day.id, e) });
     });
     return out;
   }
