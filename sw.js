@@ -1,5 +1,5 @@
 /* ── sw.js — network-first service worker (fresh deploys, offline fallback) ── */
-const VERSION = "planner-v3";
+const VERSION = "planner-v4";
 const CORE = [
   "./",
   "./index.html",
@@ -61,7 +61,7 @@ self.addEventListener("fetch", (e) => {
   }
 
   e.respondWith(
-    fetch(e.request)
+    fetch(e.request, { cache: "reload" })
       .then((res) => {
         if (res && res.ok) {
           const clone = res.clone();
