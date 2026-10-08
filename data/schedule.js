@@ -685,7 +685,8 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
     ]},
 
   {id:'sat10oct', dow:'Saturday', date:'10 October', dateISO:'2026-10-10', dot:'dc-rest', week:'October',
-   sub:'', focus:'',
+   sub:'Phil\'s performance piano 2:15pm',
+   focus:'Phil\'s performance piano — St Peter\'s Church Melbourne, 3–6:30pm',
    events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
@@ -696,7 +697,8 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
     ]},
 
   {id:'thu8oct', dow:'Thursday', date:'8 October', dateISO:'2026-10-08', dot:'dc-rest', week:'October',
-   sub:'', focus:'',
+   sub:'FNH Mastery 9am — Gena Fawn 11:15am',
+   focus:'FNH Mastery catch-up 9–11am, then Gena Fawn 11:15am',
    events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
