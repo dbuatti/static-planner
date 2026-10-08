@@ -145,6 +145,30 @@ export default {
         return json({ ok: true });
       }
 
+      // Whole-state spending backup (migration 003: spending_state single row,
+      // id=1, last write wins) for the app's {plan, weeks} snapshot. Lives under
+      // /api/spending because assets-first resolution maps /spending to the page.
+      if (path === '/api/spending') {
+        if (request.method === 'POST') {
+          const b = await request.json();
+          const state = b && b.state;
+          if (!state || typeof state !== 'object') return err('need {state}');
+          await sql`
+            INSERT INTO spending_state (id, state, updated_at)
+            VALUES (1, ${JSON.stringify(state)}::jsonb, now())
+            ON CONFLICT (id) DO UPDATE SET state = EXCLUDED.state, updated_at = now()`;
+          return json({ ok: true });
+        }
+        if (request.method === 'GET') {
+          const rows = await sql`SELECT state FROM spending_state WHERE id = 1 LIMIT 1`;
+          let state = null;
+          if (rows[0]) state = rows[0].state || null;
+          if (typeof state === 'string') { try { state = JSON.parse(state); } catch (_) {} }
+          return json({ ok: !!state, state });
+        }
+        return err('method not allowed', 405);
+      }
+
       return err('not found', 404);
     } catch (e) {
       return err(String((e && e.message) || e), 500);

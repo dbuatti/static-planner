@@ -42,10 +42,12 @@
     var body = pushData;
     pushData = null;
     pushing = true;
-    fetch(SPEND_API + "/spending", {
+    fetch(SPEND_API + "/api/spending", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ state: body })
+    }).then(function (r) {
+      if (!r.ok) throw new Error("spending push " + r.status);
     }).catch(function () {
       // silent: the next save() re-arms the backup
     }).finally(function () {
@@ -68,7 +70,7 @@
     try { hasLocal = localStorage.getItem("planner.spending") !== null; }
     catch (e) { hasLocal = true; }
     if (hasLocal) return Promise.resolve(false);
-    return fetch(SPEND_API + "/spending")
+    return fetch(SPEND_API + "/api/spending")
       .then(function (r) { return r.json(); })
       .then(function (j) {
         var state = j && j.ok && j.state;
