@@ -231,6 +231,31 @@
     } catch (e) {}
   }
 
+  // Pull today's done-state back from the backend so ticks made on another
+  // device (e.g. iPhone) reach the Today hub too. Matches on startMin+text,
+  // mirrors to local tick state, re-renders so done tasks drop off the top-3.
+  function syncTicksFromBackend() {
+    var day = todayDay();
+    if (!day) return;
+    fetch("https://planner-api.daniele-buatti.workers.dev/tasks?day=" + encodeURIComponent(day.dateISO))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) {
+        if (!j || !j.ok || !j.tasks || !j.tasks.length) return;
+        var changed = false;
+        tickableTasks(day).forEach(function (t) {
+          var tr = timeRange(t.ev.time || "");
+          var sm = toMin(tr.start);
+          var bak = null;
+          for (var i = 0; i < j.tasks.length; i++)
+            if (j.tasks[i].start_min === sm && j.tasks[i].text === t.ev.text) { bak = j.tasks[i]; break; }
+          if (!bak) return;
+          if (bak.done && tickState(t.tickId) !== "1") { setTick(t.tickId, true); changed = true; }
+          else if (!bak.done && tickState(t.tickId) === "1") { setTick(t.tickId, false); changed = true; }
+        });
+        if (changed) renderTasks();
+      }).catch(function () {});
+  }
+
   function renderTasks() {
     var host = document.getElementById("top-tasks");
     var day = todayDay();
@@ -323,6 +348,8 @@
 
   renderSchedule();
   renderTasks();
+  syncTicksFromBackend();
+  window.addEventListener("focus", function () { syncTicksFromBackend(); });
   renderPractice();
   renderSpending();
   window.addEventListener("planner:spending-restore", renderSpending);
