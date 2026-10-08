@@ -30,7 +30,7 @@
 - Moving a task to DO FIRST means moving its `<div class="tc tickable">` block into that section (and removing it from its old section).
 
 ## Tick / checkbox system
-- Tickable items use `class="tc tickable"` with `data-tickid` (auto-assigned from `_tickId` for day events; the Tasks page uses its own `tick-` localStorage keys).
+- Tickable items use `class="tc tickable"` with `data-tickid` (auto-assigned from `_tickId` for day events; the Tasks page cards use `lookin-N` ids). All ticks persist to `tick-<id>` localStorage keys and are restored by `restoreTicks()`.
 - Completed tasks on the Tasks page can be removed when the user says they've completed them.
 
 ## Print
