@@ -689,6 +689,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
+        {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:00–10:15', text:'Pay gas bill', tickable:true, coffee:true},
         {time:'10:15–10:30', text:'Pay electricity bill', tickable:true, coffee:true},
         {time:'15:00–16:00', text:'PHIL’S PERFORMANCE PIANO (2:15pm)', cal:true},
