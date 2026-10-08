@@ -4537,6 +4537,14 @@ function sidebarCutoffISO() {
   d.setDate(d.getDate() - day + (day === 0 ? -6 : 1)); // Monday of this week
   return localDateStr(d);
 }
+// A day "has content" if it has any event other than the auto sleep anchor.
+// Used so the sidebar / week-summaries / Overview show only real days, not
+// months of "🛌 Sleep 10pm" placeholders.
+function hasDayContent(d) {
+  return (d.events || []).some(function(e) {
+    return !/Sleep 10pm|Sleep by 10pm/i.test(e.text);
+  });
+}
 function planRangeLabel() {
   var cutoff = sidebarCutoffISO();
   var first = null;
@@ -4562,6 +4570,7 @@ function renderSidebar() {
   var cutoff = sidebarCutoffISO();
   DAYS.forEach(function(d) {
     if (d.dateISO < cutoff) return;
+    if (!hasDayContent(d)) return;
     var ws = weekStart(d);
     if (ws !== lastWeek) {
       h += '<div class="week-label" onclick="go(\'week-'+weekIdx+'\')" style="cursor:pointer;">Week of '+ws+' <span style="font-size:8px;color:#ccc;">→</span></div>';
@@ -4580,6 +4589,7 @@ function renderWeekSummary(idx) {
   var weekDays = [], lastW = '', wIdx = -1;
   DAYS.forEach(function(d) {
     if (d.dateISO < cutoff) return;
+    if (!hasDayContent(d)) return;
     var ws = weekStart(d);
     if (ws !== lastW) { wIdx++; lastW = ws; }
     if (wIdx === idx) weekDays.push(d);
@@ -4760,9 +4770,14 @@ function renderOverview() {
     });
   }
   var lastMonth = '';
-  var cutoff = '2026-07-27';
+  var cutoff = sidebarCutoffISO();
   DAYS.forEach(function(d) {
     if (d.dateISO < cutoff) return;
+    // Skip placeholder days whose only content is the auto sleep anchor.
+    var real = (d.events || []).filter(function(e) {
+      return !/Sleep 10pm|Sleep by 10pm/i.test(e.text);
+    });
+    if (!real.length) return;
     var month = d.date.split(' ')[1] || d.date.split(' ')[0];
     if (month !== lastMonth) {
       h += '<div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#9a9080;margin:20px 0 8px;padding-bottom:4px;border-bottom:1px solid #E8E6DF;">'+month+'</div>';
@@ -4772,7 +4787,7 @@ function renderOverview() {
     var bgColor = d.dot === 'dc-music' ? '#f5f7fc' : d.dot === 'dc-kine' ? '#f5eef8' : '#fefcf0';
     h += '<div class="oc" onclick="go(\''+d.id+'\')" style="border-left:3px solid '+mainColor+';background:'+bgColor+';margin-bottom:6px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:box-shadow 0.15s;" onmouseenter="this.style.boxShadow=\'0 1px 4px rgba(0,0,0,0.08)\'" onmouseleave="this.style.boxShadow=\'none\'">';
     h += '<div style="font-size:11px;color:'+mainColor+';margin-bottom:2px;font-weight:600;">'+dayLabel(d.id)+'</div>';
-    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+d.focus+'</div></div>';
+    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+(d.focus || (real.length ? real[0].text : ''))+'</div></div>';
   });
   c.innerHTML = h;
 }
