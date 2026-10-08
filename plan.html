@@ -1487,17 +1487,12 @@ body, .main { background: #FFF7F4; }
   .app-wrap { display: block !important; height: auto !important; min-height: 0 !important; }
   .main { height: auto !important; min-height: 0 !important; overflow: visible !important; padding: 0 !important; }
   .day-panel { display: none !important; }
-  .day-panel.active,
   .day-panel.print-me { display: block !important; }
-  /* Two-day print: landscape, one day on each half */
-  body.print-pair .day-panel.print-me { display: block !important; width: 50% !important; margin: 0 !important; box-sizing: border-box !important; page-break-after: auto !important; }
-  body.print-pair .day-panel.print-me:first-child { float: left !important; padding-right: 8px !important; border-right: 1px solid #D3D1C7 !important; }
-  body.print-pair .day-panel.print-me:last-child { float: right !important; padding-left: 8px !important; }
-  /* Multi-day print: landscape, one day per page */
-  body.print-2 .day-panel.print-me { display: block !important; width: 100% !important; float: none !important; page-break-after: always !important; }
+  /* Multi-day print: landscape, one day per page (2+ days, incl. exactly two) */
+  body.print-2 .day-panel.print-me { display: block !important; width: 100% !important; page-break-after: always !important; }
   body.print-2 .day-panel.print-me:last-child { page-break-after: auto !important; }
   /* Single-day print: portrait, one page */
-  body.print-single .day-panel.active { page-break-after: auto !important; }
+  body.print-single .day-panel.print-me { page-break-after: auto !important; }
   /* Don't show completed items */
   .tc.done { display: none !important; }
   .now-line { display: none !important; }
@@ -5884,15 +5879,18 @@ function closePrint() {
 function doPrint() {
   document.querySelectorAll('.day-panel').forEach(function(p) { p.classList.remove('print-me','page-break-before'); });
   var checked = Array.from(document.querySelectorAll('.print-day-cb:checked')).map(function(c) { return c.value; });
+  if (checked.length === 0) {
+    var act = document.querySelector('.day-panel.active');
+    if (act) checked = [act.id.replace('view-','')];
+  }
   var single = checked.length === 1;
-  var pair = checked.length === 2;
   setPrintOrientation(single ? true : false);
   checked.forEach(function(id) {
     var el = document.getElementById('view-' + id);
     if (!el) return;
     el.classList.add('print-me');
   });
-  document.body.classList.add(pair ? 'print-pair' : (single ? 'print-single' : 'print-2'));
+  document.body.classList.add(single ? 'print-single' : 'print-2');
   window.print();
   setTimeout(function() { document.body.classList.remove('print-2','print-pair','print-single'); closePrint(); }, 1000);
 }
