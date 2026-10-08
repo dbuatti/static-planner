@@ -129,6 +129,7 @@
 <script src="assets/js/practice.js"></script>
 <script src="assets/js/spending.js"></script>
 <script src="data/schedule.js"></script>
+<script src="assets/js/recurring.js"></script>
 <script src="assets/js/nav.js"></script>
 <script>
 (function () {
@@ -317,6 +318,9 @@
   document.getElementById("q-cafe").addEventListener("click", function () { bump("cafe"); });
   document.getElementById("q-home").addEventListener("click", function () { bump("home"); });
   document.getElementById("q-meal").addEventListener("click", function () { bump("meal"); });
+
+  // Apply weekday recurrence rules (allowance on Thu, money date on Sun, Q&A, sleep)
+  populateRecurring();
 
   renderSchedule();
   renderTasks();
