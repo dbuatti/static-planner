@@ -628,14 +628,13 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'13:00–15:00', text:'🎭 VCE recital rehearsal — Carey vocalists (Alicia, exact times TBC)', teaching:true, tickable:true},
         {time:'14:45–16:15', text:'Piano Backings — record Emily + Charlie', cal:true, desc:'Record and deliver the two backing tracks: Emily (Modest Maid, Marc Blitzstein — audition...'},]},
     {id:'mon12oct', dow:'Monday', date:'12 October', dateISO:'2026-10-12', dot:'dc-kine', week:'October',
-     sub:'Lily Walker FNH 2pm',
-     focus:'Lily Walker FNH 2pm',
+     sub:'🎭 Mrs Doubtfire rehearsals 2–8pm',
+     focus:'Mrs Doubtfire rehearsals 2–8pm — Susan Lord FNH 10am, Bella coaching 4:30pm',
      events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
         {time:'09:45–10:05', text:'Weekly planning', cal:true, desc:'Pick the week\'s technique focus, check the stretch piece, look at the week\'s commitments.'},
         {time:'10:00–11:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Susan Elizabeth Lord', solo:true},
-
         {time:'14:00–20:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
         {time:'16:30–17:00', text:'Voice and Piano Coaching (30 min) — $50 between Daniele Buatti and Bella', solo:true},
         {time:'18:00–20:00', text:'FNH MASTERY CATCH UP', cal:true},
