@@ -13,7 +13,7 @@
     else document.documentElement.removeAttribute("data-theme");
   })();
 
-  // Register the offline service worker (cache-first, see sw.js).
+  // Register the offline service worker (network-first, see sw.js).
   if ("serviceWorker" in navigator && location.protocol !== "file:") {
     window.addEventListener("load", function () {
       navigator.serviceWorker.register("sw.js").catch(function () {});

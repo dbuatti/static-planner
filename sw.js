@@ -1,5 +1,5 @@
-/* ── sw.js — cache-first service worker (offline support) ── */
-const VERSION = "planner-v2";
+/* ── sw.js — network-first service worker (fresh deploys, offline fallback) ── */
+const VERSION = "planner-v3";
 const CORE = [
   "./",
   "./index.html",
@@ -12,6 +12,7 @@ const CORE = [
   "./assets/js/store.js",
   "./assets/js/nav.js",
   "./assets/js/helpers.js",
+  "./assets/js/recurring.js",
   "./assets/js/practice.js",
   "./assets/js/spending.js",
   "./assets/icons/icon-192.png",
@@ -40,16 +41,34 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(e.request.url);
   if (url.origin !== location.origin) return;
 
+  // Mutable app files (HTML, JS, CSS, data): network-first so each commit shows up
+  // immediately; cache is only the offline fallback. Immutable assets (icons/fonts):
+  // cache-first.
+  if (/\.(png|ico|svg|jpg|jpeg|webp|gif|webmanifest|ttf|woff2?)$/i.test(url.pathname)) {
+    e.respondWith(
+      caches.match(e.request).then((hit) => {
+        const network = fetch(e.request).then((res) => {
+          if (res && res.ok) {
+            const clone = res.clone();
+            caches.open(VERSION).then((c) => c.put(e.request, clone));
+          }
+          return res;
+        });
+        return hit || network;
+      })
+    );
+    return;
+  }
+
   e.respondWith(
-    caches.match(e.request).then((hit) => {
-      const network = fetch(e.request).then((res) => {
+    fetch(e.request)
+      .then((res) => {
         if (res && res.ok) {
           const clone = res.clone();
           caches.open(VERSION).then((c) => c.put(e.request, clone));
         }
         return res;
-      });
-      return hit || network;
-    })
+      })
+      .catch(() => caches.match(e.request))
   );
 });
