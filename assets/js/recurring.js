@@ -42,9 +42,9 @@ function populateRecurring() {
     if (dow === 4 && !hasEvent(day, /Weekly Q\s*&?\s*A/i)) {
       day.events.push({time:'18:00–20:00', text:'🧠 FNH Weekly Q&A', fnh:true});
     }
-    // Thu: Allowance transfer 11-11:30
-    if (dow === 4 && !hasEvent(day, /Allowance transfer/)) {
-      day.events.push({time:'11:00–11:30', text:'💰 Allowance transfer — $200 (150 lean · 250 good month)'});
+    // Sun: Allowance transfer (evening)
+    if (dow === 0 && !hasEvent(day, /Allowance transfer/)) {
+      day.events.push({time:'19:00–19:30', text:'💰 Allowance transfer — $200 (150 lean · 250 good month)'});
     }
     // Thu: Financial Weekly 11:30-11:45
     if (dow === 4 && !hasEvent(day, /Financial Weekly/)) {
