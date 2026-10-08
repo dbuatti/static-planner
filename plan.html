@@ -1779,7 +1779,7 @@ body, .main { background: #FFF7F4; }
 
 <!-- OVERVIEW -->
 <div id="view-ov" class="day-panel">
-  <div class="dh-top"><div class="dh-dow">July → August 2026</div></div>
+  <div class="dh-top"><div class="dh-dow" id="ov-dh-dow"></div></div>
   <div class="dh-focus">Overview — planned days in the pipeline.</div>
   <div id="ov-container"></div>
 </div>
@@ -4537,13 +4537,24 @@ function sidebarCutoffISO() {
   d.setDate(d.getDate() - day + (day === 0 ? -6 : 1)); // Monday of this week
   return localDateStr(d);
 }
-// A day "has content" if it has any event other than the auto sleep anchor.
-// Used so the sidebar / week-summaries / Overview show only real days, not
-// months of "🛌 Sleep 10pm" placeholders.
+// Recurring auto-generated cadence events — never "day content" for the
+// sidebar / week-summaries / Overview. Real planned days have authored events
+// beyond these (flights, bookings, rehearsals, sessions with people, etc.).
+var RECUR_PATTERNS = [
+  /Sleep by 10pm/i,
+  /Weekly Q\s*&?\s*A/i,
+  /Allowance transfer/i,
+  /Financial Weekly/i,
+  /money date/i,
+  /FNH Mastery/i,
+  /FNH MASTERY CATCH UP/i
+];
+function isRecurring(e) {
+  return RECUR_PATTERNS.some(function(r) { return r.test(e.text); });
+}
+// A day "has content" if it has any event that isn't generated cadence.
 function hasDayContent(d) {
-  return (d.events || []).some(function(e) {
-    return !/Sleep 10pm|Sleep by 10pm/i.test(e.text);
-  });
+  return (d.events || []).some(function(e) { return !isRecurring(e); });
 }
 function planRangeLabel() {
   var cutoff = sidebarCutoffISO();
@@ -4755,28 +4766,12 @@ function renderOverview() {
   h += '<span style="background:#fef3dc;color:#a07020;border:1px solid #e8d090;font-size:10px;padding:2px 8px;border-radius:20px;">🐾 Paw Patrol</span>';
   h += '<span style="background:#f5eef8;color:#6b3fa0;border:1px solid #d4b8e8;font-size:10px;padding:2px 8px;border-radius:20px;">🩺 FNH</span>';
   h += '</div>';
-  var historical = [
-    {date:'Wed 1 Jul', text:'🩺 FNH — Ashna 3pm', color:'#6b3fa0', bg:'#f5eef8'},
-    {date:'Tue 7 Jul', text:'🐾 MTFest — Junior Dancer Stream 9am', color:'#a07020', bg:'#fefcf0'},
-    {date:'Wed 8 Jul', text:'🐾 MTFest — Junior Singer/Actor 9am', color:'#a07020', bg:'#fefcf0'},
-    {date:'Thu 9 · Fri 10 Jul', text:'🐾 Paw Patrol Live! Rehearsals (hold)', color:'#a07020', bg:'#fefcf0'},
-  ];
-  if (historical.length) {
-    h += '<h2 style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9a9080;margin:16px 0 8px;">Earlier</h2>';
-    historical.forEach(function(ev) {
-      h += '<div style="border-left:3px solid '+ev.color+';padding-left:12px;margin-bottom:6px;background:'+ev.bg+';padding:6px 12px;border-radius:8px;">';
-      h += '<div style="font-size:11px;color:'+ev.color+';margin-bottom:2px;font-weight:600;">'+ev.date+'</div>';
-      h += '<div style="font-size:12px;font-weight:500;color:'+ev.color+';">'+ev.text+'</div></div>';
-    });
-  }
   var lastMonth = '';
   var cutoff = sidebarCutoffISO();
   DAYS.forEach(function(d) {
     if (d.dateISO < cutoff) return;
-    // Skip placeholder days whose only content is the auto sleep anchor.
-    var real = (d.events || []).filter(function(e) {
-      return !/Sleep 10pm|Sleep by 10pm/i.test(e.text);
-    });
+    // Skip days whose only events are recurring cadence (sleep/Q&A/money/Mastery).
+    var real = (d.events || []).filter(function(e) { return !isRecurring(e); });
     if (!real.length) return;
     var month = d.date.split(' ')[1] || d.date.split(' ')[0];
     if (month !== lastMonth) {
@@ -4787,7 +4782,11 @@ function renderOverview() {
     var bgColor = d.dot === 'dc-music' ? '#f5f7fc' : d.dot === 'dc-kine' ? '#f5eef8' : '#fefcf0';
     h += '<div class="oc" onclick="go(\''+d.id+'\')" style="border-left:3px solid '+mainColor+';background:'+bgColor+';margin-bottom:6px;padding:10px 12px;border-radius:8px;cursor:pointer;transition:box-shadow 0.15s;" onmouseenter="this.style.boxShadow=\'0 1px 4px rgba(0,0,0,0.08)\'" onmouseleave="this.style.boxShadow=\'none\'">';
     h += '<div style="font-size:11px;color:'+mainColor+';margin-bottom:2px;font-weight:600;">'+dayLabel(d.id)+'</div>';
-    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+(d.focus || (real.length ? real[0].text : ''))+'</div></div>';
+    // Day summary: focus minus the auto sleep prefix, else fall back to the
+    // real events so a day never reads as just "🛌 Sleep 10pm".
+    var summary = (d.focus || '').replace(/^🛌 Sleep 10pm(\s*—\s*)?/, '');
+    if (!summary) summary = real.slice(0,2).map(function(e){ return e.text; }).join(' · ');
+    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+summary+'</div></div>';
   });
   c.innerHTML = h;
 }
@@ -5659,7 +5658,7 @@ window.addEventListener('DOMContentLoaded', function() {
   syncMobileNav('plan');
   setMobileTitle('plan');
   var rng = (typeof planRangeLabel === 'function') ? planRangeLabel() : '';
-  if (rng) { document.title = 'Plan — ' + rng; var tbar = document.querySelector('.tab-bar-title'); if (tbar) tbar.textContent = rng; }
+  if (rng) { document.title = 'Plan — ' + rng; var tbar = document.querySelector('.tab-bar-title'); if (tbar) tbar.textContent = rng; var ovd = document.getElementById('ov-dh-dow'); if (ovd) ovd.textContent = rng; }
   // Highlight today in sidebar
   for (var id in DAY_DATES) {
     if (DAY_DATES[id] === todayStr) {
