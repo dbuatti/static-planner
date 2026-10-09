@@ -1,0 +1,9 @@
+{
+  "name": "static-planner",
+  "private": true,
+  "version": "1.0.0",
+  "description": "No-build static planner PWA",
+  "scripts": {
+    "test": "node --test"
+  }
+}

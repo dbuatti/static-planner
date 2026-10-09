@@ -1,4 +1,6 @@
 #!/bin/bash
-# Pre-commit hook: reject commits that leave index.html unable to parse.
+# Pre-commit hook: reject commits that leave a page unparseable or with failing tests.
 MY_DIR="$(cd "$(dirname "$0")" && pwd)"
-exec "$MY_DIR/../tools/validate.sh"
+"$MY_DIR/../tools/validate.sh" || exit 1
+"$MY_DIR/../tools/test.sh" || exit 1
+exit 0

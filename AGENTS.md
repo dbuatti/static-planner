@@ -48,6 +48,7 @@
 
 ## Validation
 - After any JS/DAYS edit, run `tools/validate.sh` (parses every inline `<script>` in every `.html` page plus every `data/*.js` and `assets/js/*.js`). The pre-commit hook runs it and blocks a broken commit.
+- Unit tests live in `test/*.test.js` and run via Node's built-in runner (`tools/test.sh` → `node --test`; needs node >= 18). They cover `helpers.js`, `store.js` (with a localStorage stub) and `recurring.js` (pinned `Date`). No build step, no deps — `package.json` only declares the `test` script. The pre-commit hook runs `tools/test.sh` after `validate.sh`; it skips gracefully when node is missing/too old so the Mini's pushes are never blocked.
 - To sum DAYS data in node, extract `var DAYS = [ ... ];` by bracket-matching from `data/schedule.js` (`src.indexOf('var DAYS = [')`).
 
 ## AI Edit Protocol (text-triggered agent edits)
