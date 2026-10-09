@@ -1,7 +1,7 @@
 # Static Planner — Project Rules
 
 ## File layout
-- Multi-page static site, no build step. Pages: `index.html` (**Today** hub), `plan.html` (**Plan** — the full planner: Daily Plan, Tasks, Look Into, plus every other tab), `practice.html`, `spending.html`, `more.html` (Settings + links).
+- Multi-page static site, no build step. Pages: `index.html` (**Today** hub), `plan.html` (**Plan** — the full planner: Daily Plan, Tasks, Look Into, plus every other tab), `practice.html`, `spending.html`, `more.html` (Settings + links). `plan.html` is a thin shell: its styles live in `assets/css/plan.css` and its logic in `assets/js/plan.js` (loaded last, after `data/schedule.js`, `recurring.js`, `helpers.js`, `nav.js`).
 - **`data/schedule.js`** holds the `var DAYS = [ ... ];` array — the single source of truth for the schedule. It is read/written by the Mini daemons and loaded by both `index.html` and `plan.html`. Do not rename `DAYS`.
 - Shared files: `assets/css/styles.css` (design + cross-site nav), `assets/js/store.js` (namespaced localStorage), `assets/js/nav.js` (nav bar), `assets/js/helpers.js`, `assets/js/practice.js`, `assets/js/spending.js`. `manifest.webmanifest` + `apple-touch-icon.png` for the home-screen app.
 - `page.html` is a duplicate of `index.html`. After editing `index.html`, sync it: `cp index.html page.html`.

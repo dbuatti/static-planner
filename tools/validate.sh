@@ -39,7 +39,8 @@ for f in index.html page.html plan.html practice.html spending.html more.html; d
       n++;
       try { new Function(m[1]); } catch (e) { console.error(process.argv[1] + ": inline script " + n + " does not parse: " + e.message); ok = false; }
     }
-    if (n === 0) { console.error(process.argv[1] + ": NO INLINE SCRIPT"); ok = false; }
+    // A page may legitimately have all its scripts external (e.g. plan.html).
+    if (!/<script\b/i.test(h)) { console.error(process.argv[1] + ": NO SCRIPT TAG"); ok = false; }
     if (!ok) process.exit(1);
   ' "$f" || { echo "validate.sh: $f failed - commit blocked" >&2; FAIL=1; }
 done
