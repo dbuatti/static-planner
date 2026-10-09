@@ -683,6 +683,17 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'09:30–16:45', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},
     ]},
 
+  {id:'fri9oct', dow:'Friday', date:'9 October', dateISO:'2026-10-09', dot:'dc-rest', week:'October',
+   sub:'🏀 Free Day · ☕ Coffee 10am · room clean + journal',
+   focus:'🏀 Free Day · ☕ Coffee @Little Quarter 10 · ForScore library cleanup · Room clean + journal 3pm',
+   events:[
+        {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
+        {time:'10:00–10:45', text:'💻 Clean up ForScore library on MacBook Pro', tickable:true, coffee:true},
+        {time:'10:45–11:00', text:'🎛 Rework soundscape workflow — Main stage / Logic', tickable:true, coffee:true},
+        {time:'15:00–15:15', text:'🧹 Room clean (15m)', tickable:true, home:true},
+        {time:'15:15–15:30', text:'📓 Journal — 15 min', tickable:true},
+    ]},
+
   {id:'sat10oct', dow:'Saturday', date:'10 October', dateISO:'2026-10-10', dot:'dc-rest', week:'October',
    sub:'Phil\'s performance piano 2:15pm',
    focus:'Phil\'s performance piano — St Peter\'s Church Melbourne, 3–6:30pm',
@@ -692,8 +703,21 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
         {time:'10:00–10:15', text:'Pay gas bill', tickable:true, coffee:true},
         {time:'10:15–10:30', text:'Pay electricity bill', tickable:true, coffee:true},
+        {time:'11:00–11:15', text:'🧹 Room clean (15m)', tickable:true, home:true},
+        {time:'11:15–11:30', text:'📓 Journal — 15 min', tickable:true},
         {time:'15:00–16:00', text:'PHIL’S PERFORMANCE PIANO (2:15pm)', cal:true},
         {time:'16:30–18:30', text:'Phil\'s event — St Peter\'s Church Melbourne (voice),', cal:true},
+    ]},
+
+  {id:'sun11oct', dow:'Sunday', date:'11 October', dateISO:'2026-10-11', dot:'dc-rest', week:'October',
+   sub:'☕ Coffee 10am · money date 3pm · room clean + journal',
+   focus:'☕ Coffee @Little Quarter 10 · Read Kajabi communities doc · Money date 3pm · Room clean + journal',
+   events:[
+        {time:'08:50–09:30', text:'Piano', cal:true},
+        {time:'10:00–10:30', text:'☕ Coffee — @Little Quarter', tickable:false, coffee:true},
+        {time:'10:00–11:00', text:'📖 Read: Kajabi communities doc — 29 slides, dense', tickable:true, coffee:true},
+        {time:'15:30–15:45', text:'🧹 Room clean (15m)', tickable:true, home:true},
+        {time:'15:45–16:00', text:'📓 Journal — 15 min', tickable:true},
     ]},
 
   {id:'thu8oct', dow:'Thursday', date:'8 October', dateISO:'2026-10-08', dot:'dc-rest', week:'October',
