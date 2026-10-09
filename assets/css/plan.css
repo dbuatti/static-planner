@@ -2912,3 +2912,44 @@ h1, h2, h3, .dh-title .dh-dow, .dh-title .dh-date, .stat-num { font-weight: 400;
 .study-corner { background: color-mix(in srgb, var(--ok) 8%, var(--card)); border: 1px solid color-mix(in srgb, var(--ok) 42%, var(--rule)); border-radius: var(--radius); box-shadow: none; }
 .fnh-corner { background: color-mix(in srgb, var(--ok) 8%, var(--card)); border: 1px solid color-mix(in srgb, var(--ok) 42%, var(--rule)); border-radius: var(--radius); box-shadow: none; }
 .teaching-corner { background: color-mix(in srgb, var(--soft) 10%, var(--card)); border: 1px solid var(--rule); border-radius: var(--radius); box-shadow: none; }
+
+/* ============================================================
+   ONE SHELL — the shared site-nav (mirrors assets/css/styles.css)
+   so Plan wears the same frame as every other page. The planner's
+   own section tabs (.tab-bar) sit below it on desktop and are
+   reached via the ☰ drawer / More sheet on mobile.
+   ============================================================ */
+.site-nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 1000;
+  display: flex; background: var(--card); border-top: 1px solid var(--rule);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.site-nav a {
+  flex: 1; min-height: var(--nav-h); display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 3px; text-decoration: none;
+  color: var(--soft); font-size: 11px; font-weight: 500;
+}
+.site-nav a .ic { font-size: 20px; line-height: 1; }
+.site-nav a[aria-current="page"] { color: var(--ink); font-weight: 700; }
+.site-nav a[aria-current="page"] .ic { color: var(--accent); }
+
+@media (min-width: 768px) {
+  .site-nav {
+    top: 0; bottom: auto; border-top: none; border-bottom: 1px solid var(--rule);
+    padding-bottom: 0; justify-content: center;
+  }
+  .site-nav a { flex: 0 1 140px; min-height: 52px; flex-direction: row; gap: 6px; font-size: 13px; }
+  .site-nav a .ic { font-size: 16px; }
+
+  /* Clear the top site-nav (52px) + section tab bar (40px). */
+  body.has-site-nav { padding-top: 52px; }
+  .tab-bar { top: 52px; }
+  .sidebar { top: 92px; max-height: calc(100vh - 92px); }
+  .main { height: calc(100vh - 92px); }
+  .tab-pane.active:not(#tab-plan) { padding-top: 92px; }
+}
+
+@media (max-width: 768px) {
+  /* The bottom site-nav (60px) replaces the old .m-bottom-nav. */
+  :root { --m-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+}

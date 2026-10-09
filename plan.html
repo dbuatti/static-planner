@@ -41,7 +41,7 @@
 <link rel="stylesheet" href="assets/css/plan.css">
 </head>
 
-<body class="no-site-nav" inject_newvt_svd="true">
+<body>
 
 
 <!-- Task detail overlay -->
@@ -54,10 +54,8 @@
   </div>
 </div>
 
-<!-- TAB BAR -->
+<!-- SECTION TAB BAR (in-page tabs; cross-page nav is the shared site-nav) -->
 <div class="tab-bar">
-  <button id="menu-toggle" onclick="toggleMenu()" class="menu-btn" aria-label="Toggle sidebar">☰</button>
-  <button class="tab-btn" onclick="location.href='index.html'" title="Back to the Today hub" style="color:var(--pl-185FA5);">⌂ Home</button>
   <span class="tab-bar-title">Jul 2026 → Jan 2027</span>
   <button class="tab-btn active" onclick="switchTab('plan')">📅 Daily Plan</button>
   <div class="tab-dropdown" data-dd="dd-strat">
@@ -74,9 +72,6 @@
   </div>
   <button class="tab-btn" onclick="goToday()" title="Jump to today">📅 Today</button>
   <div style="flex:1"></div>
-  <button class="tab-btn" onclick="location.href='practice.html'">🧘 Practice</button>
-  <button class="tab-btn" onclick="location.href='spending.html'">💰 Spending</button>
-  <button class="tab-btn" onclick="location.href='more.html'">⚙ More</button>
   <button class="tab-btn" onclick="copyAllPlans()" title="Copy Strategic Foundation, $70K Plan, Financial Plan and Dreams to clipboard">📋 Copy</button>
   <button class="tab-btn" onclick="openPrint()" style="border-left:0.5px solid var(--pl-E8E6DF);">🖨 Print</button>
   <div style="position:relative;display:flex;align-items:center;">
@@ -88,7 +83,7 @@
 <!-- MOBILE TOP BAR (shown ≤768px; replaces the desktop tab bar) -->
 <div id="m-topbar" class="m-topbar">
   <button class="mtb-ic" onclick="toggleMenu()" aria-label="Menu">☰</button>
-  <button class="mtb-ic" onclick="location.href='index.html'" aria-label="Home">⌂</button>
+  <button class="mtb-ic" onclick="toggleMore(true)" aria-label="More">⋯</button>
   <div class="mtb-title" id="m-topbar-title">Daily Plan</div>
   <button class="mtb-ic" onclick="goToday()" aria-label="Today">📅</button>
   <button class="mtb-ic" onclick="toggleSearch()" aria-label="Search">🔍</button>
@@ -144,19 +139,16 @@
   <button onclick="closePrint()" style="padding:4px 10px;background:none;border:0.5px solid var(--pl-CCCCCC);border-radius:5px;font-size:11px;cursor:pointer;">Cancel</button>
 </div>
 
-<!-- MOBILE BOTTOM NAV (shown ≤768px) -->
-<nav id="m-bottom-nav" class="m-bottom-nav" aria-label="Primary">
-  <button class="mn-btn active" data-tab="plan" onclick="switchTab('plan')"><span class="mn-ic">📅</span><span class="mn-lb">Plan</span></button>
-  <button class="mn-btn" data-tab="tasks" onclick="switchTab('lookin')"><span class="mn-ic">🗃</span><span class="mn-lb">Tasks</span></button>
-  <button class="mn-btn" data-tab="timeline" onclick="switchTab('timeline')"><span class="mn-ic">📈</span><span class="mn-lb">Timeline</span></button>
-  <button class="mn-btn" data-tab="more" onclick="toggleMore(true)"><span class="mn-ic">☰</span><span class="mn-lb">More</span></button>
-</nav>
-
 <!-- MOBILE MORE SHEET -->
 <div id="m-more-overlay" class="m-overlay" onclick="toggleMore(false)"></div>
 <div id="m-more" class="m-sheet" aria-hidden="true">
   <div class="m-sheet-handle"></div>
   <div class="m-sheet-hdr">More</div>
+  <div class="m-sheet-lbl">📅 Planner</div>
+  <button class="m-sheet-item" onclick="mMore('plan')">📅 Daily Plan</button>
+  <button class="m-sheet-item" onclick="mMore('lookin')">🗃 Tasks</button>
+  <button class="m-sheet-item" onclick="mMore('timeline')">📈 Timeline</button>
+  <button class="m-sheet-item" onclick="mMore('archive')">🗂 Archive</button>
   <div class="m-sheet-lbl">🧭 Strategy</div>
   <button class="m-sheet-item" onclick="mMore('strat')">Strategic Foundation</button>
   <button class="m-sheet-item" onclick="mMore('plan75')">$70K Plan</button>
@@ -166,17 +158,11 @@
   <button class="m-sheet-item" onclick="mMore('videos')">Videos</button>
   <button class="m-sheet-item" onclick="mMore('research')">Books &amp; Research</button>
   <button class="m-sheet-item" onclick="mMore('lookinto')">Look Into</button>
-  <div class="m-sheet-lbl">🗂 Other pages</div>
-  <button class="m-sheet-item" onclick="location.href='index.html'">📅 Today</button>
-  <button class="m-sheet-item" onclick="location.href='practice.html'">🧘 Practice</button>
-  <button class="m-sheet-item" onclick="location.href='spending.html'">💰 Spending</button>
-  <button class="m-sheet-item" onclick="location.href='more.html'">⚙ Settings &amp; backup</button>
   <div class="m-sheet-lbl">🧘 Life</div>
   <button class="m-sheet-item" onclick="mMore('mindful')">Mindfulness</button>
   <button class="m-sheet-item" onclick="mMore('dreams')">Dreams</button>
   <button class="m-sheet-item" onclick="mMore('gifts')">Gifts</button>
   <button class="m-sheet-item" onclick="mMore('snap')">Daily Snap</button>
-  <button class="m-sheet-item" onclick="mMore('archive')">🗂 Archive</button>
   <div class="m-sheet-sep"></div>
   <button class="m-sheet-item" onclick="mMoreAction(copyAllPlans)">📋 Copy all plans</button>
   <button class="m-sheet-item" onclick="mMoreAction(openPrint)">🖨 Print</button>
