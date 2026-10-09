@@ -1040,6 +1040,10 @@ function restoreTicks() {
     if (LS.get('tick-'+id) === '1') {
       tc.classList.add('ticked');
     }
+    // Make each tickable chip keyboard-accessible and announce its state.
+    tc.setAttribute('role', 'button');
+    if (!tc.hasAttribute('tabindex')) tc.setAttribute('tabindex', '0');
+    tc.setAttribute('aria-pressed', tc.classList.contains('ticked') ? 'true' : 'false');
   });
   if (typeof updateMDateStatus === 'function') updateMDateStatus();
   updateAllDayProgress();
@@ -1877,6 +1881,7 @@ document.addEventListener('click', function(e) {
   var tc = e.target.closest('.tc.tickable');
   if (!tc) return;
   tc.classList.toggle('ticked');
+  tc.setAttribute('aria-pressed', tc.classList.contains('ticked') ? 'true' : 'false');
   var id = tc.getAttribute('data-tickid');
   if (id) {
     if (tc.classList.contains('ticked')) LS.set('tick-'+id, '1');
@@ -1890,6 +1895,17 @@ document.addEventListener('click', function(e) {
     renderNextUp(pid);
     syncTickToBackend(pid, tc, id, tc.classList.contains('ticked'));
   }
+});
+
+// Keyboard activation for tickable chips and chain steps: Enter/Space triggers
+// the same toggle as a tap. Links inside a chip are left to the browser.
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter' && e.key !== ' ') return;
+  if (e.target && e.target.closest && e.target.closest('a')) return;
+  var el = e.target && e.target.closest ? e.target.closest('[role="button"]') : null;
+  if (!el) return;
+  e.preventDefault();
+  el.click();
 });
 
 // ── TICK → BACKEND (Neon) ──

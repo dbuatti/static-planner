@@ -1,5 +1,5 @@
 /* ── sw.js — network-first service worker (fresh deploys, offline fallback) ── */
-const VERSION = "planner-v4";
+const VERSION = "planner-v5";
 const CORE = [
   "./",
   "./index.html",
@@ -9,12 +9,14 @@ const CORE = [
   "./more.html",
   "./data/schedule.js",
   "./assets/css/styles.css",
+  "./assets/css/plan.css",
   "./assets/js/store.js",
   "./assets/js/nav.js",
   "./assets/js/helpers.js",
   "./assets/js/recurring.js",
   "./assets/js/practice.js",
   "./assets/js/spending.js",
+  "./assets/js/plan.js",
   "./assets/icons/icon-192.png",
   "./assets/icons/icon-512.png",
   "./assets/icons/icon-maskable-512.png",
