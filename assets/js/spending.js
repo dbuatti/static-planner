@@ -48,8 +48,8 @@
       body: JSON.stringify({ state: body })
     }).then(function (r) {
       if (!r.ok) throw new Error("spending push " + r.status);
-    }).catch(function () {
-      // silent: the next save() re-arms the backup
+    }).catch(function (err) {
+      console.warn("[planner] spending push failed", err);
     }).finally(function () {
       pushing = false;
       if (pushData) schedulePush();
@@ -81,7 +81,7 @@
         setTimeout(function () { window.dispatchEvent(new Event("planner:spending-restore")); }, 0);
         return true;
       })
-      .catch(function () { return false; });
+      .catch(function (err) { console.warn("[planner] spending pull failed", err); return false; });
   }
 
   function save(data) {

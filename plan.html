@@ -5545,7 +5545,7 @@ function renderDays() {
     h += '<button class="nb-arrow" onclick="go(\''+nextId+'\')" title="'+nextLabel+'">→</button>';
     h += '</div>';
     h += '</div>';
-    h += '<div class="dh-focus">'+d.focus+'</div>';
+    h += '<div class="dh-focus">'+esc(d.focus)+'</div>';
     h += '<div class="nextup" id="nextup-'+d.id+'"></div>';
     // Category bar — hide on days with no real events
     var catTotals = {};
@@ -5687,7 +5687,7 @@ function renderDays() {
       }
       var isDayOff = !ev.free && eventCategory(ev).id === 'free';
       if (isDayOff) {
-        h += '<div class="day-off-banner"><span class="day-off-tl">'+ev.text+'</span><span class="day-off-sub">'+ev.time+'</span></div>';
+        h += '<div class="day-off-banner"><span class="day-off-tl">'+esc(ev.text)+'</span><span class="day-off-sub">'+esc(ev.time)+'</span></div>';
         return;
       }
       var wasInCorner = inCoffee || inHome || inStudy || inFnh || inTeaching;
@@ -5786,7 +5786,7 @@ function renderDays() {
       var inlineStyle = ev.free ? '' : ' style="border-left:3px solid '+evColor+'"';
       h += '<div class="'+cls+'"'+did+dataLive+inlineStyle+'>';
       if (ev.tickable || ev.free) h += '<div class="chk"></div>';
-      h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text);
+      h += '<div class="tt">'+esc(ev.time)+'</div><div class="tb" style="flex:1;"><div class="tl">'+(ev.link?'<a href="'+esc(ev.link)+'" target="_blank" onclick="event.stopPropagation()">'+esc(ev.text)+'</a>':esc(ev.text));
       if (ev.dur>=30 && !ev.free) h += ' <span class="dur">'+fmtDur(ev.dur)+'</span>';
       h += '</div>';
       if (ev.desc) h += '<div class="dsub" title="'+esc(ev.desc)+'">'+esc(ev.desc)+'</div>';
@@ -5807,7 +5807,7 @@ function renderDays() {
         var did = ' data-tickid="'+ev._tickId+'"';
         h += '<div class="'+cls+'"'+did+' style="opacity:0.5;">';
         h += '<div class="chk">✓</div>';
-        h += '<div class="tt">'+ev.time+'</div><div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:var(--pl-888888);">'+(ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text)+'</div></div></div>';
+        h += '<div class="tt">'+esc(ev.time)+'</div><div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:var(--pl-888888);">'+(ev.link?'<a href="'+esc(ev.link)+'" target="_blank" onclick="event.stopPropagation()">'+esc(ev.text)+'</a>':esc(ev.text))+'</div></div></div>';
       });
       h += '</div></details>';
     }
@@ -5925,7 +5925,7 @@ function renderSidebar() {
       weekIdx++;
     }
     var we = /^Sat|^Sun/.test(d.dow) ? ' weekend' : '';
-    h += '<button class="day-btn'+dayHeat(d)+we+'" onclick="go(\''+d.id+'\')"><div class="dbdot '+d.dot+'"></div><div><div class="dbn">'+dayLabel(d.id)+'</div><div class="dbs">'+d.sub+'</div></div></button>';
+    h += '<button class="day-btn'+dayHeat(d)+we+'" onclick="go(\''+d.id+'\')"><div class="dbdot '+d.dot+'"></div><div><div class="dbn">'+dayLabel(d.id)+'</div><div class="dbs">'+esc(d.sub)+'</div></div></button>';
   });
   s.innerHTML = h;
 }
@@ -6122,7 +6122,7 @@ function renderOverview() {
     // real events so a day never reads as just "🛌 Sleep 10pm".
     var summary = (d.focus || '').replace(/^🛌 Sleep 10pm(\s*—\s*)?/, '');
     if (!summary) summary = real.slice(0,2).map(function(e){ return e.text; }).join(' · ');
-    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+summary+'</div></div>';
+    h += '<div style="font-size:12px;font-weight:500;color:'+mainColor+';">'+esc(summary)+'</div></div>';
   });
   c.innerHTML = h;
 }
@@ -6276,10 +6276,10 @@ function renderNextUp(dayId) {
   }
   box.className = 'nextup';
   box.setAttribute('data-next', next.kind);
-  box.innerHTML = '<div class="nextup-emoji">' + emoji + '</div>'
+  box.innerHTML = '<div class="nextup-emoji">' + esc(emoji) + '</div>'
     + '<div class="nextup-body"><div class="nextup-kicker">Next up</div>'
-    + '<div class="nextup-label">' + label + '</div>'
-    + (meta ? '<div class="nextup-meta">' + meta + '</div>' : '')
+    + '<div class="nextup-label">' + esc(label) + '</div>'
+    + (meta ? '<div class="nextup-meta">' + esc(meta) + '</div>' : '')
     + '</div><span class="nextup-arrow">→</span>';
   box.onclick = function() {
     if (el.click) el.click();
@@ -6562,7 +6562,7 @@ function renderArchive() {
       html += '<div class="tc ticked" style="opacity:0.55;margin-bottom:6px;">';
       html += '<div class="chk">✓</div>';
       html += '<div class="tt" style="min-width:66px;">' + ev.time + '</div>';
-      html += '<div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:var(--pl-888888);">' + (ev.link?'<a href="'+ev.link+'" target="_blank" onclick="event.stopPropagation()">'+ev.text+'</a>':ev.text) + '</div></div></div>';
+      html += '<div class="tb" style="flex:1;"><div class="tl" style="text-decoration:line-through;color:var(--pl-888888);">' + (ev.link?'<a href="'+esc(ev.link)+'" target="_blank" onclick="event.stopPropagation()">'+esc(ev.text)+'</a>':esc(ev.text)) + '</div></div></div>';
     });
   });
   if (!any) html += '<div style="color:var(--pl-B4B2A9);font-size:12px;padding:24px 4px;text-align:center;">Nothing archived yet.</div>';
@@ -6594,7 +6594,7 @@ function createTimelineDay(d) {
     }
   }
   var h = '<div class="tl-col-hdr"><div class="tl-col-dow">'+d.dow.substring(0,3)+'</div><div class="tl-col-date">'+d.date+'</div></div>';
-  h += '<div class="tl-col-focus">'+d.focus+'</div>';
+  h += '<div class="tl-col-focus">'+esc(d.focus)+'</div>';
   h += '<div class="tl-col-body">';
   evs.forEach(function(ev) {
     var isDayOff = !ev.free && eventCategory(ev).id === 'free';
@@ -6604,7 +6604,7 @@ function createTimelineDay(d) {
     ht = Math.min(ht, 750 - top);
     h += '<div class="'+cls+'" style="top:'+top+'px;height:'+ht+'px;min-height:0;">';
     h += '<div class="tl-ev-tt">'+ev.time+'</div>';
-    h += '<div class="tl-ev-tl">'+ev.text+'</div>';
+    h += '<div class="tl-ev-tl">'+esc(ev.text)+'</div>';
     h += '</div>';
   });
   h += '</div>';
@@ -6731,7 +6731,7 @@ function openDetail(el) {
   var title = card.querySelector('.tl');
   var detail = card.getAttribute('data-detail');
   document.getElementById('task-detail-title').textContent = title ? title.textContent.replace(/→$/,'').trim() : '';
-  document.getElementById('task-detail-body').innerHTML = detail;
+  document.getElementById('task-detail-body').innerHTML = esc(detail);
   document.getElementById('task-detail-overlay').classList.add('open');
 }
 function closeDetail() {
@@ -6855,7 +6855,8 @@ function loadWeather() {
         + '<div class="weather-desc">'+info[1]+' · feels '+Math.round(c.apparent_temperature)+'°</div></div>'
         + '<div class="weather-meta">'+WEATHER_PLACE+'<br>H '+Math.round(daily.temperature_2m_max[0])+'° · L '+Math.round(daily.temperature_2m_min[0])+'°'+(rain!=null ? ' · ☔ '+rain+'%' : '')+'<br><span style="font-size:9px;color:var(--pl-B4B2A9);">↻ '+updated+'</span></div>';
     })
-    .catch(function() {
+    .catch(function(err) {
+      console.warn("[planner] weather fetch failed", err);
       el.style.display = 'none';
       el.style.opacity = '1';
     });
@@ -7086,7 +7087,7 @@ function syncTickToBackend(pid, tc, tickId, done) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ day: day, startMin: startMin, done: done, text: text, duration: dur })
-    }).catch(function(){});
+    }).catch(function(err){ console.warn("[planner] tick sync failed", err); });
   } catch (e) {}
 }
 
@@ -7127,7 +7128,7 @@ function syncTicksFromBackend(pid) {
       });
       updateDayProgress(pid);
       renderNextUp(pid);
-    }).catch(function(){});
+    }).catch(function(err){ console.warn("[planner] backend tick pull failed", err); });
 }
 
 // ── SEARCH ──
@@ -7169,7 +7170,7 @@ function runSearch(q) {
     var d = document.createElement('div');
     d.className = 'sres-item';
     d.style.cssText = 'padding:11px 14px;cursor:pointer;border-bottom:1px solid var(--pl-EEEEEE);font-size:13px;';
-    d.innerHTML = '<span style="color:var(--pl-C4A96A);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;">' + h.day + '</span><br>' + h.text;
+    d.innerHTML = '<span style="color:var(--pl-C4A96A);font-size:11px;text-transform:uppercase;letter-spacing:0.06em;">' + esc(h.day) + '</span><br>' + esc(h.text);
     d.onclick = function() { closeSearch(); go(h.day); };
     res.appendChild(d);
   });
@@ -7338,12 +7339,12 @@ if (lastQDate !== todayQ) {
     if (!txt) return;
     var lines = txt.split('\n');
     if (lines.length <= 1) {
-      tip.innerHTML = '<div style="color:'+color+';font-weight:600;">'+txt+'</div>';
+      tip.innerHTML = '<div style="color:'+color+';font-weight:600;">'+esc(txt)+'</div>';
       tip.style.borderLeft = '3px solid '+color;
     } else {
       var html = '';
       for (var i = 0; i < lines.length; i++) {
-        html += '<div class="tt-item" style="color:'+color+';">'+lines[i]+'</div>';
+        html += '<div class="tt-item" style="color:'+color+';">'+esc(lines[i])+'</div>';
       }
       tip.innerHTML = html;
       tip.style.borderLeft = '3px solid '+color;

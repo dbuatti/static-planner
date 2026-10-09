@@ -250,7 +250,7 @@
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ day: day.dateISO, startMin: startMin, done: done, text: ev.text || "", duration: dur })
-      }).catch(function () {});
+      }).catch(function (err) { console.warn("[planner] tick sync failed", err); });
     } catch (e) {}
   }
 
@@ -276,7 +276,7 @@
           else if (!bak.done && tickState(t.tickId) === "1") { setTick(t.tickId, false); changed = true; }
         });
         if (changed) renderTasks();
-      }).catch(function () {});
+      }).catch(function (err) { console.warn("[planner] backend tick pull failed", err); });
   }
 
   function renderTasks() {
