@@ -922,5 +922,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
         {time:'09:30–14:00', text:'Matilda', cal:true},
+    ]},
+    {id:'sun8nov', dow:'Sunday', date:'8 November', dateISO:'2026-11-08', dot:'dc-rest', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'08:50–09:30', text:'Piano', cal:true},
     ]}
 ]
