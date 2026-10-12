@@ -929,5 +929,15 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'08:50–09:30', text:'Piano', cal:true},
+    ]},
+    {id:'mon9nov', dow:'Monday', date:'9 November', dateISO:'2026-11-09', dot:'dc-music', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'08:00–08:20', text:'Weekly planning', cal:true},
+        {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
+        {time:'08:50–09:30', text:'Piano', cal:true},
+        {time:'11:30–16:00', text:'Matilda', cal:true},
+        {time:'18:00–20:00', text:'FNH MASTERY CATCH UP', cal:true},
     ]}
 ]
