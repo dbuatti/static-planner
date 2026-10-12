@@ -18,6 +18,8 @@
   --accent: #5A8BC0;
   --radius: 16px;
   --nav-h: 60px;
+  /* text/icon on a coloured fill — flips with the theme */
+  --on-fill: var(--bg);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -302,9 +304,9 @@ body.has-site-nav .wrap { padding-bottom: calc(40px + env(safe-area-inset-bottom
   font-size: 14px;
   font-weight: 500;
 }
-.feel button[aria-pressed="true"][data-v="held"] { background: var(--ok); border-color: var(--ok); color: #fff; }
-.feel button[aria-pressed="true"][data-v="mostly"] { background: var(--warn); border-color: var(--warn); color: #fff; }
-.feel button[aria-pressed="true"][data-v="slipped"] { background: var(--over); border-color: var(--over); color: #fff; }
+.feel button[aria-pressed="true"][data-v="held"] { background: var(--ok); border-color: var(--ok); color: var(--on-fill); }
+.feel button[aria-pressed="true"][data-v="mostly"] { background: var(--warn); border-color: var(--warn); color: var(--on-fill); }
+.feel button[aria-pressed="true"][data-v="slipped"] { background: var(--over); border-color: var(--over); color: var(--on-fill); }
 
 textarea {
   width: 100%;
