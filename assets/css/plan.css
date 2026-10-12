@@ -2953,3 +2953,22 @@ h1, h2, h3, .dh-title .dh-dow, .dh-title .dh-date, .stat-num { font-weight: 400;
   /* The bottom site-nav (60px) replaces the old .m-bottom-nav. */
   :root { --m-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 }
+
+/* ============================================================
+   RHYTHM — match the shared radius + spacing scale so the
+   planner reads as the same app. The planner stays intentionally
+   dense (it's a data view), but its surfaces and primary text sit
+   on the same grid as the hub pages.
+   ============================================================ */
+.card, .stat-card, .day-row, .ody-card, .weather-widget { border-radius: var(--radius); }
+.card { padding: 16px; }
+.card-sm { border-radius: 12px; }
+.tc { border-radius: 14px; }
+
+.tl { font-size: 13px; }
+.tt { font-size: 12px; }
+.tn { font-size: 12px; }
+
+@media (min-width: 768px) {
+  .main { padding: 24px 28px; }
+}
