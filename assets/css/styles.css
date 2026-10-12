@@ -128,7 +128,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--ok);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 4px;
 }
@@ -510,6 +510,35 @@ summary::-webkit-details-marker { display: none; }
 }
 .toggle[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); }
 .toggle[aria-pressed="true"]::after { left: 22px; }
+
+/* ---- Interaction states (hover / press), shared across the hub ---- */
+.btn,
+.seg button,
+.nav-round,
+.link-row,
+.chip,
+.reset,
+.feel button {
+  transition: background-color .15s ease, border-color .15s ease, color .15s ease, transform .12s ease;
+}
+.btn:active,
+.seg button:active,
+.nav-round:active,
+.link-row:active,
+.chip:active,
+.reset:active,
+.feel button:active {
+  transform: translateY(1px);
+}
+@media (hover: hover) {
+  .btn:hover { background: color-mix(in srgb, var(--fill) 88%, var(--bg)); }
+  .seg button:hover { border-color: var(--soft); }
+  .nav-round:hover:not(:disabled) { background: var(--tap); }
+  .link-row:hover { border-color: var(--soft); }
+  .reset:hover { border-color: var(--soft); color: var(--ink); }
+  .chip:hover { border-color: var(--soft); }
+  .site-nav a:hover { color: var(--ink); }
+}
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }

@@ -74,8 +74,10 @@
   align-items: center;
   gap: 6px;
   min-height: 84px;
+  transition: background-color .15s ease, border-color .15s ease, transform .12s ease;
 }
-.quick button:active { background: var(--tap); }
+.quick button:active { background: var(--tap); transform: translateY(1px); }
+@media (hover: hover) { .quick button:hover { border-color: var(--soft); } }
 .quick .q-ic { font-size: 24px; line-height: 1; }
 .quick .q-lb { font-size: 12px; color: var(--soft); }
 .quick .q-n { font-size: 18px; font-weight: 700; }
@@ -87,8 +89,10 @@
   display: flex; align-items: center; gap: 10px;
   border: 1px solid var(--rule); border-radius: 14px;
   padding: 14px; text-decoration: none; color: var(--ink); background: var(--card);
+  transition: background-color .15s ease, border-color .15s ease, transform .12s ease;
 }
-.home-links a:active { background: var(--tap); }
+.home-links a:active { background: var(--tap); transform: translateY(1px); }
+@media (hover: hover) { .home-links a:hover { border-color: var(--soft); } }
 .home-links .ic { font-size: 22px; }
 .home-links .lb { font-weight: 600; font-size: 14px; }
 </style>
