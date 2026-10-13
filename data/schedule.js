@@ -941,5 +941,15 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'08:50–09:30', text:'Piano', cal:true},
         {time:'11:30–16:00', text:'Matilda', cal:true},
         {time:'18:00–20:00', text:'FNH MASTERY CATCH UP', cal:true},
+    ]},
+    {id:'tue10nov', dow:'Tuesday', date:'10 November', dateISO:'2026-11-10', dot:'dc-music', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
+        {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
+        {time:'09:40–10:20', text:'Piano', cal:true},
+        {time:'14:00–15:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Anita La Terra', cal:true},
+        {time:'17:30–18:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Nicole Rotenstein', cal:true},
     ]}
 ]
