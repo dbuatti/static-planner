@@ -739,7 +739,8 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
-        {time:'14:00–18:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
+        {time:'11:30–18:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
+        {time:'11:30–18:00', text:'MRS DOUBTFIRE REHEARSALS', cal:true},
     ]},
     {id:'thu15oct', dow:'Thursday', date:'15 October', dateISO:'2026-10-15', dot:'dc-rest', week:'October',
    sub:'',
