@@ -751,6 +751,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'10:00–11:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charlie Preston', cal:true},
         {time:'11:30–12:30', text:'Piano Backings — record Mikaela\'s 2 tracks', cal:true},
         {time:'13:00–14:30', text:'Piano by Heart - design + order postcards', cal:true},
+        {time:'14:00–18:00', text:'Doubtfire', cal:true},
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
     ]},
     {id:'fri16oct', dow:'Friday', date:'16 October', dateISO:'2026-10-16', dot:'dc-rest', week:'October',
