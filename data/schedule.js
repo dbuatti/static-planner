@@ -675,6 +675,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
         {time:'10:00–12:00', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},
+        {time:'17:00–18:15', text:'Piano by Heart', cal:true},
     ]},
     {id:'sun15nov', dow:'Sunday', date:'15 November', dateISO:'2026-11-15', dot:'dc-music', week:'November',
      sub:'🎭 Starbound audition day 9:30am',
