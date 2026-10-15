@@ -762,6 +762,10 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
+        {time:'10:30–11:00', text:'Drive to The Royce', cal:true},
+        {time:'11:00–12:00', text:'Royce demo - Caryn Ng', cal:true},
+        {time:'12:00–13:00', text:'Record + send Mikaela\'s track', cal:true},
+        {time:'13:30–16:00', text:'Room + washing', cal:true},
         {time:'17:30–18:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and James Griffith', cal:true},
         {time:'18:30–19:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charlotte Mackenzie', cal:true},
     ]},
