@@ -973,5 +973,12 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
         {time:'08:50–09:30', text:'Piano', cal:true},
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
+    ]},
+    {id:'fri13nov', dow:'Friday', date:'13 November', dateISO:'2026-11-13', dot:'dc-rest', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'08:30–08:45', text:'Sit (Kriya)', cal:true},
+        {time:'08:50–09:30', text:'Piano', cal:true},
     ]}
 ]
