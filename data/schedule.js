@@ -893,7 +893,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'10:30–11:30', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Reuben Douglas', cal:true},
-        {time:'12:30–13:30', text:'🎹 Piano practice: Matilda dance call music', cal:true},
         {time:'14:30–15:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charley Conway', cal:true},
         {time:'14:30–15:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charley Conway', cal:true},
     ]},
@@ -905,7 +904,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'12:30–13:30', text:'VISIT TO HUMM', cal:true},
         {time:'14:30–15:30', text:'🎹 Piano practice: Matilda dance call music', cal:true},
         {time:'15:30–18:45', text:'🎹 Firbank / Brighton Grammar Grease callbacks: pianist (Isaac)', cal:true},
-        {time:'16:00–17:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charlotte Mackenzie', cal:true},
     ]},
     {id:'thu5nov', dow:'Thursday', date:'5 November', dateISO:'2026-11-05', dot:'dc-rest', week:'November',
    sub:'',
