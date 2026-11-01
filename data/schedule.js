@@ -904,6 +904,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'10:00–10:15', text:'Appointment with Dr Princy Ponnalayath George at Fairfield City Medical Centre', cal:true},
         {time:'12:30–13:30', text:'VISIT TO HUMM', cal:true},
         {time:'14:30–15:30', text:'🎹 Piano practice: Matilda dance call music', cal:true},
+        {time:'15:30–18:45', text:'🎹 Firbank / Brighton Grammar Grease callbacks: pianist (Isaac)', cal:true},
         {time:'16:00–17:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charlotte Mackenzie', cal:true},
     ]},
     {id:'thu5nov', dow:'Thursday', date:'5 November', dateISO:'2026-11-05', dot:'dc-rest', week:'November',
