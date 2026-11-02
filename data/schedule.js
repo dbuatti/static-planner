@@ -683,11 +683,9 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
      sub:'🎭 Starbound audition day 9:30am',
      focus:'Starbound audition day 9:30am–4:45pm',
      events:[
-        {time:'08:55–09:30', text:'🚗 Travel: home → Strathcona, Canterbury', cal:true},
         {time:'09:30–16:45', text:'🎹 Starbound audition day — accompanist', perf:true, cal:true},
         {time:'16:45–17:20', text:'🚗 Travel: Canterbury → home', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
-        {time:'22:00–23:30', text:'by Heart', cal:true},
+        {time:'16:45–17:20', text:'🚗 Travel: Canterbury → home', cal:true},
     ]},
 
   {id:'fri9oct', dow:'Friday', date:'9 October', dateISO:'2026-10-09', dot:'dc-rest', week:'October',
@@ -931,19 +929,15 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–11:00', text:'FNH MASTERY CATCH UP', cal:true},
         {time:'11:15–12:15', text:'PSYCHOLOGIST', cal:true},
-        {time:'14:00–15:00', text:'🎹 Piano practice: Matilda dance call music', cal:true},
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'fri6nov', dow:'Friday', date:'6 November', dateISO:'2026-11-06', dot:'dc-rest', week:'November',
    sub:'',
    focus:'',
    events:[
-        {time:'08:30–09:30', text:'🎹 Piano practice: Matilda warm-up run', cal:true},
+        {time:'10:40–11:30', text:'🚗 Travel: home → Transit Dance, Brunswick', cal:true},
         {time:'10:40–11:30', text:'🚗 Travel: home → Transit Dance, Brunswick', cal:true},
         {time:'11:30–18:00', text:'Matilda', cal:true},
-        {time:'18:00–18:50', text:'🚗 Travel: Brunswick → home', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'sat7nov', dow:'Saturday', date:'7 November', dateISO:'2026-11-07', dot:'dc-rest', week:'November',
    sub:'',
@@ -984,7 +978,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'14:00–15:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Anita La Terra', cal:true},
         {time:'17:30–18:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Nicole Rotenstein', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'wed11nov', dow:'Wednesday', date:'11 November', dateISO:'2026-11-11', dot:'dc-kine', week:'November',
    sub:'',
@@ -997,14 +990,12 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'fri13nov', dow:'Friday', date:'13 November', dateISO:'2026-11-13', dot:'dc-rest', week:'November',
    sub:'',
    focus:'',
    events:[
         {time:'16:00–17:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and James Griffith', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'mon16nov', dow:'Monday', date:'16 November', dateISO:'2026-11-16', dot:'dc-music', week:'November',
    sub:'',
@@ -1012,7 +1003,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'08:00–08:20', text:'Weekly planning', cal:true},
         {time:'10:00–11:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Lesley Wiadrowski', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'tue17nov', dow:'Tuesday', date:'17 November', dateISO:'2026-11-17', dot:'dc-music', week:'November',
    sub:'',
@@ -1020,7 +1010,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'17:30–18:15', text:'Voice and Piano Coaching (45 min) — $75 between Daniele Buatti and Nicole Rotenstein', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'thu19nov', dow:'Thursday', date:'19 November', dateISO:'2026-11-19', dot:'dc-rest', week:'November',
    sub:'',
@@ -1028,13 +1017,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–11:00', text:'FNH MASTERY CATCH UP', cal:true},
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
-        {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'fri20nov', dow:'Friday', date:'20 November', dateISO:'2026-11-20', dot:'dc-rest', week:'November',
    sub:'',
    focus:'',
    events:[
-        {time:'15:30–16:00', text:'🎹 Royce warm-up (sing + play)', cal:true},
         {time:'17:45–18:30', text:'🚗 Travel: home → The Royce (mic + stand)', cal:true},
         {time:'18:30–20:30', text:'ROYCE GIG', cal:true},
         {time:'20:30–21:00', text:'🚗 Travel: The Royce → home', cal:true},
@@ -1069,8 +1056,6 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    sub:'',
    focus:'',
    events:[
-        {time:'14:35–15:00', text:'🚗 Travel: home → Artisans on Carlisle', cal:true},
         {time:'15:00–17:00', text:'🎹 Jam with Jack Brannigan', cal:true},
-        {time:'17:00–17:25', text:'🚗 Travel: Artisans → home', cal:true},
     ]}
 ]
