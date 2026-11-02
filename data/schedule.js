@@ -905,6 +905,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'14:30–15:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charley Conway', cal:true},
         {time:'14:30–15:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charley Conway', cal:true},
         {time:'15:40–16:40', text:'🎹 Piano practice: Matilda dance call music', cal:true},
+        {time:'17:00–18:00', text:'🎼 Firbank Grease: download + look through music', cal:true},
         {time:'20:30–21:00', text:'🎹 Royce set practice (sing + play)', cal:true},
     ]},
     {id:'wed4nov', dow:'Wednesday', date:'4 November', dateISO:'2026-11-04', dot:'dc-kine', week:'November',
