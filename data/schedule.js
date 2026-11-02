@@ -978,6 +978,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'14:00–15:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Anita La Terra', cal:true},
         {time:'17:30–18:30', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Nicole Rotenstein', cal:true},
+        {time:'18:00–19:00', text:'Yoga with Patrick', cal:true},
     ]},
     {id:'wed11nov', dow:'Wednesday', date:'11 November', dateISO:'2026-11-11', dot:'dc-kine', week:'November',
    sub:'',
@@ -1010,6 +1011,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'17:30–18:15', text:'Voice and Piano Coaching (45 min) — $75 between Daniele Buatti and Nicole Rotenstein', cal:true},
+        {time:'18:00–19:00', text:'Yoga with Patrick', cal:true},
     ]},
     {id:'thu19nov', dow:'Thursday', date:'19 November', dateISO:'2026-11-19', dot:'dc-rest', week:'November',
    sub:'',
@@ -1039,6 +1041,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
         {time:'14:00–14:45', text:'Voice and Piano Coaching (45 min) — $75 between Daniele Buatti and Anita La Terra', cal:true},
+        {time:'18:00–19:00', text:'Yoga with Patrick', cal:true},
     ]},
     {id:'thu26nov', dow:'Thursday', date:'26 November', dateISO:'2026-11-26', dot:'dc-rest', week:'November',
    sub:'',
