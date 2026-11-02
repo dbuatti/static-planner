@@ -1057,5 +1057,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'15:00–17:00', text:'🎹 Jam with Jack Brannigan', cal:true},
+    ]},
+    {id:'mon30nov', dow:'Monday', date:'30 November', dateISO:'2026-11-30', dot:'dc-music', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'08:00–08:20', text:'Weekly planning', cal:true},
     ]}
 ]
