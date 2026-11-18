@@ -1208,5 +1208,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'12:00–15:00', text:'🎂 Birthday visit — Mum & Papa (TBC)', cal:true},
+    ]},
+    {id:'wed16dec', dow:'Wednesday', date:'16 December', dateISO:'2026-12-16', dot:'dc-kine', week:'December',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'18:30–19:15', text:'Council of the Root ✨ Daniele, Bradley & Linda', cal:true},
     ]}
 ]
