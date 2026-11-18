@@ -1017,15 +1017,19 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    sub:'',
    focus:'',
    events:[
+        {time:'08:05–08:45', text:'🏧 ATM – Kooyong post office', cal:true},
         {time:'09:00–11:00', text:'FNH MASTERY CATCH UP', cal:true},
         {time:'11:00–35:00', text:'Due: keep or cancel Ultimate Guitar (renews 20 Nov)', cal:true},
         {time:'11:15–12:15', text:'PSYCHOLOGIST', cal:true},
+        {time:'15:00–16:30', text:'MENTORING SESSION WITH NICK', cal:true},
+        {time:'16:30–16:45', text:'👕 Take clothes off the line', cal:true},
         {time:'18:00–19:00', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
     ]},
     {id:'fri20nov', dow:'Friday', date:'20 November', dateISO:'2026-11-20', dot:'dc-rest', week:'November',
    sub:'',
    focus:'',
    events:[
+        {time:'10:00–13:00', text:'🧖 EQ Signature Journey', cal:true},
         {time:'11:00–35:00', text:'Resonance: last days of early bird posts (ends Sun 22)', cal:true},
         {time:'17:45–18:30', text:'🚗 Travel: home → The Royce (mic + stand)', cal:true},
         {time:'18:30–20:30', text:'ROYCE GIG', cal:true},
@@ -1037,6 +1041,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    events:[
         {time:'08:00–08:20', text:'Weekly planning', cal:true},
         {time:'10:00–11:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Georg Gleeson', cal:true},
+        {time:'11:15–12:00', text:'🖨️ Pick up flyers from Officeworks', cal:true},
         {time:'18:00–20:00', text:'FNH MASTERY CATCH UP', cal:true},
     ]},
     {id:'tue24nov', dow:'Tuesday', date:'24 November', dateISO:'2026-11-24', dot:'dc-music', week:'November',
@@ -1059,6 +1064,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'07:00–07:15', text:'🧺 Take washing off the line', cal:true},
+        {time:'14:00–15:00', text:'Voice and Piano Coaching (60 min) — $95 between Daniele Buatti and Charley Conway', cal:true},
         {time:'16:00–17:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Reuben Douglas', cal:true},
         {time:'18:00–19:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Matilda', cal:true},
     ]},
@@ -1066,6 +1072,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    sub:'',
    focus:'',
    events:[
+        {time:'09:00–11:00', text:'🌊 Elwood beach clean with Phil (3184 Beach Patrol)', cal:true},
         {time:'15:00–17:00', text:'🎹 Jam with Jack Brannigan', cal:true},
     ]},
     {id:'mon30nov', dow:'Monday', date:'30 November', dateISO:'2026-11-30', dot:'dc-music', week:'November',
@@ -1192,5 +1199,11 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    focus:'',
    events:[
         {time:'09:00–09:30', text:'Weekly Q & A: Functional Neuro Approach Foundations', cal:true},
+    ]},
+    {id:'sat28nov', dow:'Saturday', date:'28 November', dateISO:'2026-11-28', dot:'dc-rest', week:'November',
+   sub:'',
+   focus:'',
+   events:[
+        {time:'12:00–15:00', text:'🎂 Birthday visit — Mum & Papa (TBC)', cal:true},
     ]}
 ]
