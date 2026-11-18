@@ -1121,6 +1121,7 @@ focus:'Shower 9am · Breakfast 9:20 · Pay rent 9:50 · Kitchen tidy 10am · Pac
    sub:'',
    focus:'',
    events:[
+        {time:'16:00–17:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Reuben Douglas', cal:true},
         {time:'18:00–19:00', text:'FNH Neuro-Health Assessment (60 min) — $70 between Daniele Buatti and Matilda', cal:true},
     ]},
     {id:'thu3dec', dow:'Thursday', date:'3 December', dateISO:'2026-12-03', dot:'dc-rest', week:'December',
